@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ask Neu Avatar Component</title>
+  <style>
+    :root {
+      --bg-color: #0b0e17;
+      --circle-bg: #0e172a;
+      --circle-border: #1a305d;
+      --circle-glow: rgba(59, 130, 246, 0.25);
+      --bubble-bg: #152243;
+      --bubble-border: #243b73;
+      --robot-body: #dbeafe;
+      --robot-face: #0b1222;
+      --accent-blue: #60a5fa;
+      --text-color: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 280px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .speech-bubble {
+      position: absolute;
+      top: 0;
+      background: var(--bubble-bg);
+      border: 1.5px solid var(--bubble-border);
+      border-radius: 28px;
+      padding: 12px 28px;
+      color: var(--text-color);
+      font-size: 1.6rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: var(--bubble-bg) transparent;
+      display: block;
+      width: 0;
+    }
+
+/* Background Container */
+    .avatar-circle {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #13203e 0%, var(--circle-bg) 70%);
+      border: 2px solid var(--circle-border);
+      box-shadow: 0 0 30px var(--circle-glow), inset 0 0 15px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+/* Logo */
+    .brand-n {
+      position: absolute;
+      bottom: 12px;
+      color: var(--accent-blue);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="avatar-wrapper">
+    <div class="speech-bubble">
+      Ask Neu!
+    </div>
+
+    <div class="avatar-circle">
+      <svg width="190" height="160" viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="12" r="6" fill="var(--robot-body)" />
+        <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--robot-body)" />
+        <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--robot-body)" />
+        <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
+        <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
+        <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--robot-face)" />
+        <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
+        <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
+        <path d="M 63 74 Q 70 78 77 74" stroke="var(--robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
+      </svg>
+
+      <div class="brand-n">N</div>
+    </div>
+  </div>
+
+</body>
+</html>
