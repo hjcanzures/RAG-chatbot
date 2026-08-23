@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Page Not Found - New Era University</title>
+    
+    <link href="../../../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../../../css/avenir" rel="stylesheet">
+    
+    <link href="../styles/styles-19.css?v=6a88fbea8e58b" rel="stylesheet">
+    
+    <style>
+        /* --- 404 ERROR PAGE STYLES --- */
+        .error-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            min-height: 65vh; /* Ensures it takes up the middle of the screen */
+            background-color: #fcfcfc; /* Matches the light background in the image */
+        }
+
+        .error-image {
+            max-width: 350px; /* Adjust this based on your actual illustration size */
+            width: 100%;
+            height: auto;
+            margin-bottom: 40px;
+        }
+
+        .error-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .error-section p {
+            font-family: 'Avenir', sans-serif;
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+        }
+
+        .btn-home {
+            /* Falls back to a hardcoded dark blue if the variable isn't loaded */
+            background-color: var(--primary-blue, #002f6c); 
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-home:hover {
+            opacity: 0.85;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .error-section {
+                padding: 60px 20px;
+            }
+            .error-section h1 {
+                font-size: 1.8rem;
+            }
+            .error-section p {
+                font-size: 0.95rem;
+            }
+            .error-image {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="../../index.htm">
+        <div class="container header-content">
+            <img src="webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="../../academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="../../academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="../../academics.html#cmd">College of Medicine</a>
+                            <a href="../../academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="../../academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="../../academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="../../maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="../../student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="../../maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="../../admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="../../admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="../../admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="../../maintenance.html">Application Reminders</a>
+                            <a href="../../admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="../../payment.html#payment-fees">Payment Procedure</a>
+                            <a href="../../maintenance.html">Scholarship Grants</a>
+                            <a href="../../maintenance.html">Financial Assistance</a>
+                            <a href="../../payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="../../payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="../../contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="../../maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="../../about-us/index.htm">Quezon City (Main)</a>
+                            <a href="../../campus/pampanga.html">Pampanga</a>
+                            <a href="../../campus/lipa.html">Lipa</a>
+                            <a href="../../campus/gen-san.html">General Santos City</a>
+                            <a href="../../campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="../../maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="../../maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="../../maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="../../maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="../../maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="../../maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="../../maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="../../maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="../../maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="../../maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="../../maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="../../maintenance.html">Linkages</a>
+                            <a href="../../maintenance.html">Disclaimer</a>
+                            <a href="../../notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="../../notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="../../maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="../../about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="../../news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="../../contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <main class="error-section container">
+        
+        <img src="webp/errorillu.webp" alt="404 Error Graphic" class="error-image">
+        
+        <h1>Page Not Found</h1>
+        <p>Sorry, the page you are looking for doesn't exist or has been moved.</p>
+        
+        <a href="../../index.htm" class="btn-home">BACK TO HOME</a>
+        
+    </main>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../scripts/script.js"></script>    
+</body>
+</html>

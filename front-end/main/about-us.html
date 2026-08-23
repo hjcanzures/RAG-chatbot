@@ -1,0 +1,887 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    
+    <link href="assets/styles/styles-13.css?v=6a88faac7334e" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ABOUT PAGE STYLES
+           ========================================= */
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/neufacade1.webp.html'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+        }
+
+        
+        .sidebar-nav {
+            padding-right: 40px; 
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav > ul > li {
+            margin-bottom: 18px;
+        }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #b0b0b0; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .sidebar-nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .sidebar-nav a.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        
+        .main-content {
+            border-left: 1px solid var(--border-color); 
+            padding-left: 40px; 
+        }
+
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px; 
+        }
+
+        .content-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 450px; 
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .about-text-block {
+            margin-bottom: 40px;
+        }
+
+        .about-text-block h3 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .about-text-block p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .italic-quote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 20px;
+            margin: 25px 0;
+        }
+
+        
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .sidebar-nav {
+                padding-right: 0;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+            }
+            .main-content {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+        
+        .large-history-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+    
+        .history-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+    
+        @media (max-width: 600px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .about-text-block strong {
+            color: #E57A01; 
+            font-weight: 700;
+        }
+        
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>ABOUT US</h1>
+        </div>
+    </section>
+
+    <section class="container page-wrapper">
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="history">History</a></li>
+                <li><a class="sidebar-link" data-target="philosophy">Philosophy of Education</a></li>
+                <li><a class="sidebar-link" data-target="vmg">Vision, Mission, Goals</a></li>
+                <li><a class="sidebar-link" data-target="core-values">Our Core Values</a></li>
+                <li><a class="sidebar-link" data-target="seal">The University Seal</a></li>
+                <li><a class="sidebar-link" data-target="hymn">NEU Hymn</a></li>
+                <li><a class="sidebar-link" data-target="facilities">Facilities</a></li>
+                <li><a class="sidebar-link" data-target="awards">Awards and Citations</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div id="history" class="content-section" style="display: block;">
+                <h2 class="content-title">HISTORY</h2>
+                
+                <div class="about-text-block">
+                    
+                    
+                    <h4></h4>
+                    
+                    <p></p>
+                    
+                    <h4>1975-1981: Foundation and early years</h4>
+                    <p>On June 9, 1975, the New Era Educational Institute (NEEI) was established in Quiapo, Manila. Housed in the Iglesia Ni Cristo
+Development Center at 499 Carlos Palanca Street, it initially provided secondary education to 466 students with a faculty of 23
+teachers and proudly held its first high school graduation on March 19, 1976, with 30 pioneering students.</p>
+
+
+                    <p>NEEI was formally recognized as a private, non-stock, non-profit, non-sectarian institution on June 6, 1977. The year 1978 marked
+a major milestone as the institution expanded into higher education, offering twelve college programs, including AB Mass
+Communication and BS Civil Engineering.</p>
+
+                    <p>During the inauguration of the New Era Evangelical College (NEEC) on June 17, 1978, at its campus along Commonwealth
+Avenue, Quezon City, Brother Erano Manalo solemnly declared the institution's prime purpose: to glorify God by upholding His
+words, fostering love and harmony, and maintaining excellence, order, and discipline.</p>
+
+                    <p>In 1979, the foundation was further strengthened with the appointment of Justice Nicolas P. Lapena Jr. as the institution's first
+president.</p>
+                    
+                    <h4>1981-1995: Growth as New Era College (NEC)</h4>
+                    
+                    <p>In 1981, the school officially became New Era College (NEC), with expanded academic programs. In 1983, it introduced its first
+graduate program-the Master of Arts in College Teaching (MACT).</p>
+                    
+                    <p>To accommodate its growing community, a permanent campus was inaugurated by Brother Eraño Manalo on May 10, 1986, in
+Diliman, Quezon City. In 1991, the Elementary and High School Departments were relocated to new buildings within the campus
+to support NEC's expansion.</p>
+                    
+                    <p>By the mid-1990s, NEC had begun extending its reach beyond Metro Manila. On June 20, 1994, it inaugurated its first branch
+campus in Pampanga, followed shortly by the opening of the General Santos City campus in South Cotabato on July 11, 1994.</p>
+                    
+                    <img src="assets/images/webp/nec-campus-photo.webp" alt="Old NEEI Campus" class="large-history-img">
+                    
+                    
+                    <h4>1995-2019: Transition to New Era University (NEU)</h4>
+                    
+                    <p>The year 1995 marked a historic milestone for the institution as New Era College was officially granted university status,
+becoming New Era University (NEU) on June 30. This transition signified more than a change in name-it ushered in an era of
+academic ex-pansion, institutional growth, and global collaboration.
+In 2000, NEU opened its College of Law, followed by the launch of Special Education (SPED) programs and the College of
+Nursing in 2003.</p>
+                    
+                    <p>The University's growth also reached more regions in the Philippines. The NEU-Lipa City Branch in Batangas was inaugurated on
+May 5, 2000, and a new building was opened at NEU-Pampanga in 2002.</p>
+                    
+                    <p>In 2009, when Brother Eduardo V. Manalo assumed office as the Executive Minister of the Church, he carried forward the mission
+of New Era University-drawing strength and inspiration from the legacy of his predecessor while leading the institution to even
+greater heights. In 2010, NEU embraced innovation by launching online learning through Vantage Education Management (VEM),
+paving the way for more flexible and accessible learning modalities. The following year, NEU opened its College of Music,
+enriching the school's commitment to holistic education.</p>
+                    
+                    <p>On June 17, 2014, NEU inaugurated its Professional Schools Building. That same month, the NEU College of Law began offering
+its Juris Doctor program. The year 2014 also saw the launch of major academic units: the College of Medicine and the Colleges
+of Criminology, Communication, Accountancy, and Computer Studies.</p>
+                    
+                    <p>In 2015, NEU celebrated its 40th anniversary, conducting that year's Commencement Exercises at the Philippine Arena in Ciudad
+de Victoria, Bocaue, Bulacan wherein it also conferred its first honorary degree (Honoris Causa). Then, in 2017, groundbreaking
+ceremonies were held for the NEU College of Agriculture in Baras, Rizal, marking the establishment of NEU's fourth branch
+campus. In the same year, Embrace Cafe (one of the four livelihood centers of the Church's Embrace Organization for the
+Differently Abled) became part of the NEU-SPED program, providing inclusive opportunities for those with special needs.</p>
+                    
+                    <p>NEU's reach extended beyond Philippine shores when, in 2018, it became the first private university in the country to enter anto a
+collaboration agreement with Moscow State Institute for International Relations (MGIMO)-a globally recognized academic
+institution. On August 9, 2019, the NEU School of Management building was inaugurated along Central Avenue in Quezon City,
+becoming the new home of the College of Business Administration, the College of Accountancy, and the School of International</p>
+
+
+                    <img src="assets/images/webp/ad4615d1b82036ecfe52f08c97fec37de8f8768e.webp" alt="NEC Inauguration" class="large-history-img">
+                    
+                    <h4>2020-Present: Innovation and global expansion</h4>
+                    
+                    <p>During the Covid-19 pandemic, NEU swiftly transitioned to full online learning through the NEU Virtual Learning Environment (NEUVLE) in 2020. This bold step not only safeguarded learning during uncertain times but also positioned the university as a leader in digital education in the Philippines.</p>
+                    
+                    <p>In 2021, the university strengthened its global academic engagement with the establishment of the Russian Studies Center (RSC) and collaboration with the Foreign Policy Community of Indonesia (FPCI).</p>
+                    
+                    <p>The year 2022 was marked by the graduation of the first batch of Bachelor of Science in Agriculture students. That year also saw the return of global academic visitors, as NEU welcomed international dignitaries. In cooperation with the Iglesia Ni Cristo Christian Family Organizations, it also launched three new educational programs: Applied Education in Various Media (AEVM); NEU - Special Task Force; and EVM research fellowship program.</p>
+                    
+                    <p>Continuing its upward trajectory, NEU launched the China Studies Center in 2023. That same year, the university joyfully resumed face-to-face commencement exercises during its 48th graduation ceremony, after two years of conducting them virtually.</p>
+                    
+                    <p>In 2024, NEU signed landmark academic agreements with the Far Eastern Federal University (FEFU) of Russia and NingboTech University of China. It also hosted the first-ever National Summit on Journalism, bringing together thought leaders and students from across the country.</p>
+                    
+
+
+                    <div class="history-grid">
+                        <img src="assets/images/webp/88d02c0ef0304e8416e4f6ade83360a06a0868a9.webp" alt="Campus Life 1">
+                        <img src="assets/images/webp/cd4c65b9e7f44adff65a0511f1104a0ac1d75ee7.webp" alt="Campus Life 2">
+                        <img src="assets/images/webp/f42933ec9cdb3cd0239392bcb71c7514cfe43fcd.webp" alt="Campus Life 3">
+                        <img src="assets/images/webp/dd44b63b7667f86e4131869af3c8c00e13a2da69.webp" alt="Campus Life 4">
+                    </div>
+                    
+                    
+                    
+                    <h4>NEU@50: Honoring the golden years, embracing a brighter future</h4>
+                    
+                    <p>Under the visionary leadership of Brother Alberto R. Domingo Jr., NEU marks its 50th founding anniversary with the theme, "NEU@50: Celebrating the Golden Years of Enduring Faith, Love, and Hope" Upon his appointment as University President in February 2023, and later also as Chairman of the Board of Trustees, he spearheaded various initiatives leading to this historic milestone supported by the Vice Presidents: Brother Julian Meimban III (VP for Research), Brother Isaias B. Reyes II (VP for Administration), and Sister Baby Simonnette B. Leoncio (VP for Academic Affairs).</p>
+                    
+                    <p>Among the key initiatives is the ambitious "50 Publications for the NEU 50th Anniversary" project, headed by Brother Jensen DG. Mañebog, in collaboration with the NEU Print and Publication Office under Brother Gem Josol. This endeavor led to the publication of over 50 scholarly and creative works by NEU faculty-authors.</p>
+                    
+                    <p>Brother Domingo also oversaw the establishment of the NEU Museum in June 2024, under the curatorship of Brother Ezzard Gilbang, showcasing the university's legacy and cultural identity. Strengthening academic excellence, the university has forged global partnerships, attained high board exam passing rates, and hosted various significant events.</p>
+                    
+                    <p>On June 13, 2025, as part of NEU's Golden Jubilee celebration, a special worship service was held at the Iglesia Ni Cristo Central Temple in Quezon City. Officiated by Brother Arnel A. Tumanan, the solemn gathering was attended by ministers, ministerial workers, faculty, and staff from the main campus and NEU branches in Pampanga, Lipa City, and Rizal, with the General Santos City Branch joining via video streaming. This was followed by the 50th Commencement Exercises and Anniversary Celebration on June 20, 2025 at the Philippine Arena, alongside the Alumni Homecoming. On September of that year, NEU became a local testing center for the Bar Examinations for the first time ever.</p>
+                    
+                    <p>As NEU marks its Golden Jubilee, it stands as a living testament to what unwavering faith, steadfast dedication, and a deep sense of mission can accomplish. Now entering a new era-with the continued leadership of the Executive Minister, Brother Eduardo Manalo, and the dynamic guidance of the Church's Deputy Executive Minister, Brother Angelo Eraño V. Manalo-the University remains firmly rooted in its founding vision: to glorify our Almighty God and render selfless service to humanity.</p>
+                    
+                    <img src="assets/images/webp/mains%202.webp" alt="NEC Inauguration" class="large-history-img">
+                </div>
+            </div>
+
+            <div id="philosophy" class="content-section">
+                <h2 class="content-title">Philosophy of Education</h2>
+                <div class="about-text-block">
+                    <img src="assets/images/webp/neu_header.webp" alt="NEU Campus" class="large-history-img">
+                    
+                    <div class="italic-quote">
+                        "Godliness is the foundation of Knowledge."
+                    </div>
+            
+                    <p>New Era University (NEU) is a private, non-stock, non-profit, non-sectarian educational institution established by the Iglesia Ni Cristo (INC). It is committed to the total development of man, helping him realize his worth as a person, and preparing him for a life of purpose, professional responsibility, and social-civic awareness as a truly productive member of the world community.</p>
+            
+                    <img src="assets/images/webp/abtph1.webp" alt="Signing Ceremony" class="large-history-img">
+            
+                    <h3>A Unique Christian Environment</h3>
+                    <p>NEU is a unique Christian environment that emphasizes not only academic excellence but also the development of character and values. It aims to develop graduates who are not only competent in their chosen fields but also God-fearing, disciplined, and service-oriented.</p>
+            
+                    <div class="history-grid">
+                        <img src="assets/images/webp/abtph2.webp" alt="Students Event">
+                        <img src="assets/images/webp/abtph3.webp" alt="Group Discussion">
+                        <img src="assets/images/webp/abtph4.webp" alt="Community Gathering">
+                        <img src="assets/images/webp/abtph5.webp" alt="Campus Life">
+                    </div>
+            
+                    <h3 style="margin-top: 40px;">Academic Attributes</h3>
+                    <p>Guided by the University's Philosophy of Education, Vision, Mission, and Goals, NEU demonstrates its pursuit of academic and institutional excellence by:</p>
+                    
+                    <ul class="content-list" style="list-style-type: none; padding-left: 0; line-height: 1.8;">
+                        <li style="margin-bottom: 20px;"><strong>Producing God-fearing, courteous and disciplined professionals:</strong> Imparting graduates who are highly ethical in their development of man that will make them realize their worth as a person and be able to contribute to the progress of the world through a sense of integrity and godliness as they uphold the values as a productive member of the society.</li>
+                        
+                        <li style="margin-bottom: 20px;"><strong>Developing versatile, knowledgeable, skilled, healthy, and productive citizens:</strong> Providing the highest standard of quality education as the students are capable of actively participating in various endeavors of the world through faith, having a sense of direction and dedication to their call.</li>
+                        
+                        <li style="margin-bottom: 20px;"><strong>Providing local and international leadership:</strong> Ensuring the students and the alumni are equipped with the standard of excellence as a world-class university through local and global institutional development through the pursuit of world and significant innovations.</li>
+                    </ul>
+            
+                    <div class="history-grid">
+                        <img src="assets/images/webp/abtph6.webp" alt="Student in Library">
+                        <img src="assets/images/webp/abtph7.webp" alt="Professional Oath">
+                        <img src="assets/images/webp/abtph8.webp" alt="Awarding Ceremony">
+                        <img src="assets/images/webp/abtph9.webp" alt="University Event">
+                    </div>
+                </div>
+            </div>
+
+            <div id="vmg" class="content-section">
+                <h2 class="content-title">Vision, Mission, Goals</h2>
+                <div class="about-text-block">
+                    <img src="assets/images/webp/neu_header.webp" alt="NEU Main Building" class="large-history-img" style="height:300px; object-fit:cover">
+                    
+                    
+                    <h3 style="margin-top: 30px;">VISION</h3>
+                    <p>A world-class Institution of learning with a unique Christian culture of excellence, discipline, and service to humanity.</p>
+                    
+                    <h3 style="margin-top: 30px;">MISSION</h3>
+                    <p>Provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God.</p>
+                    
+                    <h3 style="margin-top: 30px;">GOALS</h3>
+                    <ol class="content-list" style="padding-left: 20px; line-height: 2; color: var(--text-dark);">
+                        <li>Impart value-laden education to the total development of man.</li>
+                        <li>Offer curricula responsive to the needs of the time.</li>
+                        <li>Optimize learning through the adoption and utilization of appropriate instructional methods and resources.</li>
+                        <li>Propel institutional development through the conduct of useful and significant researches.</li>
+                        <li>Extend outreach services which promote self-help in the community.</li>
+                        <li>Promote access to non-conventional higher education and basic education programs.</li>
+                        <li>Develop servant leaders among staff, faculty members, and administrators.</li>
+                        <li>Produce God-fearing, competent, and disciplined graduates.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div id="core-values" class="content-section">
+                <h2 class="content-title">Our Core Values</h2>
+                <div class="about-text-block">
+                    <img src="assets/images/webp/oath1.webp" alt="NEU Students Oath" class="large-history-img">
+                    
+                    <p>The NEU's core values are Excellence, Discipline and Service to Humanity.</p>
+            
+                    <p><strong>Excellence</strong> that is rooted in the belief that all knowledge ultimately stems from a divine source, the pursuit of excellence at this university is not merely an academic endeavor but a spiritual imperative. Recognizing that God is the author of all truth and beauty, students and faculty are called to diligently cultivate their intellect and talents, striving for the highest standards in their scholarly pursuits, research, and creative expressions.</p>
+            
+                    <p>This commitment to excellence reflects a desire to honor God through the rigorous and faithful stewardship of the gifts of reason and understanding, aiming to uncover and articulate truths that reflect divine order and wisdom.</p>
+            
+                    <p><strong>Discipline</strong>, in the context of "Godliness is the foundation of knowledge," is understood as a vital means to cultivate both intellectual rigor and moral character, essential for truly apprehending and applying knowledge. It encompasses not only the systematic and diligent application to academic studies, requiring focus, perseverance, and adherence to sound research principles, but also the self-mastery necessary to align one's will with divine principles.</p>
+            
+                    <p>This holistic discipline enables students to discern truth from falsehood, to resist intellectual complacency, and to develop the habits of mind and heart that foster genuine wisdom and a reverent approach to learning.</p>
+            
+                    <p><strong>Service to Humanity</strong> that is flowing from the understanding that knowledge is a divine gift, service to humanity becomes the ultimate purpose for its acquisition and application. This university believes that true knowledge is not for personal aggrandizement but is given for the betterment of the world and the glory of God. Therefore, students are encouraged to utilize their God-given talents and acquired knowledge to address human needs, promote justice, and contribute to the well-being of communities, locally and globally.</p>
+            
+                    <p>This commitment to service is a tangible expression of love for one's neighbor, reflecting the divine call to be instruments of blessing and transformation in the world, embodying the truth that knowledge is fully realized when it serves a higher purpose beyond oneself.</p>
+                </div>
+            </div>
+
+            <div id="seal" class="content-section">
+                <h2 class="content-title">The University Seal</h2>
+                <div class="about-text-block">
+                    <div style="text-align:center; width:100%; margin-bottom:40px;">
+                        <img src="assets/images/webp/neulogo.webp" alt="Official New Era University Seal" style="display:block; margin:0 auto; max-width:450px; width:100%; height:auto;">
+                    </div>
+                    
+                    <p>The University seal bears identifiable images which put into visual symbols the institutional philosophy of <strong>New Era University</strong>.</p>
+            
+                    <p>The <strong>tricolored (green, white, red) circles</strong> surrounding the University seal symbolizes the University's association and is under the umbrella of the Church Administration of the Iglesia Ni Cristo that also serves as the one of the University's value of Providing Quality Education Anchored on Christian Values.</p>
+            
+                    <p>The <strong>rising sun</strong> signifies energy and a New Era that means a new beginning and being one of the top-rising universities in the Philippines.</p>
+            
+                    <p>The <strong>book</strong> signifies academics and excellence that is one of the core values of the university and its attributes of providing curricula responsive to the needs of time by optimizing learning through the adoption and utilization of appropriate instructional methods and resources and propel institutional development through the conduct of useful and significant researches.</p>
+                </div>
+            </div>
+
+            <div id="hymn" class="content-section">
+                <h2 class="content-title">THE NEU HYMN</h2>
+                <div class="about-text-block" style="text-align: center;">
+                    <p style="margin-bottom: 30px; color: #777;">Composed by: Prof. Joseph William Hollis</p>
+                    
+                    <div style="font-style: italic; line-height: 2.2; color: var(--text-dark); background: var(--bg-light); padding: 40px; border-radius: 8px;">
+                        <p>All hail fair new era<br>
+                        Forever dear to me<br>
+                        We are proud to sing<br>
+                        With cheers and glories</p>
+                        
+                        <p>To thee our hopes<br>
+                        And dreams run crystal clear<br>
+                        Our faith beneath thy wings<br>
+                        Will forever be</p>
+                        
+                        <p>Like the rising sun within thy seal<br>
+                        We'll shine and light the world with brilliancy<br>
+                        Our lord's command will obey seal<br>
+                        With his grace to all our victories</p>
+                        
+                        <p>Hail to thee beloved alma mater<br>
+                        With pride we'll uphold thy name forever<br>
+                        With honor we'll march beneath thy banner<br>
+                        Thy golden flame will always remember</p>
+                        
+                        <p>We pledge to thee eternal loyalty<br>
+                        We will win for thee more fame and glory<br>
+                        With fervent prayers to the almighty<br>
+                        We'll be united 'till eternity</p>
+                        
+                        <p>Glory to god the almighty<br>
+                        And selfless service to humanity</p>
+                    </div>
+            
+                    <div style="width: 100%; aspect-ratio: 16/9; border-radius: 8px; position: relative; overflow: hidden;">
+                        <video controls="" controlslist="nodownload" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                            <source src="assets/videos/neu_hymn.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p style="position: absolute; bottom: 10px; width: 100%; text-align: center; color: #fff; font-size: 10px; opacity: 0.6; z-index: 1;">
+                            © New Era University. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="facilities" class="content-section">
+                <h2 class="content-title">FACILITIES</h2>
+                <div class="about-text-block">
+                    
+                    <div class="facility-item" style="margin-bottom: 50px;">
+                        <img src="assets/images/webp/neufacade1.webp" alt="Main Building Annex" class="large-history-img">
+                        <p style="font-weight: 600; color: var(--primary-blue); margin-top: 10px;">Main Building Annex</p>
+                    </div>
+            
+                    <div class="facility-item" style="margin-bottom: 50px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            
+                            <div style="display: grid; grid-template-rows: repeat(2, 1fr); gap: 15px;">
+                                <img src="assets/images/webp/fac1.webp" alt="University Hall View 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="assets/images/webp/fac2.webp" alt="University Hall View 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                    
+                            <div style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 15px;">
+                                <img src="assets/images/webp/fac3.webp" alt="University Hall View 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="assets/images/webp/fac4.webp" alt="University Hall View 4" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="assets/images/webp/fac5.webp" alt="University Hall View 5" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                    
+                        </div>
+                        <p style="font-weight: 600; color: var(--primary-blue); margin-top: 15px;">University Hall</p>
+                    </div>
+                    
+            
+                    <div class="facility-item" style="margin-bottom: 50px;">
+                        <img src="assets/images/webp/fac6.webp" alt="Professional Schools Building" class="large-history-img">
+                        <p style="font-weight: 600; color: var(--primary-blue); margin-top: 10px;">Professional Schools Building</p>
+                    </div>
+            
+                    <div class="facility-item" style="margin-bottom: 50px;">
+                        <img src="assets/images/webp/fac7.webp" alt="School of Management Building" class="large-history-img">
+                        <p style="font-weight: 600; color: var(--primary-blue); margin-top: 10px;">School of Management Building</p>
+                    </div>
+            
+                    <div class="facility-item" style="margin-bottom: 20px;">
+                        <img src="assets/images/webp/fac8.webp" alt="Integrated School Building" class="large-history-img">
+                        <p style="font-weight: 600; color: var(--primary-blue); margin-top: 10px;">Integrated School Building</p>
+                    </div>
+            
+                </div>
+            </div>
+
+            <div id="awards" class="content-section">
+                <h2 class="content-title">AWARDS AND CITATIONS</h2>
+                <div class="about-text-block">
+                    <img src="assets/images/webp/neu_header.webp" alt="NEU Main Building" class="large-history-img" style="height:300px; object-fit:cover">
+                    
+                   
+            
+                    <div class="accreditation-level" style="margin-bottom: 35px;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Supreme Court of the Philippines (SC)</h3>
+                        <ol class="content-list" style="padding-left: 20px; line-height: 1.8; list-style-type: disc;">
+                            <li>Designated as one of the Local Testing Center for the September 2025 Bar Examinations</li>
+                        </ol>
+                    </div>
+                    <div class="accreditation-level" style="margin-bottom: 35px;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Commission on Higher Education (CHED)</h3>
+                        <ol class="content-list" style="padding-left: 20px; line-height: 1.8; list-style-type: disc;">
+                            <li>Excellence in Quality Assurance in Teacher Education (EQUATE) Awardee</li>
+                        </ol>
+                    </div>
+                    <div class="accreditation-level" style="margin-bottom: 35px;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Career Executive Service Board (CESB)</h3>
+                        <ol class="content-list" style="padding-left: 20px; line-height: 1.8; list-style-type: disc;">
+                            <li>Award Distinction for invaluable contribution, remarkable commitment, and active involvement through its partnership in administering the Nationwide Career Executive Service Written Examination (CESWE).</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="accreditation-level" style="margin-bottom: 35px;">
+                        <h3 style="margin: 30px 0 20px; font-size: 1.1rem; color: #555;">Philippine Association of Colleges and Universities Commission on Accreditation (PACUCOA)</h3>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">LEVEL IV Accredited</h3>
+                        <ol class="content-list" style="padding-left: 20px; line-height: 1.8; list-style-type: disc;">
+                            <li>Bachelor of Science in Business Administration (BSBA)</li>
+                            <li>Bachelor in Elementary Education (BEEd)</li>
+                            <li>Bachelor of Secondary Education (BSEd)</li>
+                            <li>BA Communication</li>
+                        </ol>
+                    </div>
+                    <h3 style="margin: 30px 0 20px; font-size: 1.1rem; color: #555;">
+                        Association of Christian Schools, Colleges, and Universities (ACSCU-ACI) Accreditation Status
+                    </h3>
+            
+                    <div class="accreditation-level">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">LEVEL III Accredited</h3>
+                        <ol class="content-list" style="padding-left: 20px; line-height: 1.8; list-style-type: disc;">
+                            <li>Doctor of Philosophy in Education (PhD) Program</li>
+                            <li>Master of Arts in Education (MAEd) Program</li>
+                            <li>Master in Business Administration (MBA) Program</li>
+                        </ol>
+                    </div>
+                    <div class="accreditation-level">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 15px;">LEVEL III Re-Accredited</h3>
+                        <ol class="content-list" style="padding-left: 20px; line-height: 1.8; list-style-type: disc;">
+                            <li>Elementary ProgramElementary Program</li>
+                            <li>Junior High School (JHS) Program</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+
+        </main>
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>
+    <script>
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Update active link
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Switch content
+                document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+                const targetId = this.dataset.target;
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
