@@ -1,0 +1,733 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEU General Santos Campus - New Era University</title>
+    <link href="../../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../../css/avenir" rel="stylesheet">
+    
+    <link href="../assets/styles/styles-10.css?v=6a88faa60d523" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           CAMPUS PAGE STYLES
+           ========================================= */
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('../assets/images/neufacade1.webp.html'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        
+        .sidebar-nav {
+            padding-right: 40px; 
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav > ul > li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #888; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .sidebar-nav a:hover {
+            color: #333;
+        }
+
+        .sidebar-nav a.active {
+            color: #113B5C; 
+            font-weight: 700;
+        }
+
+        
+        .main-content {
+            border-left: 1px solid #eee; 
+            padding-left: 40px; 
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: #C88D36; 
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        
+        .history-content p {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .history-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: block;
+        }
+
+        .section-subtitle {
+            color: #113B5C;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        .section-list {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .sidebar-nav {
+                padding-right: 0;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .sidebar-nav > ul > li {
+                margin-bottom: 0;
+            }
+            .sidebar-nav a.active {
+                border-left: none;
+                border-bottom: 3px solid #C88D36;
+                padding-left: 0;
+                margin-left: 0;
+                padding-bottom: 5px;
+            }
+            .main-content {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="../index.htm">
+        <div class="container header-content">
+            <img src="../assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="../academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="../academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="../academics.html#cmd">College of Medicine</a>
+                            <a href="../academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="../academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="../academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="../maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="../student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="../maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="../admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="../admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="../admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="../maintenance.html">Application Reminders</a>
+                            <a href="../admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="../payment.html#payment-fees">Payment Procedure</a>
+                            <a href="../maintenance.html">Scholarship Grants</a>
+                            <a href="../maintenance.html">Financial Assistance</a>
+                            <a href="../payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="../payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="../contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="../maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="../about-us/index.htm">Quezon City (Main)</a>
+                            <a href="pampanga.html">Pampanga</a>
+                            <a href="lipa.html">Lipa</a>
+                            <a href="gen-san.html">General Santos City</a>
+                            <a href="index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="../assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="../maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="../maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="../maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="../maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="../maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="../maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="../maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="../maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="../maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="../maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="../maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="../maintenance.html">Linkages</a>
+                            <a href="../maintenance.html">Disclaimer</a>
+                            <a href="../notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="../notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="../maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="../about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="../news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="../contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>NEW ERA UNIVERSITY - GENERAL SANTOS</h1>
+        </div>
+    </section>
+
+    <section class="page-wrapper">
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="history">History</a></li>
+                <li><a class="sidebar-link" data-target="seal">The University Seal</a></li>
+                <li><a class="sidebar-link" data-target="programs">Programs Offered</a></li>
+                <li><a class="sidebar-link" data-target="facilities">Facilities</a></li>
+                <li><a class="sidebar-link" data-target="contact">Contact</a></li>
+                <li><a class="sidebar-link" data-target="awards">Awards and Citations</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="history" class="content-section" style="display: block;">
+                <h2 class="content-title">HISTORY</h2>
+                
+                <div class="history-content">
+                    <img src="../assets/images/webp/E6fcY.webp" alt="NEU GenSan Main Building" class="history-image" style="margin-top: 0;">
+                    
+                    <p>New Era University - General Santos City Branch, began in 1994 when the Iglesia Ni Cristo Executive Minister, Brother Eraño G. Manalo granted the request of the brethren in South Cotabato for the establishment in the region of a non-sectarian school that offers quality education. The brethren firmly believed that New Era University can deliver this need.</p>
+
+                    <p>In June 1994, at a small lot located at Block 1, Dadiangas Heights, General Santos City opened its doors to the youth of this City by offering complete pre-school education (nursery, kindergarten and preparatory). The initial enrolment was 83. The school was headed by Jesselyn B. Miranda as the Officer-in-Charge, with Marilou M. Acuzar as Registrar, Lilia G. Bantonore as Guidance Counselor, Delia V. Vergano as Librarian, Dr. Froilan T. De Castro as Medical Officer, Jecrima P. Del Mundo as Medical Aide and Rosalito Z. Janeo as Security Officer.</p>
+
+                    <img src="../assets/images/webp/eN1Bw.webp" alt="INC Chapel GenSan" class="history-image">
+
+                    <p>In July 1994, Dr. Corazon C. Osorio, the President of New Era University during that time, visited and led the inaugural ceremony of NEU-GSC Branch. This historic event was attended by other University officials; Dr. Lydia L. Libinao (Dean of the College Education), and Brother Tanny Acut, then INC District Supervising Minister of Cotabato South, who also served as the Branch's Spiritual Adviser.</p>
+
+                    <p>With the continuous support of the Church's Administration the school grew in number in the following years of its operation. Because of this development, the school administrators felt the pressing need for a bigger area to accommodate the academic and curricular activities of the pupils. Because of this, the University Officials allowed the transfer of the Branch to a more conducive facility. This was in the form of a newly-constructed building owned by Bro. Alfredo and Sis. Leonila Ricafort located at Purok Malakas, Barangay San Isidro, also in General Santos City. This rented edifice was composed of 10 classrooms, a library, a room for Home Economics classes, and an office for the Principal.</p>
+
+                    <p>Another milestone in the history of the branch was the opening of the Secondary Education Program (First Year to Third Year) during the School Year 1997-1998. This development prompted the administration of the Branch to look for additional classrooms for the high school students. A three-room commercial building owned by Bro. Efren Manasala was rented to accommodate the three sections of the high school. Three teachers were added to the roster of the Branch's faculty.</p>
+
+                    <p>Because of the steady growth of the school, the Church Administration decided to search for a piece of land strategically positioned in the community to serve as permanent location of the school. In few months, the school purchased a half hectare lot few meters away from the rented edifice. Afterwards, the School Administration constructed the new and permanent school building and before the opening of School Year 1998-1999, the new School Building was inaugurated.</p>
+
+                    <p>The inauguration was held on June 5, 1998. Present also during that event were Brother Romil Angeles, District Supervising Minister, and some dignitaries from the Department of Education, Division of General Santos City. The Officer-in-Charge then was Sis. Lilia G. Bantonore, and later on, Sis. Ofelia I. Tandiama, a former Supervisor of DECS in the Division of General Santos City was appointed as School Principal. The school then had 482 enrollees with 21 teachers, 10 administrative staff and 3 utility personnel. Mrs. Tandiama served as the Branch's Principal from November 1998 to October 2003.</p>
+
+                    <p>The school's two-storey building is composed of 34 classrooms, 2 Libraries, Clinic, Canteen, Laboratory, Computer room and offices for the Principal, Registrar, Guidance Counselor and Finance personnel. It has also separate buildings for Home Economics and Industrial Arts. A security post on the right side of the main gate was also erected to ensure the safety of the school populace.</p>
+
+                    <p>Alongside the school's effort to build up its physical facilities, the school also worked its way to gain Government Recognition to offer Complete Pre-school, Complete Elementary and Complete Secondary Education status. Thus, on July 18, 2000, DECS Region XI granted the first government recognition of its program. The following year, the Complete High School and Complete Elementary level courses were also approved.</p>
+
+                    <p>Aside from the infrastructure development, the school also embarked on human resource skills and productivity enhancement through the Faculty Development Program (FDP). Under this plan, teachers and staff members are obliged to pursue their post graduate studies emphasizing on their respective field of specialization in order to go well with the academic requirements of a standard university. Also, they were encouraged to regularly attend trainings and seminars to improve their teaching capabilities.</p>
+
+                    <p>Being true to the University's mission, New Era University, General Santos City Branch strives for more worthwhile goals as an institution of learning. It continuously provides suitable academic preparations, develops productive skills and enhances desirable values and ideals to produce student who will become productive citizens of the country.</p>
+
+                    <p>NEU-GSC marches forward to a brighter future guided by its philosophy, vision, and mission for the glory of the Almighty Father.</p>
+                </div>
+            </div>
+
+            <div id="seal" class="content-section">
+                <h2 class="content-title">THE UNIVERSITY SEAL</h2>
+                
+                <div class="history-content">
+                    <div style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
+                        <img src="../assets/images/webp/pe5o7.webp" alt="NEU GenSan University Seal" style="max-width: 450px; width: 100%; height: auto;">
+                    </div>
+
+                    <p style="font-size: 1.05rem; color: #333; margin-bottom: 25px;">
+                        The University seal bears identifiable images which put into visual symbols the institutional philosophy of <strong>New Era University - General Santos</strong>
+                    </p>
+                    
+                    <p>The above figure is the Official Logo of the NEW ERA UNIVERSITY - General Santos Campus approved by the Church Administration of the Iglesia Ni Cristo through the NEU Administration was first adopted and used by the NEU-GSC community.</p>
+
+                    <p>The logo's features retained the overall components of the official NEU logo: <strong>Outer Ring</strong> is Green, <strong>Inner Ring</strong> is Red and <strong>the space color between the rings containing the name of New Era University</strong> is White (Green, White and Red)- the official colors of the INC which is behind the establishment and continuous operations of the University and its branches outside NCR including NEU - General Santos Branch. Also among the features of the official University logo retained in the official NEU-General Santos Branch Logo are the <strong>Rising Sun and the Open Book</strong> representing enlightenment and illumination of those who benefit from NEU as an educational institution that imparts values-laden education leading to the total development of an individual.</p>
+
+                    <p>The distinct features original and unique in the NEU - General Santos Branch official Logo are the following: <strong>Map of the Province of General Santos City</strong> which is made as background of the Open Book and the Rising Sun. This represents the region (Region III) that is primarily being served by the NEU-GenSan. Provinces within Region III and in proximity to Pampanga province are Bataan, Bulacan, Zambales, and Tarlac. And <strong>1994 - the year when NEU General Santos Branch was established</strong> as the second branch of NEU outside the NCR, is also indicated in the NEU Lipa City Branch Logo.</p>
+                </div>
+            </div>
+
+            <div id="programs" class="content-section">
+                <h2 class="content-title">PROGRAMS OFFERED</h2>
+                
+                <div class="history-content">
+                    <img src="../assets/images/webp/F7p7f.webp" alt="NEU Students" class="history-image" style="margin-top: 0; margin-bottom: 40px;">
+
+                    <h3 class="section-subtitle">PRE-SCHOOL</h3>
+                    <p style="margin-bottom: 25px;">Nursery and Kinder</p>
+
+                    <h3 class="section-subtitle">ELEMENTARY</h3>
+                    <p style="margin-bottom: 25px;">Grades 1 - 6</p>
+
+                    <h3 class="section-subtitle">JUNIOR HIGH SCHOOL</h3>
+                    <p style="margin-bottom: 25px;">Grades 7 - 10</p>
+
+                    <h3 class="section-subtitle">SENIOR HIGH SCHOOL</h3>
+                    <p style="margin-bottom: 15px;">Grades 11 - 12</p>
+
+                    <h4 style="color: #333; font-size: 1rem; font-weight: 600; text-decoration: underline; margin-bottom: 15px;">TRACKS AND STRANDS</h4>
+                    
+                    <h5 style="color: #333; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">ACADEMIC</h5>
+                    <ul class="section-list">
+                        <li>Science, Technology, Engineering and Mathematics (STEM)</li>
+                        <li>Accountancy, Business and Management (ABM)</li>
+                        <li>Humanities and Social Sciences (HumSS)</li>
+                    </ul>
+
+                    <h5 style="color: #333; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">SPORTS</h5>
+                    <ul class="section-list" style="margin-bottom: 40px;">
+                        <li>Human Movement, Safety, and First Aid</li>
+                    </ul>
+
+                    <h3 class="section-subtitle">COLLEGE PROGRAM OFFERINGS</h3>
+                    
+                    <h4 style="color: #333; font-size: 0.95rem; font-weight: 600; text-decoration: underline; margin-bottom: 10px;">COLLEGE OF ACCOUNTANCY</h4>
+                    <ul class="section-list">
+                        <li>Bachelor of Science in Accountancy (BSA)</li>
+                    </ul>
+
+                    <h4 style="color: #333; font-size: 0.95rem; font-weight: 600; text-decoration: underline; margin-bottom: 10px;">COLLEGE OF BUSINESS ADMINISTRATION</h4>
+                    <ul class="section-list">
+                        <li>Bachelor of Science in Business Administration - Major in:
+                            <ul style="padding-left: 20px; margin-top: 5px;">
+                                <li>Entrepreneurship</li>
+                                <li>Real Estate Management</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="facilities" class="content-section">
+                <h2 class="content-title">FACILITIES</h2>
+                
+                <div class="history-content">
+                    <div style="margin-bottom: 40px;">
+                        <img src="../assets/images/webp/E6fcY.webp" alt="NEU GenSan Campus Grounds" class="history-image" style="margin-top: 0;">
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">NEU GenSan Campus Grounds</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <img src="../assets/images/webp/hOp8O.webp" alt="Computer Laboratories" class="history-image">
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Computer Laboratories</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <img src="../assets/images/webp/r8UQD.webp" alt="Library Facilities" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            <img src="../assets/images/webp/lZ2FT.webp" alt="Library Facilities" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Library Facilities</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <img src="../assets/images/webp/m44Ta.webp" alt="Audio-Visual Room" class="history-image">
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Audio-Visual Room</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <img src="../assets/images/webp/1YB6p.webp" alt="Covered Court" class="history-image">
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Covered Court</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <img src="../assets/images/webp/34T7b.webp" alt="Clinic Beds" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            <img src="../assets/images/webp/ul0rs.webp" alt="Clinic Office" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Clinic</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <img src="../assets/images/webp/PV2mD.webp" alt="Physics Lab" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            <img src="../assets/images/webp/F3ofm.webp" alt="Physics Lab" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Physics Laboratory</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <img src="../assets/images/webp/7MTHK.webp" alt="Chemistry Lab" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            <img src="../assets/images/webp/FBa19.webp" alt="Chemistry Lab" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                        </div>
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px;">Chemistry Laboratory</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="contact" class="content-section">
+                <h2 class="content-title">CONTACT</h2>
+                
+                <div class="history-content">
+                    <div style="margin-bottom: 30px;">
+                        <img src="../assets/images/webp/E6fcY.webp" alt="NEU GenSan Campus Entrance" class="history-image" style="margin-top: 0;">
+                    </div>
+
+                    <p style="font-size: 0.95rem; color: #444; margin-bottom: 25px;">
+                        For more information about New Era University - General Santos, you may contact the following:
+                    </p>
+
+                    <h4 class="section-subtitle" style="margin-bottom: 15px; text-transform: none;">Contact Information</h4>
+                    
+                    <div style="font-size: 0.95rem; color: #555; line-height: 1.8;">
+                        <p style="margin-bottom: 8px;">(083) 553 2941</p>
+                        <p style="margin-bottom: 8px;">Address: Aparente Street, Purok Malakas, General Santos City, Philippines</p>
+                        <!--<p style="margin-bottom: 8px;">Website: <a href="https://www.neu.edu.ph" target="_blank" style="color: inherit; text-decoration: none;">www.neu.edu.ph</a></p>-->
+                        <p style="margin-bottom: 8px;">Email: <a href="mailto:neugensan@neu.edu.ph" style="color: inherit; text-decoration: none;">neugensan@neu.edu.ph</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="awards" class="content-section">
+                <h2 class="content-title">AWARDS AND CITATIONS</h2>
+                
+                <div class="history-content">
+                    <div style="margin-bottom: 30px;">
+                        <img src="../assets/images/webp/E6fcY.webp" alt="NEU GenSan Campus Building" class="history-image" style="margin-top: 0;">
+                    </div>
+
+                    <p style="font-size: 1.05rem; color: #444; margin-bottom: 25px;">
+                        Association of Christian Schools, Colleges, and Universities (ACSCU-ACI) Accreditation Status
+                    </p>
+
+                    <h4 class="section-subtitle">LEVEL III Accredited</h4>
+                    <ol class="section-list" style="margin-bottom: 30px;">
+                        <li>Bachelor of Science in Accountancy</li>
+                        <li>Bachelor of Science in Biology</li>
+                        <li>Bachelor of Science in Business Administration</li>
+                        <li>Bachelor of Arts in Communication</li>
+                        <li>Bachelor of Elementary Education</li>
+                        <li>Bachelor of Science in Psychology</li>
+                        <li>Bachelor of Secondary Education</li>
+                    </ol>
+
+                    <h4 class="section-subtitle">LEVEL II Accredited</h4>
+                    <ol class="section-list" style="margin-bottom: 30px;">
+                        <li>Bachelor of Science in Accountancy</li>
+                        <li>Bachelor of Science in Biology</li>
+                        <li>Bachelor of Science in Business Administration</li>
+                        <li>Bachelor of Arts in Communication</li>
+                        <li>Bachelor of Elementary Education</li>
+                        <li>Bachelor of Science in Psychology</li>
+                        <li>Bachelor of Secondary Education</li>
+                    </ol>
+
+                    <h4 class="section-subtitle">LEVEL I Accredited</h4>
+                    <ol class="section-list" style="margin-bottom: 30px;">
+                        <li>Bachelor of Science in Accountancy</li>
+                        <li>Bachelor of Science in Biology</li>
+                        <li>Bachelor of Science in Business Administration</li>
+                        <li>Bachelor of Arts in Communication</li>
+                        <li>Bachelor of Elementary Education</li>
+                        <li>Bachelor of Science in Psychology</li>
+                        <li>Bachelor of Secondary Education</li>
+                    </ol>
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="../assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="../assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="../assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="../assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="../assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="../assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="../assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/scripts/script.js"></script>
+    <script>
+        // Tab switching logic with URL hashing
+        function switchMainTab(targetId, updateUrl = true) {
+            // Update sidebar active link
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+            if(targetLink) targetLink.classList.add('active');
+            
+            // Switch main content section
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            // Update URL hash without page jump
+            if (updateUrl) {
+                history.pushState(null, null, '#' + targetId);
+            }
+        }
+
+        // Attach event listeners to sidebar links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchMainTab(this.dataset.target);
+            });
+        });
+
+        // Check URL hash on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1); 
+            if (currentHash && document.getElementById(currentHash)) {
+                switchMainTab(currentHash, false); 
+            }
+        });
+    </script>
+</body>
+</html>

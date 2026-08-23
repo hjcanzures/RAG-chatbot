@@ -1,0 +1,950 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    <!-- header footer style --> 
+    <link href="assets/styles/styles.css?v=6a88fa739e600" rel="stylesheet">
+    <style>
+        /* =========================================
+           PAGE SPECIFIC: HOMEPAGE
+           ========================================= */
+        
+        .hero { position: relative; height: 400px; overflow: hidden; background-color: var(--primary-blue); z-index: 1; }
+        .carousel-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .carousel-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; 
+            align-items: flex-end; justify-content: center; padding-bottom: 40px; color: white; text-align: center;
+        }
+        .carousel-slide.active { opacity: 1; z-index: 2; }
+        .hero-overlay {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(11,35,65,0.9), rgba(11,35,65,0.2)); z-index: 3;
+            
+        }
+        @media (max-width: 768px) {
+        .hero-content {
+            display: none;
+        }
+        }
+        .hero-content { position: relative; z-index: 4; max-width: 800px; padding: 0 20px; }
+        .hero-content h2 { font-size: 1.8rem; font-weight: 600; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        .hero-arrows {
+            position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between;
+            padding: 0 20px; transform: translateY(-50%); z-index: 10; pointer-events: none; 
+        }
+        .hero-arrows span { font-size: 2rem; color: rgba(255,255,255,0.7); cursor: pointer; pointer-events: auto; transition: 0.3s; }
+        .hero-arrows span:hover { color: var(--white); transform: scale(1.1); }
+
+        
+        .about { padding: 60px 30px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about-text h2 { color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 20px; line-height: 1.3; }
+        .about-text p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px; }
+        .about-img img { border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+        
+        .news { padding: 40px 0; text-align: center; }
+        .news h2 { color: var(--accent-gold); margin-bottom: 30px; font-size: 1.5rem; }
+        .news-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .news-card { border: 1px solid #eee; padding: 15px; text-align: left; }
+        .news-card img { width: 100%; height: 150px; object-fit: cover; margin-bottom: 15px; }
+        .news-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; }
+        .news-card p { font-size: 0.75rem; color: var(--text-light); margin-bottom: 15px; }
+
+        
+        .info-section { background: var(--bg-light); padding: 60px 0; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+        .info-col h2 { color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 20px; }
+        .featured-card img { width: 100%; height: 200px; object-fit: cover; margin-bottom: 15px; }
+        .featured-card h3 { font-size: 0.9rem; margin-bottom: 10px; }
+        .know-more-item { margin-bottom: 20px; }
+        .know-more-item img { width: 100%; height: 120px; object-fit: cover; margin-bottom: 10px; }
+        .know-more-item h3 { font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; }
+        .event-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: center; }
+        .event-date { text-align: center; min-width: 70px; border:1px solid #ddd; border-radius:10px; padding: 10px;}
+        .event-date span { display: block; font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;}
+        .event-date strong { font-size: 1.5rem; color: var(--primary-blue); line-height: 1; }
+        .event-title { font-size: 0.9rem; font-weight: 500; }
+
+        
+        .contact { padding: 60px 30px; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .contact-text h2 { color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 10px; }
+        .contact-text p { font-size: 0.9rem; color: var(--text-light); }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit;
+        }
+        .contact-form button { width: 100%; }
+
+        
+        @media (max-width: 900px) {
+            .about-grid, .info-grid, .contact-container { grid-template-columns: 1fr; gap: 20px; }
+            .news-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .hero { height: 300px; }
+            .hero-content h2 { font-size: 1.3rem; }
+            .hero-arrows span { font-size: 1.5rem; }
+            .about, .news, .info-section, .contact { padding: 40px 10px; }
+            .contact-text h2 { font-size: 1.8rem; }
+            .about-text h2 {font-size:1.25rem; text-align:center;}
+        }
+        @media (max-width: 600px) { 
+            .news-grid { grid-template-columns: 1fr; }
+            .event-item { flex-direction: column; text-align: center; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>    
+
+    <section class="hero">
+        <div class="hero-arrows">
+            <span id="prevSlide">&#10094;</span>
+            <span id="nextSlide">&#10095;</span>
+        </div>
+            
+            <div class="carousel-container">
+
+                
+                   <div class="carousel-slide active" style="background-image: url('assets/images/webp/news/acad_pass.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/news-detail?id=1" data-category="ACADEMICS" data-title="CONGRATULATIONS TO THE PASSERS OF THE MARCH 2026 PHYSICIAN LICENSURE EXAMINATION" data-image="https://neu.edu.ph/main/assets/images/webp/news/acad_pass.jpg" data-caption="Photo courtesy of: New Era University" data-body="New Era University (NEU) College of Medicine achieve a remarkable milestone this month, celebrating a perfect 100% passing rate in the March 2026 Physician Licensure Examination.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>CONGRATULATIONS TO THE PASSERS OF THE MARCH 2026 PHYSICIAN LICENSURE EXAMINATION</h2>
+                            <p class="carousel-excerpt">New Era University (NEU) College of Medicine achieve a remarkable milestone this month, celebrating a perfect 100% passing rate in the March 2026 Physician Licensure Examination.</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/news/supreme-court/photo-1.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/news-detail?id=2" data-category="ACADEMICS" data-title="NEW ERA UNIVERSITY DESIGNATED AS NATIONAL HEADQUARTERS FOR 2026 SHARI&#039;AH SPECIAL BAR EXAMS" data-image="https://neu.edu.ph/main/assets/images/webp/news/supreme-court/photo-1.jpg" data-caption="Photo courtesy of: Supreme Court of the Philippines Information Office" data-body="New Era University (NEU) has been officially designated as the national headquarters for the 2026 Shari&#039;ah Special Bar Examinations, as announced on April 16, 2026.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>NEW ERA UNIVERSITY DESIGNATED AS NATIONAL HEADQUARTERS FOR 2026 SHARI&#039;AH SPECIAL BAR EXAMS</h2>
+                            <p class="carousel-excerpt">New Era University (NEU) has been officially designated as the national headquarters for the 2026 Shari&#039;ah Special Bar Examinations, as announced on April 16, 2026.</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/news/lept-passers/photo-7.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/news-detail?id=3" data-category="ACADEMICS" data-title="CONGRATULATIONS TO THE PASSERS OF THE SEPTEMBER 2025 LICENSURE EXAMINATION FOR PROFESSIONAL TEACHERS (LETP)" data-image="https://neu.edu.ph/main/assets/images/webp/news/lept-passers/photo-7.jpg" data-caption="Photo courtesy of: New Era University" data-body="New Era University (NEU) is celebrating a significant milestone as 62 graduates from College of Education successfully passed the September 2025 Licensure Examination for Professional Teachers (LEPT).">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>CONGRATULATIONS TO THE PASSERS OF THE SEPTEMBER 2025 LICENSURE EXAMINATION FOR PROFESSIONAL TEACHERS (LETP)</h2>
+                            <p class="carousel-excerpt">New Era University (NEU) is celebrating a significant milestone as 62 graduates from College of Education successfully passed the September 2025 Licensure Examination for Professional Teachers (LEPT).</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/announcements/photo-1.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/announcement-detail?id=1" data-category="UNIVERSITY ADVISORY" data-title="NEU&#039;S TEMPORARY SCHEDULE ADJUSTMENT TO FOUR-DAY WORKWEEK EFFECTIVE MARCH 16, 2026" data-image="https://neu.edu.ph/main/assets/images/webp/announcements/photo-1.jpg" data-caption="" data-body="New Era University (NEU) has announced a temporary schedule adjustment, shifting to a four-day workweek and a hybrid learning model effective March 16, 2026.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>NEU&#039;S TEMPORARY SCHEDULE ADJUSTMENT TO FOUR-DAY WORKWEEK EFFECTIVE MARCH 16, 2026</h2>
+                            <p class="carousel-excerpt">New Era University (NEU) has announced a temporary schedule adjustment, shifting to a four-day workweek and a hybrid learning model effective March 16, 2026.</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/announcements/photo-2.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/announcement-detail?id=2" data-category="UNIVERSITY ADVISORY" data-title="NEU ISSUES TRAFFIC ADVISORY FOR UPCOMING LICENSURE EXAMINATION" data-image="https://neu.edu.ph/main/assets/images/webp/announcements/photo-2.jpg" data-caption="" data-body="New Era University (NEU) has released a traffic advisory for Sunday, March 15, 2026, as the campus prepares to serve as a testing venue for
+                                        the Professional Regulation Commission&#039;s Licensure Examination for Professional Teachers (LEPT).">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>NEU ISSUES TRAFFIC ADVISORY FOR UPCOMING LICENSURE EXAMINATION</h2>
+                            <p class="carousel-excerpt">New Era University (NEU) has released a traffic advisory for Sunday, March 15, 2026, as the campus prepares to serve as a testing venue for
+                                        the Professional Regulation Commission&#039;s Licensure Examination for Professional Teachers (LEPT).</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/announcements/photo-3.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/announcement-detail?id=3" data-category="UNIVERSITY-WIDE ANNOUNCEMENT" data-title="NEU ANNOUNCES SUSPENSION OF CLASSES AND OPERATIONS - FEBRUARY 17, 2026" data-image="https://neu.edu.ph/main/assets/images/webp/announcements/photo-3.jpg" data-caption="" data-body="New Era University (NEU) has officially announced the suspension of all classes and office work on Tuesday, February 17, 2026.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>NEU ANNOUNCES SUSPENSION OF CLASSES AND OPERATIONS - FEBRUARY 17, 2026</h2>
+                            <p class="carousel-excerpt">New Era University (NEU) has officially announced the suspension of all classes and office work on Tuesday, February 17, 2026.</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/apmc/apmc.webp'); cursor: pointer;" data-url="https://neu.edu.ph/main/event-detail?id=1" data-category="COLLEGE OF MEDICINE" data-title="NAVIGATE THE FUTURE OF MEDICINE: THE 58TH APMC ANNUAL CONVENTION IS ALMOST HERE" data-image="https://neu.edu.ph/main/assets/images/webp/apmc/apmc.webp" data-caption="" data-body="The Association of Philippine Medical Colleges Foundation, Inc., in collaboration with New Era University, hosts this landmark event that will start on June 15-17, 2026.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>NAVIGATE THE FUTURE OF MEDICINE: THE 58TH APMC ANNUAL CONVENTION IS ALMOST HERE</h2>
+                            <p class="carousel-excerpt">The Association of Philippine Medical Colleges Foundation, Inc., in collaboration with New Era University, hosts this landmark event that will start on June 15-17, 2026.</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/privacy-seminar/photo-1.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/event-detail?id=2" data-category="COLLEGE OF ARTS AND SCIENCES" data-title="PRIVACY MATTERS 2026: UNDERSTANDING RA 10173" data-image="https://neu.edu.ph/main/assets/images/webp/privacy-seminar/photo-1.jpg" data-caption="" data-body="The Economics Society (EcoSoc), together with the Social Studies Society (SocSciETY) proudly presents this seminar.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>PRIVACY MATTERS 2026: UNDERSTANDING RA 10173</h2>
+                            <p class="carousel-excerpt">The Economics Society (EcoSoc), together with the Social Studies Society (SocSciETY) proudly presents this seminar.</p>
+                        </div>
+                    </div>
+
+                
+                   <div class="carousel-slide " style="background-image: url('assets/images/webp/neu-fair/photo-4.jpg'); cursor: pointer;" data-url="https://neu.edu.ph/main/" data-category="OFFICE OF STUDENT AFFAIRS AND SERVICES (OSAS)" data-title="A GRAND START TO OFFICIALLY KICK OFF: THE NEU FAIR 2026 OFFICIALLY STARTS" data-image="https://neu.edu.ph/main/assets/images/webp/neu-fair/photo-4.jpg" data-caption="" data-body="The NEU Fair 2026 officially started last April 10, 2026 at the NEU Quadrangle.">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h2>A GRAND START TO OFFICIALLY KICK OFF: THE NEU FAIR 2026 OFFICIALLY STARTS</h2>
+                            <p class="carousel-excerpt">The NEU Fair 2026 officially started last April 10, 2026 at the NEU Quadrangle.</p>
+                        </div>
+                    </div>
+
+                
+            </div>
+    </section>
+
+    <section class="about container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>A UNIQUE CHRISTIAN CULTURE OF EXCELLENCE, DISCIPLINE AND SERVICE TO HUMANITY</h2>
+                <p>NEU Provides Quality Education anchored on Christian Values with the prime purpose of bringing honor and glory to God.</p>
+                <p>Rising as one of the top universities in the Philippines, NEU continues to make its mark, excelling in various fields from academics, board examinations, socio-civic activities and international linkages from all parts of the world.</p>
+                <p>NEU continues its commitment in optimizing learning through adoption and utilization of appropriate instructional methods and resources, propel institutional development through the conduct of useful and significant researches, Promote access to non-conventional higher education and basic education programs and most importantly, Produce God-fearing, competent, and disciplined graduates.</p>
+            </div>
+            <div class="about-img">
+                <img src="assets/images/webp/home_unique_img.webp" alt="Speaker at podium">
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="news container">
+        <h2>NEWS AND ANNOUNCEMENTS</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="https://neu.edu.ph/main/assets/images/webp/news1.webp" alt="News 1">
+                <h3>ENROLLMENT SCHEDULE, 2ND SEM., AY 2022-2023</h3>
+                <p>JANUARY 1, 2023</p>
+                <button class="btn">READ MORE &gt;</button>
+            </div>
+            <div class="news-card">
+                <img src="https://neu.edu.ph/main/assets/images/webp/news2.webp" alt="News 2">
+                <h3>NEUVLE ADVISORY, GUIDE & PROCEDURE</h3>
+                <p>JANUARY 10, 2023</p>
+                <button class="btn">READ MORE &gt;</button>
+            </div>
+            <div class="news-card">
+                <img src="https://neu.edu.ph/main/assets/images/webp/news3.webp" alt="News 3">
+                <h3>CONGRATULATIONS TO OUR PHYSICAL THERAPY PASSERS</h3>
+                <p>MARCH 20, 2023</p>
+                <button class="btn">READ MORE &gt;</button>
+            </div>
+            <div class="news-card">
+                <img src="https://neu.edu.ph/main/assets/images/webp/news4.webp" alt="News 4">
+                <h3>CONGRATULATIONS TO OUR LICENSED ECE EXAMINEES 2023</h3>
+                <p>OCTOBER 27, 2023</p>
+                <button class="btn">READ MORE &gt;</button>
+            </div>
+        </div>
+        <button class="btn btn-solid">SEE ALL NEWS</button>
+    </section> -->
+    
+    <section class="news container">
+        <h2>NEWS AND ANNOUNCEMENTS</h2>
+        <div class="news-grid">
+        <div class="news-card">
+        <img src="assets/images/webp/announcements/photo-1.jpg" alt="NEU&#039;S TEMPORARY SCHEDULE ADJUSTMENT TO FOUR-DAY WORKWEEK EFFECTIVE MARCH 16, 2026">
+        <h3>NEU&#039;S TEMPORARY SCHEDULE ADJUSTMENT TO FOUR-DAY WORKWEEK EFFECTIVE MARCH 16, 2026</h3>
+        <p>April 16, 2026</p>
+        <button class="btn" onclick="window.location.href='https://neu.edu.ph/main/announcement-detail?id=1'">READ MORE &gt;</button>
+    </div>
+        <div class="news-card">
+        <img src="assets/images/webp/announcements/photo-2.jpg" alt="NEU ISSUES TRAFFIC ADVISORY FOR UPCOMING LICENSURE EXAMINATION">
+        <h3>NEU ISSUES TRAFFIC ADVISORY FOR UPCOMING LICENSURE EXAMINATION</h3>
+        <p>April 16, 2026</p>
+        <button class="btn" onclick="window.location.href='https://neu.edu.ph/main/announcement-detail?id=2'">READ MORE &gt;</button>
+    </div>
+        <div class="news-card">
+        <img src="assets/images/webp/news/acad_pass.jpg" alt="CONGRATULATIONS TO THE PASSERS OF THE MARCH 2026 PHYSICIAN LICENSURE EXAMINATION">
+        <h3>CONGRATULATIONS TO THE PASSERS OF THE MARCH 2026 PHYSICIAN LICENSURE EXAMINATION</h3>
+        <p>April 16, 2026</p>
+        <button class="btn" onclick="window.location.href='https://neu.edu.ph/main/news-detail?id=1'">READ MORE &gt;</button>
+    </div>
+        <div class="news-card">
+        <img src="assets/images/webp/news/supreme-court/photo-1.jpg" alt="NEW ERA UNIVERSITY DESIGNATED AS NATIONAL HEADQUARTERS FOR 2026 SHARI&#039;AH SPECIAL BAR EXAMS">
+        <h3>NEW ERA UNIVERSITY DESIGNATED AS NATIONAL HEADQUARTERS FOR 2026 SHARI&#039;AH SPECIAL BAR EXAMS</h3>
+        <p>April 16, 2026</p>
+        <button class="btn" onclick="window.location.href='https://neu.edu.ph/main/news-detail?id=2'">READ MORE &gt;</button>
+    </div>
+            </div>
+        <button class="btn btn-solid" onclick="window.location.href='https://neu.edu.ph/main/news'">SEE ALL NEWS</button>
+    </section>
+
+    <section class="info-section">
+        <div class="container info-grid">
+            <div class="info-col">
+                <h2>FEATURED</h2>
+                <div class="featured-card">
+                    <img src="assets/images/webp/faqs.webp" alt="FAQs">
+                    <h3>FREQUENTLY ASKED QUESTIONS</h3>
+                    <!-- <button class="btn">READ MORE &gt;</button> -->
+                <button class="btn" onclick="window.location.href='https://neu.edu.ph/main/admissions#faqs'">
+                    READ MORE &gt;
+                </button>
+                </div>
+            </div>
+            <div class="info-col">
+                <h2>KNOW MORE</h2>
+                <div class="know-more-item">
+                    <img src="assets/images/webp/more1.webp" alt="Research">
+                    <h3>RESEARCH</h3>
+                <button class="btn" onclick="window.location.href='https://neuresearchcenter.com/'">
+                    READ MORE &gt;
+                </button>
+                </div>
+                <div class="know-more-item">
+                    <img src="assets/images/webp/more2.webp" alt="Facilities">
+                    <h3>FACILITIES</h3>
+                <button class="btn" onclick="window.location.href='https://neu.edu.ph/main/about-us#facilities'">
+                    READ MORE &gt;
+                </button>                
+            </div>
+            </div>
+            <div class="info-col">
+                <h2>UPCOMING EVENTS</h2>
+                <div class="event-list">
+                    <div class="event-item">
+                        <div class="event-date"><span>MAY</span><strong>8-12</strong></div>
+                        <div class="event-title">NEU Fair 2025</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date"><span>APR</span><strong>28</strong></div>
+                        <div class="event-title">NEU Textbook Certification Program Orientation</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date"><span>APR</span><strong>15</strong></div>
+                        <div class="event-title">Spend, Save, Give? Seminar</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date"><span>APR</span><strong>14</strong></div>
+                        <div class="event-title">Career Service Examination Seminar</div>
+                    </div>
+                </div>
+                <button class="btn">VIEW MORE &gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact container">
+        <div class="contact-container">
+            <div class="contact-text">
+                <h2>WANT TO LEARN MORE ABOUT NEU?</h2>
+                <p>Fill out the form and we'll get back to you with your inquiry</p>
+            </div>
+            <form class="contact-form" action="#" method="POST">
+                <input type="text" placeholder="Full Name" required="">
+                <input type="email" placeholder="Email" required="">
+                <textarea rows="4" placeholder="Question" required=""></textarea>
+                <button type="submit" class="btn btn-solid">SUBMIT</button>
+            </form>
+        </div>
+    </section>
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>    
+    <!-- =========================================================
+     NEUBIE CHAT WIDGET
+     Paste this entire block right before the closing </body>
+     tag in your index.html (after your existing footer/script
+     tags). It is self-contained: styles and script are scoped
+     with a "neubie-" prefix so nothing collides with your
+     existing styles.css or script.js.
+     ========================================================= -->
+<style>
+  :root {
+    --neubie-navy-deep: #0b2341;
+    --neubie-navy: #0d2a52;
+    --neubie-navy-light: #16386b;
+    --neubie-gold: #d4a72c;
+    --neubie-gold-light: #f0c94a;
+    --neubie-glow: rgba(212, 167, 44, 0.25);
+    --neubie-robot-body: #e8f1ff;
+    --neubie-robot-face: #081a33;
+  }
+
+  /* ---------- Floating launcher ---------- */
+  #neubie-launcher {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  #neubie-tooltip {
+    background: var(--neubie-navy);
+    border: 1.5px solid var(--neubie-navy-light);
+    border-radius: 20px;
+    padding: 7px 16px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+    margin-bottom: 8px;
+    position: relative;
+    animation: neubie-float 3s ease-in-out infinite;
+  }
+  #neubie-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 7px 7px 0;
+    border-style: solid;
+    border-color: var(--neubie-navy) transparent;
+  }
+
+  @keyframes neubie-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  #neubie-avatar-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--neubie-navy-light) 0%, var(--neubie-navy-deep) 75%);
+    border: 2px solid var(--neubie-gold);
+    box-shadow: 0 0 18px var(--neubie-glow), 0 6px 16px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  #neubie-launcher:hover #neubie-avatar-circle {
+    transform: scale(1.06);
+  }
+  #neubie-avatar-circle svg { width: 40px; height: 34px; }
+
+  #neubie-status-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #34d058;
+    border: 2px solid var(--neubie-navy-deep);
+  }
+
+  /* ---------- Chat window ---------- */
+  #neubie-window {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 340px;
+    max-width: calc(100vw - 32px);
+    height: 460px;
+    max-height: calc(100vh - 140px);
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+    font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    transform: translateY(24px) scale(0.97);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  #neubie-window.neubie-open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #neubie-header {
+    background: linear-gradient(135deg, var(--neubie-navy) 0%, var(--neubie-navy-deep) 100%);
+    border-bottom: 3px solid var(--neubie-gold);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+  }
+  #neubie-header-left { display: flex; align-items: center; gap: 10px; }
+  #neubie-header-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--neubie-navy-deep);
+    border: 1.5px solid var(--neubie-gold);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  #neubie-header-avatar svg { width: 22px; height: 19px; }
+  #neubie-header-title { font-size: 0.85rem; font-weight: 700; line-height: 1.2; }
+  #neubie-header-subtitle {
+    font-size: 0.68rem; font-weight: 500; color: #cfe0ff;
+    display: flex; align-items: center; gap: 4px; margin-top: 2px;
+  }
+  #neubie-header-subtitle .neubie-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #34d058; display: inline-block;
+  }
+  #neubie-close-btn {
+    background: none; border: none; color: #cfe0ff; font-size: 1.1rem;
+    cursor: pointer; line-height: 1; padding: 4px;
+  }
+  #neubie-close-btn:hover { color: #fff; }
+
+  #neubie-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    background: #f4f7fb;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .neubie-msg {
+    max-width: 82%;
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  .neubie-msg-bot {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-top-left-radius: 2px;
+    align-self: flex-start;
+    color: #1f2937;
+  }
+  .neubie-msg-user {
+    background: var(--neubie-navy);
+    color: #fff;
+    border-top-right-radius: 2px;
+    align-self: flex-end;
+  }
+
+  #neubie-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #e5e9f0;
+    background: #fff;
+  }
+  #neubie-input {
+    flex: 1;
+    border: 1px solid #d6dce5;
+    border-radius: 20px;
+    padding: 9px 14px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    outline: none;
+  }
+  #neubie-input:focus { border-color: var(--neubie-gold); }
+  #neubie-send-btn {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 50%;
+    border: none;
+    background: var(--neubie-gold);
+    color: var(--neubie-navy-deep);
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease;
+  }
+  #neubie-send-btn:hover { background: var(--neubie-gold-light); }
+
+  @media (max-width: 480px) {
+    #neubie-window { right: 12px; bottom: 92px; width: calc(100vw - 24px); }
+    #neubie-launcher { right: 16px; bottom: 16px; }
+    #neubie-tooltip { display: none; }
+  }
+</style>
+
+<!-- Launcher button -->
+<div id="neubie-launcher" onclick="neubieToggle()">
+  <div id="neubie-tooltip">Ask Neubie!</div>
+  <div id="neubie-avatar-circle">
+    <svg viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="70" cy="12" r="6" fill="var(--neubie-robot-body)" />
+      <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--neubie-robot-body)" />
+      <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--neubie-robot-body)" />
+      <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--neubie-robot-body)" />
+      <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--neubie-robot-body)" />
+      <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--neubie-robot-face)" />
+      <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--neubie-robot-body)" />
+      <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--neubie-robot-body)" />
+      <path d="M 63 74 Q 70 78 77 74" stroke="var(--neubie-robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
+    </svg>
+    <div id="neubie-status-dot"></div>
+  </div>
+</div>
+
+<!-- Chat drawer -->
+<div id="neubie-window">
+  <div id="neubie-header">
+    <div id="neubie-header-left">
+      <div id="neubie-header-avatar">
+        <svg viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="12" r="6" fill="var(--neubie-robot-body)" />
+          <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--neubie-robot-body)" />
+          <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--neubie-robot-body)" />
+          <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--neubie-robot-body)" />
+          <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--neubie-robot-body)" />
+          <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--neubie-robot-face)" />
+          <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--neubie-robot-body)" />
+          <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--neubie-robot-body)" />
+          <path d="M 63 74 Q 70 78 77 74" stroke="var(--neubie-robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
+        </svg>
+      </div>
+      <div>
+        <div id="neubie-header-title">Neubie - NEU Virtual Assistant</div>
+        <div id="neubie-header-subtitle"><span class="neubie-dot"></span>Online</div>
+      </div>
+    </div>
+    <button id="neubie-close-btn" onclick="neubieToggle(false)">✕</button>
+  </div>
+
+  <div id="neubie-body">
+    <div class="neubie-msg neubie-msg-bot">
+      Hello! I am Neubie, your virtual assistant for New Era University. How can I help you today?
+    </div>
+  </div>
+
+  <div id="neubie-input-row">
+    <input id="neubie-input" type="text" placeholder="Type a message…" />
+    <button id="neubie-send-btn" onclick="neubieSend()">➤</button>
+  </div>
+</div>
+
+<script>
+  function neubieToggle(force) {
+    var win = document.getElementById('neubie-window');
+    var shouldOpen = (force !== undefined) ? force : !win.classList.contains('neubie-open');
+    win.classList.toggle('neubie-open', shouldOpen);
+  }
+
+  function neubieSend() {
+    var input = document.getElementById('neubie-input');
+    var body = document.getElementById('neubie-body');
+    var text = input.value.trim();
+    if (!text) return;
+
+    var userMsg = document.createElement('div');
+    userMsg.className = 'neubie-msg neubie-msg-user';
+    userMsg.textContent = text;
+    body.appendChild(userMsg);
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
+
+    // Placeholder reply — replace this block with a fetch() call
+    // to your real chatbot backend/API.
+    setTimeout(function () {
+      var reply = document.createElement('div');
+      reply.className = 'neubie-msg neubie-msg-bot';
+      reply.textContent = "Thanks for your message! I'm just a placeholder right now — connect me to your chatbot backend to give real answers.";
+      body.appendChild(reply);
+      body.scrollTop = body.scrollHeight;
+    }, 500);
+  }
+
+  document.getElementById('neubie-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') neubieSend();
+  });
+</script>
+    
+    <script>
+            document.querySelectorAll('.carousel-slide').forEach(slide => {
+                slide.addEventListener('click', function() {
+                    const url = this.dataset.url;
+                    if (url) window.location.href = url;
+                });
+            });
+        // --- Hero Carousel Logic ---
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Loop back around if we reach the end or beginning
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            
+            // Show the new slide
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Click events for arrows
+        nextBtn.addEventListener('click', () => {
+            currentSlide++;
+            showSlide(currentSlide);
+            resetInterval(); // Restart the timer when user clicks
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            currentSlide--;
+            showSlide(currentSlide);
+            resetInterval(); // Restart the timer when user clicks
+        });
+        
+        // Optional: Make it auto-play every 5 seconds
+        function startInterval() {
+            slideInterval = setInterval(() => {
+                currentSlide++;
+                showSlide(currentSlide);
+            }, 5000);
+        }
+        
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+        
+        // Start the auto-play
+        startInterval();
+        
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,848 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions - New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    
+    <link href="assets/styles/styles-4.css?v=6a88fa9ecfa6a" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ADMISSIONS PAGE STYLES
+           ========================================= */
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/webp/neufacade1.webp'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+        }
+
+        
+        .sidebar-nav { padding-right: 40px; }
+        .sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav > ul > li { margin-bottom: 18px; }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #b0b0b0; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .sidebar-nav a:hover { color: var(--primary-blue); }
+        .sidebar-nav a.active { color: var(--primary-blue); font-weight: 700; }
+
+        .sidebar-sub-menu { margin-top: 12px; padding-left: 15px !important; }
+        .sidebar-sub-menu li { margin-bottom: 12px; }
+        .sidebar-sub-menu a { font-size: 0.85rem; }
+
+        
+        .main-content {
+            border-left: 1px solid var(--border-color); 
+            padding-left: 40px; 
+        }
+
+        .content-section {
+            display: none; 
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px; 
+        }
+
+        .content-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; max-width: 450px; 
+            height: 1px;
+            background-color: var(--border-color);
+        }
+        
+        .content-subtitle {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .step-block { margin-bottom: 40px; }
+        .step-title {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        
+        .content-list { list-style-type: disc; padding-left: 20px; color: var(--text-dark); }
+        .content-list > li { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+        
+        .nested-list { list-style-type: disc; padding-left: 20px; margin-top: 15px; }
+        .nested-list > li { margin-bottom: 15px; }
+        
+        .alpha-list { list-style-type: lower-alpha; padding-left: 20px; margin-top: 10px; }
+        .alpha-list > li { margin-bottom: 10px; }
+        
+        .roman-list { list-style-type: lower-roman; padding-left: 20px; margin-top: 10px; }
+        .roman-list > li { margin-bottom: 10px; }
+
+        .none-list { list-style-type: none; padding-left: 15px; margin-top: 5px; }
+        .none-list > li { margin-bottom: 5px; }
+
+        .req-group { margin-top: 20px; }
+        .req-group strong { color: var(--text-dark); font-weight: 700; }
+
+        .dash-list { list-style-type: none; padding-left: 15px; margin-top: 5px; }
+        .dash-list > li { position: relative; }
+        .dash-list > li::before { content: "- "; position: absolute; left: -12px; }
+
+        .form-link { color: var(--primary-blue); word-break: break-all; font-size: 0.85rem; text-decoration: none; }
+        .form-link:hover { text-decoration: underline; }
+
+        .note-text { font-size: 0.85rem; font-weight: 700; margin-top: 10px; display: block; }
+        .text-bold { font-weight: 700; }
+
+        .qr-card {
+            position: relative;
+            background-image: url('assets/images/webp/neu_header.webp');
+            background-size: 180%;
+            background-position: center;
+            overflow: hidden;
+            color: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 450px;
+            align-items: center;
+        }
+        .overlay-qr {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1, 30, 63, 0.8);
+            z-index: 1;
+        }
+        .qr-card h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 1px; z-index: 2; position: relative; }
+        .qr-card img { max-width: 180px; margin: 0 auto 15px; border-radius: 8px; border: 5px solid var(--white); z-index: 2; position: relative; }
+        .qr-card p { font-size: 1.3rem; font-weight: 600; margin-bottom: 5px; z-index: 2; position: relative; }
+        .qr-card a { color: var(--white); font-size: 1rem; word-break: break-all; z-index: 2; position: relative; text-decoration: none; }
+
+        
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 10px;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-blue);
+            cursor: pointer;
+            padding: 15px 0;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+        .faq-question:hover { color: var(--accent-gold); }
+        .faq-question::after {
+            content: '\276F'; 
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+            transform: rotate(90deg);
+        }
+        .faq-question.open::after { transform: rotate(-90deg); }
+        .faq-answer {
+            display: none;
+            padding: 10px 0 25px 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .faq-answer.open {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-waiver {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        .modal-waiver-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 10px;
+            width: 70%;
+            border-radius: 10px;
+        }
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .download-btn {
+            background: #C88D36;
+            font-size: 0.9rem;
+            color: #fff;
+            padding: 10px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .download-btn:hover {
+            background: #A66E2B;  
+        }
+
+        @media (max-width: 900px) {
+            .page-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .sidebar-nav { padding-right: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+            .main-content { border-left: none; padding-left: 0; }
+            .page-hero-content h1 { font-size: 2.2rem; }
+            .page-hero-content h1::before, .page-hero-content h1::after { width: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>ADMISSIONS</h1>
+        </div>
+    </section>
+
+    <section class="container page-wrapper">
+        
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="admission-procedure">Admission Procedure</a></li>
+                <li><a class="sidebar-link" data-target="enrollment-procedure">Enrollment Procedure</a></li>
+                <!-- <li><a class="sidebar-link" data-target="payment-bank">Payment Thru Bank</a></li>
+                <li><a class="sidebar-link" data-target="payment-credits">Pyament Thru Credits Card</a></li> -->
+                <li><a class="sidebar-link" data-target="faqs">Frequently Asked Questions (FAQs)</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="admission-procedure" class="content-section" style="display: block;">
+                <h2 class="content-title">ADMISSION PROCEDURE</h2>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 1: ONLINE</h3>
+                    <ul class="content-list">
+                        <li>Submission of Requirements in Digital Form through the Admission Form<br> 
+                    </li>
+
+                        <li><strong>Requirements:</strong>
+                            <ul class="nested-list">
+                                    <li>
+                                        Accomplished Photo Released form
+                                    </li>
+                                            
+                                <li>Proof of Identification (Birth Certificate, any Government-issued ID, 2x2 picture with white background)</li>
+                                <ul>
+                                <li class="req-group"><strong>For Freshmen:</strong>
+                                    <ul class="dash-list">
+                                        <li>Senior High School/ Report Card (F-138)</li>
+                                        <li>Good Moral Certificate</li>
+                                    </ul>
+                                </li>
+                                </ul>
+                                <li class="req-group"><strong>For Transferees and Graduate School:</strong>
+                                    <ul class="dash-list">
+                                        <li>Transcript of Records</li>
+                                        <li>Transfer Credential Certificate/Honorable Dismissal</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 2: ADMISSION OFFICE - 1ST FLOOR, ROOM M106 <br>
+                    <p style="text-transform: capitalize;">(Officially starting on June 1, 2026)</p></h3>
+                    
+                    <ul class="content-list">
+                        <li>Submission of Documents (Hardcopy)</li>
+                        <li>Validation of Submitted Documents</li>
+                        <li>Filling-up and submission of the Photo Consent Form/ Data Privacy Form</li>
+                        <li>Generation of General Student Personal Information Sheet (GSPIS)</li>
+                    </ul>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE TO FILL IN<br>THE ADMISSION FORM</h4>
+                    <img src="assets/images/webp/admission-form-qr.webp" alt="Admission Form QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScF1PjI3gIXLKWjQNo0I2-IU0yO9SCySt64Og_6xXWuAkHYBw/viewform">https://docs.google.com/forms/d/e/1FAIpQLScF1PjI3gIXLKWjQNo0I2-IU0yO9SCySt64Og_6xXWuAkHYBw/viewform</a>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE TO DOWNLOAD<br>THE PHOTO RELEASE FORM</h4>
+                    <img src="assets/images/webp/photo-release-qr.webp" alt="Photo Release Form QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/document/d/1ks9AH2SBnttPYknI69pC9fPNkstJxjLADFxnryFeTb0/edit?tab=t.0">https://docs.google.com/document/d/1ks9AH2SBnttPYknI69pC9fPNkstJxjLADFxnryFeTb0/edit?tab=t.0</a>
+                </div>
+            </div>
+
+            <div id="enrollment-procedure" class="content-section">
+                <h2 class="content-title">ENROLLMENT PROCEDURE</h2>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 1: MEDICAL CONSULTATION (COLLEGE CLINIC - M235)</h3>
+                    <ul class="content-list">
+                        <li>Submission the following:
+                            <ul class="dash-list">
+                                <li>X-Ray Results</li>
+                                <li>Physical Exam Results</li>
+                            </ul>
+                        </li>
+                        <li>Consultation & Issuance of Medical Clearance</li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 2: DEAN'S ADVISING & ENCODING OF SUBJECTS (RESPECTIVE DEAN'S OFFICE)</h3>
+                    <ul class="content-list">
+                        <li>Interview, Allow Enrollment, Course Advising and Encoding of Subjects</li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 3: PAYMENT OF FEES (CASHIER - M201 to M202)</h3>
+                    <ul class="content-list">
+                        <li>Payment of Matriculation Fee (Tuition and Miscellaneous Fees)</li>
+                        <li>Issuance of Certificate of Matriculation (COM) and Official Receipt (OR) to the Student<br>
+                        <span class="note-text text-bold">NOTE: PERMANENT STUDENT NUMBER will be reflected in the COM</span></li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 4: APPLICATION OF ID & OTHER INSTITUTIONAL ACCOUNTS (ONLINE)</h3>
+                    <ul class="content-list">
+                        <li>Log-in to your NEU Institutional Email (if you do not have an institutional email yet, please request through the CSD Helpdesk through the QR Code).</li>
+                        <li>Submit your picture and signature</li>
+                    </ul>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE FOR<br>CSD HELPDESK</h4>
+                    <img src="../v1/create-qr-code/index.htm?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSf8z0UY30L4fIM60N4gDgu5-vLHmUCCcv0QXZbdY98-ep3G6A/viewform" alt="CSD Helpdesk QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf8z0UY30L4fIM60N4gDgu5-vLHmUCCcv0QXZbdY98-ep3G6A/viewform">https://docs.google.com/forms/d/e/1FAIpQLSf8z0UY30L4fIM60N4gDgu5-vLHmUCCcv0QXZbdY98-ep3G6A/viewform</a>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE FOR<br>Integrated School ID SUBMISSION FORM</h4>
+                    <img src="../v1/create-qr-code/index-1.htm?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLScLQfr-4flh0oCUM7XczwpARjA_Bv3-D4mJK2vL0ccTrN3uZw/viewform" alt="ID Submission QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScLQfr-4flh0oCUM7XczwpARjA_Bv3-D4mJK2vL0ccTrN3uZw/viewform">https://docs.google.com/forms/d/e/1FAIpQLScLQfr-4flh0oCUM7XczwpARjA_Bv3-D4mJK2vL0ccTrN3uZw/viewform</a>
+                </div>
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE FOR<br>College ID SUBMISSION FORM</h4>
+                    <img src="../v1/create-qr-code/index-2.htm?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSfYtMn4LxeHXPv5JIEBMj9Bui_RPKeEE7Q5H6sZxpMi5ZqpDQ/viewform" alt="ID Submission QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYtMn4LxeHXPv5JIEBMj9Bui_RPKeEE7Q5H6sZxpMi5ZqpDQ/viewform">https://docs.google.com/forms/d/e/1FAIpQLSfYtMn4LxeHXPv5JIEBMj9Bui_RPKeEE7Q5H6sZxpMi5ZqpDQ/viewform</a>
+                </div>
+            </div>
+
+            <div id="faqs" class="content-section">
+                <h2 class="content-title">FREQUENTLY ASKED QUESTIONS (FAQs)</h2>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                        <div class="faq-question">What is the College Enrollment Procedure for the NEU SHS Graduate?</div>
+                        <div class="faq-answer">
+                            <ol class="content-list" style="list-style-type: decimal;">
+                                <li><strong>Submission of Requirements</strong><br>
+                                    Prepare the digitized copy of following documents:
+                                    <ul class="alpha-list">
+                                        <li>PSA Authenticated Birth Certificate</li>
+                                        <li>2x2 Picture with white background</li>
+                                        <li>For Freshmen:
+                                            <ul class="roman-list">
+                                                <li>Senior High School Report Card (F-138) with Graduated Remarks<br>
+                                                    Submit the accomplished, signed, and scanned copy using the link:<br>
+                                                    <a href="#" class="form-link">https://forms.gle/bjGVWmFZWpo4dCX86</a>
+                                                </li>
+                                                <li>For Transferees and Graduate School<br>
+                                                    Submit the accomplished, signed, and scanned copy using the link:<br>
+                                                    <a href="#" class="form-link">https://forms.gle/bjGVWmFZWpo4dCX86</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>Pre-qualification</strong><br>
+                                    After document verification, you will be notified by the Admission Officer of your Admission Test schedule and Room Assignments.
+                                </li>
+                                <li><strong>Admission Test</strong>
+                                    <ul class="dash-list">
+                                        <li>Go to your respective Testing Room 30 minutes before the scheduled time</li>
+                                        <li>Payment will be collected at the Testing Room before the examination proper</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Notification of Results</strong>
+                                    <ul class="dash-list">
+                                        <li>Send an email to your College Department 5-7 working days after the test to inquire about your NEU-CAT results.</li>
+                                        <li>You will be endorsed to the respective Dean's Office for Interview, Advising, and Enrollment.</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">What are the Requirements for Foreign Students who wish to study at NEU?</div>
+                        <div class="faq-answer">
+                            <ol class="content-list" style="list-style-type: decimal;">
+                                <li><strong>Certificate of Eligibility</strong>
+                                    <ul class="alpha-list">
+                                        <li>Provide <strong>Certificate of Eligibility</strong> to study in the Philippines from <strong>Department of Education</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Scholastic Records/Transfer of Credentials</strong>
+                                    <ul class="alpha-list">
+                                        <li>Submit Scholastic Records/Transfer of Credentials duly authenticated by the Philippine Consulate General or Philippine Embassy with English Translation, if written in other foreign language ("SEEN and NOTED" stamp is not acceptable)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>2x2 Identical ID Pictures</strong>
+                                    <ul class="alpha-list">
+                                        <li><strong>Six (6)</strong> copies of 2x2 identical ID Pictures white background with printed name and signature of applicant at the back.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Letter of Intent</strong>
+                                    <ul class="alpha-list">
+                                        <li><strong>For INC Member:</strong> Certificate of Membership</li>
+                                        <li><strong>For NON-INC Member:</strong> Letter of Intent from the applicant and Endorsement Letter from the INC member and a Local Resident Minister of INC Locale nearest to applicant's residence attesting to his/her being good and law abiding citizen.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Authenticated copy of Good Moral Certificate (from previous school)</strong></li>
+                                <li><strong>Birth Certificate of Applicant</strong>
+                                    <ul class="alpha-list">
+                                        <li><strong>If born abroad with foreign citizenship:</strong> Birth Certificate duly authenticated by the Philippine Consulate General or Philippine Embassy.</li>
+                                        <li><strong>If born abroad with Filipino Parent/s:</strong> Philippine Statistics Authority Report of Birth, (3) If born in the Philippines with Filipino Parent/s - Birth certificate duly authenticated by the Philippine Statistics Authority (PSA)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">What are the payment options available?</div>
+                            <div class="faq-answer">
+                                    <li>
+                                      <p>You may head over to the <a href="payment.html"><u>Payment of Fees</u></a> page to explore the different payment options that are accepted by NEU and get to know more about the payment procedure process to ensure smooth transaction upon payment.
+                                   </p></li>
+                            </div>
+                        </div>
+
+                        <!-- <div class="faq-item">
+                            <div class="faq-question">Are there any scholarship offerings inside NEU?</div>
+                            <div class="faq-answer">
+                                <li>
+                                    <p>Yes, to know more about the different scholarship offerings inside NEU, you may visit the Admission, Scholarship, Financial Assistance, and Marketing Office (ASFAMO) located at 2nd floor, Room M217, Main Building or you may call (02) 8981-4221 local 2117 or if you have other concerns, you may email them at <a href="mailto:asfamo@neu.edu.ph">asfamo@neu.edu.ph</a>.
+                                    </p>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">What are the available discount options that can be availed inside NEU?</div>
+                            <div class="faq-answer">
+                                <p>These are the following discounts that the student can avail upon enrollment inside NEU:</p>
+                                <br>
+                                 <ul class="content-list">
+                                <li> Scholarship Discount - 20%</li>
+                                <li> INC Discount - 20%</li>
+                                <li> Minister's Dependent Discount - 15%</li>
+                                <li> Cash Discount - 10%</li>
+                                <li> Sibling Discount - 5%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+            </div>
+
+        </div></main>
+
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>    
+    <script src="assets/scripts/script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- FAQ Accordion Logic ---
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    question.classList.toggle('open');
+                    const answer = question.nextElementSibling;
+                    answer.classList.toggle('open');
+                });
+            });
+        });
+        
+        // Main Sidebar Switching Logic
+        function switchMainTab(targetId, updateUrl = true) {
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+            if(targetLink) targetLink.classList.add('active');
+            
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            if (updateUrl) {
+                history.pushState(null, null, '#' + targetId);
+            }
+        }
+
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchMainTab(this.dataset.target);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1); 
+            if (currentHash && document.getElementById(currentHash)) {
+                switchMainTab(currentHash, false); 
+            }
+        });
+
+        function switchInnerTab(contentId, btnElement) {
+            const parentContainer = btnElement.closest('.content-section');
+            parentContainer.querySelectorAll('.inner-tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            parentContainer.querySelectorAll('.inner-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(contentId).style.display = 'block';
+            btnElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>

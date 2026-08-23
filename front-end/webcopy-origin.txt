@@ -1,0 +1,896 @@
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/131oNpH4QD2k0M1Zljmw0emE95OuyvnJwaV3xKAw4bkE/viewform?edit_requested=true
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-7.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/1DF_5xvHvVUs7wI-krE9vUc4aalpniA5cNeU7SY8bE7o/viewform?edit_requested=trueue
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-8.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/1n4KFJAG1BrG3ajj9iT0Va9epsJtodZV2e9W6XGmfbC0/viewform?edit_requested=true
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-4.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/1Plyyp0kwx4dnH8Gmbg2-dKqGU1KvnvXijVM_afUTbro/viewform?edit_requested=true
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-9.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLScLQfr-4flh0oCUM7XczwpARjA_Bv3-D4mJK2vL0ccTrN3uZw/viewform
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-1.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSe9HbbpSzNJfhzDATsWk3uSk0XsbyVL8lVEGklbgs1C_Hq5UA/viewform
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-10.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSed5podhmXtmq9Wdv9aU6qS18uYN0XBO9h6WEDck31jf93A9w/viewform
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-6.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSf8z0UY30L4fIM60N4gDgu5-vLHmUCCcv0QXZbdY98-ep3G6A/viewform
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSfK-f4Wy0ejj-7RxYIOc_YmsrUBObGPkWnJ-lpaB3X98DqJNw/viewform
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-5.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSfYtMn4LxeHXPv5JIEBMj9Bui_RPKeEE7Q5H6sZxpMi5ZqpDQ/viewform
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-2.htm
+Content Type: image/png
+
+Uri: https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://meet.google.com/rmg-vbnf-kde
+File Name: C:\Downloaded Web Sites\neu.edu.ph\v1\create-qr-code\index-3.htm
+Content Type: image/png
+
+Uri: https://fonts.cdnfonts.com/css/avenir
+File Name: C:\Downloaded Web Sites\neu.edu.ph\css\avenir
+Content Type: text/css
+
+Uri: https://fonts.cdnfonts.com/s/71748/avenir_roman_12.woff
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\71748\avenir_roman_12.woff
+Content Type: font/woff
+
+Uri: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined
+File Name: C:\Downloaded Web Sites\neu.edu.ph\css2-2
+Content Type: text/css
+
+Uri: https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded
+File Name: C:\Downloaded Web Sites\neu.edu.ph\css2-3
+Content Type: text/css
+
+Uri: https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap
+File Name: C:\Downloaded Web Sites\neu.edu.ph\css2
+Content Type: text/css
+
+Uri: https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap
+File Name: C:\Downloaded Web Sites\neu.edu.ph\css2-1
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/materialsymbolsoutlined/v367/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1v-p_4MrImHCIJIZrDCvHOem.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\materialsymbolsoutlined\v367\kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1v-p_4MrImHCIJIZrDCvHOem.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/materialsymbolsrounded/v368/syl0-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjpZIvDmUSVOK7BDB_Qb9vUSzq3wzLK-P0J-V_Zs-QtQth3-jOcbTCVpeRL2w5rwZu2rIelXxI.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\materialsymbolsrounded\v368\syl0-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjpZIvDmUSVOK7BDB_Qb9vUSzq3wzLK-P0J-V_Zs-QtQth3-jOcbTCVpeRL2w5rwZu2rIelXxI.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\montserrat\v31\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\montserrat\v31\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\montserrat\v31\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\montserrat\v31\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-.ttf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\s\montserrat\v31\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-.ttf
+Content Type: font/ttf
+
+Uri: https://neu.edu.ph/main/
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\index.htm
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/about-us
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\about-us.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/about-us/
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\about-us\index.htm
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/academics
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\academics.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/admissions
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\admissions.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/fonts/AvenirNextCondensed-Regular.otf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\fonts\AvenirNextCondensed-Regular.otf
+Content Type: font/otf
+
+Uri: https://neu.edu.ph/main/assets/fonts/Shelley Allegro Script Regular.otf
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\fonts\Shelley Allegro Script Regular.otf
+Content Type: font/otf
+
+Uri: https://neu.edu.ph/main/assets/images/6YFF7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\6YFF7.webp.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/images/FCr48.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\FCr48.webp.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/images/image 28.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\image 28.webp.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/images/neufacade1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\neufacade1.webp.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/images/Vn0gz.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\Vn0gz.webp.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/images/webp/00tOk.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\00tOk.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/010eN.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\010eN.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/0Efd7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\0Efd7.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/1YB6p.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\1YB6p.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/34T7b.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\34T7b.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/3yjZZ.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\3yjZZ.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/41Tsp.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\41Tsp.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/5xAhu.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\5xAhu.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/6pi76.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\6pi76.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/7dc4db32731477a401f1eede2632089874e6656f.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\7dc4db32731477a401f1eede2632089874e6656f.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/7MTHK.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\7MTHK.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/88d02c0ef0304e8416e4f6ade83360a06a0868a9.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\88d02c0ef0304e8416e4f6ade83360a06a0868a9.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/9QDfN.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\9QDfN.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph3.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph3.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph4.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph4.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph5.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph5.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph6.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph6.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph7.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph8.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph8.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/abtph9.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\abtph9.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/ad4615d1b82036ecfe52f08c97fec37de8f8768e.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\ad4615d1b82036ecfe52f08c97fec37de8f8768e.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/admission-form-qr.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\admission-form-qr.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/AKw01.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\AKw01.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/als-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\als-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/announcements/photo-1.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\announcements\photo-1.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/announcements/photo-2.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\announcements\photo-2.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/announcements/photo-3.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\announcements\photo-3.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/apmc/apmc.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\apmc\apmc.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/cd4c65b9e7f44adff65a0511f1104a0ac1d75ee7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\cd4c65b9e7f44adff65a0511f1104a0ac1d75ee7.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CAS-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CAS-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CBA-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CBA-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CCR-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CCR-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CEA-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CEA-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CED-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CED-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CICS-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CICS-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CMD-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CMD-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CMT-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CMT-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CMW-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CMW-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/COA-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\COA-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/COAg-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\COAg-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/COC-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\COC-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/COL-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\COL-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/COM-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\COM-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CON-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CON-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CPT-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CPT-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/CRT-college-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\CRT-college-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/gradschool.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\gradschool.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/College Seals/gradstudies.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\College Seals\gradstudies.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/concamp1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\concamp1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/concamp2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\concamp2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/concamp3.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\concamp3.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/concamp4.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\concamp4.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/construct_page.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\construct_page.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/CSC logo.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\CSC logo.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/dd44b63b7667f86e4131869af3c8c00e13a2da69.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\dd44b63b7667f86e4131869af3c8c00e13a2da69.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/DJI_0238 1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\DJI_0238 1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/DSC_0070 1 (1).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\DSC_0070 1 (1).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/DSC_0070 1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\DSC_0070 1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/E6fcY.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\E6fcY.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/E8kfk.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\E8kfk.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/eN1Bw.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\eN1Bw.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/errorillu.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\errorillu.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/eteeaplogo.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\eteeaplogo.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/F3ofm.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\F3ofm.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/f42933ec9cdb3cd0239392bcb71c7514cfe43fcd.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\f42933ec9cdb3cd0239392bcb71c7514cfe43fcd.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/F7p7f.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\F7p7f.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac3.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac3.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac4.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac4.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac5.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac5.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac6.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac6.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac7.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/fac8.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\fac8.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/faqs.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\faqs.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/FBa19.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\FBa19.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/G76s3.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\G76s3.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/home_unique_img.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\home_unique_img.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/hOp8O.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\hOp8O.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image (1).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image (1).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image 12.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image 12.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image 5.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image 5.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image 6.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image 6.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image 7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image 7.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image 8.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image 8.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/image.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\image.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/imagepamp.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\imagepamp.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/J0aaV.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\J0aaV.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/j0lzQ.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\j0lzQ.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/JvrX5.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\JvrX5.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/K4OOh.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\K4OOh.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/location.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\location.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/lZ2FT.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\lZ2FT.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/m44Ta.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\m44Ta.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/mail.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\mail.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/mains 2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\mains 2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/more1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\more1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/more2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\more2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/nec-campus-photo.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\nec-campus-photo.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/NEU Logo 2014 NEW 1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\NEU Logo 2014 NEW 1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neu-fair/photo-4.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neu-fair\photo-4.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neu-pampanga-logo.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neu-pampanga-logo.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neufacade1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neufacade1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neuis.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neuis.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neulogo.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neulogo.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neupng.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neupng.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/neu_header.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\neu_header.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/news/acad_pass.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\news\acad_pass.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/news/lept-passers/photo-7.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\news\lept-passers\photo-7.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/news/supreme-court/photo-1.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\news\supreme-court\photo-1.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/Nhz6x.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\Nhz6x.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/oath1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\oath1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/Omt0f.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\Omt0f.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/OpFD6.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\OpFD6.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/Ouei2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\Ouei2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/pe5o7.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\pe5o7.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/phone.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\phone.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/photo-release-qr.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\photo-release-qr.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/Picture12 1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\Picture12 1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/Picture7 1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\Picture7 1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/privacy-seminar/photo-1.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\privacy-seminar\photo-1.jpg
+Content Type: image/jpeg
+
+Uri: https://neu.edu.ph/main/assets/images/webp/PV2mD.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\PV2mD.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/Q4fqX.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\Q4fqX.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/R517o.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\R517o.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/r8UQD.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\r8UQD.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/shs1.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\shs1.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/shs2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\shs2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/shs3.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\shs3.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/soir-seal.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\soir-seal.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/sqwG2.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\sqwG2.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/ss.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\ss.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (1).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (1).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (10).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (10).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (11).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (11).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (12).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (12).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (13).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (13).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (14).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (14).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (15).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (15).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (2).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (2).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (3).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (3).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (4).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (4).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (5).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (5).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (6).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (6).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (7).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (7).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (8).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (8).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image (9).webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image (9).webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/student-image.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\student-image.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/TD1QX.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\TD1QX.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/ul0rs.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\ul0rs.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/images/webp/web.webp
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\images\webp\web.webp
+Content Type: image/webp
+
+Uri: https://neu.edu.ph/main/assets/scripts/script.js
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\scripts\script.js
+Content Type: text/javascript
+
+Uri: https://neu.edu.ph/main/assets/styles/<?=base_url(
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fa739e600
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fa8d33aa2
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-1.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fa93e0994
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-2.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fa99667a5
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-3.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fa9ecfa6a
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-4.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fa9f440f4
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-5.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faa0d3ca4
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-6.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faa4bd40a
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-7.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faa548bfd
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-8.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faa590779
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-9.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faa60d523
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-10.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faa6ab9ef
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-11.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faab1c255
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-12.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faac7334e
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-13.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88faae34318
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-14.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fb4266e55
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-15.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fbbf4874c
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-16.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fbea0d316
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-17.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fbea4f13e
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-18.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fbea8e58b
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-19.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fbeb24887
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-20.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/styles/styles.css?v=6a88fc38486cb
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\styles\styles-21.css
+Content Type: text/css
+
+Uri: https://neu.edu.ph/main/assets/videos/neu_hymn.mp4
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\assets\videos\neu_hymn.mp4
+Content Type: video/mp4
+
+Uri: https://neu.edu.ph/main/campus/
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\campus\index.htm
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/campus/gen-san
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\campus\gen-san.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/campus/lipa
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\campus\lipa.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/campus/pampanga
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\campus\pampanga.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/contact-us
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\contact-us.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/maintenance
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\maintenance.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/news
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\news.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/notice
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\notice.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/path/to/your/graduation-image.jpg
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\path\to\your\graduation-image.jpg.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/payment
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\payment.html
+Content Type: text/html
+
+Uri: https://neu.edu.ph/main/student-services
+File Name: C:\Downloaded Web Sites\neu.edu.ph\main\student-services.html
+Content Type: text/html
+

@@ -1,0 +1,921 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    
+    <link href="assets/styles/styles-6.css?v=6a88faa0d3ca4" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           CONTACT PAGE STYLES (Inherited from About)
+           ========================================= */
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/webp/neufacade1.webp'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+        }
+
+        
+        .sidebar-nav {
+            padding-right: 40px; 
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav > ul > li {
+            margin-bottom: 18px;
+        }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #b0b0b0; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .sidebar-nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .sidebar-nav a.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        
+        .main-content {
+            border-left: 1px solid var(--border-color); 
+            padding-left: 40px; 
+        }
+
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px; 
+        }
+
+        .content-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 450px; 
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .large-history-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 0 0 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        
+        .contact-info-block {
+            margin-bottom: 45px;
+        }
+
+        .contact-info-block h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .contact-info-block p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .contact-important-note {
+            font-weight: 500;
+            color: #333;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+        
+        .contact-important-note strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        .neu-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .neu-table th, .neu-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+
+        .neu-table th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        
+        .branch-card {
+            margin-bottom: 50px;
+        }
+
+        .branch-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .branch-card h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .branch-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .sidebar-nav {
+                padding-right: 0;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+            }
+            .main-content {
+                border-left: none;
+                padding-left: 0;
+            }
+            .branch-card img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>CONTACT US</h1>
+        </div>
+    </section>
+
+    <section class="container page-wrapper">
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="main-campus">Main Campus Directory</a></li>
+                <li><a class="sidebar-link" data-target="branch-campuses">Branch Campuses Directory</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="main-campus" class="content-section" style="display: block;">
+                <h2 class="content-title">MAIN CAMPUS DIRECTORY</h2>
+                
+                <img src="assets/images/webp/neu_header.webp" alt="NEU Main Campus" class="large-history-img">
+                
+                <p style="margin-bottom: 30px; color: #555; line-height: 1.8;">For more information about New Era University, you may contact the following:</p>
+
+                <div class="contact-info-block">
+                    <h3>General Information</h3>
+                    <p>No. 9, Central Avenue, New Era,</p>
+                    <p>Quezon City, Philippines, 1107</p>
+                    <p>(02) 8981-4221</p>
+                    <p>Email: info@neu.edu.ph</p>
+                    <p>Website: www.neu.edu.ph</p>
+                </div>
+
+                <div class="contact-info-block" style="border-top: 1px solid #eee; padding-top: 30px;">
+                    <!--<h3>Admissions</h3>
+                    <p>You may contact us via the following Telegram numbers:</p>
+                    <br>
+                    <p><strong>Admissions Office</strong><br>+63 920 753 6157</p>
+                    <br>
+                    <p><strong>Registrar's Office</strong><br>+63 929 506 0878</p>
+                    <br>
+                    <p><strong>Registrar's Office - Senior High School</strong><br>+63 905 172 0184</p>
+                    <br>
+                    <p><strong>Registrar's Office - Elementary & Junior High School</strong><br>+63 905 172 0185</p>
+                    <br>
+                    <p><strong>Cashier</strong><br>+63 945 429 1340<br>+63 905 373 2278</p>
+                    <br>
+                    <p><strong>Accounting Office</strong><br>+63 945 429 1340<br>+63 905 373 2278</p>
+                    <br>
+                    <p><strong>Auditing Office</strong><br>+63 919 243 8449<br>+63 922 661 1777</p>-->
+                    
+                    <p class="contact-important-note"><strong>IMPORTANT NOTE:</strong> Departments and Colleges will also be available via the <strong>Virtual Offices</strong> from <strong>8:00 AM to 5:00 PM (Monday to Friday only)</strong></p>
+                </div>
+
+                <div class="contact-info-block" style="border-top: 1px solid #eee; padding-top: 30px;">
+                    <h3>Virtual Offices Directory</h3>
+                    <div class="table-responsive">
+                        <table class="neu-table">
+                            <thead>
+                                <tr>
+                                    <th>OFFICE</th>
+                                    <th>GOOGLE MEET LINK</th>
+                                    <th>OFFICE HOURS</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                                <tr>
+                                    <td>Guidance and Counseling Center</td>
+                                    <td><a href="https://meet.google.com/dzv-pmbk-ivp" target="_blank">https://meet.google.com/dzv-pmbk-ivp</a></td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>Cashier's Office</td>
+                                    <td><a href="https://meet.google.com/rmg-vbnf-kde" target="_blank">https://meet.google.com/rmg-vbnf-kde</a></td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>Guidance and Counseling Center</td>
+                                    <td><a href="https://meet.google.com/grd-obvg-nir" target="_blank">https://meet.google.com/grd-obvg-nir</a></td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                  
+                        </table>
+                    </div>
+                </div>
+                <div class="contact-info-block" style="border-top: 1px solid #eee; padding-top: 30px;">
+                    <h3>Office Directory</h3>
+                    <div class="table-responsive">
+                        <table class="neu-table">
+                            <thead>
+                                <tr>
+                                    <th>COLLEGE DEAN'S OFFICES</th>
+                                    <th>ROOM NUMBER</th>
+                                    <th>OFFICE HOURS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CAS - College of Arts and Sciences</td>
+                                    <td>M325</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CBA - College of Business Administration</td>
+                                    <td>S101</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CCR - College of Criminology</td>
+                                    <td>M418</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CEA - College of Engineering & Architecture</td>
+                                    <td>M123</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CED - College of Education</td>
+                                    <td>B421</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CICS - College of Informatics & Computing Studies</td>
+                                    <td>M415</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CMD - College of Medicine</td>
+                                    <td>P207</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CMW/ CPT - College of Midwifery/ College of Physical Therapy</td>
+                                    <td>P215</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>COA - College of Accountancy</td>
+                                    <td>S414</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>COC - College of Communication</td>
+                                    <td>M128</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>COL - College of Law</td>
+                                    <td>P211</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>COM - College of Music</td>
+                                    <td>B437</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CON - College of Nursing</td>
+                                    <td>P214</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>CRT/ CMT - College of Respiratory Therapy/ College of Medical Technology</td>
+                                    <td>P202</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>SGS - School of Graduate Studies</td>
+                                    <td>B449</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                                <tr>
+                                    <td>SOIR - School for International Relations</td>
+                                    <td>S503</td>
+                                    <td>8:00AM to 5:00PM (Monday to Friday)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="contact-info-block">
+                    <h3>Office/Building Names and Acronyms</h3>
+                    <div class="table-responsive">
+                        <table class="neu-table">
+                            <thead>
+                                <tr>
+                                    <th>Acronyms</th>
+                                    <th>BUILDING NAMES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MB, Main</td>
+                                    <td>Main Building</td>
+                                </tr>
+                                <tr>
+                                    <td>PSB</td>
+                                    <td>Professional Schools Building</td>
+                                </tr>
+                                <tr>
+                                    <td>SOM</td>
+                                    <td>School of Management</td>
+                                </tr>
+                                <tr>
+                                    <td>MLB</td>
+                                    <td>Main Library Building</td>
+                                </tr>
+                                <tr>
+                                    <td>UH</td>
+                                    <td>University Hall</td>
+                                </tr>
+                                <tr>
+                                    <td>OP</td>
+                                    <td>Office of the President</td>
+                                </tr>
+                                <tr>
+                                    <td>OVPA</td>
+                                    <td>Office of the Vice-President for Administration</td>
+                                </tr>
+                                <tr>
+                                    <td>OVPAA</td>
+                                    <td>Office of the Vice-President for Academic Affairs</td>
+                                </tr>
+                                <tr>
+                                    <td>OVPR</td>
+                                    <td>Office of the Vice-President for Research</td>
+                                </tr>
+                                <tr>
+                                    <td>OUM</td>
+                                    <td>Office of the University Minister</td>
+                                </tr>
+                                <tr>
+                                    <td>HRD</td>
+                                    <td>Human Resource Department</td>
+                                </tr>
+                                <tr>
+                                    <td>OUR</td>
+                                    <td>Office of the University Registrar</td>
+                                </tr>
+                                <tr>
+                                    <td>ASFAO</td>
+                                    <td>Admission, Scholarships, Finance Assistance Office</td>
+                                </tr>
+                                <tr>
+                                    <td>OUR-RMO</td>
+                                    <td>Office of the University Registrar - Records Management Office</td>
+                                </tr>
+                                <tr>
+                                    <td>DPO</td>
+                                    <td>Data Privacy Office</td>
+                                </tr>
+                                <tr>
+                                    <td>PO</td>
+                                    <td>Property Office</td>
+                                </tr>
+                                <tr>
+                                    <td>PPO</td>
+                                    <td>Press Publications Office</td>
+                                </tr>
+                                <tr>
+                                    <td>Sports</td>
+                                    <td>NEU Sports Department</td>
+                                </tr>
+                                <tr>
+                                    <td>PE</td>
+                                    <td>Physical Education Department</td>
+                                </tr>
+                                <tr>
+                                    <td>Gym</td>
+                                    <td>NEU Gymnasium</td>
+                                </tr>
+                                <tr>
+                                    <td>OSD</td>
+                                    <td>Office of Student Discipline</td>
+                                </tr>
+                                <tr>
+                                    <td>GCC</td>
+                                    <td>Guidance and Counseling Center</td>
+                                </tr>
+                                <tr>
+                                    <td>OSAS</td>
+                                    <td>Office of Student Affairs and Services</td>
+                                </tr>
+                                <tr>
+                                    <td>CSD</td>
+                                    <td>Computer Services Department</td>
+                                </tr>
+                                <tr>
+                                    <td>SPED</td>
+                                    <td>Special Education Department</td>
+                                </tr>
+                                <tr>
+                                    <td>MR</td>
+                                    <td>Multimedia Room</td>
+                                </tr>
+                                <tr>
+                                    <td>Hudyat</td>
+                                    <td>Hudyat Room</td>
+                                </tr>
+                                <tr>
+                                    <td>MPH</td>
+                                    <td>Multi-Purpose Hall</td>
+                                </tr>
+                                <tr>
+                                    <td>COM-PAT</td>
+                                    <td>College of Music - Performing Arts Theater</td>
+                                </tr>
+                                <tr>
+                                    <td>LRC</td>
+                                    <td>Learning Resource Center</td>
+                                </tr>
+                                <tr>
+                                    <td>CCEL</td>
+                                    <td>Center for Community Extension and Linkages</td>
+                                </tr>
+                                <tr>
+                                    <td>CED-CTL</td>
+                                    <td>College of Education - Center for Teaching and Learning</td>
+                                </tr>
+                                <tr>
+                                    <td>CCPD</td>
+                                    <td>Center for Continuing Professional Development</td>
+                                </tr>
+                                <tr>
+                                    <td>CDPM</td>
+                                    <td>Center for Disaster Preparedness and Management</td>
+                                </tr>
+                                <tr>
+                                    <td>CFJ</td>
+                                    <td>Center for Journalism</td>
+                                </tr>
+                                <tr>
+                                    <td>CPS</td>
+                                    <td>Center for Philippine Studies</td>
+                                </tr>
+                                <tr>
+                                    <td>CQAA</td>
+                                    <td>Center for Quality Assurance and Acceditation</td>
+                                </tr>
+                                <tr>
+                                    <td>NEU-STF</td>
+                                    <td>New Era University - Special Task Force</td>
+                                </tr>
+                                <tr>
+                                    <td>TESDC</td>
+                                    <td>Technical Education and Skills Development Center</td>
+                                </tr>
+                                <tr>
+                                    <td>URC</td>
+                                    <td>University Research Center</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="branch-campuses" class="content-section">
+                <h2 class="content-title">BRANCH CAMPUSES DIRECTORY</h2>
+                <p style="margin-bottom: 30px; color: #555; line-height: 1.8;">For more information about New Era University campuses, you may contact the following:</p>
+
+                <div class="branch-card">
+                    <img src="assets/images/webp/concamp1.webp" alt="Pampanga Branch" onerror="this.src='https://neu.edu.ph/main/assets/images/webp/fac1.webp'">
+                    <h3>Pampanga Branch</h3>
+                    <p>Km. 76 McArthur Highway, Brgy. Dela Paz Norte,</p>
+                    <p>City of San Fernando, Pampanga</p>
+                    <p>(045) 961 4220</p>
+                    <p>Email: collegepampanga@neu.edu.ph</p>
+                    <p>Website: www.neu.edu.ph</p>
+                </div>
+
+                <div class="branch-card">
+                    <img src="assets/images/webp/concamp2.webp" alt="Lipa Branch" onerror="this.src='https://neu.edu.ph/main/assets/images/webp/fac2.webp'">
+                    <h3>Lipa Branch</h3>
+                    <p>#1795 P. Olan St. Brgy. Marawoy 4217,</p>
+                    <p>Lipa City, Philippines</p>
+                    <p>0907 273 A870</p>
+                    <p>Email: neulipa@neu.edu.ph</p>
+                    <p>Website: www.neu.edu.ph</p>
+                </div>
+
+                <div class="branch-card">
+                    <img src="assets/images/webp/concamp3.webp" alt="General Santos City Branch" onerror="this.src='https://neu.edu.ph/main/assets/images/webp/fac3.webp'">
+                    <h3>General Santos City Branch</h3>
+                    <p>Aparente Street, Purok Malakas,</p>
+                    <p>General Santos City, Philippines</p>
+                    <p>(083) 302 2921</p>
+                    <p>Email: neugensan@neu.edu.ph</p>
+                    <p>Website: www.neu.edu.ph</p>
+                </div>
+
+                <div class="branch-card">
+                    <img src="assets/images/webp/concamp4.webp" alt="Rizal Branch" onerror="this.src='https://neu.edu.ph/main/assets/images/webp/fac6.webp'">
+                    <h3>Rizal Branch</h3>
+                    <p>EG Manalo St. Pinugay,</p>
+                    <p>Baras, Rizal, Philippines, 1970</p>
+                    <p>(02) 8981-4221</p>
+                    <p>Email: neurizal@neu.edu.ph</p>
+                    <p>Website: www.neu.edu.ph</p>
+                </div>
+
+            </div>
+
+        </main>
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>
+    <script>
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Update active link
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Switch content
+                document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+                const targetId = this.dataset.target;
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

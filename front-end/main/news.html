@@ -1,0 +1,1076 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - New Era University</title>
+
+    <link href="../css2-1?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+
+    <link href="assets/styles/styles-14.css?v=6a88faae34318" rel="stylesheet">
+    <link href="../css2-2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="../css2-3?family=Material+Symbols+Rounded" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Avenir', sans-serif; }
+
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/webp/neufacade1.webp');
+            background-size: cover;
+            background-position: center 70%;
+            background-repeat: no-repeat;   
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1;
+        }
+        .page-hero-content h1.fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 35, 65, 0.7);
+            z-index: 2;
+        }
+        .page-hero-content { position: relative; z-index: 3; }
+        .page-hero-content h1 {
+            position: relative;
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Avenir', sans-serif;
+        }
+        .page-hero-content h1::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 230px 1fr;
+            gap: 0;
+            padding: 60px 20px 100px;
+            align-items: start;
+        }
+
+        /* SIDEBAR */
+        .sidebar-nav { padding-right: 40px;
+       top: 20px; 
+          position: sticky; }
+        .sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav > ul > li { margin-bottom: 18px; }
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Avenir', sans-serif;
+        }
+        .sidebar-nav a:hover { color: var(--primary-blue); }
+        .sidebar-nav a.active { color: var(--primary-blue); font-weight: 700; }
+
+            .main-content {
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                gap: var(--gap-32);
+                max-width: 100%;
+                }
+
+                .separator2 {
+                height: auto;
+                align-self: stretch;
+                width: 2px;
+                border-right: 2px solid #f5f5f5;
+                box-sizing: border-box;
+                flex-shrink: 0;
+                }
+
+                .cards-section {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                min-width: 0;
+                }
+
+                .links-group2 {
+                width: 240px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                font-size: 14px;
+                color: #9c9c9d;
+                font-family: Avenir, sans-serif;
+                }
+
+            .categories-section {
+            padding: 0 8px;
+            font-size: 12px;
+            }
+
+            .categories-section .categories {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            }
+
+            .categories-section .academic-affairs-international {
+            padding-left: 16px;
+            line-height: 2;
+            }
+
+            .categories-section .field {
+            margin-bottom: 14px;
+            }
+
+                        
+            .field {
+            align-self: stretch;
+            height: 29.1px;
+            border-radius: 3.2px;
+            background-color: var(--color-white);
+            border: 0.6px solid var(--color-gainsboro);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px;
+            gap: var(--gap-20);
+            }
+            .search {
+            width: calc(100% - 42px);
+            border: 0;
+            outline: 0;
+            font-weight: 300;
+            font-family: var(--font-avenir);
+            font-size: var(--fs-14);
+            background-color: transparent;
+            height: 10px;
+            position: relative;
+            color: var(--color-darkgray);
+            text-align: left;
+            display: inline-block;
+            min-width: 25px;
+            padding: 0;
+            flex-shrink: 0;
+            }
+            .material-symbolssearch-rounde-icon {
+            height: var(--height-24);
+            width: var(--width-24);
+            position: relative;
+            flex-shrink: 0;
+            }
+            .categories {
+            align-self: stretch;
+            position: relative;
+            font-size: var(--fs-18);
+            font-weight: 800;
+            color: var(--color-darkslateblue-200);
+            }
+            .academic-affairs-international-container {
+            align-self: stretch;
+            position: relative;
+            font-weight: 300;
+            }
+            .academic-affairs-international {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            padding-left: 26px;
+            list-style: disc outside;
+            }
+.events-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.events-layout .cards-section {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.events-layout .categories-section {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 4px;
+       top: 20px; 
+          /*position: sticky;*/
+}
+
+.categories-section .field {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 10px;
+    gap: 8px;
+    background: #fff;
+}
+
+.categories-section .search {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: Avenir, sans-serif;
+    color: #9c9c9d;
+    flex: 1;
+    background: transparent;
+}
+
+.categories-section .categories {
+    font-size: 18px;
+    font-weight: 800;
+    color: #012d5e;
+}
+
+.categories-section .academic-affairs-international {
+    list-style: disc outside;
+    padding-left: 18px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: #acacac;
+}
+            /*divide to 2 columns on desktop, stack on mobile*/
+                    
+            /*divide to 2 columns on desktop, stack on mobile*/
+
+
+                    /* MAIN CONTENT */
+                    .main-content {
+                        border-left: 1px solid var(--border-color);
+                        padding-left: 40px;
+                    }
+                    .content-section { display: none; animation: fadeIn 0.4s ease-in-out; }
+                    .content-section.active { display: block; }
+
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(10px); }
+                        to   { opacity: 1; transform: translateY(0); }
+                    }
+
+                    .content-title {
+                        color: var(--accent-gold);
+                        font-size: 2rem;
+                        font-weight: 500;
+                        margin-bottom: 35px;
+                        letter-spacing: 0.5px;
+                        text-transform: uppercase;
+                        position: relative;
+                        padding-bottom: 15px;
+                        font-family: 'Avenir', sans-serif;
+                    }
+                    .content-title::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        max-width: 450px;
+                        height: 1px;
+                        background-color: var(--border-color);
+                    }
+
+                    .cards-section { display: flex; flex-direction: column; gap: 30px; }
+
+                    /* CARD */
+                    .card {
+                        border: 1px solid var(--border-color);
+                        border-radius: 12px;
+                        overflow: hidden;
+                        background: var(--white);
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                    }
+                    .image-2 { width: 100%; display: block; object-fit: cover; }
+                    .card-inner { padding: 22px 28px 18px; }
+                    .text-wrapper-11 {
+                        font-family: 'Avenir', sans-serif;
+                        color: var(--accent-gold);
+                        font-size: 11px;
+                        font-weight: 400;
+                        margin-bottom: 10px;
+                        letter-spacing: 1.5px;
+                        text-transform: uppercase;
+                    }
+                    .text-wrapper-12 {
+                        font-family: 'Avenir', sans-serif;
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: var(--primary-blue);
+                        line-height: 1.4;
+                        margin-bottom: 14px;
+                        text-transform: uppercase;
+                        letter-spacing: 0.3px;
+                    }
+                    .text-wrapper-15 {
+                        font-family: 'Avenir', sans-serif;
+                        font-size: 13.5px;
+                        line-height: 1.7;
+                        color: #4d4d4d;
+                        margin-bottom: 18px;
+                    }
+                    .btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        background: transparent;
+                        color: var(--primary-blue);
+                        border: 1px solid #ccc;
+                        padding: 8px 14px;
+                        border-radius: 2px;
+                        cursor: pointer;
+                        transition: all 0.25s ease;
+                        font-family: 'Avenir', sans-serif;
+                        font-size: 10px;
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                    }
+                    .btn:hover { background: var(--primary-blue); color: var(--white); border-color: var(--primary-blue); }
+                    .card-separator { width: 100%; height: 1px; background: var(--border-color); border: none; margin: 16px 0 12px; }
+                    .date-time-group {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--primary-blue);
+                        font-size: 12.5px;
+                        font-family: 'Avenir', sans-serif;
+                        font-weight: 500;
+                    }
+                    .date-time-group img.vector-3 { width: 20px; height: 20px; opacity: 0.6; }
+                    .text-wrapper-14 { font-family: 'Avenir', sans-serif; color: var(--primary-blue); }
+
+                    /* DETAIL VIEW */
+                    #news-detail { display: none; animation: fadeIn 0.4s ease-in-out; }
+                    #news-detail.active { display: block; }
+
+                    .detail-image-wrap {
+                        position: relative;
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+
+                    .detail-image {
+                        width: 100%;
+                        max-height: 420px;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    /* corner accents */
+                    .corner {
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                        border-color: #fff;
+                        border-style: solid;
+                    }
+                    .corner-tl { top: -4px;    left: -4px;  border-width: 2px 0 0 2px; }
+                    .corner-tr { top: -4px;    right: -4px; border-width: 2px 2px 0 0; }
+                    .corner-bl { bottom: -4px; left: -4px;  border-width: 0 0 2px 2px; }
+                    .corner-br { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; }
+                    .detail-caption {
+                        font-family: 'Avenir', sans-serif;
+                        font-size: 11.5px;
+                        color: #888;
+                        font-style: italic;
+                        margin-bottom: 24px;
+                        line-height: 1.5;
+                    }
+                    .detail-title {
+                        font-family: 'Avenir', sans-serif;
+                        font-size: 1.3rem;
+                        font-weight: 700;
+                        color: var(--primary-blue);
+                        text-transform: uppercase;
+                        line-height: 1.4;
+                        margin-bottom: 16px;
+                    }
+                    .detail-body {
+                        font-family: 'Avenir', sans-serif;
+                        font-size: 13.5px;
+                        line-height: 1.8;
+                        color: #4d4d4d;
+                    }
+
+                    /* RESPONSIVE */
+                    @media (max-width: 900px) {
+                        .page-wrapper { grid-template-columns: 1fr; gap: 40px; }
+                        .sidebar-nav { padding-right: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+                        .main-content { border-left: none; padding-left: 0; }
+                        .page-hero-content h1 { font-size: 2.2rem; }
+                    }
+                    @media (max-width: 600px) {
+                        .text-wrapper-12 { font-size: 14px; }
+                        .text-wrapper-15 { font-size: 13px; }
+                    }
+
+            /* Mobile — stack vertically */
+            @media (max-width: 768px) {
+                 .sidebar-nav { position: static; }
+                .news-layout {
+                grid-template-columns: 1fr;
+                }
+                .events-layout {
+                    flex-direction: column;
+                    gap: 30px;
+                }
+
+                .events-layout .categories-section {
+                    width: 100%;
+                    order: -1; /* moves categories ABOVE cards on mobile */
+                }
+
+                .events-layout .cards-section {
+                    width: 100%;
+                }
+
+                /* Make cards full width on mobile */
+                .card {
+                    width: 100%;
+                }
+
+                .image-2 {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            /* Small phones */
+            @media (max-width: 480px) {
+                .content-title {
+                    font-size: 20px;
+                }
+
+                .text-wrapper-12 {
+                    font-size: 14px;
+                }
+
+                .text-wrapper-15 {
+                    font-size: 13px;
+                }
+            }
+                </style>
+            </head>
+
+            <body>
+
+            <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+            <section class="page-hero">
+                <div class="page-hero-content">
+                    <h1>UNIVERSITY NEWS</h1>
+                </div>
+            </section>
+            <section class="container page-wrapper">
+
+                <!-- SIDEBAR -->
+                <aside class="sidebar-nav">
+                    <ul>
+                        <li><a class="sidebar-link active" data-target="university-news">University News</a></li>
+                         <!--<li><a href="https://neu.edu.ph/main/announcements" class="university-news" id="universityAnnouncementsText">
+                        University Announcements
+                        </a></li>-->
+                       <li><a class="sidebar-link" data-target="university-announcements">University Announcements</a></li>
+                        <li><a class="sidebar-link" data-target="university-events">University Events</a></li>
+                    </ul>
+                </aside>
+
+                <!-- MAIN CONTENT -->
+                <main class="main-content">
+
+                    <!-- DETAIL VIEW -->
+                    <div id="news-detail">
+                        <div class="detail-image-wrap">
+                            <img class="detail-image" id="detail-image" src="" alt="News Image">
+                        </div>
+                        <p class="detail-caption" id="detail-caption"></p>
+                        <h2 class="detail-title" id="detail-title"></h2>
+                        <div class="detail-body" id="detail-body"></div>
+                    </div>
+                                        <!-- UNIVERSITY NEWS -->
+                    <!-- UNIVERSITY NEWS -->
+                    <div id="university-news" class="content-section active">
+                    <h2 class="content-title">UNIVERSITY NEWS</h2>
+                    <div class="cards-section">
+                                                <div class="card">
+                            <img class="image-2" src="assets/images/webp/news/acad_pass.jpg" alt="CONGRATULATIONS TO THE PASSERS OF THE MARCH 2026 PHYSICIAN LICENSURE EXAMINATION">
+                            <div class="card-inner">
+                            <div class="text-wrapper-11">ACADEMICS</div>
+                            <p class="text-wrapper-12">CONGRATULATIONS TO THE PASSERS OF THE MARCH 2026 PHYSICIAN LICENSURE EXAMINATION</p>
+                            <p class="text-wrapper-15">New Era University (NEU) College of Medicine achieve a remarkable milestone this month, celebrating a perfect 100% passing rate in the March 2026 Physician Licensure Examination.</p>
+                            <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/news-detail?id=1">
+                                READ MORE &gt;
+                                </button>
+                            </div>
+                            <hr class="card-separator">
+                            <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">9:15 am April 16, 2026</p>
+                            </div>
+                            </div>
+                        </div>
+                                                <div class="card">
+                            <img class="image-2" src="assets/images/webp/news/supreme-court/photo-1.jpg" alt="NEW ERA UNIVERSITY DESIGNATED AS NATIONAL HEADQUARTERS FOR 2026 SHARI&#039;AH SPECIAL BAR EXAMS">
+                            <div class="card-inner">
+                            <div class="text-wrapper-11">ACADEMICS</div>
+                            <p class="text-wrapper-12">NEW ERA UNIVERSITY DESIGNATED AS NATIONAL HEADQUARTERS FOR 2026 SHARI&#039;AH SPECIAL BAR EXAMS</p>
+                            <p class="text-wrapper-15">New Era University (NEU) has been officially designated as the national headquarters for the 2026 Shari&#039;ah Special Bar Examinations, as announced on April 16, 2026.</p>
+                            <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/news-detail?id=2">
+                                READ MORE &gt;
+                                </button>
+                            </div>
+                            <hr class="card-separator">
+                            <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">9:15 am April 16, 2026</p>
+                            </div>
+                            </div>
+                        </div>
+                                                <div class="card">
+                            <img class="image-2" src="assets/images/webp/news/lept-passers/photo-7.jpg" alt="CONGRATULATIONS TO THE PASSERS OF THE SEPTEMBER 2025 LICENSURE EXAMINATION FOR PROFESSIONAL TEACHERS (LETP)">
+                            <div class="card-inner">
+                            <div class="text-wrapper-11">ACADEMICS</div>
+                            <p class="text-wrapper-12">CONGRATULATIONS TO THE PASSERS OF THE SEPTEMBER 2025 LICENSURE EXAMINATION FOR PROFESSIONAL TEACHERS (LETP)</p>
+                            <p class="text-wrapper-15">New Era University (NEU) is celebrating a significant milestone as 62 graduates from College of Education successfully passed the September 2025 Licensure Examination for Professional Teachers (LEPT).</p>
+                            <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/news-detail?id=3">
+                                READ MORE &gt;
+                                </button>
+                            </div>
+                            <hr class="card-separator">
+                            <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">1:37 pm March 26, 2026</p>
+                            </div>
+                            </div>
+                        </div>
+                                            </div>
+                    </div>
+
+                
+
+                    <!-- UNIVERSITY ANNOUNCEMENTS -->
+                    <div id="university-announcements" class="content-section">
+                        <h2 class="content-title">UNIVERSITY ANNOUNCEMENTS</h2>
+                    <div class="cards-section">
+                                                <div class="card">
+                            <img class="image-2" src="assets/images/webp/announcements/photo-1.jpg" alt="NEU&#039;S TEMPORARY SCHEDULE ADJUSTMENT TO FOUR-DAY WORKWEEK EFFECTIVE MARCH 16, 2026">
+                            <div class="card-inner">
+                            <div class="text-wrapper-11">UNIVERSITY ADVISORY</div>
+                            <p class="text-wrapper-12">NEU&#039;S TEMPORARY SCHEDULE ADJUSTMENT TO FOUR-DAY WORKWEEK EFFECTIVE MARCH 16, 2026</p>
+                            <p class="text-wrapper-15">New Era University (NEU) has announced a temporary schedule adjustment, shifting to a four-day workweek and a hybrid learning model effective March 16, 2026.</p>
+                            <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/announcement-detail?id=1">
+                                READ MORE &gt;
+                                </button>
+                            </div>
+                            <hr class="card-separator">
+                            <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">3:30 pm April 16, 2026</p>
+                            </div>
+                            </div>
+                        </div>
+                                                <div class="card">
+                            <img class="image-2" src="assets/images/webp/announcements/photo-2.jpg" alt="NEU ISSUES TRAFFIC ADVISORY FOR UPCOMING LICENSURE EXAMINATION">
+                            <div class="card-inner">
+                            <div class="text-wrapper-11">UNIVERSITY ADVISORY</div>
+                            <p class="text-wrapper-12">NEU ISSUES TRAFFIC ADVISORY FOR UPCOMING LICENSURE EXAMINATION</p>
+                            <p class="text-wrapper-15">New Era University (NEU) has released a traffic advisory for Sunday, March 15, 2026, as the campus prepares to serve as a testing venue for
+                                        the Professional Regulation Commission&#039;s Licensure Examination for Professional Teachers (LEPT).</p>
+                            <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/announcement-detail?id=2">
+                                READ MORE &gt;
+                                </button>
+                            </div>
+                            <hr class="card-separator">
+                            <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">3:30 pm April 16, 2026</p>
+                            </div>
+                            </div>
+                        </div>
+                                                <div class="card">
+                            <img class="image-2" src="assets/images/webp/announcements/photo-3.jpg" alt="NEU ANNOUNCES SUSPENSION OF CLASSES AND OPERATIONS - FEBRUARY 17, 2026">
+                            <div class="card-inner">
+                            <div class="text-wrapper-11">UNIVERSITY-WIDE ANNOUNCEMENT</div>
+                            <p class="text-wrapper-12">NEU ANNOUNCES SUSPENSION OF CLASSES AND OPERATIONS - FEBRUARY 17, 2026</p>
+                            <p class="text-wrapper-15">New Era University (NEU) has officially announced the suspension of all classes and office work on Tuesday, February 17, 2026.</p>
+                            <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/announcement-detail?id=3">
+                                READ MORE &gt;
+                                </button>
+                            </div>
+                            <hr class="card-separator">
+                            <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">3:17 pm February 06, 2026</p>
+                            </div>
+                            </div>
+                        </div>
+                                            </div>
+                    </div>
+
+                    <!-- UNIVERSITY EVENTS -->
+                   <div id="university-events" class="content-section">
+                    <div class="events-layout">
+                        <div class="cards-section">
+                        <h2 class="content-title">UNIVERSITY EVENTS</h2>
+                                                    <div class="card">
+                            <img class="image-2" src="assets/images/webp/apmc/apmc.webp" alt="NAVIGATE THE FUTURE OF MEDICINE: THE 58TH APMC ANNUAL CONVENTION IS ALMOST HERE">
+                            <div class="card-inner">
+                                <div class="text-wrapper-11">COLLEGE OF MEDICINE</div>
+                                <p class="text-wrapper-12">NAVIGATE THE FUTURE OF MEDICINE: THE 58TH APMC ANNUAL CONVENTION IS ALMOST HERE</p>
+                                <p class="text-wrapper-15">The Association of Philippine Medical Colleges Foundation, Inc., in collaboration with New Era University, hosts this landmark event that will start on June 15-17, 2026.</p>
+                                <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/event-detail?id=1">
+                                    READ MORE &gt;
+                                </button>
+                                </div>
+                                <hr class="card-separator">
+                                <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">2:42 pm May 6, 2026</p>
+                                </div>
+                            </div>
+                            </div>
+                                                    <div class="card">
+                            <img class="image-2" src="assets/images/webp/privacy-seminar/photo-1.jpg" alt="PRIVACY MATTERS 2026: UNDERSTANDING RA 10173">
+                            <div class="card-inner">
+                                <div class="text-wrapper-11">COLLEGE OF ARTS AND SCIENCES</div>
+                                <p class="text-wrapper-12">PRIVACY MATTERS 2026: UNDERSTANDING RA 10173</p>
+                                <p class="text-wrapper-15">The Economics Society (EcoSoc), together with the Social Studies Society (SocSciETY) proudly presents this seminar.</p>
+                                <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/event-detail?id=2">
+                                    READ MORE &gt;
+                                </button>
+                                </div>
+                                <hr class="card-separator">
+                                <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">8:00 am May 05, 2026</p>
+                                </div>
+                            </div>
+                            </div>
+                                                    <div class="card">
+                            <img class="image-2" src="assets/images/webp/neu-fair/photo-4.jpg" alt="A GRAND START TO OFFICIALLY KICK OFF: THE NEU FAIR 2026 OFFICIALLY STARTS">
+                            <div class="card-inner">
+                                <div class="text-wrapper-11">OFFICE OF STUDENT AFFAIRS AND SERVICES (OSAS)</div>
+                                <p class="text-wrapper-12">A GRAND START TO OFFICIALLY KICK OFF: THE NEU FAIR 2026 OFFICIALLY STARTS</p>
+                                <p class="text-wrapper-15">The NEU Fair 2026 officially started last April 10, 2026 at the NEU Quadrangle.</p>
+                                <div class="know-more-item">
+                                <button class="btn read-more-btn" data-url="https://neu.edu.ph/main/event-detail?id=3">
+                                    READ MORE &gt;
+                                </button>
+                                </div>
+                                <hr class="card-separator">
+                                <div class="date-time-group">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <p class="text-wrapper-14">3:18 am April 12, 2026</p>
+                                </div>
+                            </div>
+                            </div>
+                                                </div>
+
+                <!-- Categories sidebar — events only -->
+                <section class="categories-section">
+                    <div class="field">
+                        <input class="search" placeholder="Search" type="text">
+                        <span class="material-symbols-rounded">search</span>
+                    </div>
+                    <div class="categories">Categories</div>
+                    <div class="academic-affairs-international-container">
+                        <ul class="academic-affairs-international">
+                            <li class="category">Academic Affairs</li>
+                            <li class="category">International Linkages</li>
+                            <li class="category">Admission, Scholarships and Finance Assistance Office (ASFAO)</li>
+                            <li class="category">NEU Alumni Association, Inc. (NEUAAI)</li>
+                            <li class="category">NEU Hunters</li>
+                            <li class="category">Center for Community Extension and Linkages (CCEL)</li>
+                            <li class="category">Center for Philippine Studies</li>
+                            <li class="category">Center for Russian Studies</li>
+                            <li class="category">Center for Chinese Studies</li>
+                            <li class="category">Center for Continuing Professional Development</li>
+                            <li class="category">Expanded Tertiary Education Equivalency Accreditation Program (ETEEAP)</li>
+                            <li class="category">Office of Student Affairs and Services (OSAS)</li>
+                            <li class="category">College of Arts and Sciences</li>
+                            <li class="category">College of Business Administration</li>
+                            <li class="category">College of Criminology</li>
+                            <li class="category">College of Engineering and Architecture</li>
+                            <li class="category">College of Education</li>
+                            <li class="category">College of Informatics and Computing Studies</li>
+                            <li class="category">College of Medicine</li>
+                            <li class="category">College of Midwifery</li>
+                            <li class="category">College of Physical Therapy</li>
+                            <li class="category">College of Respiratory Therapy</li>
+                            <li class="category">College of Accountancy</li>
+                            <li class="category">College of Communication</li>
+                            <li class="category">College of Law</li>
+                            <li class="category">College of Music</li>
+                            <li class="category">College of Nursing</li>
+                            <li class="category">College of Medical Technology</li>
+                            <li class="category">School of Graduate Studies</li>
+                            <li class="category">School of International Relations</li>
+                        </ul>
+                    </div>
+                </section><!-- /categories-section -->
+
+            </div><!-- /events-layout -->
+        </div>
+        <!-- /university-events -->
+
+    </main>
+
+</section>
+
+<div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>
+<script src="assets/scripts/script.js"></script>
+<script>
+    let activeTab = 'university-news';
+
+    function switchMainTab(targetId, updateUrl = true) {
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        hideDetail();
+
+        const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+        const targetSection = document.getElementById(targetId);
+        if (targetLink) targetLink.classList.add('active');
+        if (targetSection) targetSection.classList.add('active');
+
+        activeTab = targetId;
+        if (updateUrl) history.pushState(null, null, '#' + targetId);
+        // Update hero title
+        const titles = {
+            'university-news': 'UNIVERSITY NEWS',
+            'university-announcements':   'UNIVERSITY ANNOUNCEMENTS',
+            'university-events':          'UNIVERSITY EVENTS',
+            'press-release':   'PRESS RELEASE',
+        };
+        const heroTitle = document.querySelector('.page-hero-content h1');
+        if (heroTitle && titles[targetId]) {
+            heroTitle.classList.add('fade-out');
+            setTimeout(() => {
+                heroTitle.textContent = titles[targetId];
+                heroTitle.classList.remove('fade-out');
+            }, 300);
+        }
+    }
+
+    function showDetail(category, title, image, caption, body) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('detail-title').textContent   = title;
+        document.getElementById('detail-image').src           = image;
+        document.getElementById('detail-image').alt           = title;
+        document.getElementById('detail-caption').textContent = caption;
+        document.getElementById('detail-body').textContent    = body;
+        document.getElementById('news-detail').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function hideDetail() {
+        document.getElementById('news-detail').classList.remove('active');
+    }
+
+    // Sidebar links
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchMainTab(this.dataset.target);
+        });
+    });
+
+    // Single unified read more handler
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.dataset.url) {
+                window.location.href = this.dataset.url;
+            } else {
+                showDetail(
+                    this.dataset.category,
+                    this.dataset.title,
+                    this.dataset.image,
+                    this.dataset.caption,
+                    this.dataset.body
+                );
+            }
+        });
+    });
+
+    // URL hash on load
+    window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash.replace('#', '');
+        if (hash && document.getElementById(hash)) {
+            switchMainTab(hash, false);
+        }
+    });
+</script>
+</body>
+</html>
+

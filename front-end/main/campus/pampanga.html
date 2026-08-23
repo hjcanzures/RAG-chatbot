@@ -1,0 +1,742 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEU Pampanga Campus - New Era University</title>
+    <link href="../../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../../css/avenir" rel="stylesheet">
+    
+    <link href="../assets/styles/styles-8.css?v=6a88faa548bfd" rel="stylesheet">
+    
+    <style>
+    
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('../assets/images/neufacade1.webp.html'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        
+        .sidebar-nav {
+            padding-right: 40px; 
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav > ul > li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #888; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .sidebar-nav a:hover {
+            color: #333;
+        }
+
+        .sidebar-nav a.active {
+            color: #333;
+            font-weight: 700;
+        }
+
+        
+        .main-content {
+            border-left: 1px solid #eee; 
+            padding-left: 40px; 
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: #C88D36; 
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        
+        .history-content p {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .history-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: block;
+        }
+
+        
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .sidebar-nav {
+                padding-right: 0;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .sidebar-nav > ul > li {
+                margin-bottom: 0;
+            }
+            .sidebar-nav a.active {
+                border-left: none;
+                border-bottom: 3px solid #C88D36;
+                padding-left: 0;
+                margin-left: 0;
+                padding-bottom: 5px;
+            }
+            .main-content {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="../index.htm">
+        <div class="container header-content">
+            <img src="../assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="../academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="../academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="../academics.html#cmd">College of Medicine</a>
+                            <a href="../academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="../academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="../academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="../maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="../student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="../maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="../admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="../admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="../admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="../maintenance.html">Application Reminders</a>
+                            <a href="../admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="../payment.html#payment-fees">Payment Procedure</a>
+                            <a href="../maintenance.html">Scholarship Grants</a>
+                            <a href="../maintenance.html">Financial Assistance</a>
+                            <a href="../payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="../payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="../contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="../maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="../about-us/index.htm">Quezon City (Main)</a>
+                            <a href="pampanga.html">Pampanga</a>
+                            <a href="lipa.html">Lipa</a>
+                            <a href="gen-san.html">General Santos City</a>
+                            <a href="index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="../assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="../maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="../maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="../maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="../maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="../maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="../maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="../maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="../maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="../maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="../maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="../maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="../maintenance.html">Linkages</a>
+                            <a href="../maintenance.html">Disclaimer</a>
+                            <a href="../notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="../notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="../maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="../about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="../news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="../contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>NEW ERA UNIVERSITY - PAMPANGA</h1>
+        </div>
+    </section>
+
+    <section class="page-wrapper">
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="history">History</a></li>
+                <li><a class="sidebar-link" data-target="seal">The University Seal</a></li>
+                <li><a class="sidebar-link" data-target="programs">Programs Offered</a></li>
+                <li><a class="sidebar-link" data-target="facilities">Facilities</a></li>
+                <li><a class="sidebar-link" data-target="contact">Contact</a></li>
+                <li><a class="sidebar-link" data-target="awards">Awards and Citations</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="history" class="content-section" style="display: block;">
+                <h2 class="content-title">HISTORY</h2>
+                
+                <div class="history-content">
+                    
+                    <img src="../assets/images/webp/image.webp" alt="Old Pampanga Campus Gate" class="history-image" style="margin-top: 0;">
+                    
+                    <p>New Era University (Pampanga branch) was established with the noble objective, level of idealism and supreme mission: To offer quality education to the brethren of the Iglesia Ni Cristo in Central Luzon. With a growing clamor for a learning facility where the youths of the INC are nurtured with the same values enshrined in its doctrines. The clamor became even louder, coupled with a genuine desire to put up a school for the brethren out of town. The INC Executive Minister, Brother Eraño G. Manalo, the school’s founding visionary, favorably acted on the brethren's request.</p>
+
+                    <p>In a fitting culmination of a string of events that the INC leadership, Brother Eraño G. Manalo, the Deputy Executive Minister, Bro. Eduardo V. Manalo, and the then-School President, Bro. Antonio F. Tupaz the Pampanga branch finally commenced its initial operations. The branch became the school's second home outside of Metro Manila.</p>
+
+                    <img src="../assets/images/webp/7dc4db32731477a401f1eede2632089874e6656f.webp" alt="Modern Pampanga Campus Entrance" class="history-image">
+
+                    <p>On May 5, 1994, Bro. Eraño G. Manalo signed a directive granting authority to NEU to establish a branch in San Fernando, Pampanga.</p>
+
+                    <p>On June 2, 1994, the Branch College granted a permit to operate by the then-DECS (now CHED & DepEd) the Pre-school and Elementary (Grades 1-4) courses, while awaiting the formal recognition given in 1996.</p>
+
+                    <p>In June 1994, the operation of the Pampanga Branch formally started. The Branch had an initial enrollment of 234 pupils from Nursery to Grade 4. The branch initially shared the facilities of the INC chapel compound in San Fernando, Pampanga, until a suitable lot was found.</p>
+
+                    <p>During the School Year 1995-1996, the branch opened its formal academic offerings. High School classes started and a three-story school building was constructed to accommodate the growing student population. Enrollees swelled to 630 students.</p>
+
+                    <p>The years that followed clearly indicated an active and dynamic existence. As early as its second year of operation, a two-story building for High School was opened in a sprawling 1.5-hectare lot in Brgy. Dela Paz Norte, San Fernando, Pampanga, to accommodate the first batch of high school students.</p>
+
+                    <p>During School Year 2000-2001, NEU Pampanga Branch proudly witnessed the graduation of its first batch of High School students. It also marked the initial offering of college courses. The Commission on Higher Education (CHED) granted a permit to operate the Bachelor of Arts (A.B.), Bachelor of Science in Business Administration (B.S.B.A.), Bachelor of Secondary Education (B.S.E.d.) and Bachelor of Elementary Education (B.E.Ed.). The branch had an initial college enrollment of 32 students. The "pioneers" paved the way for more students to enroll. Through God's guidance and blessings, the Pampanga Branch continues to flourish and consistently pursue its commitment to educational excellence while molding its students into becoming upright and dedicated citizens who are imbued with Christian values.</p>
+                    
+                    <p>The branch also built additional structures like a covered court, computer laboratories, and a modern library. The steady increase in enrollment is a clear indication of the trust and confidence that the brethren and the community have in NEU Pampanga Branch as an educational institution that provides quality education.</p>
+
+                </div>
+            </div>
+
+            <div id="seal" class="content-section">
+                <h2 class="content-title">THE UNIVERSITY SEAL</h2>
+                
+                <div class="history-content">
+                    
+                    <div style="text-align: center; margin-bottom: 40px; margin-top: 20px;">
+                        <img src="../assets/images/webp/neu-pampanga-logo.webp" alt="NEU Pampanga University Seal" style="max-width: 450px; width: 100%; height: auto;">
+                    </div>
+
+                    <p style="font-size: 1.05rem; color: #333; margin-bottom: 25px;">
+                        The University seal bears identifiable images which put into visual symbols the institutional philosophy of <strong>New Era University - Pampanga</strong>
+                    </p>
+                    
+                    <p>
+                        The above figure is the Official Logo of the NEW ERA UNIVERSITY - Pampanga Campus approved by the Church Administration of the Iglesia Ni Cristo through the NEU Administration back in S.Y 2013-2014 when it was first adopted and used by the school-community.
+                    </p>
+
+                    <p>
+                        The logo's features retained the overall components of the official NEU logo: <strong>Outer Ring</strong> is Green, <strong>Inner Ring</strong> is Red and <strong>the space color between the rings containing the name of New Era University</strong> is White (Green, White and Red)- the official colors of the INC which is behind the establishment and continuous operations of the University and its branches outside NCR including NEU-Pampanga. Also among the features of the official University logo retained in the official NEU-Pampanga Logo are the <strong>Rising Sun and the Open Book</strong> representing enlightenment and illumination of those who benefit from NEU as an educational institution that imparts values-laden education leading to the total development of an individual.
+                    </p>
+
+                    <p>
+                        The distinct features original and unique in the NEU-Pampanga official Logo are the following: <strong>Map of the Province of Pampanga</strong> which is made as background of the Open Book and the Rising Sun. This represents the region (Region III) that is primarily being served by the NEU-Pampanga. Provinces within Region III and in proximity to Pampanga province are Bataan, Bulacan, Zambales, and Tarlac. And <strong>1994 - the year when NEU Pampanga was established</strong> as the very first branch of NEU outside the NCR, is also indicated in the NEU Pampanga Logo.
+                    </p>
+
+                </div>
+            </div>
+
+            <div id="programs" class="content-section">
+                <h2 class="content-title">PROGRAMS OFFERED</h2>
+                
+                <div class="history-content">
+                    
+                    <img src="../assets/images/webp/imagepamp.webp" alt="NEU Students" class="history-image" style="margin-top: 0; margin-bottom: 40px;">
+
+                    <h3 style="color: #113B5C; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">PRE-SCHOOL</h3>
+                    <p style="margin-bottom: 25px;">Nursery and Kinder</p>
+
+                    <h3 style="color: #113B5C; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">ELEMENTARY</h3>
+                    <p style="margin-bottom: 25px;">Grades 1 - 6</p>
+
+                    <h3 style="color: #113B5C; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">JUNIOR HIGH SCHOOL</h3>
+                    <p style="margin-bottom: 25px;">Grades 7 - 10</p>
+
+                    <h3 style="color: #113B5C; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">SENIOR HIGH SCHOOL</h3>
+                    <p style="margin-bottom: 15px;">Grades 11 - 12</p>
+
+                    <h4 style="color: #333; font-size: 1rem; font-weight: 600; text-decoration: underline; margin-bottom: 15px;">TRACKS AND STRANDS</h4>
+                    
+                    <h5 style="color: #333; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">ACADEMIC</h5>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Science, Technology, Engineering and Mathematics (STEM)</li>
+                        <li>Accountancy, Business and Management (ABM)</li>
+                        <li>Humanities and Social Sciences (HumSS)</li>
+                    </ul>
+
+                    <h5 style="color: #333; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">TECHNICAL - VOCATIONAL</h5>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Shielded Metal Arc Welding (SMAW) NC II</li>
+                    </ul>
+
+                    <h5 style="color: #333; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">HOME ECONOMICS</h5>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Bread and Pastry</li>
+                        <li>Food and Beverage</li>
+                        <li>Cookery</li>
+                        <li>Dressmaking</li>
+                    </ul>
+
+                    <h5 style="color: #333; font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;">SPORTS</h5>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 40px;">
+                        <li>Human Movement, Safety, and First Aid</li>
+                    </ul>
+
+                    <h3 style="color: #113B5C; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">COLLEGE PROGRAM OFFERINGS</h3>
+                    
+                    <h4 style="color: #333; font-size: 0.95rem; font-weight: 600; text-decoration: underline; margin-bottom: 10px;">COLLEGE OF ARTS AND SCIENCES</h4>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Bachelor of Science in Psychology</li>
+                    </ul>
+
+                    <h4 style="color: #333; font-size: 0.95rem; font-weight: 600; text-decoration: underline; margin-bottom: 10px;">COLLEGE OF ACCOUNTANCY</h4>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Bachelor of Science in Accountancy (BSA)</li>
+                    </ul>
+
+                    <h4 style="color: #333; font-size: 0.95rem; font-weight: 600; text-decoration: underline; margin-bottom: 10px;">COLLEGE OF BUSINESS ADMINISTRATION</h4>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Bachelor of Science in Business Administration - Major in:
+                            <ul style="padding-left: 20px; margin-top: 5px;">
+                                <li>Financial Management</li>
+                                <li>Marketing Management</li>
+                                <li>Human Resource Development Management</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4 style="color: #333; font-size: 0.95rem; font-weight: 600; text-decoration: underline; margin-bottom: 10px;">COLLEGE OF INFORMATICS AND COMPUTING STUDIES</h4>
+                    <ul style="color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin-bottom: 20px;">
+                        <li>Bachelor of Science in Information Systems (BSIS)</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div id="facilities" class="content-section">
+                <h2 class="content-title">FACILITIES</h2>
+                
+                <div class="history-content">
+                    
+                    <div style="margin-bottom: 40px;">
+                        <img src="../assets/images/webp/image.webp" alt="NEU Pampanga Gate" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px; text-transform: capitalize;">NEU Pampanga Gate</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <img src="../assets/images/webp/image.webp" alt="Covered Court Crowd 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="../assets/images/webp/image%20%281%29.webp" alt="Covered Court Crowd 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <img src="../assets/images/webp/image%206.webp" alt="Covered Court Game 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="../assets/images/webp/image%207.webp" alt="Covered Court Game 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="../assets/images/webp/image%205.webp" alt="Covered Court Game 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                        </div>
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px; text-transform: capitalize;">Covered Court</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <img src="../assets/images/webp/image%2012.webp" alt="Computer Laboratory" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px; text-transform: capitalize;">Computer Laboratory</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <img src="../assets/images/webp/DSC_0070%201.webp" alt="TLE Room Shelves" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="../assets/images/webp/Picture12%201.webp" alt="TLE Room Mixers 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <img src="../assets/images/webp/Picture12%201.webp" alt="TLE Room Mixers 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="../assets/images/webp/Picture7%201.webp" alt="TLE Room Exterior" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                                <img src="../assets/images/webp/DSC_0070%201%20%281%29.webp" alt="TLE Room Tools" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+                            </div>
+                        </div>
+                        <p style="font-size: 0.95rem; color: #555; margin-top: 10px; text-transform: capitalize;">TLE Room</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="contact" class="content-section">
+                <h2 class="content-title">CONTACT</h2>
+                
+                <div class="history-content">
+                    
+                    <div style="margin-bottom: 30px;">
+                        <img src="../assets/images/webp/image.webp" alt="NEU Pampanga Campus Entrance" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+                    </div>
+
+                    <p style="font-size: 0.95rem; color: #444; margin-bottom: 25px;">
+                        For more information about New Era University - Pampanga, you may contact the following:
+                    </p>
+
+                    <h4 style="color: #113B5C; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px;">Contact Information</h4>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-size: 0.95rem; color: #333; font-weight: 700; margin-bottom: 5px;">Sis. Emely M. Delos Santos</p>
+                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 0;">0991-509-8175</p>
+                    </div>
+
+                    <div style="font-size: 0.95rem; color: #555; line-height: 1.6;">
+                        <p style="margin-bottom: 8px;">Address: Km. 76, McArthur Hwy., Brgy. Dela Paz Norte, City of San Fernando, 2000, Pampanga</p>
+                        <p style="margin-bottom: 8px;">Website: <a href="https://www.neu.edu.ph" target="_blank" style="color: inherit; text-decoration: none;">www.neu.edu.ph</a></p>
+                        <p style="margin-bottom: 8px;">Email: <a href="mailto:collegepampanga@neu.edu.ph" style="color: inherit; text-decoration: none;">collegepampanga@neu.edu.ph</a></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="awards" class="content-section">
+                <h2 class="content-title">AWARDS AND CITATIONS</h2>
+                
+                <div class="history-content">
+                    
+                    <div style="margin-bottom: 30px;">
+                        <img src="../assets/images/webp/image.webp" alt="NEU Pampanga Campus Entrance" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+                    </div>
+
+                    <p style="font-size: 1.05rem; color: #444; margin-bottom: 25px;">
+                        Association of Christian Schools, Colleges, and Universities (ACSCU-ACI) Accreditation Status
+                    </p>
+
+                    <h4 style="color: #113B5C; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">LEVEL III Accredited</h4>
+                    <ol style="color: #555; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin-bottom: 30px;">
+                        <li>Bachelor of Science in Accountancy</li>
+                        <li>Bachelor of Science in Biology</li>
+                        <li>Bachelor of Science in Business Administration</li>
+                        <li>Bachelor of Arts in Communication</li>
+                        <li>Bachelor of Elementary Education</li>
+                        <li>Bachelor of Science in Psychology</li>
+                        <li>Bachelor of Secondary Education</li>
+                    </ol>
+
+                    <h4 style="color: #113B5C; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">LEVEL II Accredited</h4>
+                    <ol style="color: #555; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin-bottom: 30px;">
+                        <li>Bachelor of Science in Accountancy</li>
+                        <li>Bachelor of Science in Biology</li>
+                        <li>Bachelor of Science in Business Administration</li>
+                        <li>Bachelor of Arts in Communication</li>
+                        <li>Bachelor of Elementary Education</li>
+                        <li>Bachelor of Science in Psychology</li>
+                        <li>Bachelor of Secondary Education</li>
+                    </ol>
+
+                    <h4 style="color: #113B5C; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;">LEVEL I Accredited</h4>
+                    <ol style="color: #555; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin-bottom: 30px;">
+                        <li>Bachelor of Science in Accountancy</li>
+                        <li>Bachelor of Science in Biology</li>
+                        <li>Bachelor of Science in Business Administration</li>
+                        <li>Bachelor of Arts in Communication</li>
+                        <li>Bachelor of Elementary Education</li>
+                        <li>Bachelor of Science in Psychology</li>
+                        <li>Bachelor of Secondary Education</li>
+                    </ol>
+
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="../assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="../assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="../assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="../assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="../assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="../assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="../assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/scripts/script.js"></script>
+    <script>
+        // Tab switching logic with URL hashing
+        function switchMainTab(targetId, updateUrl = true) {
+            // Update sidebar active link
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+            if(targetLink) targetLink.classList.add('active');
+            
+            // Switch main content section
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            // Update URL hash without page jump
+            if (updateUrl) {
+                history.pushState(null, null, '#' + targetId);
+            }
+        }
+
+        // Attach event listeners to sidebar links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchMainTab(this.dataset.target);
+            });
+        });
+
+        // Check URL hash on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1); 
+            if (currentHash && document.getElementById(currentHash)) {
+                switchMainTab(currentHash, false); 
+            }
+        });
+    </script>
+</body>
+</html>

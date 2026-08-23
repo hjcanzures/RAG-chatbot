@@ -1,0 +1,837 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment of Fees - New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    
+    <link href="assets/styles/styles-5.css?v=6a88fa9f440f4" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           PAYMENT PAGE STYLES
+           ========================================= */
+
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/webp/neufacade1.webp'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+        }
+
+        .sidebar-nav { padding-right: 40px; }
+        .sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav > ul > li { margin-bottom: 18px; }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #b0b0b0; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .sidebar-nav a:hover { color: var(--primary-blue); }
+        .sidebar-nav a.active { color: var(--primary-blue); font-weight: 700; }
+
+        .sidebar-sub-menu { margin-top: 12px; padding-left: 15px !important; }
+        .sidebar-sub-menu li { margin-bottom: 12px; }
+        .sidebar-sub-menu a { font-size: 0.85rem; }
+
+        .main-content {
+            border-left: 1px solid var(--border-color); 
+            padding-left: 40px; 
+        }
+
+        .content-section {
+            display: none; 
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px; 
+        }
+
+        .content-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; max-width: 450px; 
+            height: 1px;
+            background-color: var(--border-color);
+        }
+        
+        .content-subtitle {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .step-block { margin-bottom: 40px; }
+        .step-title {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .content-list { list-style-type: disc; padding-left: 20px; color: var(--text-dark); }
+        .content-list > li { margin-bottom: 15px; font-size: 0.95rem; line-height: 1.8; }
+
+        .none-list { list-style-type: none; padding-left: 15px; margin-top: 5px; }
+        .none-list > li { margin-bottom: 5px; }
+
+        .note-text { font-size: 0.85rem; font-weight: 700; margin-top: 10px; display: block; }
+        .text-bold { font-weight: 700; }
+
+        .qr-card {
+            position: relative;
+            background-image: url('assets/images/webp/neu_header.webp');
+            background-size: 180%;
+            background-position: center;
+            overflow: hidden;
+            color: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 450px;
+            align-items: center;
+        }
+        .overlay-qr {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1, 30, 63, 0.8);
+            z-index: 1;
+        }
+        .qr-card h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 1px; z-index: 2; position: relative; }
+        .qr-card img { max-width: 180px; margin: 0 auto 15px; border-radius: 8px; border: 5px solid var(--white); z-index: 2; position: relative; }
+        .qr-card p { font-size: 1.3rem; font-weight: 600; margin-bottom: 5px; z-index: 2; position: relative; }
+        .qr-card a { color: var(--white); font-size: 1rem; word-break: break-all; z-index: 2; position: relative; text-decoration: none; }
+
+        @media (max-width: 900px) {
+            .page-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .sidebar-nav { padding-right: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+            .main-content { border-left: none; padding-left: 0; }
+            .page-hero-content h1 { font-size: 2.2rem; }
+        }
+       .content-paragraph p {
+        text-align: justify;
+        }
+
+        .qr-subtitle {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        </style>
+
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>PAYMENT PROCEDURE</h1>
+        </div>
+    </section>
+
+    <section class="container page-wrapper">
+        
+        <aside class="sidebar-nav">
+            <ul>
+                <li>
+                        <li><a class="sidebar-link" data-target="payment-bank">Payment thru Bank</a></li>
+                        <li><a class="sidebar-link" data-target="payment-credit">Payment thru Credit Cards</a></li>
+                        <li><a class="sidebar-link" data-target="payment-confirmation">Payment Confirmation Forms</a></li>
+                        <li><a class="sidebar-link" data-target="payment-reminders">Payment Reminders</a></li>
+                    </ul>
+                
+            
+        </aside>
+
+        <main class="main-content">
+
+
+            <div id="payment-bank" class="content-section">
+                <h2 class="content-title">PAYMENT OF FEES</h2>
+                 <h3 class="content-subtitle">PAYMENT THROUGH BANK</h3>
+                <div class="step-block">
+                    <h3 class="step-title">STEP 1: BANK DEPOSIT</h3>
+                    <ul class="content-list" style="list-style: disc;">
+                        <li>Deposit at the nearest BDO bank or via online banking transaction<br>
+                            <span class="note-text text-bold" style="margin-left: 15px;">NOTE: Take note of the necessary details on your bank transaction especially the bank accounts.</span>
+                        </li>
+                        
+                        <li class="req-group none-list" style="padding-left:0px;">
+                            <strong style="color: var(--primary-blue);">NEU CAMPUS BANK ACCOUNTS</strong><br>
+                            <strong>MAIN CAMPUS - QUEZON CITY</strong>
+                            <ul class="none-list">
+                                <li><strong>I. BANK DEPOSIT</strong>
+                                    <ul class="content-list" style="list-style: disc;">
+                                        <li><strong>Account Name:</strong> New Era University</li>
+                                        <li><strong>Account Number:</strong> 006450042787<br>
+                                            <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Savings Account - BDO Unibank inc. Tagumpay Branch)</span>
+                                        </li>
+                                        <li><strong>Payer's Name:</strong> Name of student and student No.<br>
+                                            <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Temporary ID No. for New/Transferee Student)</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li style="margin-top: 15px;"><strong>II. BILLS PAYMENT</strong>
+                                    <ul class="none-list">
+                                        <li><strong>A. OVER THE COUNTER PAYMENT - CASH/CHECK TRANSACTION</strong>
+                                            <ul class="content-list" style="list-style: disc;">
+                                                <li><strong>Company Name:</strong> NEW ERA UNIVERSITY</li>
+                                                <li><strong>Subscriber Name:</strong> Payer's Name</li>
+                                                <li><strong>Subscriber's Account No (Reference No):</strong> Student Number</li>
+                                                <li><strong>Institution Code:</strong> 2646</li>
+                                                <li><strong>Product Code:</strong> (If applicable) none</li>
+                                                <li><strong>For Cash Transactions:</strong> Indicate Denomination, Pieces, Amount & Total Amount</li>
+                                                <li><strong>For Check Transactions:</strong> Indicate type of Check (Local/ On-us/ MDDO/ C/Aong, Bank/ Branch, Check No., Amount & Total Amount)</li>
+                                            </ul>
+                                        </li>
+                                        <li style="margin-top: 10px;"><strong>B. ONLINE BILLS PAYMENT</strong>
+                                            <ul class="content-list" style="list-style: disc;">
+                                                <li>Please see BDO Online Banking</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="req-group none-list" style="padding-left:0px;">
+                            <strong>GEN SAN CAMPUS</strong>
+                            <ul class="content-list" style="list-style: disc;">
+                                <li><strong>Account Name:</strong> New Era University, General Santos City</li>
+                                <li><strong>Account Number:</strong> 006450022232<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Savings Account - BDO Unibank inc. Tagumpay Branch)</span>
+                                </li>
+                                <li><strong>Payer's Name:</strong> Name of student and student No.<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Temporary ID No. for New/Transferee Student)</span>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="req-group none-list" style="padding-left:0px;">
+                            <strong>LIPA CAMPUS</strong>
+                            <ul class="content-list" style="list-style: disc;">
+                                <li><strong>Account Name:</strong> New Era University - Lipa</li>
+                                <li><strong>Account Number:</strong> 006450022204<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Savings Account - BDO Unibank inc. Tagumpay Branch)</span>
+                                </li>
+                                <li><strong>Payer's Name:</strong> Name of student and student No.<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Temporary ID No. for New/Transferee Student)</span>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="req-group none-list" style="padding-left:0px;">
+                            <strong>PAMPANGA CAMPUS</strong>
+                            <ul class="content-list" style="list-style: disc;">
+                                <li><strong>Account Name:</strong> New Era University, Pampanga Branch</li>
+                                <li><strong>Account Number:</strong> 006450022190<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Savings Account - BDO Unibank inc. Tagumpay Branch)</span>
+                                </li>
+                                <li><strong>Payer's Name:</strong> Name of student and student No.<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Temporary ID No. for New/Transferee Student)</span>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="req-group none-list" style="padding-left:0px;">
+                            <strong>RIZAL CAMPUS</strong>
+                            <ul class="content-list" style="list-style: disc;">
+                                <li><strong>Account Name:</strong> New Era University - Rizal</li>
+                                <li><strong>Account Number:</strong> 006450042787<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Savings Account - BDO Unibank inc. Tagumpay Branch)</span>
+                                </li>
+                                <li><strong>Payer's Name:</strong> Name of student and student No.<br>
+                                    <span style="font-size: 0.85rem; color: #666; font-style: italic;">(Temporary ID No. for New/Transferee Student)</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 2: TAKE A PICTURE OR SCAN THE DEPOSIT SLIP</h3>
+                    <ul class="content-list">
+                        <li>Make sure that the picture is clear and all details are readable.</li>
+                        <li>If you are transacting thru online banking using your mobile phone/computer, please take a snapshot of bank transaction confirmation details.</li>
+                        <li>The picture/scanned file must be less than 5 MB.</li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 3: COMPLETE THE PAYMENT CONFIRMATION FORM</h3>
+                    <ul class="content-list">
+                        <li>Select the appropriate Confirmation Form of your campus from the menu</li>
+                        <li>Upload the picture/scanned file of the Deposit Slip.</li>
+                        <li>The uploaded scanned/picture file must be less than 5 MB.</li>
+                        <li>Provide the other details needed in the form.</li>
+                        <li>Make sure that you click the "Submit" button in the form. Always check your email for the status of your transaction.<br>
+                        <span class="note-text text-bold">NOTE: If you could not find the reply in your inbox, please check your email's Spam/Junk folder.</span></li>
+                    </ul>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE FOR<br>CASHIER VIRTUAL OFFICE</h4>
+                    <img src="../v1/create-qr-code/index-3.htm?size=150x150&data=https://meet.google.com/rmg-vbnf-kde" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://meet.google.com/rmg-vbnf-kde" target="_blank">https://meet.google.com/rmg-vbnf-kde</a>
+                </div>
+            </div>
+
+            <div id="payment-credit" class="content-section">
+                <h2 class="content-title">PAYMENT OF FEES</h2>
+                <h3 class="content-subtitle">PAYMENT THRU BANK (CREDIT CARDS)</h3>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 1: FILL UP REQUEST FORM</h3>
+                    <ul class="content-list">
+                        <li>Fill up the Credit Card URL Request Form.</li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 2: PROCESS PAYMENT</h3>
+                    <ul class="content-list">
+                        <li>Using the Payment URL received through email, process the card payment.</li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 3: TAKE A PICTURE OR SCAN THE TRANSACTION SLIP</h3>
+                    <ul class="content-list">
+                        <li>Make sure that the picture is clear and all details are readable.</li>
+                        <li>Take a photo or screenshot the credit card transaction slip.</li>
+                    </ul>
+                </div>
+
+                <div class="step-block">
+                    <h3 class="step-title">STEP 4: COMPLETE THE PAYMENT CONFIRMATION FORM</h3>
+                    <ul class="content-list">
+                        <li>Select the appropriate Confirmation Form of your campus from the menu</li>
+                        <li>Upload the picture/scanned file of the Deposit Slip.</li>
+                        <li>The uploaded scanned/picture file must be less than 5 MB.</li>
+                        <li>Provide the other details needed in the form.</li>
+                        <li>Make sure that you able to click the "Submit" button in the form. Always check your email for the status of your transaction.<br>
+                        <span class="note-text text-bold" style="color: var(--accent-gold);">NOTE: The PROOF OF PAYMENT (POP) must be submitted within 24 hours from the time the Online Advising/Reservation was done.</span></li>
+                    </ul>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE FOR<br>CREDIT CARD URL REQUEST FORM</h4>
+                    <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/1n4KFJAG1BrG3ajj9iT0Va9epsJtodZV2e9W6XGmfbC0/viewform?edit_requested=true" alt="Credit Card URL QR"> -->
+                    <img src="../v1/create-qr-code/index-4.htm?size=150x150&data=https://docs.google.com/forms/d/1n4KFJAG1BrG3ajj9iT0Va9epsJtodZV2e9W6XGmfbC0/viewform?edit_requested=true" alt="Credit Card URL QR">                   
+                    <p>LINK:</p>
+                    <!-- <a href="#">https://docs.google.com/forms/d/e/1FAIpQLSfsvipSzUfOtAlkLsaEQY4fl1_Fd_3sZIkCQmVuAZOFN-O-g/viewform</a> -->
+                    <a href="https://docs.google.com/forms/d/1n4KFJAG1BrG3ajj9iT0Va9epsJtodZV2e9W6XGmfbC0/viewform?edit_requested=true">https://docs.google.com/forms/d/1n4KFJAG1BrG3ajj9iT0Va9epsJtodZV2e9W6XGmfbC0/viewform?edit_requested=true</a>
+                </div>
+
+                <div class="qr-card">
+                    <div class="overlay-qr"></div>
+                    <h4>SCAN THE QR CODE FOR<br>CASHIER VIRTUAL OFFICE</h4>
+                    <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com" alt="Cashier Virtual Office QR"> -->
+                    <img src="../v1/create-qr-code/index-3.htm?size=150x150&data=https://meet.google.com/rmg-vbnf-kde" alt="Cashier Virtual Office QR">                     
+                    <p>LINK:</p>
+                    <!-- <a href="#">https://meet.google.com/mgq-sbnf-kde</a> -->
+                     <a href="https://meet.google.com/rmg-vbnf-kde" target="_blank">https://meet.google.com/rmg-vbnf-kde</a>
+                </div>
+                
+            </div>
+
+            <div id="payment-confirmation" class="content-section" style="display: block;">
+                <h2 class="content-title">PAYMENT OF FEES</h2>
+                   <h3 class="content-subtitle">PAYMENT CONFIRMATION FORMS</h3>
+                   <div class="content-paragraph">
+                        <p>To ensure the timely and accurate posting of school fees, all students must complete the Payment Confirmation Form immediately following any transaction.
+                            This step is a vital part of the enrollment process, allowing for the formal validation of your status and the updating of your financial ledger. When submitting the
+                            form, please provide the student ID number, the exact amount paid, and a high-resolution copy of your transaction receipt. This standard procedure applies
+                            across all levels, including Integrated School and Tertiary programs, and required for students at our General Santos City, Lipa City, Pampanga, and Rizal
+                            branches to ensure records are routed to the correct corresponding accounting offices.
+                        </p><br>
+                        <p>In line with the strict implementation of NEU's Data Privacy Policy, we are committed to protecting your personal and financial information throughout this 
+                            process. The data collected via these forms is used exclusively for payment verification and enrollment purposes. We employ secure processing protocols to 
+                            ensure that your sensitive documents—such as bank receipts and identification details are handled with the utmost confidentiality and are accessible only to 
+                            authorized personnel. By following this proper confirmation channel, you help us maintain a secure administrative environment while ensuring that your
+                            payments are processed without delay. 
+                        </p><br>
+                    </div>
+
+                 <div class="qr-card">
+                    <div class="overlay-qr"></div> 
+                    <h4>SCAN THE QR CODE FOR <br> PAYMENT CONFIRMATION
+                    <br><span class="qr-subtitle">UNDERGRADUATE AND GRADUATE</span>
+                     </h4>
+
+                    <img src="../v1/create-qr-code/index-5.htm?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSfK-f4Wy0ejj-7RxYIOc_YmsrUBObGPkWnJ-lpaB3X98DqJNw/viewform" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfK-f4Wy0ejj-7RxYIOc_YmsrUBObGPkWnJ-lpaB3X98DqJNw/viewform" target="_blank">
+                        https://docs.google.com/forms/d/e/1FAIpQLSfK-f4Wy0ejj-7RxYIOc_YmsrUBObGPkWnJ-lpaB3X98DqJNw/viewform
+                    </a>
+                </div>  
+
+                 <div class="qr-card">
+                    <div class="overlay-qr"></div> 
+                    <h4>SCAN THE QR CODE FOR <br> PAYMENT CONFIRMATION
+                    <br><span class="qr-subtitle">INTEGRATED SCHOOL</span>
+                     </h4>
+
+                    <img src="../v1/create-qr-code/index-6.htm?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSed5podhmXtmq9Wdv9aU6qS18uYN0XBO9h6WEDck31jf93A9w/viewform" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSed5podhmXtmq9Wdv9aU6qS18uYN0XBO9h6WEDck31jf93A9w/viewform" target="_blank">
+                        https://docs.google.com/forms/d/e/1FAIpQLSed5podhmXtmq9Wdv9aU6qS18uYN0XBO9h6WEDck31jf93A9w/viewform
+                    </a>
+                </div>
+                
+                 <div class="qr-card">
+                    <div class="overlay-qr"></div> 
+                    <h4>SCAN THE QR CODE FOR <br> PAYMENT CONFIRMATION
+                    <br><span class="qr-subtitle">GENSAN CITY BRANCH</span>
+                     </h4>
+
+                    <img src="../v1/create-qr-code/index-7.htm?size=150x150&data=https://docs.google.com/forms/d/131oNpH4QD2k0M1Zljmw0emE95OuyvnJwaV3xKAw4bkE/viewform?edit_requested=true" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/131oNpH4QD2k0M1Zljmw0emE95OuyvnJwaV3xKAw4bkE/viewform?edit_requested=true" target="_blank">
+                        https://docs.google.com/forms/d/131oNpH4QD2k0M1Zljmw0emE95OuyvnJwaV3xKAw4bkE/viewform?edit_requested=true
+                    </a>
+                </div> 
+
+                 <div class="qr-card">
+                    <div class="overlay-qr"></div> 
+                    <h4>SCAN THE QR CODE FOR <br> PAYMENT CONFIRMATION
+                    <br><span class="qr-subtitle">PAMPANGA CITY BRANCH</span>
+                     </h4>
+
+                    <img src="../v1/create-qr-code/index-8.htm?size=150x150&data=https://docs.google.com/forms/d/1DF_5xvHvVUs7wI-krE9vUc4aalpniA5cNeU7SY8bE7o/viewform?edit_requested=trueue" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/1DF_5xvHvVUs7wI-krE9vUc4aalpniA5cNeU7SY8bE7o/viewform?edit_requested=true" target="_blank">
+                        https://docs.google.com/forms/d/1DF_5xvHvVUs7wI-krE9vUc4aalpniA5cNeU7SY8bE7o/viewform?edit_requested=true
+                    </a>
+                </div>
+                
+                                 <div class="qr-card">
+                    <div class="overlay-qr"></div> 
+                    <h4>SCAN THE QR CODE FOR <br> PAYMENT CONFIRMATION
+                    <br><span class="qr-subtitle">LIPA CITY BRANCH</span>
+                     </h4>
+
+                    <img src="../v1/create-qr-code/index-9.htm?size=150x150&data=https://docs.google.com/forms/d/1Plyyp0kwx4dnH8Gmbg2-dKqGU1KvnvXijVM_afUTbro/viewform?edit_requested=true" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/1Plyyp0kwx4dnH8Gmbg2-dKqGU1KvnvXijVM_afUTbro/viewform?edit_requested=true" target="_blank">
+                        https://docs.google.com/forms/d/1Plyyp0kwx4dnH8Gmbg2-dKqGU1KvnvXijVM_afUTbro/viewform?edit_requested=true
+                    </a>
+                </div>  
+      
+                <div class="qr-card">
+                    <div class="overlay-qr"></div> 
+                    <h4>SCAN THE QR CODE FOR <br> PAYMENT CONFIRMATION
+                    <br><span class="qr-subtitle">RIZAL BRANCH</span>
+                     </h4>
+
+                    <img src="../v1/create-qr-code/index-10.htm?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSe9HbbpSzNJfhzDATsWk3uSk0XsbyVL8lVEGklbgs1C_Hq5UA/viewform" alt="Cashier Virtual Office QR">
+                    <p>LINK:</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9HbbpSzNJfhzDATsWk3uSk0XsbyVL8lVEGklbgs1C_Hq5UA/viewform" target="_blank">
+                        https://docs.google.com/forms/d/e/1FAIpQLSe9HbbpSzNJfhzDATsWk3uSk0XsbyVL8lVEGklbgs1C_Hq5UA/viewform
+                    </a>
+                </div>
+                
+                
+                
+            </div>
+
+            <div id="payment-reminders" class="content-section">
+                <h2 class="content-title">PAYMENT OF FEES</h2>
+                <h3 class="content-subtitle">PAYMENT REMINDERS</h3>
+
+                <div class="content-paragraph">
+                    <p>Staying on top of your financial obligations is key to a smooth and uninterrupted academic journey. To help you navigate the enrollment process and manage 
+                        your dues effectively, we have compiled a comprehensive list of essential payment reminders covering everything from transaction security to branch-specific
+                        protocols. Please review these guidelines carefully to ensure your records are accurate, your personal data remains protected under our privacy policy, and your 
+                        focus remains where it matters most-on your studies:
+                    </p><br>
+                </div>
+                <ul class="content-list">
+                    <li>Check Your Portal: Regularly log in to your student account to view the most updated balance.</li>
+                    <li>Verify Deadlines: Always refer to the official academic calendar for tuition and miscellaneous fee due dates.</li>
+                    <li>Include Student ID: Ensure your full name and Student ID number are included in all payment transactions.</li>
+                    <li>Confirm Branch Links: Use the specific payment form designated for your branch (e.g., GenSan, Lipa City, Pampanga, or Rizal).</li>
+                    <li>Secure Your Receipt: Always save a digital or physical copy of your transaction slip for your personal records.</li>
+                    <li>Data Privacy Compliance: Only submit proof of payment through official, secure university channels to protect your personal information.</li>
+                    <li>Clear Uploads: When submitting confirmation forms, ensure photos or scans of receipts are legible and uncropped.</li>
+                    <li>Processing Time: Allow 2 to 3 business days for payments to be validated and reflected in your account.</li>
+                    <li>Avoid Late Fees: Settle balances on or before the deadline to prevent automatic late charges or account holds.</li>
+                    <li>Installment Plans: If you are on an installment scheme, ensure each specific milestone payment is met on time.</li>
+                    <li>cholarship Credits: Students with scholarships should verify that their grants have been applied before settling the remaining balance.</li>
+                    <li>Check for Emails: Watch for automated confirmation emails once your payment has been successfully processed.</li>
+                    <li>Update Contact Info: Ensure your registered email and phone number are current to receive urgent billing alerts.</li>
+                    <li>Refund Policy: Familiarize yourself with the university's refund and withdrawal policies early in the semester.</li>
+                    <li>Third-Party Fees: Note that some bank transfers or mobile wallets may charge independent transaction fees.</li>
+                    <li>One Form Per Transaction: Submit a separate confirmation form for every individual payment made.</li>
+                    <li>Enrollment Status: Remember that payment alone does not complete enrollment; you must receive a validated registration form.</li>
+                    <li>Laboratory Fees: Double-check if your specific course requires additional laboratory or technical fees for the current term.</li>
+                    <li>Secure Payment Gateways: Only use university-authorized banks and payment centers listed on the official website.</li>
+                    <li>Audit Your Ledger: At the end of each month, review your ledger for any discrepancies and report them immediately.</li>
+                    <li>Keep Receipts Confidential: Never share photos of your payment receipts on public social media platforms.</li>
+                    <li>Exam Clearance: Ensure all dues are settled at least one week before midterms or finals to secure your permit.</li>
+                    <li>Official Communication: Use your university-issued email for all inquiries sent to the Accounting Office.</li>
+                    <li>Bank Validation: Ensure bank-validated slips are clearly stamped by the teller before leaving the counter.</li>
+                    <li>Check Clearance: For check payments, enrollment is only considered official once the check has cleared.</li>
+                    <li>Back-to-Back Payments: If paying for multiple semesters, specify the breakdown clearly in the remarks section.</li>
+                    <li>Graduation Fees: Graduating students should check for one-time exit fees and clearance requirements.</li>
+                    <li>Authorized Representatives: If a third party is paying on your behalf, they must still use your correct Student ID.</li>
+                    <li>Discrepancy Reporting: If a payment isn't reflected after 5 business days, contact the Finance Department with your proof of payment.</li>
+                    <li>Stay Informed: Read all billing-related announcements posted on the university's official bulletin and social media pages.</li>
+            
+                </ul>
+            </div>
+
+        </main>
+
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>    
+    <script src="assets/scripts/script.js"></script>
+    
+    <script>
+        // Main Sidebar Switching Logic
+        function switchMainTab(targetId, updateUrl = true) {
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+            if(targetLink) targetLink.classList.add('active');
+            
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            if (updateUrl) {
+                history.pushState(null, null, '#' + targetId);
+            }
+        }
+
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchMainTab(this.dataset.target);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1); 
+            if (currentHash && document.getElementById(currentHash)) {
+                switchMainTab(currentHash, false); 
+            }
+        });
+    </script>
+</body>
+</html>

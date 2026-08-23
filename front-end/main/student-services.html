@@ -1,0 +1,1650 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Services - New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    
+    <link href="assets/styles/styles-3.css?v=6a88fa99667a5" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ACADEMICS PAGE STYLES
+           ========================================= */
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/webp/neufacade1.webp'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+        }
+
+        
+        .sidebar-nav {
+            padding-right: 40px; 
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav > ul > li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #888; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .sidebar-nav a:hover {
+            color: #333;
+        }
+
+        .sidebar-nav a.active {
+            color: #333;
+            font-weight: 700;
+        }
+
+        
+        .main-content {
+            border-left: 1px solid var(--border-color); 
+            padding-left: 40px; 
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: #C88D36; 
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .intro-text {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        
+        .filter-bar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .filter-bar .search-box, 
+        .filter-bar .dropdown-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .filter-bar input, 
+        .filter-bar select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #555;
+            outline: none;
+            background-color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .filter-bar .search-box::after {
+            content: '🔍'; 
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+            font-size: 1.1rem;
+        }
+
+        .filter-bar select {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        
+        .filter-bar .dropdown-box::after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+            font-size: 0.7rem;
+        }
+
+        
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .sub-heading {
+            color: #113B5C; 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            text-transform: uppercase;
+        }
+
+        .academic-card {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .academic-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-top {
+            background: linear-gradient(180deg, #003a70 0%, #001f3f 100%);
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 220px;
+        }
+
+        .card-top img {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .card-bottom {
+            padding: 20px 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex-grow: 1;
+            min-height: 140px;
+        }
+
+        .card-bottom h4 {
+            font-size: 0.95rem;
+            color: #000;
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .view-btn:hover {
+            background: #f8f9fa;
+            border-color: #999;
+        }
+
+        
+        .program-header {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .program-logo {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+        }
+
+        .program-info h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .program-meta {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .inner-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .inner-tab-btn {
+            background: #fff;
+            border: 1px solid #ccc;
+            color: #555;
+            padding: 10px 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .inner-tab-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .inner-tab-btn.active {
+            background: #eaf2fa; 
+            border-color: #b3d4f0;
+            color: #113B5C;
+        }
+
+        .inner-tab-content h3 {
+            color: #000;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .inner-tab-content p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+    
+        .history-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+            }
+        td{
+            padding: 10px 15px; border-bottom: 1px solid #eee;
+            }
+
+        @media (max-width: 600px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        
+        @media (max-width: 1024px) {
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .sidebar-nav {
+                padding-right: 0;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+            }
+            .main-content {
+                border-left: none;
+                padding-left: 0;
+            }
+            .program-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-bar {
+                flex-direction: column;
+            }
+        }
+        
+        
+
+        #eteeap-assessment h3 {
+            color: #113B5C; 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+        
+        #eteeap-assessment h4 {
+            color: #444; 
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            margin-top: 25px; 
+            text-transform: uppercase;
+        }
+        
+        
+        #eteeap-assessment h4:first-of-type {
+            margin-top: 0;
+        }
+        
+        #eteeap-assessment ul {
+            list-style: none; 
+            padding-left: 20px; 
+            margin: 0;
+        }
+        
+        #eteeap-assessment ul li {
+            position: relative; 
+            color: #555; 
+            font-size: 0.95rem;
+            line-height: 1.5; 
+            margin-bottom: 6px; 
+        }
+        
+        
+        #eteeap-assessment ul li::before {
+            content: "\2022"; 
+            color: #333; 
+            font-weight: bold;
+            font-size: 1rem;
+            position: absolute; 
+            left: -20px;
+        }
+        
+        
+
+        #eteeap-entry h3 {
+            color: #113B5C; 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+        
+        #eteeap-entry h3:first-of-type {
+            margin-top: 0;
+        }
+        
+        #eteeap-entry p {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        
+
+        #eteeap-contact h4 {
+            color: #113B5C; 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        #eteeap-contact p {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        #eteeap-contact strong {
+            color: #000;
+        }
+        
+        #eteeap-contact a {
+            color: #C88D36; 
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        #eteeap-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-person {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+          /* =========================================
+             ALS SECTION STYLES
+             ========================================= */
+        
+        
+        .als-list {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: als-counter;
+            margin-top: 15px;
+        }
+        
+        .als-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .als-list li::before {
+            counter-increment: als-counter;
+            content: counter(als-counter) ". ";
+            position: absolute;
+            left: 0;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        
+        .als-bullets {
+            list-style: none;
+            padding-left: 20px;
+            margin: 15px 0 25px;
+        }
+        
+        .als-bullets li {
+            position: relative;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        
+        .als-bullets li::before {
+            content: "\2022"; 
+            color: #333;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+        
+        
+        #als h3 {
+            color: #113B5C; 
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .contact-info h4 {
+            color: #113B5C;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .contact-info strong {
+            color: #000;
+        }
+        /* =========================================
+         INTEGRATED SCHOOL (IS) STYLES
+         ========================================= */
+    
+    
+    .is-goals-list,
+    .cics-goals-list { 
+        list-style: none;
+        padding-left: 0;
+        counter-reset: is-counter;
+        margin: 15px 0;
+    }
+    
+    .is-goals-list li,
+    .cics-goals-list li {
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        line-height: 1.6;
+        color: #444;
+        font-size: 0.95rem;
+    }
+    
+    
+    .cics-goals-list li::before {
+        counter-increment: is-counter;
+        content: counter(is-counter) ". ";
+        position: absolute;
+        left: 0;
+        font-weight: 600;
+        color: #113B5C; 
+    }
+    
+    
+    
+    
+    .shs-strand {
+        margin-bottom: 20px;
+        padding-left: 15px;
+    }
+    
+   
+    
+    .shs-strand p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #555;
+        margin: 0;
+    }
+    
+    
+    .contact-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    
+    .contact-card h4 {
+        color: #113B5C;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+    }
+    
+    .contact-item {
+        margin-bottom: 15px;
+    }
+    
+    .contact-item p {
+        margin: 3px 0;
+        font-size: 0.95rem;
+    }
+    
+    .contact-item strong {
+        color: #333;
+        display: block;
+        margin-bottom: 2px;
+    }
+    
+    
+    #integrated h3,
+    #cics h3 {
+        color: #113B5C;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    } 
+    
+    
+    
+    .shs-media-wrap {
+        width: 100%;
+        margin: 25px 0;
+    }
+    
+    .shs-media-wrap img {
+        width: 100%;
+        height: 320px;
+        display: block;
+        object-fit:cover;
+        border-radius: 4px; 
+    }
+    
+    .shs-text-block {
+        padding: 10px 0;
+    }
+    
+    .shs-track-title {
+        color: #333; 
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    
+    .strand-detail {
+        margin-bottom: 25px;
+    }
+    
+    .strand-detail h5 {
+        color: #444;
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+    
+    .strand-detail p {
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        font-size: 0.95rem;
+    }
+    
+    
+    .shs-text-block .is-goals-list {
+        margin-top: 15px;
+        padding-left: 20px;
+    }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>STUDENT SERVICES</h1>
+        </div>
+    </section>
+
+    <section class="container page-wrapper">
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="osas">Office of Student Affairs and Services</a></li>
+                <li><a class="sidebar-link" data-target="services">Services</a></li>
+                <li><a class="sidebar-link" data-target="discipline">Office of Student Discipline</a></li>
+                <li><a class="sidebar-link" data-target="guidance">Guidance and Counseling Center</a></li>
+                <li><a class="sidebar-link" data-target="csc">The Central Student Council</a></li>
+                <li><a class="sidebar-link" data-target="orgs">Student Organizations</a></li>
+                <li><a class="sidebar-link" data-target="nstp">National Service Training Program (NSTP)</a></li>
+                <li><a class="sidebar-link" data-target="ocpil">Office of Career Placement and Industry Linkages (OCPIL)</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="osas" class="content-section" style="display: block;">
+                <div class="program-header">
+                    <img src="assets/images/webp/E8kfk.webp" alt="OSAS Seal" class="program-logo">
+                    <div class="program-info">
+                        <h2 class="content-title">OFFICE OF STUDENT AFFAIRS AND SERVICES</h2>
+                        <p class="program-meta">
+                            <strong>Bro. GENESIS S. CUDIA</strong><br>OSA Director<br>
+                            <strong>Contact:</strong> +63 976 020 3303<br>
+                            <strong>Location:</strong> Room 434, 4th Floor, Main Building<br>
+                            <strong>Email:</strong>osas@neu.edu.ph
+                        </p>
+                    </div>
+                </div>
+
+                <div class="inner-tabs">
+                    <button class="inner-tab-btn active" onclick="switchInnerTab('osas-vmg', this)">Vision, Mission, Goals</button>
+                    <button class="inner-tab-btn" onclick="switchInnerTab('osas-history', this)">Brief History</button>
+                    <button class="inner-tab-btn" onclick="switchInnerTab('osas-seal', this)">The Department Seal</button>
+                    <button class="inner-tab-btn" onclick="switchInnerTab('osas-staff', this)">Staff and Officials</button>
+                    <button class="inner-tab-btn" onclick="switchInnerTab('osas-contact', this)">Contact</button>
+                </div>
+
+                <div id="osas-vmg" class="inner-tab-content">
+                    <h3>VISION</h3>
+                    <p>To cultivate a student body that embodies a Christian character, academic distinction, and a commitment to service, reflecting our unique Christian culture.</p>
+                    <h3>MISSION</h3>
+                    <p>The Office of Student Affairs and Services is dedicated to nurturing the holistic development of students, fostering an environment where "Godliness is the Foundation of Knowledge" by providing Christ-centered programs and services that uphold the university's mission of delivering quality education anchored on Christian values, ultimately bringing honor and glory to God.</p>
+                    <h3>GOALS</h3>
+                    <ul class="is-goals-list">
+                        <li><strong>Integrate Christian Values:</strong> Embed Christian principles and biblical teachings into all student programs and services.</li>
+                        <li><strong>Foster Spiritual Growth:</strong> Provide opportunities for students to deepen their faith and develop a personal relationship with God.</li>
+                        <li><strong>Promote Academic Excellence:</strong> Support student success through resources and guidance that align with the university's commitment to quality education.</li>
+                        <li><strong>Develop Servant Leaders:</strong> Equip students with the skills and heart for service to humanity, both within and outside the university community.</li>
+                        <li><strong>Cultivate a Culture of Discipline:</strong> Instill in students the importance of self-control, accountability, and ethical conduct.</li>
+                        <li><strong>Enhance Student Well-being:</strong> Offer comprehensive support systems that address the physical, emotional, and social needs of students in a Christ-centered manner.</li>
+                        <li><strong>Build Community:</strong> Create a vibrant and inclusive campus environment that fosters strong relationships and a sense of belonging among students.</li>
+                        <li><strong>Uphold University Standards:</strong> Ensure all student activities and behaviors align with the university's vision of excellence and Christian culture.</li>
+                    </ul>
+                </div>
+
+                <div id="osas-history" class="inner-tab-content" style="display:none;">
+                    <h3>BRIEF HISTORY</h3>
+                    <p>The Office of Student Affairs and Services (OSAS) was founded in 1975 with a clear purpose: to be a cornerstone of the university's commitment to holistic education. From its inception, OSAS was tasked with a mission far greater than mere administrative support. Guided by the university's foundational philosophy that "Godliness is the Foundation of Knowledge," the office was created to actively nurture the spiritual, moral, and social well-being of every student. In its early years, OSAS laid the groundwork for a campus culture that sought to integrate Christian values and academic pursuits, ensuring that students were equipped not just with knowledge, but with a character anchored in faith.</p>
+                    <img src="assets/images/webp/010eN.webp" alt="History Banner" style="width:100%; border-radius:4px; margin-bottom:20px;">
+                    <p>The Office of Student Affairs and Services (OSAS) was founded in 1975 with a clear purpose: to be a cornerstone of the university's commitment to holistic education. From its inception, OSAS was tasked with a mission far greater than mere administrative support. Guided by the university's foundational philosophy that "Godliness is the Foundation of Knowledge," the office was created to actively nurture the spiritual, moral, and social well-being of every student. In its early years, OSAS laid the groundwork for a campus culture that sought to integrate Christian values and academic pursuits, ensuring that students were equipped not just with knowledge, but with a character anchored in faith.</p>
+                    <p>As the university grew, so too did the role of the OSAS. Over the decades, the office's programs and services expanded to meet the evolving needs of a diverse student body, always remaining faithful to its core mission. It became the primary driver in cultivating the "unique Christian culture of excellence, discipline, and service to humanity" envisioned by the university. Through the development of leadership programs, spiritual formation activities, and comprehensive support systems, OSAS worked to create an environment where students could thrive, learn to serve, and embrace the principles of accountability and compassion.</p>
+                    <p>Today, the Office of Student Affairs and Services stands as a testament to its enduring legacy. It continues to serve as the heart of student life, upholding the traditions established in 1975 while innovating to meet modern challenges. The office remains dedicated to its original purpose: to support students in their journey toward becoming world-class individuals who are disciplined in character, excellent in their chosen fields, and committed to bringing honor and glory to God through service. The OSAS is not just a department; it is a living expression of the university's mission and vision, shaping the next generation of Christian leaders.</p>
+                    <div class="history-grid">
+                        <img src="assets/images/FCr48.webp.html" alt="Campus Life 1">
+                        <img src="assets/images/image%2028.webp.html" alt="Campus Life 2">
+                        <img src="assets/images/Vn0gz.webp.html" alt="Campus Life 3">
+                        <img src="assets/images/6YFF7.webp.html" alt="Campus Life 4">
+                    </div>
+                </div>
+
+                <div id="osas-seal" class="inner-tab-content" style="display:none;">
+                    <h3>THE DEPARTMENT SEAL</h3>
+                    <div style="text-align:center; padding: 20px;">
+                        <img src="assets/images/webp/E8kfk.webp" alt="OSAS Seal" style="max-width:400px; width:100%;">
+                    </div>
+                    <p>The official logo of each department follows the standard wherein the emblem and the above portion (the rising sun) symbolize the identity of the University. The other half of the logo (lower part) represents the department.</p>
+                    <p>In the above logo, the University Research Center is represented by data and analytics.</p>
+                </div>
+
+                <div id="osas-staff" class="inner-tab-content" style="display:none;">
+                    <h3>STAFF AND OFFICIALS</h3>
+                    <p><strong>Bro. Genesis S. Cudia</strong><br><em>OSAS Director</em></p>
+                    <p><strong>Bro. Webster M. Bocala</strong><br><em>OSAS College Coordinator</em></p>
+                    <p><strong>Sis. Elizabeth Dungca</strong><br><em>Senior Staff</em></p>
+                    
+                </div>
+
+                <div id="osas-contact" class="inner-tab-content" style="display:none;">
+                    <h3>CONTACT</h3>
+                    <img src="assets/images/webp/neu_header.webp" alt="Campus View" style="width:100%; border-radius:4px; margin-bottom:20px;">
+                    <p><strong>Sis. Elizabeth M. Dungca</strong><br>
+                    OSAS Senior Staff<br>
+                    0991-509-8175<br>
+                    Location: 4th Floor, Room 434, Main Building<br>
+                    Website: www.neu.edu.ph<br>
+                    Email: osas@neu.edu.ph</p>
+                </div>
+            </div>
+
+            <div id="services" class="content-section">
+                <h2 class="content-title">SERVICES</h2>
+                <img src="assets/images/webp/010eN.webp" alt="Services Header" style="width:100%; border-radius:4px; margin-bottom:25px;">
+                <div class="inner-tab-content">
+                    <p class="intro-text">The Office of Student Affairs and Services (OSAS) provides a comprehensive array of services designed to foster the holistic development of students, ensuring their well-being, growth in Christian character, and preparedness for a life of purpose, always upholding that "Godliness is the Foundation of Knowledge" and ultimately bringing honor and glory to God.</p>
+                    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">Office of Student Discipline</h3>
+                    <p>This office is dedicated to upholding the university's unique Christian culture of excellence and discipline. It addresses student conduct matters, promoting a campus environment where Christian values guide behavior, ensuring fairness, accountability, and the spiritual formation of students through restorative approaches.</p>
+    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">Guidance and Counseling Center</h3>
+                    <p>Rooted in the belief that every individual is fearfully and wonderfully made, the Guidance and Counseling Center offers Christ-centered counseling, psychological testing, and developmental programs. It supports students' personal, academic, and spiritual growth, helping them navigate challenges, discern God's will for their lives, and realize their full potential.</p>
+    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">Central Student Council</h3>
+                    <p>The Central Student Council empowers students to develop leadership skills anchored on Christian principles. It serves as the primary representative body for the student voice, fostering active participation in campus life, organizing activities that promote brotherhood and service, and ensuring student initiatives align with the university's Christian values and mission.</p>
+    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">National Service Training Program (NSTP)</h3>
+                    <p>In alignment with national mandates and the university's commitment to service to humanity, the NSTP instills civic consciousness and defense preparedness. Students engage in community-based activities (Civic Welfare Training Service), literacy instruction (Literacy Training Service), or military training (Reserve Officers' Training Corps), developing patriotism and a heart for serving the nation for the greater glory of God.</p>
+    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">Office of Career Placement and Industry Linkages (OCPIL)</h3>
+                    <p>The OCPIL assists students in discerning their vocational callings and securing meaningful career opportunities that align with their skills and Christian values. It provides career guidance, job search assistance, internship placements, and industry connections, preparing graduates to excel professionally while embodying the university's culture of excellence and service in their chosen fields.</p>
+    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">Student Organizations</h3>
+                    <p>Student Organizations provide avenues for students to explore diverse interests, develop talents, and build community, all within a framework that reinforces Christian values. These organizations offer opportunities for leadership, fellowship, and service, encouraging students to apply their knowledge and skills in ways that bring honor and glory to God while contributing to a vibrant campus life rooted in excellence and discipline.</p>
+    
+                    <h3 style="color:#113B5C; text-transform:uppercase; font-size:1.1rem; font-weight:700; margin-bottom:10px;">Cafeteria Services</h3>
+                    <p>Committed to nurturing the holistic well-being of students, the Cafeteria Services provide nutritious, affordable, and hygienically prepared meals in a wholesome environment. This service supports student health and fosters a sense of community, recognizing that physical nourishment is essential for effective learning and spiritual growth, contributing to a disciplined and excellent student body.</p>
+                </div>
+            </div>
+            
+            <div id="discipline" class="content-section">
+                <div class="program-header">
+                    <img src="assets/images/webp/neulogo.webp" alt="OSD Seal" class="program-logo">
+                    <div class="program-info">
+                        <h2 class="content-title">OFFICE OF STUDENT DISCIPLINE</h2>
+                        <p class="program-meta">
+                            <strong>BRO. ORLANDO P. SANCHEZ</strong><br>
+                            <em>Office of Student Discipline Director</em><br>
+                            <strong>Contact:</strong> +63 977 614 3676<br>
+                            <strong>Location:</strong> Room 410, 4th Floor, Main Building<br>
+                            <strong>Email:</strong> studentdiscipline@neu.edu.ph
+                        </p>
+                    </div>
+                </div>
+                <div class="inner-tab-content">
+                 <div class="intro-text">
+                    <p>Established in 1975, the Office of Student Discipline (OSD) has been a foundational pillar in upholding the university's distinct identity as "a world-class Institution of learning with a unique Christian culture of excellence, discipline, and service to humanity." From its inception, the OSD has operated under the profound philosophy that "Godliness is the Foundation of Knowledge," recognizing that true intellectual and personal growth is inextricably linked to righteous living and moral integrity.</p>
+                    
+                    <p>The OSD is tasked with the crucial responsibility of maintaining an orderly, safe, and morally upright campus environment that fosters the holistic development of every student. It is not merely an enforcement body, but a vital component in the university's mission to "provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God." This means the office approaches student conduct not as punitive measures alone, but as opportunities for spiritual formation, character building, and redemptive guidance.</p>
+                    
+                    <p>Through the consistent and fair application of the university's Student Code of Conduct, the OSD addresses disciplinary matters with wisdom, compassion, and a commitment to biblical principles. It facilitates investigations, conducts hearings, and implements appropriate sanctions, always aiming to help students understand the consequences of their actions, learn from their mistakes, and grow in self-discipline and accountability. The office actively promotes a campus culture where respect, integrity, and responsibility are deeply ingrained, preparing students to live lives that reflect Christ-like character both within the university and as future servant-leaders in society. The OSD's work is ultimately dedicated to ensuring that every student's journey at the university is one that continually brings honor and glory to God through their conduct and character.</p>
+                </div>
+            
+                <h3 class="sub-heading">Vision</h3>
+                <p class="intro-text">To cultivate a student body characterized by a Christian discipline, integrity, and accountability, reflecting the university's commitment to excellence and its unique Christian culture.</p>
+            
+                <h3 class="sub-heading">Mission</h3>
+                <p class="intro-text">The Office of Student Discipline is dedicated to upholding the university's Christian values through the consistent and redemptive application of its code of conduct, fostering an environment where "Godliness is the Foundation of Knowledge" and students are guided towards behaviors that bring honor and glory to God, contributing to a world-class institution of learning.</p>
+            
+                <h3 class="sub-heading">Goals</h3>
+                <ul class="is-goals-list">
+                    <li><strong>Uphold Christian Standards:</strong> Consistently enforce the university's code of conduct, ensuring all disciplinary actions are anchored in Christian values and biblical principles.</li>
+                    <li><strong>Foster Self-Discipline:</strong> Guide students in developing personal responsibility and self-control, crucial components of a life dedicated to God.</li>
+                    <li><strong>Promote Ethical Conduct:</strong> Educate students on ethical decision-making and the importance of integrity in all aspects of their lives.</li>
+                    <li><strong>Ensure Fair Processes:</strong> Implement just, transparent, and redemptive disciplinary procedures that prioritize student formation over mere punishment.</li>
+                    <li><strong>Cultivate Respectful Community:</strong> Contribute to a campus environment where mutual respect, accountability, and the dignity of every individual are paramount.</li>
+                    <li><strong>Support Spiritual Growth:</strong> Utilize disciplinary interactions as opportunities to encourage reflection, repentance, and spiritual growth in students.</li>
+                    <li><strong>Enhance Campus Order:</strong> Maintain an orderly and safe learning environment conducive to academic excellence and Christ-centered living.</li>
+                    <li><strong>Glorify God in Action:</strong> Ensure that all disciplinary efforts ultimately reflect the university's purpose of bringing honor and glory to God through the character of its students.</li>
+                </ul>
+            
+                <h3 class="sub-heading" style="margin-top: 40px;">Service Offerings</h3>
+                <p class="intro-text">This office is dedicated to upholding the university's unique Christian culture of excellence and discipline. It addresses student conduct matters, promoting a campus environment where Christian values guide behavior, ensuring fairness, accountability, and the spiritual formation of students through restorative the following services:</p>
+                
+                <ul class="als-bullets">
+                    <li>Formulates and recommends to the University Administration on policies on the conduct of the students.</li>
+                    <li>Implements the University Code of Student Discipline and recommends the appropriate disciplinary action against offenders to the proper University authorities.</li>
+                    <li>Monitors student behavior in community services projects, functions and other University approved activities.</li>
+                    <li>Serves as students' desk, and tasked to resolve/address students concerns.</li>
+                </ul>   
+                </div>
+                
+            </div>
+            
+            <div id="guidance" class="content-section">
+                <div class="program-header">
+                    <img src="assets/images/webp/neulogo.webp" alt="GCC Seal" class="program-logo">
+                    <div class="program-info">
+                        <h2 class="content-title">GUIDANCE AND COUNSELING CENTER</h2>
+                        <p class="program-meta">
+                            <strong> Bro. Carlo F. Rufo</strong><br>
+                            <em>Guidance and Counseling Center Director</em><br>
+                            +63 977 614 3676<br>
+                            Room 210, 2nd Floor, Main Building, New Era University, No. 9, Central Avenue, New Era, Quezon City<br>
+                            guidance@neu.edu.ph
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="inner-tab-content">
+                    <img src="assets/images/webp/TD1QX.webp" alt="Services Header" style="width:100%; border-radius:4px; margin-bottom:25px;">
+                    <div class="intro-text">
+                        
+                        <p>The Guidance and Counseling Center (GCC) was formally established in 1975. Its founding was rooted in the university's profound philosophy that "Godliness is the Foundation of Knowledge," recognizing that true intellectual development must be intrinsically linked with spiritual and personal well-being. In its nascent years, the GCC primarily focused on providing fundamental personal counseling and academic advising, to ensure students' holistic growth beyond the classroom.</p>
+                        
+                        <p>Throughout the 1980s and 1990s, as the university grew and the needs of its diverse student population evolved, the GCC expanded its services significantly. It began incorporating career guidance programs, developing structured group counseling sessions, and initiating proactive outreach activities. This period marked a deeper integration of Christian values into its methodologies, moving beyond basic support to actively fostering spiritual maturity and character development in students. The center became instrumental in upholding the university's mission to "provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God."</p>
+                        
+                        <p>In the new millennium and up to the present, the GCC has transformed into a comprehensive and dynamic hub for student support. It has embraced modern counseling practices and proactive mental health initiatives while steadfastly maintaining its Christ-centered foundation. This evolution includes robust spiritual formation programs, sophisticated career readiness and placement services, and a more structured approach to crisis intervention and student well-being, aligning with the university's vision of fostering "a unique Christian culture of excellence, discipline, and service to humanity."</p>
+                    </div>
+            
+                    <h3 class="sub-heading">Vision</h3>
+                    <p class="intro-text">A Christian-centered, world-class Guidance and Counseling Center that fosters the holistic development of students for a life of excellence, discipline, and service to humanity.</p>
+            
+                    <h3 class="sub-heading">Mission</h3>
+                    <p class="intro-text">To provide exemplary, Christian-centered guidance and counseling services that equip students with the necessary knowledge and skills for academic success, personal well-being, and spiritual maturity, all for the honor and glory of God.</p>
+            
+                    <h3 class="sub-heading">Goals</h3>
+                    <ul class="is-goals-list">
+                        <li><strong>Comprehensive Support:</strong> Provide programs that address the academic, personal, social, and spiritual needs of all students.</li>
+                        <li><strong>Mental Health Advocacy:</strong> Offer accessible and confidential individual and group counseling services to support student mental and emotional health.</li>
+                        <li><strong>Career Readiness:</strong> Implement effective career guidance and placement services to prepare students for their professional and ministry callings.</li>
+                        <li><strong>Community Partnerships:</strong> Foster strong partnerships with faculty, staff, and parents to create a supportive Christian community.</li>
+                        <li><strong>Biblical Integration:</strong> Integrate biblical principles and spiritual formation into all guidance and counseling programs.</li>
+                        <li><strong>Professional Excellence:</strong> Continuously enhance professional competency through ongoing training and research to ensure service excellence.</li>
+                        <li><strong>Wellness Outreach:</strong> Develop and implement outreach programs that promote a culture of mental wellness and Christian values across the university.</li>
+                        <li><strong>Continuous Improvement:</strong> Regularly assess and evaluate the effectiveness of all services to ensure continuous improvement and alignment with the university's mission.</li>
+                    </ul>
+            
+                    <h3 class="sub-heading" style="margin-top: 40px;">Service Offerings</h3>
+                    <p class="intro-text">The Guidance and Counseling Center provides support to students in their academic, personal, social, and career development. It aims to help students achieve success in school and prepare them to be responsible members of society. The center offers a variety of services, including career guidance, counseling, and workshops:</p>
+                    
+                    <ul class="als-bullets">
+                        <li><strong>Career Guidance</strong> - The center organizes Career Guidance Week with activities like career matching, career parades, and seminars on goal setting.</li>
+                        <li><strong>Counseling Services</strong> - Offers counseling for students facing issues like stress, depression, anxiety, and other personal challenges.</li>
+                        <li><strong>Workshops and Seminars</strong> - The center collaborates with other departments and organizations to host seminars on topics like resilience, handling failure, and stress management.</li>
+                        <li><strong>Community Programs</strong> - The center also participates in community outreach programs, often in collaboration with the College of Medicine and other departments.</li>
+                    </ul>   
+                </div>
+            </div>
+            
+            <div id="csc" class="content-section">
+                <div class="program-header">
+                    <img src="assets/images/webp/CSC%20logo.webp" alt="CSC Seal" class="program-logo">
+                    <div class="program-info">
+                        <h2 class="content-title">THE CENTRAL STUDENT COUNCIL</h2>
+                        <p class="program-meta">
+                            <strong>Jose Christian G. Abarra</strong><br>
+                            <em>Vice President</em><br>
+                            +63 976-509-4491<br>
+                            4th Floor, Room M434, Main Building<br>
+                            csc@neu.edu.ph
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="inner-tab-content">
+                    <img src="assets/images/webp/j0lzQ.webp" alt="Services Header" style="width:100%; border-radius:4px; margin-bottom:25px;">
+                    <div class="intro-text">
+                        <p>The Central Student Council (CSC) is the highest student governing body of the university, established to represent the interests of the student population and to serve as a vital link between students and the administration. Rooted in the profound philosophy that "Godliness is the Foundation of Knowledge," the CSC operates with the unwavering belief that true wisdom and understanding originate from a relationship with God. This core principle guides every decision, initiative, and program undertaken by the Council.</p>
+                        
+                        <p>Our existence is intricately woven with the university's main mission: "To provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God." We see ourselves as direct partners in fulfilling this mission by actively shaping a student environment where Christian values are not just taught but lived out daily. The CSC is dedicated to ensuring that the pursuit of academic excellence is always intertwined with spiritual growth, fostering an atmosphere where students can thrive intellectually while deepening their faith.</p>
+                        
+                        <p>Furthermore, the CSC is committed to upholding the university's vision of being "A world-class Institution of learning with a unique Christian culture of excellence, discipline, and service to humanity." We believe that a "unique Christian culture" is cultivated through the intentional actions of its student body. The CSC strives to be at the forefront of this cultivation, promoting a culture of excellence in all endeavors, encouraging discipline in both academic and personal lives, and inspiring selfless service to humanity, all as expressions of God's love and grace.</p>
+            
+                        <p>Since its inception, the CSC has been instrumental in organizing events and implementing policies that reflect these foundational beliefs. From spiritual formation activities like praise and worship sessions and Bible studies, to academic support programs such as peer tutoring and study groups, and community outreach initiatives that embody servant leadership, the CSC endeavors to create well-rounded individuals who are not only academically proficient but also spiritually mature and socially responsible.</p>
+                    </div>
+            
+                    <h3 class="sub-heading">Vision</h3>
+                    <p class="intro-text">A Christian-centered student body actively demonstrating excellence, discipline, and service, reflecting God's glory in all pursuits of knowledge and leadership.</p>
+            
+                    <h3 class="sub-heading">Mission</h3>
+                    <p class="intro-text">To nurture student leaders grounded in Christian values, providing quality programs and initiatives that foster academic excellence, spiritual growth, and dedicated service to the university and the wider community, all for the honor and glory of God.</p>
+            
+                    <h3 class="sub-heading">Goals</h3>
+                    <ul class="is-goals-list">
+                        <li><strong>Promote Spiritual Formation:</strong> Organize and support activities that encourage students' spiritual growth and a deeper understanding of Christian values.</li>
+                        <li><strong>Foster Academic Excellence:</strong> Develop initiatives that support students in achieving academic distinction, recognizing knowledge as a gift from God.</li>
+                        <li><strong>Cultivate Servant Leadership:</strong> Equip student leaders with the skills and mindset to serve their peers and the community with humility and dedication.</li>
+                        <li><strong>Strengthen University Community:</strong> Facilitate programs that build a cohesive and supportive university environment anchored in Christian fellowship.</li>
+                        <li><strong>Encourage Responsible Citizenship:</strong> Inspire students to be active and responsible citizens, applying Christian principles to societal challenges.</li>
+                        <li><strong>Champion Ethical Conduct:</strong> Uphold and advocate for the highest standards of integrity, honesty, and ethical behavior among students.</li>
+                        <li><strong>Enhance Student Well-being:</strong> Support holistic student development, addressing intellectual, spiritual, physical, and emotional needs.</li>
+                        <li><strong>Instill a Culture of Service:</strong> Create opportunities for students to engage in meaningful outreach and community service, reflecting God's love.</li>
+                    </ul>
+            
+                    <h3 class="sub-heading" style="margin-top: 40px;">Service Offerings & Initiatives</h3>
+                    <p class="intro-text">The Central Student Council provides a variety of platforms for student representation and development, ensuring that every student initiative aligns with the university's core values:</p>
+                    
+                    <ul class="als-bullets">
+                        <li><strong>Student Representation</strong> - Acting as the primary voice of the student body in administrative dialogues and university policy discussions.</li>
+                        <li><strong>Leadership Training</strong> - Organizing seminars and workshops focused on Christian leadership and organizational management.</li>
+                        <li><strong>Student Activity Coordination</strong> - Overseeing university-wide events that promote camaraderie, excellence, and discipline.</li>
+                        <li><strong>Grievance and Support Desk</strong> - Providing a dedicated channel for students to voice concerns and seek assistance regarding university life.</li>
+                        <li><strong>Outreach and Fellowship</strong> - Coordinating community service projects and spiritual gatherings to strengthen the bond among students.</li>
+                    </ul> 
+                    
+                </div>
+            </div>
+            
+            <div id="orgs" class="content-section">
+                <div class="program-header">
+                    <div class="program-info">
+                        <h2 class="content-title">STUDENT ORGANIZATIONS</h2>
+                        
+                    </div>
+                </div>
+            
+                <div class="inner-tab-content">
+                    <div class="intro-text">
+                        <p>The Student Organizations of the University represent the diverse and dynamic landscape of student life within our institution. Each organization, while unique in its focus, operates under a unifying philosophy that "Godliness is the Foundation of Knowledge." This profound belief underscores that all intellectual pursuits and talents find their truest meaning and purpose when anchored in a relationship with God. It emphasizes that true understanding extends beyond academic proficiency to encompass wisdom, integrity, and spiritual insight.</p>
+                        
+                        <p>Our collective existence is inextricably linked to the university's main mission: "To provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God." As individual student organizations, we are vital instruments in fulfilling this mission. Whether an academic club, a service group, a cultural society, or a spiritual fellowship, each organization is encouraged to integrate Christian values into its operations, programs, and member interactions. This ensures that every student's involvement contributes not only to their personal growth but also to the university's overarching goal of glorifying God.</p>
+            
+                        <div style="margin: 30px 0;">
+                            <img src="assets/images/webp/j0lzQ.webp" alt="Student Organizations Activities" style="width:100%; border-radius:4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </div>
+            
+                        <p>Furthermore, the University Student Organizations are committed to embodying the university's vision of being "A world-class Institution of learning with a unique Christian culture of excellence, discipline, and service to humanity." We believe that the "unique Christian culture" is vibrantly expressed through the collective efforts and character of our student organizations. We champion excellence in every project, competition, and event, reflecting the highest standards in all our endeavors. We cultivate discipline in managing our resources, adhering to our principles, and committing to our goals. Most importantly, we are dedicated to fostering a spirit of service to humanity, understanding that our talents and resources are ultimately meant to bless others, demonstrating God's love in tangible ways.</p>
+            
+                        <p>Since their establishment, student organizations have been pivotal in enriching campus life and providing platforms for students to develop their skills, pursue their passions, and contribute to the community. They serve as crucibles for leadership development, character building, and the practical application of Christian values. The University Student Organizations are not merely extracurricular groups; they are active communities of faith and learning, united in their pursuit of knowledge, excellence, and service, all for the honor and glory of God.</p>
+                    </div>
+            
+                    <div class="history-grid">
+                        <img src="assets/images/webp/OpFD6.webp" alt="Campus Life 1">
+                        <img src="assets/images/webp/41Tsp.webp" alt="Campus Life 2">
+                        <img src="assets/images/webp/R517o.webp" alt="Campus Life 3">
+                        <img src="assets/images/webp/J0aaV.webp" alt="Campus Life 4">
+                    </div>
+                    
+                    <h3 class="sub-heading">List of Registered and Recognized Student Organizations</h3>
+        
+                    <div style="overflow-x: auto; margin-top: 20px; border: 1px solid #eee; border-radius: 8px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;">
+                            <thead>
+                                <tr style="background-color: #113B5C; color: #fff;">
+                                    <th style="padding: 12px 15px; border-bottom: 2px solid #ddd;">College/Department</th>
+                                    <th style="padding: 12px 15px; border-bottom: 2px solid #ddd;">Student Organization Name</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: #444;">
+
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>CAS Lingkod Mag-aaral</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>Economic Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>New Era Biology Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>New Era Political Science Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>New Era Public Administration Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>New Era Psychology Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Arts and  Sciences (Main Building)</td><td>New Era Psychology Group</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>Student Council of Business Administration</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>Human Resource Student Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>Junior Finance Executive Association</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>Junior Realtors Board</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>Legal Management Organization</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>New Era Junior Marketing Association</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Business Administration (SOM Building)</td><td>Young Entrepreneurs Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Communication (Main Building)</td><td>New Era Communicators</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Informatics and Computing Studies  (Main Building)</td><td>Computer Studies Student Council</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Informatics and Computing Studies  (Main Building)</td><td>Association of Computer Science Student</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Informatics and Computing Studies  (Main Building)</td><td>Multimedia and Entertainment Technology Association</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Informatics and Computing Studies  (Main Building)</td><td>Society of Information, Technology Student</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Informatics and Computing Studies  (Main Building)</td><td>Leaders in Information, Networks and Knowledge System</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Criminology  (Main Building)</td><td>NEU Criminology Student Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Education  (IS Building)</td><td>Educator's Alliance Developing on Optimum Service English Educator's Guild</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Engineering Student Council</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Association of Civil Engineering Students</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Association of Electronics Engineering Students</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Electrical Engineering League of Student Auxiliary</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Industrial Engineering Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>United Architecture of the Philippines Students of Astronomy</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Organization of New Era Students of Astronomy</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Engineering and Architecture  (Main Building)</td><td>Engineering Mathematics Science Council</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Medical Technology  (PSB)</td><td>Supreme Association of Medical Technology Students</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Medicine  (PSB)</td><td>Medicine Student Council</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Nursing  (PSB)</td><td>Nursing Student Council</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Physical Therapy  (PSB)</td><td>Physical Therapy Society</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Respiratory Therapy (PSB)</td><td>Association of Respiratory Therapy Students</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Music (IS Building)</td><td>Music Students Synergy</td>
+                                </tr>
+                                <tr>
+                                    <td>School of International Relations (SOM Building)</td><td>Junior Diplomats’ Circle</td>
+                                </tr>
+                                <tr>
+                                    <td>College of Law (PSB)</td><td>NEU College of Law Student Council</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Central Student Council</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Peer Facilitators Club</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Dulaang Asilaw</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Glee Club</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>NEU Male Chorale</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>NEU Integrated School Choir</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>New Era University Choir</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>New Era University Rondalla</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>New Era University Sign Language Club</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Technology, Research and Innovation Council of Enthusiasts</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Project Paradigm</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>New Era University Camera Club</td>
+                                </tr>
+                                <tr>
+                                    <td>School of Graduates Studies Non-Academic</td><td>Victory Club</td>
+                                </tr>   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="nstp" class="content-section">
+                <div class="program-header">
+                    <img src="assets/images/webp/NEU%20Logo%202014%20NEW%201.webp" alt="NSTP Seal" class="program-logo">
+                    <div class="program-info">
+                        <h2 class="content-title">NATIONAL SERVICE TRAINING PROGRAM</h2>
+                        <p class="program-meta">
+                            <strong>Bro. Romeo Jhon P. Venasquez</strong> <br>
+                            <em>NSTP Director</em><br>
+                            +63 956 471 8032<br>
+                            Room 201, 2nd Floor, Main Building, New Era University, No. 9, Central Avenue, New Era, Quezon City<br>
+                            nstp@neu.edu.ph
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="inner-tab-content">
+                    
+                    <img src="assets/images/webp/JvrX5.webp" alt="Services Header" style="width:100%; border-radius:4px; margin-bottom:25px;">
+                    <div class="intro-text">
+                        <p>The National Service Training Program (NSTP) at this institution is a mandatory program for all incoming college freshmen, established in compliance with Republic Act 9163, also known as the NSTP Act of 2001. This program is uniquely shaped by the foundational philosophy of "Godliness is the Foundation of Knowledge" and the university's overarching mission to "Provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God."</p>
+                        
+                        <p>At its core, the NSTP aims to enhance civic consciousness and defense preparedness among students by developing their ethics of service and patriotism. While other institutions may focus solely on secular civic duties, this university's NSTP integrates a robust Christian worldview into every module. Concepts of community service, leadership, and national defense are taught through the lens of biblical principles, emphasizing love for God and neighbor, stewardship, and selfless service.</p>
+                    </div>
+            
+                    <h3 class="sub-heading">Program Components</h3>
+                    <p class="intro-text">Students must choose one of the following three distinct components to fulfill their service requirement:</p>
+                    
+                    <ul class="als-bullets">
+                        <li>
+                            <strong>Civic Welfare Training Service (CWTS):</strong> 
+                            Designed to engage students in activities contributing to the general welfare and betterment of the community. Projects focus on health, education, environment, safety, entrepreneurship, and ethics, framing service as an act of worship and stewardship over God's creation.
+                        </li>
+                        <li>
+                            <strong>Literacy Training Service (LTS):</strong> 
+                            Focuses on training students to become facilitators of literacy and numeracy skills for out-of-school youth and children. This component highlights the Christian mandate to equip and empower the less fortunate through the sharing of knowledge.
+                        </li>
+                        <li>
+                            <strong>Reserve Officers' Training Corps (ROTC):</strong> 
+                            Instills military education and training for national defense preparedness. Unlike purely secular programs, it integrates principles of righteous leadership and sacrificial service, reminding cadets that defense of the nation is a sacred duty performed with integrity.
+                        </li>
+                    </ul>
+            
+                    <div class="intro-text" style="margin-top: 25px;">
+                        <p>Throughout all components, the curriculum emphasizes character formation rooted in Christian values. The program's success is measured by the holistic development of students into God-fearing, responsible, and engaged citizens committed to bringing honor and glory to God through their lives of service.</p>
+                    </div>
+            
+                    <h3 class="sub-heading">Vision</h3>
+                    <p class="intro-text">A Christian-centered, world-class National Service Training Program that cultivates excellence, discipline, and service to humanity, founded on the principle that Godliness is the Foundation of Knowledge.</p>
+            
+                    <h3 class="sub-heading">Mission</h3>
+                    <p class="intro-text">To provide quality national service training anchored on Christian values, empowering students to become responsible citizens and leaders, with the prime purpose of bringing honor and glory to God through service to the nation and humanity.</p>
+            
+                    <h3 class="sub-heading">Goals</h3>
+                    <ul class="is-goals-list">
+                        <li><strong>Instill Christian Values:</strong> To deeply integrate Christian principles and ethics into all aspects of civic and military education, fostering moral uprightness and integrity.</li>
+                        <li><strong>Promote Civic Consciousness:</strong> To develop a profound understanding of civic duties and responsibilities, encouraging active participation in community development.</li>
+                        <li><strong>Enhance Leadership and Discipline:</strong> To cultivate strong leadership qualities, self-discipline, and teamwork, preparing students to be agents of positive change.</li>
+                        <li><strong>Foster National Pride:</strong> To instill a deep sense of patriotism and commitment to national welfare, inspiring dedicated service to the Philippines.</li>
+                        <li><strong>Develop Practical Skills:</strong> To equip students with practical skills in disaster preparedness and community welfare, enabling them to respond effectively to societal needs.</li>
+                        <li><strong>Encourage Volunteerism:</strong> To promote a spirit of selfless service, inspiring students to contribute actively to the well-being of their communities.</li>
+                        <li><strong>Strengthen Spiritual Foundation:</strong> To reinforce the spiritual lives of students, connecting their service to a higher purpose and their faith.</li>
+                        <li><strong>Produce God-fearing Citizens:</strong> To graduate students who are academically competent, socially responsible, and deeply rooted in their faith.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="ocpil" class="content-section">
+                <div class="program-header">
+                    <img src="assets/images/webp/neulogo.webp" alt="OCPIL Seal" class="program-logo">
+                    <div class="program-info">
+                        <h2 class="content-title">OFFICE OF CAREER PLACEMENT AND INDUSTRY LINKAGES</h2>
+                        <p class="program-meta">
+                            <strong>Dr. Julie T. Valencia</strong> <br>
+                            <em>OCPIL Director</em><br>
+                            +63 956 471 8032<br>
+                            Room 201, 2nd Floor, Integrated School Building B, New Era University, No. 9, Central Avenue, New Era, Quezon City<br>
+                            ocpil@neu.edu.ph
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="inner-tab-content">
+                    <img src="assets/images/webp/Omt0f.webp" alt="Services Header" style="width:100%; border-radius:4px; margin-bottom:25px;">
+                    <div class="intro-text">
+                        <p>The Office of Career Placement and Industry Linkages (OCPIL) was established out of a deep-seated commitment to the university's core mission: to "Provide quality education anchored on Christian values with the prime purpose of bringing honor and glory to God." Recognizing that education does not end with graduation, the university created the OCPIL to bridge the gap between academic life and professional vocation.</p>
+                        
+                        <p>The office's inception was a direct response to the need for a dedicated body that could not only help students find employment but also guide them to careers where they could live out the university's vision of "excellence, discipline, and service to humanity." The OCPIL's operational philosophy is centered on the profound belief that "Godliness is the Foundation of Knowledge."</p>
+                        
+                        <p>For the OCPIL, career success is measured not just by financial gain or professional title, but by the impact an individual makes on their community and the integrity with which they perform their duties. The office believes that a truly knowledgeable professional is one who operates with Christian virtues such as honesty, diligence, humility, and a desire to serve others.</p>
+                    </div>
+            
+                    <h3 class="sub-heading">Primary Functions</h3>
+                    <p class="intro-text">In practice, the OCPIL functions as a comprehensive resource hub for students and alumni through the following core services:</p>
+                    
+                    <ul class="als-bullets">
+                        <li><strong>Career Guidance and Counseling:</strong> Providing one-on-one sessions to help students identify their strengths and interests and align them with a God-given purpose.</li>
+                        <li><strong>Industry Partnership and Linkages:</strong> Building and nurturing relationships with companies and organizations that offer ethical and meaningful career paths, creating a vetted network of professional opportunities.</li>
+                        <li><strong>Professional Development:</strong> Hosting workshops on essential skills like effective communication, leadership, and ethical decision-making, ensuring students are not only technically proficient but also morally upright.</li>
+                        <li><strong>Job Placement and Alumni Services:</strong> Assisting graduates in their job search and providing continuous support for alumni who seek career advancement or mentorship.</li>
+                    </ul>
+            
+                    <div class="intro-text" style="margin-top: 25px;">
+                        <p>Ultimately, the OCPIL is more than just a job-finding service. It is a ministry dedicated to preparing a generation of professionals who will honor God in their workplaces and stand as a testament to the transformative power of a quality education built on a foundation of Christian values.</p>
+                    </div>
+            
+                    <h3 class="sub-heading">Vision</h3>
+                    <p class="intro-text">To be the premier office that empowers students and alumni to excel as highly competent, globally competitive, and Christ-centered professionals who bring honor and glory to God through their chosen careers and service to humanity.</p>
+            
+                    <h3 class="sub-heading">Mission</h3>
+                    <p class="intro-text">To facilitate meaningful career opportunities and forge strategic industry partnerships that align with the university's core Christian values, ensuring every student is equipped with the knowledge, skills, and godly character required for a purposeful and successful professional life.</p>
+            
+                    <h3 class="sub-heading">Goals</h3>
+                    <ul class="is-goals-list">
+                        <li><strong>Discern Professional Callings:</strong> Provide comprehensive career guidance to help students align their careers with Christian principles.</li>
+                        <li><strong>Robust Industry Network:</strong> Establish and maintain a network of local and international partners that share the university's commitment to ethics.</li>
+                        <li><strong>Practical Readiness:</strong> Offer training and seminars that enhance soft skills and job readiness, grounded in the philosophy that Godliness is the Foundation of Knowledge.</li>
+                        <li><strong>Direct Recruitment:</strong> Organize annual career fairs and recruitment events to connect students directly with reputable employers.</li>
+                        <li><strong>Mentorship Program:</strong> Pair students with experienced professionals and alumni who embody the university's values of discipline and service.</li>
+                        <li><strong>Placement Assistance:</strong> Actively assist graduating students and alumni through personalized resume critiques and interview simulations.</li>
+                        <li><strong>Program Improvement:</strong> Analyze industry trends and feedback to ensure the university's academic programs remain relevant and competitive.</li>
+                        <li><strong>Lifelong Development:</strong> Promote a culture of professional development among alumni, encouraging them to be servant-leaders in their fields.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            
+
+        </main>
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>
+    <script>
+        function switchMainTab(targetId, updateUrl = true) {
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+            if(targetLink) targetLink.classList.add('active');
+            
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) targetSection.style.display = 'block';
+
+            if (updateUrl) history.pushState(null, null, '#' + targetId);
+        }
+
+        function switchInnerTab(contentId, btnElement) {
+            const parentContainer = btnElement.closest('.content-section');
+            parentContainer.querySelectorAll('.inner-tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            parentContainer.querySelectorAll('.inner-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(contentId).style.display = 'block';
+            btnElement.classList.add('active');
+        }
+
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchMainTab(this.dataset.target);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1); 
+            if (currentHash && document.getElementById(currentHash)) {
+                switchMainTab(currentHash, false); 
+            }
+        });
+    </script>
+</body>
+</html>

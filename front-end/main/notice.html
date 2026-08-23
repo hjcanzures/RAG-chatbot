@@ -1,0 +1,1492 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Notice - New Era University</title>
+    <link href="../css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="../css/avenir" rel="stylesheet">
+    
+    <link href="assets/styles/styles-12.css?v=6a88faab1c255" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           POLICY/PRIVACY PAGE STYLES
+           ========================================= */
+
+        
+        .page-hero {
+            position: relative;
+            height: 400px;
+            background-image: url('assets/images/webp/neufacade1.webp'); 
+            background-size: cover;
+            background-position: center 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 35, 65, 0.7); 
+            z-index: 2;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .page-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-hero-content h1::after {
+            content: "";
+            position:absolute;
+            top:100%;
+            width: 100%;
+            height: 1px;
+            background-color: var(--white);
+        }
+
+        
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0; 
+            padding: 60px 20px 100px; 
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        
+        .sidebar-nav {
+            padding-right: 40px; 
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav > ul > li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav a {
+            font-size: 0.95rem;
+            color: #888; 
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .sidebar-nav a:hover {
+            color: #333;
+        }
+
+        .sidebar-nav a.active {
+            color: #333;
+            font-weight: 700;
+        }
+
+        
+        .main-content {
+            border-left: 1px solid #eee; 
+            padding-left: 40px; 
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-title {
+            color: #C88D36; 
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-heading {
+            color: #113B5C;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .policy-text p {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .policy-text .indent {
+            padding-left: 30px;
+        }
+
+        
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .sidebar-nav {
+                padding-right: 0;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .sidebar-nav > ul > li {
+                margin-bottom: 0;
+            }
+            .sidebar-nav a.active {
+                border-left: none;
+                border-bottom: 3px solid #113B5C;
+                padding-left: 0;
+                margin-left: 0;
+                padding-bottom: 5px;
+            }
+            .main-content {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="top-header-overlay"></div>
+    <a href="index.htm">
+        <div class="container header-content">
+            <img src="assets/images/webp/neulogo.webp" alt="NEU Logo" class="header-logo">
+            <div class="header-text">
+                <h1>New Era University</h1>
+                <p>Godliness is the foundation of knowledge</p>
+            </div>
+        </div>
+    </a>
+</header>
+
+<nav>
+    <div class="mobile-menu-bar">
+        <button id="mobile-toggle" class="hamburger-btn">
+            &#9776; MENU
+        </button>
+    </div>
+
+    <div class="container">
+        <ul class="nav-links" id="nav-links">
+            
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Academics ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>PROGRAM OFFERINGS</h4>
+                            <a href="academics.html#undergrad">Undergraduate Programs</a>
+                            <a href="academics.html#grad-school">School of Graduate Studies</a>
+                            <a href="#">Juris Doctor (J.D.) Program</a>
+                            <a href="academics.html#cmd">College of Medicine</a>
+                            <a href="academics.html#integrated">Integrated School</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>INCLUSIVE EDUCATION</h4>
+                            <a href="academics.html#eteeap">Expanded Tertiary Education Equivalency and Accreditation Program (ETEEAP)</a>
+                            <a href="academics.html#als">Alternative Learning System (ALS)</a>
+                            <h4>NEU LIBRARY</h4>
+                            <a href="maintenance.html">Library Services</a>
+                        </div>
+                        <div>
+                            <h4>STUDENTS</h4>
+                            <a href="student-services.html">Student Services</a>
+                            <h4>OFFICE OF THE UNIVERSITY REGISTRAR</h4>
+                            <a href="maintenance.html">Registrar Services</a>
+                            <h4>RESEARCH</h4>
+                            <a href="https://neuresearchcenter.com/" target="_blank">University Research Center</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="admissions.html" class="font-condensed dropdown-toggle">Admissions ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>ADMISSION</h4>
+                            <a href="admissions.html#admission-procedure">Admission Procedure</a>
+                            <a href="admissions.html#enrollment-procedure">Enrollment Procedure</a>
+                            <a href="maintenance.html">Application Reminders</a>
+                            <a href="admissions.html#faqs">Frequently Asked Questions (FAQs)</a>
+                        </div>
+                        <div class="col-border-right">
+                            <h4>FINANCE</h4>
+                            <a href="payment.html#payment-fees">Payment Procedure</a>
+                            <a href="maintenance.html">Scholarship Grants</a>
+                            <a href="maintenance.html">Financial Assistance</a>
+                            <a href="payment.html#payment-confirmation">Payment Confirmation Forms</a>
+                            <a href="payment.html#payment-reminders">Payment Reminders and Notice</a>
+                        </div>
+                        <div>
+                            <h4>OTHER ADMISSION INFORMATION</h4>
+                            <a href="contact-us.html">Academic Offices Directory</a>
+                            <a href="https://drive.google.com/file/d/1KXKLY17abzfGLRO0sVo1s0kGMWVsNB_0/view?usp=sharing" target="_blank">Academic Calendar</a>
+                            <a href="#">General Information</a>
+                            <a href="maintenance.html">Grading System</a>
+                            <a href="https://drive.google.com/file/d/16cDuzeSCoiDIzhnmw360KUdI7uLc76tT/view?usp=sharing" target="_blank">Brochure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Campuses ▾</a>
+                <div class="mega-menu">
+                    <div class="campus-menu-layout">
+                        <div class="col-border-right">
+                            <h4>CAMPUSES</h4>
+                            <a href="about-us/index.htm">Quezon City (Main)</a>
+                            <a href="campus/pampanga.html">Pampanga</a>
+                            <a href="campus/lipa.html">Lipa</a>
+                            <a href="campus/gen-san.html">General Santos City</a>
+                            <a href="campus/index.htm">Rizal</a>
+                        </div>
+                        <div class="campus-image-container">
+                            <img src="assets/images/webp/neu_header.webp" alt="New Era University Campus">
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="font-condensed dropdown-toggle">Resources ▾</a>
+                <div class="mega-menu">
+                    <div class="menu-grid-3">
+                        <div class="col-border-right">
+                            <h4>CENTERS</h4>
+                            <a href="maintenance.html">Center for Quality Assurance and Accreditation (CQAA)</a>
+                            <a href="maintenance.html">Center for Continuing Professional Development (CCPD)</a>
+                            <a href="maintenance.html">Center for Community Extension and Linkages (CCEL)</a>
+                            <a href="maintenance.html">Center for Disaster Preparedness and Management (CDPM)</a>
+                            <a href="maintenance.html">Technical Education and Skills Development Center (TESDC)</a>
+                            <a href="https://cdrom.neu.edu.ph/">Center for Data Research and Online Media (CDROM)</a>
+
+                        </div>
+                        <div class="col-border-right">
+                            <a href="maintenance.html">Center for Journalism (CFJ)</a>
+                            <a href="maintenance.html">Center for Philippine Studies (CPS)</a>
+                            <a href="maintenance.html">Center for China Studies (CCS)</a>
+                            <a href="maintenance.html">Center for Russian Studies (CRS)</a>
+                            <a href="maintenance.html">Center for Culture and the Arts (CCA)</a>
+                            <a href="maintenance.html">Center for Visual Arts and Design (CVAD)</a>
+                            <h4>SYSTEMS</h4>
+                            <a href="https://neuvle.neu.edu.ph/">NEU Virtual Learning Environment (NEUVLE)</a>
+                        </div>
+                        <div>
+                            <h4>OTHER RESOURCES</h4>
+                            <a href="maintenance.html">Linkages</a>
+                            <a href="maintenance.html">Disclaimer</a>
+                            <a href="notice.html#privacy-notice">Data Privacy Notice</a>
+                            <a href="notice.html#ai-policy">Policy on the Use of Artificial Intelligence (AI)</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item"><a href="maintenance.html" class="font-condensed">Alumni</a></li>
+            <li class="nav-item"><a href="about-us.html" class="font-condensed">About</a></li>
+            <li class="nav-item"><a href="news.html" class="font-condensed">News</a></li>
+            <li class="nav-item"><a href="contact-us.html" class="font-condensed">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>PRIVACY NOTICE</h1>
+        </div>
+    </section>
+
+    <section class="page-wrapper">
+        <aside class="sidebar-nav">
+            <ul>
+                <li><a class="sidebar-link active" data-target="privacy-notice">Privacy Notice</a></li>
+                <li><a class="sidebar-link" data-target="info-security">Information Security Policy</a></li>
+                <li><a class="sidebar-link" data-target="incident-management">Security Incident Management Policy</a></li>
+                <li><a class="sidebar-link" data-target="ai-policy">Policy on the Use of Artificial Intelligence (A.I.)</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div id="privacy-notice" class="content-section" style="display: block;">
+                <h2 class="content-title">PRIVACY NOTICE</h2>
+                
+                <div class="policy-text">
+                    
+                    <h3 class="section-heading">INFORMATION COLLECTION AND USE OF DATA</h3>
+                    
+                    <p>1.1. We collect several different types of information for various purposes to prove and improve our Service to you.</p>
+                    
+                    <p>1.2. Personal Information. While using our website and other data processing system of NEU, you may be disclosing to NEU certain personally identifiable information that can be used to contact or identify you. (‘Personal data’). Personally identifiable information may include, but is not limited to:</p>
+                    
+                    <p>Through Inquiry, application, or registration through the school provided portals, on-site or at the University’s premises and participation to the NEU’s activities:</p>
+                    
+                    <p class="indent">1.2.1. Information about the applicant or student’s parents and guardians, their names, addresses, and contact details, to confirm the legal identity of the applicant or student and for communicating the latter’s academic progress, send information of school activities and services, and send important announcements.</p>
+                    <p class="indent">1.2.2. Applicant or student’s name, address, date of birth, gender, picture, contact details, grades, attendance, punctuality records, and educational background for basic administration and instructional purposes, and to access the data processing systems of the University.</p>
+                    <p class="indent">1.2.3. Health history and legal and disciplinary records of the applicant or student to address behavioral or performance difficulties of applicant/student and to comply with health and safety obligations of the University.</p>
+                    <p class="indent">1.2.4. Billing and financial information for processing and evaluation of application to the University.</p>
+                    <p class="indent">1.2.5. Other information to comply with the legal and statutory obligations of the University.</p>
+                    <p class="indent">1.2.6. Videos and pictures may also be collected: (i) through the applicant/student’s participation in the University’s activities and services which may be displayed on the University’s website or on social media platforms or in the print media as part of the University’s services and for marketing purposes and/or (ii) for security purposes e.g. closed-circuit television (CCTV) camera installed within the University’s premises.</p>
+                    
+                    <p>Through the Website:</p>
+                    
+                    <p class="indent">1.2.7. Cookies and Usage Data</p>
+                    <p class="indent">1.2.8. We may also collect information on how the Service is accessed and used (‘Usage Data’). This Usage Data may include information such as your computer’s Internet Protocol address, (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+                    <p class="indent">1.2.9. We use the collected data through the website to provide and maintain the service for the following reasons:</p>
+                    
+                    <p class="indent" style="padding-left: 60px;">1.2.9.1. To notify you about changes to our service;</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.2. To allow you to participate in interactive features of our service when you choose to do so;</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.3. To provide customer care and support;</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.4. To provide analysis or valuable information so that we can improve the Service;</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.5. To monitor the usage of the Service;</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.6. To detect, prevent and address technical issues.</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.7. We also use third-party cookies to help us monitor traffic on our Sites (e.g. Google Analytics), to identify fraudulent or non-human traffic, to assist with market research, to improve site functionality, to monitor compliance with our terms and conditions and copyright policy.</p>
+                    <p class="indent" style="padding-left: 60px;">1.2.9.8. We also use third party submission of ‘cookies-like’ and robotic crawl data to optimize search results in Google, Bing, and other search engines companies.</p>
+
+                    <p>1.3. Collection of Personal Information. NEU collects your personal information in various ways:</p>
+                    
+                    <p class="indent">1.3.1. When you provide us with this information upon application, enrollment, admission to the University, inquiry with the University Programs, and when signing up in our mailing list; or</p>
+                    <p class="indent">1.3.2. Through a variety of built-in technologies, such as tracking and cookies data, application program interfaces, or use of a third-party application on our website;</p>
+                    <p class="indent">1.3.3. We will only hold your personal information while it is necessary for the provision of our services to you, or that we have a valid reason to keep it. Valid reasons may include that we must keep it to avoid breaking the law.</p>
+
+                    <h3 class="section-heading">DATA BEING SHARED WITH THIRD PARTIES</h3>
+                    
+                    <p>2.1. We may share your data with other organizations that provide services on our behalf to operate the website and data processing systems of the University.</p>
+                    <p>Examples of when we may share your data with service providers includes:</p>
+                    
+                    <p class="indent">2.1.1. Internet and cloud hosting services providers, such as Amazon Web Services (AWS), Cloudfare, Bunny CDN, and other content-delivery networks, to help accommodate the traffic on the website without compromising the bandwidth;</p>
+                    <p class="indent">2.1.2. Third-party webpage components and assets, such as Google Fonts, in order to style and design the website;</p>
+                    <p class="indent">2.1.3. YouTube, given that we use their unbranded embedded player to provide video content on our websites and apps. The embedded player relies on the YouTube API. Which is a type of software that allows data to be communicated between our website and apps and the YouTube player;</p>
+                    <p class="indent">2.1.4. Social Media Platforms, such as Facebook, Twitter, and Instagram, to make it easier to view and share the contents of the website; and</p>
+                    <p class="indent">2.1.5. Third-party analytic services, such as Google Analytics, which send your session statistics, IP address, geolocation, and browser and device information, to optimize your experience of the website.</p>
+                    
+                    <p>2.2. We may also share your data to others for some specific situations:</p>
+                    
+                    <p class="indent">2.2.1. Publishing academic achievements which may include names and ratings achieved by student in the school bulletin boards, campus websites, and social media platforms;</p>
+                    <p class="indent">2.2.2. Providing academic institutions, companies, government agencies, private or public corporations, or the like, upon request, with scholastic ranking information or certification of good moral character for purposes of transfer, admission and/or acceptance;</p>
+                    <p class="indent">2.2.3. Sharing of personal information among the school’s officials in order to decide on disciplinary cases involving acts done within the University’s premises, acts affecting the University and other students;</p>
+                    <p class="indent">2.2.4. Reporting and/or disclosing information to the National Privacy Commission, government bodies or agencies e.g. Commission on Higher Education, Department of Education, and other enforcement agencies;</p>
+                    <p class="indent">2.2.5. Marketing or advertisement to promote the University, including its activities and events, through photos, videos, brochures, website, newspaper, and social media posting, and physical and electronic bulletin boards, and other media;</p>
+                    <p class="indent">2.2.6. Live streaming of the University’s events and activities; and</p>
+                    <p class="indent">2.2.7. Complying with court orders, subpoena and other legal obligations.</p>
+
+                    <h3 class="section-heading">TRACKING AND COOKIES DATA</h3>
+                    
+                    <p>3.1. Definition of ‘Cookies.’ Cookies are small text files which a website may place on your computer or device when you visit a site. The cookie will help the website to recognize your device the next time you visit. Web beacons, pixels or other similar files can also do the same thing. We use the term ‘cookies’ in this policy to refer to all files that collect information in this way.</p>
+                    
+                    <p class="indent">3.1.1. Internet and cloud hosting services providers, such as Amazon Web Services (AWS), Cloudfare, Bunny CDN, and other content-delivery networks, to help accommodate the traffic on the website without compromising the bandwidth;</p>
+                    <p class="indent">3.1.2. Third-party webpage components and assets, such as Google Fonts, in order to style and design the website;</p>
+                    
+                    <p>3.2. Examples of Cookies we use. We use, without limitation, the following types of cookies:</p>
+                    
+                    <p class="indent">3.2.1. Session Cookies. We use Session Cookies to operate our Service.</p>
+                    <p class="indent">3.2.2. Preference Cookies. We use Preference Cookies to remember your preferences and various settings. For example, we use the technology on our Sites, which records user movements, including page scrolling, clicks and text entered. This helps us to identify usability issues and improve the assistance we can provide to users and is also used for aggregated and statistical reporting purposes.</p>
+                    <p class="indent">3.2.3. Security Cookies. We use Security Cookies for security purposes.</p>
+                    <p class="indent">3.2.4. Third party cookies. These are cookies created by domains other than this website. For example, social media plugins that enable you to log in and share website materials on Facebook, Twitter, Instagram and the like will place cookies on your device.</p>
+
+                    <h3 class="section-heading">LAWFUL BASIS FOR PROCESSING</h3>
+                    
+                    <p>4.1. We only process personal information where we have lawful basis for doing so. This includes, but is not limited to, the following:</p>
+                    
+                    <p class="indent">4.1.1. User consent. This is where you have given us explicit permission to process personal information for a given purpose. For example, if you sign a consent form during enrollment and admission to the University, if you sign up to our mailing list e.g. giving us your contact details to send you the programs and services offered by the University or to send you materials in our website.</p>
+                    <p class="indent">4.1.2. Legitimate organizational purposes. This is where we have a legitimate interest as an organization to process personal information. For example, where we are aware of copyright infringement on our Site, it is our legitimate interests to identify those responsible. We take due care to balance our interests against your right to privacy.</p>
+                    <p class="indent">4.1.3. Legal obligation. This is where we have to process personal information in order to comply with the law. For example, we process and retain student’s access information to our data processing system to comply with data privacy regulations.</p>
+
+                    <h3 class="section-heading">DISCLOSURE OF DATA</h3>
+                    
+                    <p>5.1. Legal requirements. We may disclose your Personal Data in good faith belief that such action is necessary to:</p>
+                    
+                    <p class="indent">5.1.1. To comply with a legal obligation;</p>
+                    <p class="indent">5.1.2. To protect and defend our rights or property;</p>
+                    <p class="indent">5.1.3. To prevent or investigate possible wrongdoing in connection with our Service;</p>
+                    <p class="indent">5.1.4. To protect the personal safety of users of the Service or the public; and</p>
+                    <p class="indent">5.1.5. To protect against legal liability.</p>
+                    
+                    <p>5.2. Security of Data Disclosed. The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is completely secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
+                    
+                    <p>5.3. Service Providers. We may also employ third party companies and individuals to facilitate our Service (‘Service Providers’), to provide the Service on our behalf, to perform website and education-related services or to assist us in analyzing how our Service is used. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+
+                    <h3 class="section-heading">LINKS TO OTHER SITES</h3>
+                    
+                    <p>6.1. Our Website may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third party’s site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
+                    
+                    <p>6.2. NEU has no control over and assume no responsibility for the content, privacy policies or practices of any third-party sites or services.</p>
+
+                    <h3 class="section-heading">CHILDREN’S PRIVACY</h3>
+                    
+                    <p>7.1. When visiting the website and filling out forms, you warrant and assure NEU that you are over the age of consent. If you are under the age of consent, you warrant and assure NEU that any personal information you provide has been provided under the consent and supervision of a parent or guardian.</p>
+                    
+                    <p>7.2. We do not knowingly collect personally identifiable information from anyone under the age of consent without parental supervision. If you are a parent or guardian and you are aware that your children has provided us with Personal Data without your consent, please contact us.</p>
+
+                    <h3 class="section-heading">YOUR RIGHTS</h3>
+                    
+                    <p>8.1. Under data protection laws, you have rights as an individual in relation to the personal data we hold about you. These rights include:</p>
+                    
+                    <p class="indent">8.1.1. Right to be informed;</p>
+                    <p class="indent">8.1.2. Right to object;</p>
+                    <p class="indent">8.1.3. Right to access;</p>
+                    <p class="indent">8.1.4. Right to correct;</p>
+                    <p class="indent">8.1.5. Right for erasure or blocking;</p>
+                    <p class="indent">8.1.6. Right to file a complaint;</p>
+                    <p class="indent">8.1.7. Right to damages;</p>
+                    <p class="indent">8.1.8. Right to data portability</p>
+                    
+                    <p>Further explanation about your rights, you can refer to the Data Privacy Act of 2012 available at <a href="https://privacy.gov.ph/data-privacy-act/" target="_blank" style="color: #113B5C; text-decoration: underline;">https://privacy.gov.ph/data-privacy-act/</a>.</p>
+                    
+                    <p>8.2. You can exercise these rights by contacting us through the inquiries page on our website or through the contact details provided below.</p>
+                    <h3 class="section-heading">DATA CONTROLLER AND PROCESSOR.</h3>
+                    
+                    <p>9.1. All personal data collected as part of your use of our website, data processing system, and services are controlled and processed by NEU in its offices in the Philippines, located at:</p>
+                    
+                    <div class="indent" style="margin-bottom: 25px;">
+                        <p style="margin-bottom: 15px;">
+                            <strong>Main Campus:</strong><br>
+                            New Era University,<br>
+                            No. 9, Central Avenue, New Era, Quezon City
+                        </p>
+                        
+                        <p style="margin-bottom: 15px;">
+                            <strong>Branches:</strong><br>
+                            <strong>New Era University Lipa City, Batangas</strong><br>
+                            1795 P. Olam St. Marawoy, Lipa City, Batangas
+                        </p>
+                        
+                        <p style="margin-bottom: 15px;">
+                            <strong>New Era University City of San Fernando, Pampanga</strong><br>
+                            Mc Arthur Highway, Brgy. Dela Paz Norte, San Fernando, Pampanga
+                        </p>
+                        
+                        <p style="margin-bottom: 15px;">
+                            <strong>New Era University General Santos City, South Cotabato</strong><br>
+                            Aparente Ave., Purok Malakas, Brgy. San Isidro, General Santos City
+                        </p>
+                        
+                        <p style="margin-bottom: 15px;">
+                            <strong>New Era University Pinugay, Baras Rizal</strong><br>
+                            E.G. Manalo St. Pinugay, Baras, Rizal
+                        </p>
+                    </div>
+                    
+                    <p>9.2. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer, acknowledging the presence of risks given the absence of any Standard Contractual Clauses, adequacy decisions, and similar privacy provisions.</p>
+                    
+                    <p>9.3. NEU will take all steps it considers reasonable to ensure that your data is treated securely and in accordance with this Privacy Policy.</p>
+                    
+                    <p>9.4. For the purposes of the Data Privacy Act of 2012 and concerns regarding your privacy rights, you may contact our Data Protection Officer through the following details:</p>
+                    
+                    <div class="indent">
+                        <p style="margin-bottom: 5px;"><strong>The Data Protection Officer</strong></p>
+                        <p style="margin-bottom: 5px; margin-top: 0;">Address: No. 9 Central Avenue, New Era, Quezon City, 1107, Metro Manila</p>
+                        <p style="margin-top: 0;">Email Address: <a href="mailto:dpo@neu.edu.ph" style="color: inherit; text-decoration: none;">dpo@neu.edu.ph</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="info-security" class="content-section">
+                <h2 class="content-title">INFORMATION SECURITY POLICY</h2>
+                
+                <div class="policy-text">
+                    
+                    <p>This policy provides guidance, procedures, and actions to be taken in case of security or personal breach involving any data processing system of the University and/or personal data under its control and custody.</p>
+
+                    <h3 class="section-heading">OBJECTIVE</h3>
+                    <p>This policy is promulgated to:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Provide a set of rules and regulations to govern the use of the technology resources, networks, and data processing systems of the New Era University.</li>
+                        <li>Secure and protect the personal information and sensitive personal information of the employees, students, and applicants.</li>
+                        <li>Secure the confidentiality, integrity, and availability of the information under the control and custody of the University.</li>
+                        <li>Guarantee compliance with the Data Privacy Act of 2012.</li>
+                    </ul>
+
+                    <h3 class="section-heading">SCOPE</h3>
+                    <p>This policy governs all New Era University’s branches, academic units and administrative offices, personnel, and students.</p>
+
+                    <h3 class="section-heading">DEFINITION OF TERMS</h3>
+                    <p>For the purpose of this policy, the following terms are defined, as follows:</p>
+                    
+                    <p class="indent">3.1. “Personal Data” refers to personal information, sensitive personal information, and privileged information as defined by the Data Privacy Act of 2012;</p>
+                    
+                    <p class="indent">3.2. “Sensitive Personal Information” refers to personal information:</p>
+                    <p class="indent" style="padding-left: 60px;">a. About an individual’s race, ethnic origin, marital status, age, color, and religious, philosophical or political affiliations;</p>
+                    <p class="indent" style="padding-left: 60px;">b. About an individual’s health, education, genetic or sexual life of a person, or to any proceeding for any offense committed or alleged to have been committed by such person, the disposal of such proceedings, or the sentence of any court in such proceedings;</p>
+                    <p class="indent" style="padding-left: 60px;">c. Issued by government agencies peculiar to an individual which includes, but not limited to, social security numbers, previous or current health records, licenses or its denials, suspension or revocation, and tax returns, and</p>
+                    <p class="indent" style="padding-left: 60px;">d. Specifically established by an executive order or an act of Congress to be kept classified.</p>
+                    
+                    <p class="indent">3.3. “Data Processing System” refers to the structure and procedure by which personal data is collected and processed in an information and communications system, or any other relevant filing system. It includes the purpose and intended output of the processing (National Privacy Commission, op.cit.).</p>
+                    
+                    <p class="indent">3.4. “Personal Data Breach” refers to a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, personal data transmitted, stored, or otherwise processed. A personal data breach may be in the nature of:</p>
+                    <p class="indent" style="padding-left: 60px;">a. An availability breach resulting from loss, accidental or unlawful destruction of personal data;</p>
+                    <p class="indent" style="padding-left: 60px;">b. Integrity breach resulting from alteration of personal data; and/or</p>
+                    <p class="indent" style="padding-left: 60px;">c. A confidentiality breach resulting from the unauthorized disclosure of or access to personal data.</p>
+                    
+                    <p class="indent">3.5. “Data Processor” refers to the NEU personnel who process Personal Data pertaining to a Data Subject;</p>
+                    <p class="indent">3.6. “University” refers to New Era University and all its branches.</p>
+                    <p class="indent">3.7. “Data Subject” refers to an individual whose personal data is processed.</p>
+                    <p class="indent">3.8. “Personnel” refers to all members of the faculty, also called as the academic personnel, both to the teaching and non-teaching personnel, working in the New Era University Main Campus in New Era, Quezon City and in its branches in Lipa City, Batangas; City of San Fernando, Pampanga; General Santos City, South Cotabato; and Pinugay, Baras, Rizal.</p>
+                    <p class="indent">3.9. “Security Incident Response Team (SIRT)” refers to the personnel that would be the first responders to any and all data breach incidents. The team is also tasked to provide regular updates to the affected University personnel as to the ongoing measures to address the security incident.</p>
+                    <p class="indent">3.10. “Compliance Officer for Privacy (COP)” refers to the personnel assigned to each department of the University to oversee compliance of data privacy within the department.</p>
+                    
+                    <p class="indent">3.11. “Security Incident” refers to an event or occurrence that affects or tends to affect data protection, or may compromise the availability, integrity, and confidentiality of personal data. It shall include incidents that would result to a personal data breach, if not for safeguards that have been put in place. The term “Security Incident” includes “Personal Data Breach.”</p>
+                    <p class="indent">A Security Incident includes, but is not restricted to, the following:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 70px; margin-bottom: 15px;">
+                        <li>The loss or theft of data or information.</li>
+                        <li>The transfer of data or information to those who are not entitled to receive that information.</li>
+                        <li>Attempts (either failed or successful) to gain unauthorised access to data or information storage or a computer system.</li>
+                        <li>Changes to information or data or system hardware, firmware, or software characteristics without the NEU's knowledge, instruction, or consent.</li>
+                        <li>Unwanted disruption or denial of service to a system.</li>
+                        <li>The unauthorised use of a system for the processing or storage of data by any person.</li>
+                    </ul>
+                    
+                    <p class="indent">3.12. “Incident Report” refers to a document that provides a detailed account of a suspected security incident which could be a basis for initial assessment of the incident.</p>
+                    <p class="indent">3.13. “Risk” refers to the potential of an incident to result in harm or danger to a Data Subject or organization.</p>
+                    <p class="indent">3.14. “Vulnerability” refers to a weakness of a data processing system that makes it susceptible to threats and other attacks.</p>
+                    <p class="indent">3.15. “Threat” refers to a potential cause of an unwanted incident, which may result in harm or danger to a Data Subject, system, or organization.</p>
+                    <p class="indent">3.16. “DPA" refers to Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012.</p>
+                    <p class="indent">3.17. “IRR" refers to the Implementing Rules and Regulations of Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012.</p>
+                    <p class="indent">3.18. “NPC” refers to the National Privacy Commission of the Philippines as created by the Data Privacy Act of 2012.</p>
+
+                    <h3 class="section-heading">DATA GOVERNANCE</h3>
+                    <p>In order to implement the proper security measures for the data processing systems of the University, a corresponding inventory and data classification shall be done by each department to be led by the assigned COP per department. A corresponding Records of Processing System Form shall be distributed and filled out by each department and submitted to the Data Protection Officer (DPO) and the Security Incident Response Team (SIRT) to assess the necessity of suitable data privacy policies and procedures.</p>
+                    <p>The DPO and SIRT then will recommend the proper security measures to be implemented to secure personal and sensitive personal information collected or processed.</p>
+
+                    <h3 class="section-heading">GENERAL GUIDELINES FOR COMPUTER USE</h3>
+                    <p>In line with our effort to ensure the integrity of our computer facilities, please be reminded of the following guidelines for proper use of computers and internet connections:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Only approved work-related or education-related software will be installed in the University’s computer units (ex. Word, Excel, and Students Record System (SRS) application and the like); non-work-related or non-education-related software will be uninstalled. Should there be a need to install additional software in the computer units, the same shall be done with clearance and assistance from the Computer Services Department (CSD).</li>
+                        <li>It is prohibited to make unauthorized system changes, plugging unknown devices, and disabling security features of the computer units or the University’s data processing systems.</li>
+                        <li>Those with internet access should only use the same for legitimate and/or official purposes. The following are prohibited:
+                            <ul style="list-style-type: circle; padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+                                <li>Downloading, watching, or streaming videos, music videos, and similar materials unless authorized by the instructor or part of the study.</li>
+                                <li>Downloading and/or playing video games (online/offline).</li>
+                                <li>Engaging in online games or gambling, online marketing, cryptocurrency mining or trading.</li>
+                                <li>Visiting malicious sites like pornographic and gambling sites.</li>
+                                <li>Use of VPN and/or unauthorized (wifi) routers or switches and other network devices.</li>
+                                <li>Use of the University’s facilities and services for other illegitimate purposes.</li>
+                            </ul>
+                        </li>
+                        <li>The playing of computer games is strictly prohibited.</li>
+                        <li>Use of computer units shall only be during the scheduled class except those in the library and other services that require access anytime provided there is approval of the Head of the Department concerned.</li>
+                        <li>Always keep your computer clean and orderly.</li>
+                        <li>Eating and drinking near the computer units is not allowed (even candies, juices, and the like). Food crumbs and liquid spills might cause damage to the computer units.</li>
+                        <li>Do not let small objects such as staple wires, hair pins, paper clips, and the like, fall into the printer or keyboard.</li>
+                        <li>Avoid using bond paper with staple wire in the printer for this will damage the print head or the printer itself.</li>
+                        <li>Report to the CSD office any case of system trouble. Do not attempt to troubleshoot or fix the computer.</li>
+                        <li>Before leaving the office or room, check if the computer unit is properly shut down.</li>
+                        <li>The concerned employee or department shall be responsible for the assigned computer equipment and peripherals and shall be liable for any damage sustained by the equipment because of misuse.</li>
+                        <li>Employees shall lock their assigned computers when not in use or when leaving computers unattended for any length of time. This shall be done despite the configuration of the computer to automatically lock after a specified minutes of idle time.</li>
+                    </ul>
+
+                    <h3 class="section-heading">COMPUTER LABORATORY RULES AND REGULATIONS</h3>
+                    <p>In using the University’s Laboratory Rooms and equipment, the Teachers/Instructors are required to implement the following:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 15px;">
+                        <li>Implement the Computer Laboratory Rules and Regulations in their classes.</li>
+                        <li>Prepare a seating plan and assign each student to a particular workstation for the entire term.</li>
+                        <li>The laboratory class is a faculty-supervised activity. Do not leave the class to avoid any untoward incident such as damage to or loss of property and unauthorized activities by students.</li>
+                        <li>Use the projector wisely. Turn off the projector when not in use.</li>
+                        <li>Do not leave personal belongings or class materials in the computer laboratory.</li>
+                        <li>Do not stay in the laboratory if you have no laboratory session. If necessary, you may use the computers in the CSD Office.</li>
+                        <li>Upon leaving the laboratory, turn off the lights and air-conditioning unit. Lock the doors unless the instructor of the next class is already present.</li>
+                        <li>Be the last one to leave the laboratory. Before leaving the laboratory, ensure that all computer units are logged off/shut down properly, the projector is turned off, whiteboards are clean, chairs are arranged properly, and trash is put in the trash can.</li>
+                    </ul>
+                    
+                    <p>For the students, guidelines for the use of the computer laboratory are as follows:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Only students who are officially enrolled in the class shall be allowed inside the laboratory.</li>
+                        <li>Do not enter the computer laboratory room when the instructor is not yet around.</li>
+                        <li>Wear the prescribed uniform including ID while inside the laboratory.</li>
+                        <li>Bags and other things must be placed in the bag cabinet before proceeding to the assigned computer unit.</li>
+                        <li>Keep the facilities clean and orderly.</li>
+                        <li>Do not bring food or drinks in the laboratory as they may damage the equipment.</li>
+                        <li>Observe silence inside the laboratory.</li>
+                        <li>Do not use your mobile phone while inside the laboratory. Switch it off or put it in silent mode.</li>
+                        <li>Use only the computer unit assigned to you by the instructor.</li>
+                        <li>Use computers for assigned activities only. Do NOT play computer games or chat online.</li>
+                        <li>Do not use someone else’s username and password or allow others to use yours.</li>
+                        <li>Do not alter the configuration of the operating system or desktop.</li>
+                        <li>Save your projects and activities on the file server. Files saved onto the local hard disk may be deleted.</li>
+                        <li>Secure permission from the instructor if you are going to use the printer.</li>
+                        <li>Report to the instructor and/or laboratory technician any computer trouble. Do not attempt to fix the computer.</li>
+                        <li>Once proven, any damage done by the student on the facility in any manner will be charged to him accordingly.</li>
+                        <li>Optical drives and USB ports are disabled for security reasons. Ask the assistance of the instructor/laboratory technician if you need to use them.</li>
+                        <li>Log off and shut down the computer at the end of the laboratory session.</li>
+                        <li>Arrange the chairs before leaving the computer room and put the trash in the trash can.</li>
+                    </ul>
+
+                    <h3 class="section-heading">COMPUTER LABORATORY RULES AND REGULATIONS</h3>
+                    <p>The following shall be observed in accessing personal information and sensitive personal information by employee or department personnel:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>A department employee shall only be granted access to personal information necessary to his/her official functions or based on the need to know policy.</li>
+                        <li>Access of employees or personnel from other departments shall be granted access to personal and sensitive personal information only upon execution of a Non-Disclosure Agreement and approval of a security clearance from the assigned approving authority. A security clearance form is available in each department for this purpose.</li>
+                        <li>The purpose of access, mode of access, and the period of validity or duration of access shall be indicated in the security clearance form.</li>
+                        <li>All documents whether electronic or physical copy for transfer shall be subject to the access and disclosure policies and procedures of the University. A letter or transmittal form shall be prepared indicating the specific documents for transmittal.</li>
+                        <li>Employees shall only use the institutional email accounts in the transfer of information. As such, the CSD shall submit inventory of user access and access level control of the employees of the University.</li>
+                        <li>All mail for transit through postal office, liaison officer or forwarding services are properly sealed in an envelope and, if necessary, placed in an enclosed mail bag. The liaison officer shall also sign a Non-Disclosure Agreement and shall be informed of the Data Privacy policies, procedures and penalties for security breaches.</li>
+                        <li>Transfer of personal information and sensitive personal information to external parties shall be governed by a Data Sharing Agreement. As such, any project that involves processing of personal and sensitive information shall be informed to the SIRT and DPO to make the necessary assessment and recommendation if there is a need to execute a Data Sharing Agreement.</li>
+                        <li>Any form, whether physical or electronic, where there is a processing of personal and sensitive information involved shall be checked and cleared by the SIRT and DPO to ensure compliance with the data protection policies of the University.</li>
+                        <li>Transmittal of documents through facsimile technology is discouraged. For official communications, especially consisting of personal and sensitive personal information, the usage of institutional email is recommended.</li>
+                        <li>Access, reproduction, printing of documents or files, sharing of information, reuse of documents, deletion or shredding of documents shall follow the information security policy of each department. Reuse of documents with personal or sensitive personal information shall be prohibited. Deletion and shredding of documents shall be monitored and approved by the Head of the Department.</li>
+                        <li>Bringing homework-related documents that contain personal and sensitive personal information is prohibited unless authorized by the University.</li>
+                        <li>Encoding of grades shall be done only by the assigned employee, e.g. teachers or professors, unless with permission and approval by the department head.</li>
+                        <li>All types of maintenance works applicable to the department by third parties or employees not belonging to the department concerned shall be done through proper supervision or monitoring of the COP and/or Department Head. If necessary, proof of job order or authority to conduct said maintenance shall be required.</li>
+                        <li>Taking pictures of documents with personal and sensitive information shall be considered as processing or accessing of information. As such it is prohibited to capture copies of documents unless there is prior approval by the University.</li>
+                        <li>All inquiries involving personal and sensitive information shall be endorsed and/or with prior approval of the proper authority or processor of said information before the release of such information. Viewing and verbal giving of personal and sensitive information shall also be done by the authorized employee and with the necessary approval according to the data privacy policies of the University.</li>
+                    </ul>
+
+                    <h3 class="section-heading">CLEAN DESK POLICY</h3>
+                    <p>Employees shall clear their desks of all papers when they step away from their workspace e.g. taking a break, before going home at the end of the day.</p>
+                    <p>This is to protect personal information and sensitive personal information against inappropriate access, disclosure, damage, or loss.</p>
+
+                    <h3 class="section-heading">STORAGE AND LOCATION</h3>
+                    <p>All personal information and sensitive personal information being processed by the Department shall be stored in secured, locked, and cleaned designated data rooms, filing cabinets, or labelled filing boxes inside a storage area.</p>
+                    <p>Each department shall implement an effective filing system, make an inventory of files, technology resources, facilities or equipment used, and access control management. Strict compliance on limitations of access to personal and sensitive personal information shall be enforced. Persons with access to keys of filing cabinets, storage areas, remote or online access to database, or access to I.T. facilities or equipment must be identified and controlled.</p>
+                    <p>Each department shall be responsible for checking that all physical and electronic records are secured, tracked, and/or monitored e.g. locked, protected by passwords, encrypted and maintained accordingly, and access to files documented. Absent such security, the Compliance Officer for Privacy (COP) shall recommend to: (i) the Head of the Department for approval, implementation, recommendation, or acquisition request; or (ii) the CSD and/or SIRT for implementation of technical security measures.</p>
+                    <p>A signage “Authorized Personnel Only” and “Restricted Area” shall be placed visibly in designated personal information secured storage areas or rooms.</p>
+                    <p>Retention policies involving documents with personal and sensitive personal information shall be according to the department’s recommendation and/or justification and approval by the SIRT, DPO, and University President.</p>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px;">Storage of personal data from NEUVLE and other Data Processing Systems of the University</h4>
+                    <p>All personal data collected during the conduct of an online course should be stored in the NEUVLE or Google Drive of the institutional email unless otherwise allowed by the University. This is to stay within the official work environment of the concerned institution. Storing of personal data collected as part of the conduct of a class in a personal account or device should be avoided or at least kept to a minimum in order to minimize the risk of unauthorized use or access. Unless some other lawful basis for their continued retention exists, personal data should be disposed of securely when the declared purpose for its collection and processing is no longer valid.</p>
+
+                    <h3 class="section-heading">UNIVERSITY SERVICE ACCOUNTS</h3>
+                    <p>The University has several data processing systems or databases to provide services to the faculty and students.</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 15px;">
+                        <li>NEUVLE: https:neuvle.neu.edu.ph</li>
+                        <li>NEU Automate: https://automate.neu.edu.ph</li>
+                        <li>NEU Website: https://neu.edu.ph, and</li>
+                        <li>Google Suite (Institutional email): ____@neu.edu.ph</li>
+                    </ul>
+                    
+                    <p>The following shall be observed in using said services:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 15px;">
+                        <li>The systems of the University can only be used by the employees, faculty, and students at the University.</li>
+                        <li>A corresponding consent form shall be signed by the employees, faculty, and students for the collection and processing of their personal information necessary to provide the services of the University.</li>
+                        <li>Instructions as to how to register and access said systems can be done through the CSD. Other concerns can be sent to:</li>
+                    </ul>
+                    
+                    <div class="indent" style="margin-bottom: 15px;">
+                        <p style="margin-bottom: 0;"><strong>Computer Services Department (CSD)</strong></p>
+                        <p style="margin-bottom: 0;">Email Address: <a href="mailto:computerservices@neu.edu.ph" style="color: inherit; text-decoration: none;">computerservices@neu.edu.ph</a></p>
+                        <p style="margin-bottom: 0;">Telephone No./Mobile No.: 8981-4221</p>
+                        <p style="margin-bottom: 0;">Helpdesk Online: 8981-4221</p>
+                        <p>Schedule of Helpdesk Online: Monday to Friday, from 8:00AM to 4:30PM</p>
+                    </div>
+
+                    <p>All academic and administrative departments shall establish their own virtual offices via neuvle.neu.edu.ph to cater to stakeholders where there will be staff on hand to answer various queries. The CSD is assigned to oversee the creation of such virtual offices. A corresponding Telegram Group Chats/Channels will also be created, through the Ministrong Tagasubaybay, which can be used to attend to the student or stakeholder grievances.</p>
+
+                    <h3 class="section-heading">NEU VIRTUAL LEARNING ENVIRONMENT (NEUVLE) & OTHER DATA PROCESSING SYSTEMS OF THE UNIVERSITY</h3>
+                    <p>The school-student relationship is contractual in nature and the contract between the school and the student is imbued with public interest. The NPC refers to this contract between the school and the student as the “educational framework,” which encompasses all activities and operations the school may perform in line with the students’s education. Any processing of personal information to fulfill the obligations of parties within the educational framework is permissible.</p>
+                    <p>Thus, the recording of online classes, and any use, storage, or any kind of processing related thereto is permissible processing within the educational framework. However, the employees, especially the teachers or professors, shall adhere to the following guidelines:</p>
+                    
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>An announcement or posting that involves personal data (e.g. grades, results of assignments, etc.) should be made in a manner that only makes it viewable by its intended recipient/s.</li>
+                        <li>Downloading of personal data stored in the NEUVLE should be kept to a minimum and/or limited to that which is necessary for online learning. Any downloaded data shall be retained only until there is a legitimate need for such offline copy.</li>
+                        <li>Submissions of school-related activities, e.g. assignments, projects, etc., shall be made within the NEUVLE, institutional email accounts, and other platforms authorized or permitted by the University, e.g. permitted chat groups. Submissions via social media platforms are discouraged since these platforms were never designed for such a purpose.</li>
+                        <li>Exercise caution when integrating applications, tools, and other services into the NEUVLE. They may introduce vulnerabilities to an otherwise secure system. A Privacy Impact Assessment may be undertaken by a multidisciplinary team before formalizing any planned integration. The team shall review key areas such as security, data protection, compatibility, and administration.</li>
+                    </ul>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-bottom: 10px;">Publication of information or files via other means or platforms</h4>
+                    <p>Personal Data, including the files or records that contain them, stored or uploaded in the NEUVLE and other Data Processing Systems of the University is covered by legal (e.g. data privacy policies, intellectual property policies, etc.) and technical requirements of the University. As such, it is prohibited to publicly disseminate, repost, or reshare personal data and any of the contents in the NEUVLE and other data processing systems of the University without prior approval from the University.</p>
+
+                    <h3 class="section-heading">USE OF THUMB DRIVES OR USB DRIVES</h3>
+                    <p>Optical drives and USB ports of the University’s Computer Units are disabled for security reasons. Computers with optical drives and USB ports as well as authorized employees or students to use the same are with prior approval of the University and included in the inventory and monitoring of the CSD. Such inventory shall also be submitted to the office of SIRT.</p>
+                    
+                    <h3>MESSAGES AND COMMUNICATIONS</h3>
+                    <p>As part of the security of official communications of the University’s employees, the following privacy and confidentiality notice shall be indicated at the bottom of the mail or email:</p>
+                    <p><strong><i>All information contained in this communication, including any and all attachments, manually or electronically transmitted is strictly confidential and used for privileged purposes including, but not limited to, official-academic purposes or work-product privilege. Unauthorized disclosure may result in prosecution, including, but not limited to, criminal and civil actions against the offender. If you are not the intended recipient of this letter or email, do not read, copy, use, forward, or disclose any of its contents to others. If you have received this letter or email in error, please notify the sender by replying to this letter or email and then delete it from your system:</i></strong></p>
+                    <p><strong>  New Era University<br>  © Copyright 2026. All Rights Reserved.</strong></p>
+                    <p>In communicating with fellow employees or students, the messaging application within the NEUVLE or official telegram accounts or groups shall be utilized.</p>
+                    
+                    <h3 class="section-heading">PASSWORDS, EMAIL, SOCIAL MEDIA, AND WEB BROWSING POLICY</h3>
+
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 20px; margin-bottom: 10px;">Password policy</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Do not use the same password across multiple accounts.</li>
+                        <li>Use hard-to-guess strong passwords or paraphrases.</li>
+                        <li>Passwords should not be selected based on personal information that is easy to obtain, such as names or date of birth.</li>
+                        <li>Alphanumeric and special characters should be used in the password.</li>
+                        <li>Use multi-factor authentication, if available, such as time-based one-time PINs sent via SMS, or generated by software-based authenticators, and hardware-based authenticators like physical keys.</li>
+                        <li>Username and password are assigned per individual user to maintain accountability. Thus, the sharing of accounts and access to such accounts is prohibited.</li>
+                        <li>Do not display passwords on the screen when being entered.</li>
+                        <li>Do not display usernames and/or passwords in any visible areas or storage where anyone can access them. e.g. shared computers, messaging chats with multiple users, etc.</li>
+                        <li>Store and transmit passwords in protected form.</li>
+                        <li>Users must change their passwords immediately if the confidentiality of their passwords is compromised.</li>
+                    </ul>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px;">Emails, Social Media, and Web Browsing Policy</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Institutional emails and web browsing shall only be used for official academic or work-related tasks. The University has a right to suspend, deactivate, or remove access and use of said email and accounts anytime, including but not limited to, upon graduation, transfer to other schools, the student is no longer enrolled with the University, employee's end of the contractual relationship with the University, and/or as a disciplinary measure.</li>
+                        <li>The students, faculty, employees acknowledge that these institutional email and other university-provided accounts are owned by the University.</li>
+                        <li>Use of email and browsers for offensive, disruptive, or discriminative acts, for visiting malicious sites like pornographic and gambling sites, and for other illegal purposes is strictly prohibited.</li>
+                        <li>Sharing of official accounts and access to the University's facilities is strictly prohibited.</li>
+                        <li>An <strong>email signature</strong> with the following format is highly recommended:
+                            <ul style="list-style-type: circle; padding-left: 20px; margin-top: 10px;">
+                                <li>Name</li>
+                                <li>Designation</li>
+                                <li>Academic Unit/Administrative Office</li>
+                                <li>New Era University</li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                            <li>Social media content, website advertisements, and emails with links and attachments coming from external sources or through email not using the institutional email are the easiest entry points to perpetuate malicious attacks. As a precautionary measure, please observe the following steps to fully protect you information:
+                                <ul style="list-style-type: circle; padding-left: 20px; margin-top: 10px;">
+                                    <li>Regularly check your accounts for suspicious transactions.</li>
+                                    <li>Be very cautious about providing personal information which will require you to click on links or download attachments contained in emails, SMS, or private messages. Take time to verify the source of the information.</li>
+                                </ul>
+                            </li>
+                            <li>Posting or sharing of personal data (e.g. photos, videos, etc.) social media must always have a legitimate purpose. Assessment as to the necessity of data subject consent must be made before such posting or sharing.</li>
+                            <li>Posting of photo and/or video of students on the teacher or professor's personal social media account is prohibited unless with prior authorization or consent by the student or parents/guardian (if minor). The Photo and/or Video Release Form by the University is exclusively for giving consent and authorization to the University.</li>
+                            <li>Personal data collected by personnel in their official capacity and/or during an official activity must not be used for personal purposes or reasons. On the other hand, if personnel have collected personal data in their personal capacity and later on decided to use it for work-related purposes, consent from the data subject must be acquired following the principles of fairness and transparency. Collection of personal data, if used for official purposes, shall be with prior approval and according to the data privacy policy of the University.</li>
+                        </ul>
+                    <h3 class="section-heading">PHOTOS AND VIDEOS</h3>
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 20px; margin-bottom: 10px;">Photo and/or Video Release Form</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>A corresponding Photo and/or Video Release Form shall be signed by the students upon enrollment to be used in and/or for any lawful promotional materials including, but not limited to, newsletters, flyers, posters, brochures, advertisements, fundraising letters, annual reports, press kits, and submissions to journalists, websites, social networking sites, and other print and digital communications.</li>
+                    </ul>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 25px; margin-bottom: 10px;">Notices and signs</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>For NEU sponsored activities open to the public notices or posted signs should be placed at the entrances and throughout the premises clearly and conspicuously.</li>
+                        <li>For events hosted by third-party organizations using NEU property, any photography, video recordings, livestreaming, and/or other documentation done by the third-party event organizers should have a corresponding crowd notice for filming and recording, separate from the NEU notices and signs, and be provided by the third-party organizations.</li>
+                    </ul>
+                    
+                    <h3 class="section-heading">SOFTWARE</h3>
+                    <p>The installation of software is the responsibility of the Computer Services Department. The downloading and installation of pirated software are strictly prohibited. If there is a necessity for a specific software for official use or functions, the Head of the Department shall make the proper request and/or recommendation for the acquisition of such software. video recordings, livestreaming, and/or other documentation done by the third-party event organizers should have a corresponding crowd notice for filming and recording, separate from the NEU notices and signs, and be provided by the third-party organizations.</p>
+                    
+                    <h3 class="section-heading">PORTABLE MEDIA</h3>
+                    <p>Optical drives and USB ports are disabled for security reasons. Ask for the assistance of the instructor, laboratory technician, and/or the Computer Services Department if necessary.</p>
+                    <p>Student activities should be saved on the file server. Files saved onto the local hard disk may be deleted. Saving of official files created or used by employees shall follow the policy of each department.</p>
+                    
+                    <h3 class="section-heading">BACKUP POLICY</h3>
+                    <p>In the event of a data breach and incident, the Security Incident Response Team (SIRT) and Data Protection Officer (DPO) shall be notified. Authorized personnel of the Department, as instructed by the SIRT, or the SIRT shall make the necessary back-up and recovery to minimize damage and loss of data.</p>
+                    
+                    <h3 class="section-heading">SECURITY INCIDENT MANAGEMENT POLICY</h3>
+                    <p>The Security Incident Management Policy of the New Era University is published through the official data processing systems of the University as well as on the University’s website. This policy provides guidance, procedures, and actions to be taken in case of security or personal breach involving any data processing system of the University and/or personal data under its control and custody.</p>
+                    
+                    <h3 class="section-heading">WIRELESS POLICY AND NETWORK SECURITY POLICY</h3>
+                    <p>The Use of public facilities such as internet cafes and free public Wi-Fi facilities in encoding personal and sensitive personal information is prohibited.</p>
+                    <p>In order to reduce exposure to malware and other viruses, employees shall utilize the internet primarily for official purposes and not for personal transactions. Downloading pirated software, watching, or streaming videos, music videos, and similar materials are prohibited unless authorized or required as part of the curriculum or study.</p>
+                    <p>Employees and students, as approved by the Computer Services Department, shall be authorized to access or use the internet connection of the University. Unauthorized individuals who utilize the internet connection of the University will be blocked and/or dealt with accordingly.</p>
+                    
+                    <h3 class="section-heading">ENCRYPTION POLICY</h3>
+                    <p>As far as practicable, the University shall adopt the recommended encryption standard - the Advanced Encryption Standard with a key size of 256 (AES-256) of the National Privacy Commission for all digitally processed data consisting of personal and sensitive personal information, whether at rest or in transit.</p>
+                    
+                    <h3 class="section-heading">FIREWALLS, ANTIVIRUS, INTRUSION, DETECTION SYSTEM, OS PATCHES AND PENETRATION TESTING</h3>
+                    <p>Inventory of authorized and unauthorized devices, installation of antivirus, firewalls, intrusion detection system, and implementation of OS Patches and Penetration Testing shall be the responsibility of the Computer Services Department and the Security Incident Response Team.</p>
+                    
+                    <h3 class="section-heading">VENDOR MANAGEMENT</h3>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 20px; margin-bottom: 10px;">Third-party Risk Assessment</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Before entering into any contractual agreement, all third-party vendors and service providers will undergo a comprehensive risk assessment. They are required to demonstrate compliance with industry-standard security practices and adhere to the university's specific security requirements. Additionally, vendor relationships will undergo periodic reviews to ensure ongoing compliance with security standards and performance expectations.</li>
+                    </ul>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 20px; margin-bottom: 10px;">Contractual Obligations</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Contracts with vendors will include specific security clauses outlining data protection obligations, incident reporting requirements, and liability provisions. Vendors will be contractually obligated to cooperate with security audits and provide evidence of compliance with contractual obligations and security standards.</li>
+                    </ul>
+                    
+                    <h4 style="color: #333; font-size: 1.05rem; font-weight: 600; margin-top: 20px; margin-bottom: 10px;">Service Level Agreements (SLAs)</h4>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>SLAs will be established with vendors to define service expectations, performance metrics, and remedies for service failures or disruptions. These SLAs will be reviewed and updated periodically to reflect changes in business requirements, regulatory landscape, and service performance.</li>
+                    </ul>
+                    
+                    <h3 class="section-heading">POLICY GOVERNANCE</h3>
+                    <p>The following table identifies who within the University is Accountable, Responsible, Informed or Consulted with regards to this policy. The following definitions apply:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Responsible – the person(s) responsible for developing and implementing the policy.</li>
+                        <li>Accountable – the person who has ultimate accountability and authority for the policy.</li>
+                        <li>Consulted – the person(s) or groups to be consulted prior to final policy implementation or amendment.</li>
+                        <li>Informed – the person(s) or groups to be informed after policy implementation or amendment.</li>
+                    </ul>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 0.95rem; color: #444;">
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600; width: 30%;">Responsible</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">University President</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Accountable</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">Data Protection Officer and the Head of the SIRT</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Consulted</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">
+                                Board of Trustees<br>
+                                University President<br>
+                                VP Administration<br>
+                                University Secretary<br>
+                                Corporate Secretary<br>
+                                Legal Department<br>
+                                Human Resources Department<br>
+                                Security Incident Response Team<br>
+                                Computer Services Department
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Informed</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">
+                                All Academic and Administrative Officials<br>
+                                All Faculty and Staff<br>
+                                All Student Organizations<br>
+                                All Students (Grade 7 above)<br>
+                                All Parents/Guardians
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <h3 class="section-heading">PENALTIES</h3>
+                    <p>If any user is found to have breached this policy, they may be subject to the University's disciplinary procedure. If a criminal offence is considered to have been committed further action may be taken to assist in the prosecution of the perpetrators, all participants, and accomplices.</p>
+                    
+                    <h3 class="section-heading">REVIEW AND REVISION</h3>
+                    <p>This policy, and all related appendices, will be reviewed as it is deemed appropriate, but no less frequently than every 12 months. Policy review will be undertaken by the Data Protection Officer and the head of the SIRT.</p>
+                    
+                    <h3 class="section-heading">EFFECTIVITY</h3>
+                    <p>Upon the approval of the Board of Trustees, this Policy and any subsequent amendments shall take effect within fifteen (15) calendar days after it has been posted in the University's website.</p>
+                </div>
+            </div>
+            
+            <div id="incident-management" class="content-section">
+                <h2 class="content-title">SECURITY INCIDENT MANAGEMENT POLICY</h2>
+                <div class="policy-text">
+                    <h3 class="section-heading">SECURITY INCIDENT MANAGEMENT POLICY</h3>
+                    <p>This policy provides guidance, procedures, and actions to be taken in case of security or personal breach involving any data processing system of the University and/or personal data under its control and custody.</p>
+                    
+                    <h3 class="section-heading">OBJECTIVE</h3>
+                    <p>This policy is promulgated to:</p>
+                    
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Ensure that the University, its offices, personnel, and students react appropriately to any actual or suspected security incidents relating to the data processing systems and personal data within the custody of the University.</li>
+                        <li>Establish a data breach response team and define its roles and responsibilities.</li>
+                        <li>Implement security measures to prevent or minimize the occurrence of a personal data breach and assure the timely discovery of a security incident.</li>
+                        <li>Establish an incident response procedure to ensure the availability, integrity, and confidentiality of the personal data being processed through the University’s data processing system.</li>
+                        <li>Establish procedures for mitigating possible harm and negative consequences in the event of data breach.</li>
+                    </ul>
+                    
+                    <h3 class="section-heading">SCOPE</h3>
+                    <p>For the purpose of this policy, the following terms are defined, as follows:</p>
+                    <p>3.1. “Personal Data” refers to personal information, sensitive personal information, and privileged information as defined by the Data Privacy Act of 2012;</p>
+                    <p>3.2. “Sensitive Personal Information” refers to personal information:</p>
+                        <p class="indent">a. About an individual’s race, ethnic origin, marital status, age, color, and religious, philosophical or political affiliations;</p>
+                        <p class="indent">b. About an individual’s health, education, genetic or sexual life of a person, or to any proceeding for any offense committed or alleged to have been committed by such person, the disposal of such proceedings, or the sentence of any court in such proceedings;</p>
+                        <p class="indent">c. Issued by government agencies peculiar to an individual which includes, but not limited to, social security numbers, previous or current health records, licenses or its denials, suspension or revocation, and tax returns, and</p>
+                        <p class="indent">d. Specifically established by an executive order or an act of Congress to be kept classified</p>
+                        
+                    <p>3.3. “Data Processing System” refers to the structure and procedure by which personal data is collected and processed in an information and communications system, or any other relevant filing system. It includes the purpose and intended output of the processing (National Privacy Commission, op.cit.)</p>
+                    <p>3.4. “Personal Data Breach” refers to a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, personal data transmitted, stored, or otherwise processed. A personal data breach may be in the nature of:</p>
+                    <p class="indent">a. An availability breach resulting from loss, accidental or unlawful destruction of personal data;</p>
+                    <p class="indent">b. Integrity breach resulting from alteration of personal data; and/or</p>
+                    <p class="indent">c. A confidentiality breach resulting from the unauthorized disclosure of or access to personal data.</p>
+                    <p>3.5. “Data Processor” refers to the NEU personnel who process Personal Data pertaining to a Data Subject;</p>
+                    <p>3.6. “University” refers to New Era University and all its branches.</p>
+                    <p>3.7. “Data Subject” refers to an individual whose personal data is processed.</p>
+                    <p>3.8. “Personnel” refers to all members of the faculty, also called as the academic personnel, both to the teaching and non-teaching personnel, working in the New Era University Main Campus in New Era, Quezon City and in its branches in Lipa City, Batangas; City of San Fernando, Pampanga; General Santos City, South Cotabato; and Pinugay, Baras, Rizal.</p>
+                    <p>3.9. “Security Incident Response Team (SIRT)” refers to the personnel that would be the first responders to any and all data breach incidents. The team is also tasked to provide regular updates to the affected University personnel as to the ongoing measures to address the security incident.</p>
+                    <p>3.10. “Compliance Officer for Privacy (COP)” refers to the personnel assigned to each department of the University to oversee compliance of data privacy within the department.</p>
+                    <p>3.11. “Security Incident” refers to an event or occurrence that affects or tends to affect data protection, or may compromise the availability, integrity, and confidentiality of personal data. It shall include incidents that would result to a personal data breach, if not for safeguards that have been put in place. The term “Security Incident” includes “Personal Data Breach.”</p>
+                    <p>A Security Incident includes, but is not restricted to, the following:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>The loss or theft of data or information.</li>
+                        <li>The transfer of data or information to those who are not entitled to receive that information.</li>
+                        <li>Attempts (either failed or successful) to gain unauthorised access to data or information storage or a computer system.</li>
+                        <li>Changes to information or data or system hardware, firmware, or software characteristics without the NEU's knowledge, instruction, or consent.</li>
+                        <li>Unwanted disruption or denial of service to a system.</li>
+                        <li>The unauthorised use of a system for the processing or storage of data by any person.</li>
+                    </ul>
+                    
+                    <p>3.12. “Incident Report” refers to a document that provides a detailed account of a suspected security incident which could be a basis for initial assessment of the incident.</p>
+                    <p>3.13. “Risk” refers to the potential of an incident to result in harm or danger to a Data Subject or organization.</p>
+                    <p>3.14. “Vulnerability” refers to a weakness of a data processing system that makes it susceptible to threats and other attacks.</p>
+                    <p>3.15. “Threat” refers to a potential cause of an unwanted incident, which may result in harm or danger to a Data Subject, system, or organization.</p>
+                    <p>3.16. “DPA refers to Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012.</p>
+                    <p>3.17. “IRR refers to the Implementing Rules and Regulations of Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012.</p>
+                    <p>3.18. “NPC” refers to the National Privacy Commission of the Philippines as created by the Data Privacy Act of 2012.</p>
+                    
+                    <h3 class="section-heading">SECURITY INCIDENT RESPONSE TEAM (SIRT) AND COMPLIANCE OFFICER FOR PRIVACY (COP)</h3>
+                    <p>The NEU Security Incident Response Team (SIRT) shall be responsible for investigation of a suspected security incident and reporting to the University President and Board of Trustees.</p>
+                    <p>The COP of each department shall serve as the main point of contact for all reports of a suspected security incident coming from their assigned department.</p>
+                    
+                    <h3 class="section-heading">COMPOSITION OF SECURITY INCIDENT RESPONSE TEAM (SIRT)</h3>
+                    <p>Headed by the Director of the SIRT and assisted by the Data Protection Officer, the team shall have two (2) other permanent members recommended by the Director of the SIRT and approved by the University President. Where the member of the Team is the data processor involved in a reported incident, the University president will recommend a competent alternative. Additional members shall be appointed as necessity arises and depending on the recommendation of the Director of the SIRT.</p>
+                    
+                    <h3 class="section-heading">DUTIES AND RESPONSIBILITIES</h3>
+                    <p>The following offices and individuals shall perform their respective functions and responsibilities:</p>
+                    
+                    <p>6.1. CSD</p>
+                    <p class="indent">a. Responsible for the daily operation and maintenance of the University’s I.T. facilities.</p>
+                    <p class="indent">b. Responsible for immediately reporting possible security incidents that need further investigation by the SIRT.</p>
+                    <p class="indent">c. Cooperate and allow the SIRT and DPO to regularly check the operations of the CSD to comply with the former’s obligation in monitoring security breaches and vulnerability of computer networks.</p>
+                    <p class="indent">d. Submit inventory of user access and access level control of employees as to the assigned accounts for the use of the data processing system of the University e.g. institutional email, NEU Automate, and existing google forms</p>
+                    <p class="indent">e. Secure necessary logs in maintaining the infrastructure of the University.</p>
+                    
+                    <p>6.2. COP</p>
+                    <p class="indent">a. Responsible for conducting data audits within the department. This should involve identifying:</p>
+                    <p class="indent" style="padding-left: 60px;">i. The categories of personal data processed</p>
+                    <p class="indent" style="padding-left: 60px;">ii. The locations where it is stored e.g. physical filing cabinets, hard disks, and cloud drives.</p>
+                    <p class="indent" style="padding-left: 60px;">iii. Inflows or sources of personal information e.g. google or web forms, physical forms, email, and phone calls.</p>
+                    <p class="indent" style="padding-left: 60px;">iv. Outflows or third parties with whom the personal data is shared e.g. mail carriers, advertisers, cloud storage providers, and third-party online platforms.</p>
+                    <p class="indent">b. Responsible for checking that all physical and electronic records are secured, tracked, and/or monitored.</p>
+                    <p class="indent">c. Records and secures all reports and documents related to suspected security incidents.</p>
+                    <p class="indent">d. Review and recommend, along with the head of the department, information security measures and the acquisition of necessary equipment to implement such information security measures to the University President, SIRT, and/or DPO.</p>
+                    <p class="indent">e. Assist in the implementation of information security measures within the department.</p>
+                    <p class="indent">f. Submit the Incident Report to the SIRT and DPO in accordance with this policy.</p>
+                    
+                    <p>6.3. SIRT</p>
+                    <p class="indent">a. Investigate and assess suspected security incidents in coordination with all concerned units and offices of the University.</p>
+                    <p class="indent">b. Recommend remedial measures to be performed concerning a suspected security incident.</p>
+                    <p class="indent">c. Accomplish a Security Incident Report, as prescribed by the Board of Trustees.</p>
+                    <p class="indent">d. Recommend permanent and additional members of SIRT to the University President.</p>
+                    
+                    <p>6.4. SIRT Head and DPO</p>
+                    <p class="indent">a. Serve as the main point of contact for all reports of a suspected security incident.</p>
+                    <p class="indent">b. Act as custodian of all reports and documents generated or prepared in relation to suspected security incidents. Document all the remedial actions taken.</p>
+                    <p class="indent">c. Review and revise this Policy in accordance with the Philippine Data Privacy Act of 2012 and other laws, guidelines, and standards applicable to the protection of Data Processing Systems and Personal Data.</p>
+                    <p class="indent">d. Report to the University President, recommend and implement approved remedial measures to be performed in relation to a suspected security incident.</p>
+                    <p class="indent">e. Notify the NPC and/or affected data subjects when required by the Data Privacy Act of 2012.</p>
+
+                    <p>6.5. University President</p>
+                    <p class="indent">a. Approve, reject, or otherwise take action on the findings or recommendations of the SIRT and DPO.</p>
+                    <p class="indent">b. Appoint the permanent members of the SIRT.</p>
+                    <p class="indent">c. Appoint the alternate of any permanent member of the SIRT, when necessary.</p>
+                    <p class="indent">d. Approve, reject, or otherwise comment on proposed revisions to this Policy.</p>
+                    <p class="indent">e. Approve identified and authorised staff that should have access to the affected systems during the incident.</p>
+                    
+                    <h3 class="section-heading">PROCEDURE FOR REPORTING SECURITY INCIDENT</h3>
+                    <p>Security incidents as well as events and weaknesses of the data processing system need to be reported at the earliest possible stage as they need to be assessed by the Data Protection Officer and the Head of the SIRT. The Data Protection Officer enables the Security Incident Response Team (SIRT) to identify when a series of events or weaknesses have escalated to become an incident. The SIRT needs to gain as much information as possible from the data subjects or personnel to identify if an incident is occurring.</p>
+                    <p>Examples of the security events, weaknesses, and common forms of Security Incidents have been provided below:</p>
+                    <p>Security events can include:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Uncontrolled system changes.</li>
+                        <li>Access violations – e.g. password sharing.</li>
+                        <li>Breaches of physical security.</li>
+                        <li>Loss of ID badge/s</li>
+                        <li>Missing correspondence</li>
+                        <li>Exposure of Uncollected print-outs</li>
+                        <li>Misplaced or missing media</li>
+                        <li>Loss of mobile phones and portable devices</li>
+                        <li>Systems being hacked or manipulated.</li>
+                        <li>Non-compliance with policies.</li>
+                    </ul>
+                    
+                    <p>Security weaknesses can include:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Inadequate firewall or antivirus protection.</li>
+                        <li>System malfunctions or overloads.</li>
+                        <li>Malfunctions of software applications.</li>
+                        <li>Human errors.</li>
+                    </ul>
+
+                    <p>The most common Security Incidents are listed below. It should be noted that this list is not exhaustive.</p>
+                    
+                    <p><strong>Malicious</strong></p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Giving information to someone who should not have access to it - verbally, in writing, or electronically.</li>
+                        <li>Computer infected by a Virus or other malware.</li>
+                        <li>Sending a sensitive e-mail to 'all staff' by mistake.</li>
+                        <li>Receiving unsolicited mail of an offensive nature.</li>
+                        <li>Receiving unsolicited mail that requires you to enter personal data.</li>
+                        <li>Finding data that has been changed by an unauthorized person.</li>
+                        <li>Receiving and forwarding chain letters – including virus warnings, scam warnings, and other emails that encourage the recipient to forward to others.</li>
+                        <li>Unknown people ask for information that could gain them access to the University data (e.g. a password or details of a third party).</li>
+                    </ul>
+
+                    <p><strong>Misuse</strong></p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Use of unapproved or unlicensed software on the University’s equipment.</li>
+                        <li>Accessing a computer database using someone else's authorization (e.g. someone else's user ID and password).</li>
+                        <li>Writing down your password and leaving it on display / somewhere easy to find.</li>
+                        <li>Printing or copying confidential information and not storing it correctly or confidentially.</li>
+                    </ul>
+
+                    <p><strong>Theft / Loss</strong></p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Theft/loss of a hard copy file.</li>
+                        <li>Theft/loss of any of the University’s computer equipment.</li>
+                    </ul>
+
+                    <p>7.1. Notification or Report to the Data Protection Officer and the Security Incident Response Team (SIRT)</p>
+                    <p class="indent">Security Incident Report shall be submitted or coordinated through:</p>
+                    <p class="indent" style="padding-left: 60px;">• The Data Protection Officer (DPO) and/or</p>
+                    <p class="indent" style="padding-left: 60px;">• Head of the Security Incident Response Team (SIRT)</p>
+                    <p class="indent" style="padding-left: 60px;">• Email addresses: dpo-notification@neu.edu.ph</p>
+                    <p class="indent" style="padding-left: 60px;">• Contact Numbers: 02 8981 4221 local 3859</p>
+
+                    <p class="indent">The following information should be provided:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 80px; margin-bottom: 20px;">
+                        <li>Details of the incident (if known)</li>
+                        <li>Date and Time of Incident</li>
+                        <li>Number of Persons Affected</li>
+                        <li>Name of office processing the information</li>
+                        <li>Contact name and number of the person reporting the incident.</li>
+                        <li>The type of data, information, or equipment involved.</li>
+                        <li>Whether the loss of the data puts any person or other data at risk.</li>
+                        <li>Location of the incident.</li>
+                        <li>Inventory numbers of any equipment affected.</li>
+                        <li>Location of data or equipment affected.</li>
+                    </ul>
+
+                    <p>7.2. The SIRT shall investigate and assess the reported suspected security incidents in coordination with the concerned unit or office.</p>
+
+                    <p>7.3. The SIRT shall inform immediately, or within one (1) hour from the discovery of the security incident, to the University President for appropriate action. A Security Incident Report shall be accomplished within twenty-four (24) hours and submit the same to the University President.</p>
+
+                    <p>7.4. The SIRT shall evaluate the Security Incident Report submitted to them. The Head of the SIRT will determine if additional members or experts are necessary to investigate the reported incident. If deemed necessary, the Head of the SIRT shall recommend the designation of additional members to the University President.</p>
+
+                    <p>7.5. The SIRT shall conduct its investigation based on the Security Incident Report submitted and shall perform the following tasks:</p>
+                    <p class="indent">a. Collate the following information:</p>
+                    <p class="indent" style="padding-left: 60px;">i. The nature and circumstances of the security incident.</p>
+                    <p class="indent" style="padding-left: 60px;">ii. Data processing systems involved.</p>
+                    <p class="indent" style="padding-left: 60px;">iii. Data Processor and other persons responsible or involved, designation and their contact details.</p>
+                    <p class="indent">b. Conduct clarificatory questions to the Data Processor.</p>
+                    <p class="indent">c. Require additional submissions of documents, reports, or information from the Data Processor.</p>
+                    <p class="indent">d. Request for a meeting with the Data Processor and other concerned offices or individuals in the University.</p>
+                    <p class="indent">e. Perform actions to obtain the necessary information related to the reported Security Incident.</p>
+                    <p class="indent">f. Consult with the DPO and Head of the SIRT before performing major actions that may need permission from the University President and/or Board of Trustees.</p>
+                    <p class="indent">g. Complete its investigation within forty-eight (48) hours after the endorsement of the Security incident Report for investigation. Any request for extension of investigation and submission of initial assessment shall be relayed to the University President, DPO, and Head of the SIRT.</p>
+
+                    <p>7.6. The results of the investigation and initial recommendation (SIRT Security Incident Report) shall be signed by all members of the SIRT and submitted to the University President, copy furnished to the DPO.</p>
+
+                    <p>7.7. The University President, DPO and Head of the SIRT shall then make a final recommendation to the Board of Trustees for appropriate approval and action.</p>
+
+                    <p>7.8. All documents submitted related to the Security Incident shall be consolidated and kept by the DPO and Head of the SIRT.</p>
+                    <h3 class="section-heading">SECURITY MEASURES</h3>
+                    <p>8.1. The DPO and Head of the SIRT, with the approval of the University President, will conduct a debriefing session with the COPs, Data Processor and concern individuals to implement remedial or preventive measures. The DPO may also conduct an orientation regarding data privacy and compliance with the Data Privacy Act of 2012.</p>
+
+                    <p>8.2. The DPO and Head of the SIRT may recommend the conduct of Privacy Impact Assessment (PIA) on the data processing system involved in the security incident or the office concern.</p>
+
+                    <p>8.3. The University President shall issue a corresponding memorandum to implement the new security measures as recommended by the DPO and the Head of the SIRT.</p>
+
+                    <p>8.4. The SIRT shall conduct the following:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Regular monitoring for security breaches and vulnerability scanning of computer networks;</li>
+                        <li>Change user and administrative access credentials;</li>
+                        <li>Conduct backup of data as deemed necessary. General or scheduled back-up shall be implemented by CSD;</li>
+                        <li>Shut down or disconnect the affected devices from the internet or intranet;</li>
+                        <li>Conduct inventory and review of access control, equipment and assets, and secure log files as deemed necessary. General inventory shall be done by CSD and reported to the SIRT and DPO;</li>
+                        <li>Restore, repair or rebuild the system or application that was compromised.</li>
+                        <li>Review and approve the Assets Inventory Report conducted by the CSD.</li>
+                    </ul>
+
+                    <p>8.5. The Computer Service Department (CSD) shall remain to be responsible for the daily operation and maintenance of the University’s I.T. facilities. They shall immediately report to the SIRT in case there is a belief or possibility that a security incident might arise and need further investigation by the SIRT. They will cooperate and allow the SIRT and DPO to regularly check the operations of the CSD to comply with the former’s obligation to monitor security breaches and vulnerability of computer networks.</p>
+
+                    <p>8.6. The Acceptable Use Policy of the University, including but not limited to the Information Security Policy, shall govern the use of computing facilities and network infrastructure in the University.</p>
+                    <h3 class="section-heading">CONFIDENTIALITY</h3>
+                    <p>All information related to reported security incidents shall be kept confidential by all concerned Parties. A corresponding Non-Disclosure Agreement prescribed by the DPO shall be explained to the concerned parties and signed by them before they assume their functions under this Policy. Any public pronouncements involving any security incidents must be upon the approval of the DPO, University President, and/or Board of Trustees.</p>
+                    <h3 class="section-heading">DATA BREACH NOTIFICATION OF THE NPC AND DATA SUBJECTS</h3>
+                    <p>The DPO shall assess and recommend whether the Personal Data Breach should be reported to the National Privacy Commission (NPC) as required under the Data Privacy Act of 2012.</p>
+                    
+                    <p>The following shall be reported to NPC:</p>
+                    <p class="indent">a. The personal data involves sensitive personal information or any other information that may be used to enable identity fraud;</p>
+                    <p class="indent">b. Other information includes, but is not limited to, the following:</p>
+                    <p class="indent" style="padding-left: 60px;">i. Data about the financial or economic situation of the data subject;</p>
+                    <p class="indent" style="padding-left: 60px;">ii. Usernames, passwords, and other login data;</p>
+                    <p class="indent" style="padding-left: 60px;">iii. Biometric data;</p>
+                    <p class="indent" style="padding-left: 60px;">iv. Copies of identification documents, licenses, or unique identifiers like Philhealth, SSS, GSIS, TIN number; or</p>
+                    <p class="indent" style="padding-left: 60px;">v. Other similar information, which may be made the basis of decisions concerning the data subject, including the grant of rights or benefits.</p>
+                    <p class="indent">c. There is reason to believe that the information may have been acquired by an unauthorized person; and</p>
+                    <p class="indent">d. The personal information controller believes that the data breach is likely to give rise to a real risk of serious harm to the affected data subject.</p>
+
+                    <p>When there is doubt as to whether notification is necessary, consider factors:</p>
+                    <p class="indent">a. The likelihood of harm or negative consequences on the affected data subjects;</p>
+                    <p class="indent">b. How notification, particularly of the data subjects, could reduce the risks arising from the personal data breach reasonably believed to have occurred; and</p>
+                    <p class="indent">c. If the data involves:</p>
+                    <p class="indent" style="padding-left: 60px;">i. Information that would likely affect national security, public safety, public order, or public health;</p>
+                    <p class="indent" style="padding-left: 60px;">ii. At least one hundred (100) individuals;</p>
+                    <p class="indent" style="padding-left: 60px;">iii. Information required by all applicable laws or rules to be confidential; or</p>
+                    <p class="indent" style="padding-left: 60px;">iv. Personal data of vulnerable groups.</p>
+
+                    <p>Aside from notifying the NPC, the University, through the DPO, SIRT, and University President, shall also notify the affected Data Subjects within <strong>seventy-two (72) hours</strong> upon knowledge of or the reasonable belief by the University that a Personal Data Breach has occurred.</p>
+
+                    
+
+                    <p>Generally, there shall be no delay in notification, except to the extent necessary to determine the following:</p>
+                    <p class="indent">a. The scope of the breach;</p>
+                    <p class="indent">b. To prevent further disclosures; or</p>
+                    <p class="indent">c. To restore reasonable integrity to the information and communications system.</p>
+
+                    <p>Delay is not allowed if the breach involves at least one hundred (100) data subjects, or the disclosure of sensitive, personal information will harm or adversely affect the data subject except when the University is granted additional time by the NPC to comply.</p>
+                    <h3 class="section-heading">LEARNING FROM INFORMATION SECURITY INCIDENTS</h3>
+                    <p>Security Incidents shall be recorded and reviewed to improve the response process of the University. The information collated shall be considered in reviewing and recommending the revision of the University’s Data Privacy Policy.</p>
+                    <h3 class="section-heading">POLICY GOVERNANCE</h3>
+                    <p>The following table identifies who within the University is Accountable, Responsible, Informed or Consulted with regards to this policy. The following definitions apply:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>Responsible – the person(s) responsible for developing and implementing the policy.</li>
+                        <li>Accountable – the person who has ultimate accountability and authority for the policy.</li>
+                        <li>Consulted – the person(s) or groups to be consulted prior to final policy implementation or amendment.</li>
+                        <li>Informed – the person(s) or groups to be informed after policy implementation or amendment.</li>
+                    </ul>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 0.95rem; color: #444;">
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600; width: 30%;">Responsible</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">University President</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Accountable</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">Data Protection Officer and the Head of the SIRT</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Consulted</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">
+                                Board of Trustees<br>
+                                University President<br>
+                                VP Administration<br>
+                                University Secretary<br>
+                                Corporate Secretary<br>
+                                Legal Department<br>
+                                Human Resources Department<br>
+                                Security Incident Response Team<br>
+                                Computer Services Department
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Informed</td>
+                            <td style="border: 1px solid #ccc; padding: 10px;">
+                                All Academic and Administrative Officials<br>
+                                All Faculty and Staff<br>
+                                All Student Organizations<br>
+                                All Students (Grade 7 above)<br>
+                                All Parents/Guardians
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <h3 class="section-heading">PENALTIES</h3>
+                    <p>If any user is found to have breached this policy, they may be subject to the University’s disciplinary procedure. If a criminal offence is considered to have been committed further action may be taken to assist in the prosecution of the perpetrators, all participants, and accomplices.</p>
+                    <h3 class="section-heading">REVIEW AND REVISION</h3>
+                    <p>This policy, and all related appendices, will be reviewed as it is deemed appropriate, but no less frequently than every 12 months.Policy review will be undertaken by the Data Protection Officer and the head of the SIRT.</p>
+                    <h3 class="section-heading">EFFECTIVITY</h3>
+                    <p>Upon the approval of the Board of Trustees, this Policy and any subsequent amendments shall take effect within fifteen (15) calendar days after it has been posted in the University’s website.</p>
+                </div>
+            </div>
+            
+            <div id="ai-policy" class="content-section">
+                <h2 class="content-title">POLICY ON THE USE OF ARTIFICIAL INTELLIGENCE (A.I.)</h2>
+                <div class="policy-text">
+                    <h3 class="section-heading">INTRODUCTION</h3>
+                    <p>As we align with the evolving landscape of education, New Era University recognizes the importance of adapting innovative technologies such as Generative Artificial Intelligence in our academic programs. This guideline outlines the responsible and ethical use of AI in the university, emphasizing our core values of Fortitude, Excellence, and Uprightness, and our commitment to student-centered learning. Furthermore, in line with NEU’s Learning Outcomes, this guideline will provide justifications why AI-generated student outputs are not acceptable in specific contexts. For the purpose of this guideline, Generative AI, Large Language Models, and General AI are defined as such:</p>
+
+                    <p class="indent">A) Generative Artificial Intelligence is a type of AI that generates new content that could be in the form of images, text, music, or even videos based on learned patterns (OpenAI, 2023). It is unable to generate original work as it relies on existing patterns to generate new content that is similar to the original.</p>
+
+                    <p class="indent">B) Large Language Models (LLMs) are a specialized subclass of Generative AI. They excel in text generation capabilities and language tasks such as translation, text completion, and question and answer (Anthropic, 2023). However, the models do not have the capacity to think.</p>
+
+                    <p class="indent">C) General Artificial Intelligence does not exist yet; it is an aspiration to have an AI that can learn, understand, and reason to replicate human thinking (OpenAI, 2023).</p>
+
+                    <p>These definitions are lifted from Claude and ChatGPT, which are both LLMs. Following these definitions, it is clear that LLMs do not have the capacity to demonstrate persuasive communication, intellectual curiosity, critical thinking, creative problem solving, professionalism, and responsible digital citizenship. Therefore, a student submission generated solely through LLMs or Generative AI defeats the purpose of why and how assessment is done in NEU. Because of this, such an output shall be subject to review and potential violations under the university’s Academic Integrity Policy.</p>
+
+                    <p>LLMs and Generative AI, however, are suited to activities that stimulate thinking (i.e., using LLMs or Generative AI to brainstorm ideas, accomplish ungraded formative assessments, generate discussion points, and come up with metacognitive activities such as getting students to reflect on an AI-generated text, cross-referencing information from AI-generated text with peer-reviewed journal articles, etc. ); this is similar to treating LLMs like a normal search engine (e.g., Google, Bing, etc.). Students are encouraged to make use of LLMs and Generative AI as tools to develop persuasive communication, intellectual curiosity, critical thinking, creative problem solving, professionalism, and responsible digital citizenship.</p>
+
+                    <p>This guideline is also based on the idea that original, critical, and creative thinking is the basis of all academic and scholarly work and the high value placed on academic integrity. Generative AI may be used as a tool to help students transform their ideas into their intended outputs, which must then be evaluated and processed by the user before calling the output their own. It may also be used to assist one in articulating their points and getting feedback about their work.</p>
+
+                    <p>Faculty members need to be circumspect about their roles in ensuring that students are able to build and develop basic skills, such as critical thinking and effective communication, which they may not be able to do if they were imprudent in their use of AI.</p>
+                    
+                    <h3 class="section-heading">USE OF GENERATIVE ARTIFICIAL INTELLIGENCE FOR STUDENT ASSESSMENTS AND OUTPUTS</h3>
+                    <p>Use of Generative Artificial Intelligence in Written Works:</p>
+                    
+                    <p class="indent"><strong>Stylistic Enhancements</strong></p>
+                    <p class="indent">GenAI can be used in cases where the students’ writing style may be improved to fit the standards and expectations required in their written output. They may also use GenAI to minimize the typographical errors found in their initial draft.</p>
+                    <p class="indent">E.g., Grammar Correction - When students are asked to write an essay, students may use platforms such as Grammarly or Quillbot to improve and correct their style and grammar.</p>
+
+                    <p class="indent"><strong>Outline/Draft Generation</strong></p>
+                    <p class="indent">GenAI can be used when students need an initial draft or rough outline of their academic outputs. This way, students can have an idea or preview of what they will write. They may also use the AI’s recommended outline to organize their thoughts.</p>
+                    <p class="indent">E.g., Pros and Cons List Generation - In cases where students are tasked to evaluate contrasting viewpoints on a certain topic, they may ask platforms such as Open AI’s ChatGPT or Microsoft’s CoPilot to provide them a Pros and Cons List for each viewpoint, equipping the students with information that may improve their evaluation.</p>
+                    <p class="indent">Outline for an Argumentative Essay - In cases where students are tasked to write an argumentative essay, they may use the said platforms to help them structure the flow of their paper and/or thematize the sections of their paper.</p>
+
+                    <p class="indent"><strong>Summaries</strong></p>
+                    <p class="indent">GenAI can be used when students need summaries for concepts related to their topic or subject. They may use this to either review materials or as additional texts for their outputs.</p>
+                    <p class="indent">E.g., Summarizing marginal notes from a required reading - In cases where students are tasked to provide a brief introduction or background for their paper, from which their arguments and viewpoints will be based on, students may use GenAI to provide them summaries for their topic. The latter can then be evaluated and improved by the students when they add it to their paper.</p>
+
+                    <p class="indent"><strong>Visual Guides</strong></p>
+                    <p class="indent">GenAI can also be used to supplement student outputs with visual guides, such as tables and charts, that present their data in an intuitive and visually appealing way.</p>
+                    <p class="indent">E.g., When students are tasked to create an infographic which contains data from their research, they may use Graphy to present their data using visually appealing tables and charts.</p>
+                    
+                    <h3 class="section-heading">USE OF GENERATIVE ARTIFICIAL INTELLIGENCE IN CREATIVE OUTPUTS</h3>
+                    <p>Draft Generation</p>
+                    <p class="indent">Similar to outlines and initial drafts for written outputs, GenAI can be used to provide students an initial draft for their creative outputs (e.g., poems, stories, drawings, etc.,).</p>
+                    <p class="indent">E.g., When students are tasked to produce creative written works such as poems or short stories, they may use platforms such as ChatGPT or Notion AI for their first draft. Outputs from the platforms may then be improved to suit the standards and expectations of their assessment.</p>
+
+                    <p>Visual Enhancements</p>
+                    <p class="indent">Students may also use GenAI to improve the visual aspects of their creative work insofar as it will be closer to what the students initially envisioned for their output.</p>
+                    <p class="indent">E.g., When students are tasked to create videos, they may use platforms such as Descript or Wondershare to add B-roll footage or additional cut-scenes to make their outputs more visually appealing.</p>
+
+                    <p><stong>Note:</stong> The said applications do not apply in cases where the students’ application of these skills is the intended outcome of the assessment – See Duties and Responsibilities.</p>
+                    
+                    <h3 class="section-heading">DUTIES AND RESPONSIBILITIES IN THE USE OF GENERATIVE ARTIFICIAL INTELLIGENCE FOR STUDENT ASSESSMENTS AND OUTPUTS</h3>
+                    <p>Students who used GenAI should verify all the inputs and resources provided by AI – Students will be held accountable regarding the truthfulness and accuracy of the AI resources they used once they submit their work. Likewise, all information that are not common knowledge should be attributed to their respective authors, whether the information was added by the student or the AI.</p>
+                    
+                    <p>Students who used GenAI should declare all AI platforms and tools they have used in their outputs – Students should list in the references section of their outputs (1) the specific platform/tool they’ve used, and (2) the specific use of the platform/tool.</p>
+                    
+                    <p class="indent">For Theses/Dissertations: Students will list the GenAI tools and their use in the References section of their paper.</p>
+
+                    <p>Students should not use GenAI in outputs where AI’s replication of a specific skill may be mistaken for the students’ performance – In assessments where the measurement of a specific skill is the sole purpose of the assessment and the use of AI will prevent both the facilitator and the student to accurately measure the student’s skill, the use of AI will not be allowed.</p>
+
+                    <p>Examples of these assessments are:</p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li>outputs that require drawing or painting that are meant to assess the students’ artistic skills;</li>
+                        <li>reflection papers that are meant to measure the students’ introspective and speculative abilities;</li>
+                        <li>expository and argumentative essays that are meant to assess the students’ abilities to construct paragraphs and summarize information;</li>
+                        <li>identification tests where the students’ ability to recall information is assessed.</li>
+                    </ul>
+
+                    <p><strong>Note:</strong> The examples provided do not in any way imply that the use of AI in essays is prohibited. Rather, these examples only demonstrate instances where the use of AI will prevent the facilitator and student to adequately measure a specific skill intended to be measured by the assessment.</p>
+                    <h3 class="section-heading">STUDENT USE OF GENERATIVE AI AND LARGE LANGUAGE MODELS (LLMS) TABLE</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 0.95rem; color: #444;">
+                        <thead>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Type of task</td>
+                                <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Example</td>
+                                <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Use of Gen AI/LLMs</td>
+                                <td style="border: 1px solid #ccc; padding: 10px; font-weight: 600;">Recommended platforms</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Stylistic enhancements</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Grammar Correction</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Improve/correct grammar</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Grammarly, Quillbot</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Outline/Draft generation</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Pros and Cons List Generation</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Use as a normal search engine</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">ChatGPT, Claude, CoPilot</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Summaries</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Summarizing your marginal notes from your required reading.</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Use as a normal search engine</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">ChatGPT, Claude, CoPilot</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Visual guides</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Infographic</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Design improvement</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Graphy</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Draft generation for creative output</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Drafting poems, short stories, drawings</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Structuring</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">ChatGPT, Claude, CoPilot</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Visual enhancements</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Video production</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Add B-Roll/additional cut scenes/transitions</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Descript, Wondershare</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Professional course requirement</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Drawing/painting that test students’ artistic skills</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Never</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">N/A</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Introspective/ speculative tasks</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">FLJ reflection, CASE reflection paper</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Never</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">N/A</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Paragraph construction</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Expository/argumentative essay</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Never</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">N/A</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Recall activities</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Departmental exams, final exams, midterm exams</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">Never</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">N/A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            <!--    
+                    <h3 class="section-heading"></h3>
+                    <p></p>
+                    <p class="indent"></p>
+                    <p class="indent" style="padding-left: 60px;"></p>
+                    <ul style="list-style-type: disc; color: #444; font-size: 0.95rem; line-height: 1.6; padding-left: 40px; margin-bottom: 20px;">
+                        <li></li>
+                    </ul>
+                        <li></li>
+                        
+                    <ul>
+                        <li></li>
+                    </ul>
+            -->
+        </main>
+    </section>
+
+    <div class="modal" id="dpoModal" tabindex="-1" aria-labelledby="dpoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dpoModalLabel">Data Privacy Certificate</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/images/webp/ss.webp" alt="DPO NPC" class="img-fluid">
+                    <p class="mt-3"></p>
+                    <a href="https://npcregistration.privacy.gov.ph/certificate/organizationRegistration/66ab0e77ada350a20df871f4" target="_blank">
+                        <button type="button" class="btn btn-primary">View more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/webp/neupng.webp" alt="New Era University Logo" class="footer-logo">
+                    
+                    <ul>
+                        <li>
+                            <img src="assets/images/webp/location.webp" style="margin-right:10px; width:15px;">
+                            <span>#9 Central Avenue, New Era, Quezon City, 1107</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/phone.webp" style="margin-right:10px; width:15px;">
+                            <span>(02) 8981 - 4221</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/mail.webp" style="margin-right:10px; width:15px;">
+                            <span>info@neu.edu.ph</span>
+                        </li>
+                        <li>
+                            <img src="assets/images/webp/web.webp" style="margin-right:10px; width:15px;">
+                            <span>neu.edu.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MAIN</h4>
+                    <ul>
+                        <li><a href="#">Academics</a></li>
+                        <li><a href="#">Admissions</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>USEFUL RESOURCES</h4>
+                    <ul>
+                        <li><a href="#">NEUVLE</a></li>
+                        <li><a href="#">NEU Automate</a></li>
+                        <li><a href="#">Library Resources</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CAMPUSES</h4>
+                    <ul>
+                        <li><a href="#">Quezon City (Main)</a></li>
+                        <li><a href="#">Pampanga</a></li>
+                        <li><a href="#">Lipa</a></li>
+                        <li><a href="#">General Santos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT NEU</h4>
+                    <p style="color: #aaa; font-size: 0.75rem;">New Era University is a private, non-stock, non-profit, non-sectarian institution established in 1975 to provide Quality education anchored on
+Christian Values, with selfless service to Humanity and bringing honor and Glory to God.</p>
+                </div>
+                <div class="footer-col" style="text-align: center;">
+                    <div id="dpoTrigger" style="padding: 10px; border-radius: 5px; display: inline-block; cursor: pointer;">
+                        <img src="assets/images/webp/ss.webp" alt="DPO DPS" style="max-width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 New Era University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/scripts/script.js"></script>
+    <script>
+        // Tab switching logic with URL hashing
+        function switchMainTab(targetId, updateUrl = true) {
+            // Update sidebar active link
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            const targetLink = document.querySelector(`.sidebar-link[data-target="${targetId}"]`);
+            if(targetLink) targetLink.classList.add('active');
+            
+            // Switch main content section
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) {
+                targetSection.style.display = 'block';
+            }
+
+            // Update URL hash without page jump
+            if (updateUrl) {
+                history.pushState(null, null, '#' + targetId);
+            }
+        }
+
+        // Attach event listeners to sidebar links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchMainTab(this.dataset.target);
+            });
+        });
+
+        // Check URL hash on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1); 
+            if (currentHash && document.getElementById(currentHash)) {
+                switchMainTab(currentHash, false); 
+            }
+        });
+    </script>
+</body>
+</html>
