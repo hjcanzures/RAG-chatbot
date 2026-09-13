@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEU RAG — Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0705;
+    --panel:#140d0a;
+    --panel-line: rgba(246,239,228,0.08);
+    --ember-deep:#6b1a0f;
+    --ember:#e8481c;
+    --ember-bright:#ff6a3d;
+    --amber:#f4a940;
+    --ash:#c9beb2;
+    --bone:#f6efe4;
+    --ok-bg: rgba(244,169,64,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--void);
+    color: var(--bone);
+    font-family: 'Inter', sans-serif;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* ambient ember glow, single orchestrated background moment */
+  .glow{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% 100%, rgba(232,72,28,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 20%, rgba(107,26,15,0.4), transparent 55%);
+    animation: breathe 9s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:0.75; }
+    50%{ opacity:1; }
+  }
+  .grain{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{ position:relative; z-index:1; max-width:960px; margin:0 auto; padding: 28px 24px 80px; }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 8px 4px 40px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background: linear-gradient(145deg, var(--ember-bright), var(--ember-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:600; font-size:16px; color:var(--bone);
+    box-shadow: 0 0 0 1px rgba(246,239,228,0.12), 0 4px 18px rgba(232,72,28,0.35);
+  }
+  .brand-text{ line-height:1.15; }
+  .brand-text b{ font-family:'Fraunces', serif; font-weight:500; font-size:16.5px; letter-spacing:0.2px; display:block;}
+  .brand-text span{ font-size:12.5px; color:var(--ash); }
+
+  .status-pill{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--panel-line);
+    background: rgba(246,239,228,0.03);
+    padding:7px 13px; border-radius:100px;
+    font-size:12.5px; color:var(--ash);
+  }
+  .status-pill i{ width:6px; height:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 8px var(--amber); }
+
+  h1{
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size: clamp(30px, 4.6vw, 44px);
+    line-height:1.08; letter-spacing:-0.3px;
+    margin: 0 0 12px;
+    max-width: 640px;
+  }
+  .lede{ color:var(--ash); font-size:15.5px; max-width:520px; line-height:1.55; margin: 0 0 36px;}
+  .lede code{ font-family:'Inter'; background:rgba(246,239,228,0.06); padding:1px 6px; border-radius:5px; font-size:13.5px; color:var(--bone); }
+
+  /* dropzone */
+  .dropzone{
+    border: 1.5px dashed rgba(246,239,228,0.22);
+    border-radius: 18px;
+    padding: 56px 24px;
+    text-align:center;
+    cursor:pointer;
+    background: rgba(246,239,228,0.015);
+    transition: border-color .25s ease, background .25s ease, transform .25s ease;
+    position:relative;
+  }
+  .dropzone:hover{ border-color: rgba(246,239,228,0.4); }
+  .dropzone.drag{
+    border-color: var(--ember-bright);
+    background: rgba(232,72,28,0.07);
+    transform: scale(1.006);
+  }
+  .dz-icon{
+    width:46px; height:46px; margin:0 auto 18px;
+    border-radius:50%;
+    background: linear-gradient(160deg, rgba(232,72,28,0.25), rgba(107,26,15,0.25));
+    border:1px solid rgba(246,239,228,0.12);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .dz-icon svg{ width:19px; height:19px; }
+  .dropzone h3{ font-family:'Inter'; font-weight:600; font-size:16px; margin:0 0 6px; }
+  .dropzone p{ color:var(--ash); font-size:13.5px; margin:0; }
+  .dropzone input{ display:none; }
+
+  /* stats strip */
+  .stats{
+    display:grid; grid-template-columns: repeat(3,1fr);
+    margin-top: 34px;
+    border-top:1px solid var(--panel-line);
+    border-bottom:1px solid var(--panel-line);
+  }
+  .stat{ padding: 20px 18px; border-right:1px solid var(--panel-line); }
+  .stat:last-child{ border-right:none; }
+  .stat b{
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size: 26px; display:block; color:var(--bone);
+  }
+  .stat span{ font-size:12.5px; color:var(--ash); }
+
+  /* queue */
+  .queue-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin: 44px 0 14px;
+  }
+  .queue-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:19px; margin:0; }
+  .queue-head span{ font-size:12.5px; color:var(--ash); }
+
+  .empty{
+    border:1px solid var(--panel-line); border-radius:14px;
+    padding: 34px 20px; text-align:center; color:var(--ash); font-size:13.5px;
+  }
+
+  .row{
+    display:flex; align-items:center; gap:14px;
+    padding: 15px 4px;
+    border-bottom:1px solid var(--panel-line);
+    animation: rowIn .35s ease both;
+  }
+  @keyframes rowIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+  .row:last-child{ border-bottom:none; }
+
+  .file-ico{
+    width:34px; height:34px; border-radius:8px; flex:none;
+    background: rgba(246,239,228,0.05); border:1px solid var(--panel-line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter'; font-weight:600; font-size:10px; color:var(--ash);
+    text-transform:uppercase;
+  }
+  .row-main{ flex:1; min-width:0; }
+  .row-main .name{ font-size:14px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .row-main .meta{ font-size:12px; color:var(--ash); margin-top:2px; display:flex; gap:8px; align-items:center;}
+
+  .track{
+    width:100%; height:3px; border-radius:3px;
+    background: rgba(246,239,228,0.08);
+    margin-top:8px; overflow:hidden;
+  }
+  .fill{
+    height:100%; border-radius:3px;
+    background: linear-gradient(90deg, var(--ember), var(--ember-bright));
+    width:0%; transition: width .5s ease;
+  }
+
+  .badge{
+    font-size:11.5px; padding:4px 10px; border-radius:100px; flex:none;
+    border:1px solid var(--panel-line); color:var(--ash);
+    display:flex; align-items:center; gap:6px;
+  }
+  .badge.b-queued{ }
+  .badge.b-active{ color:var(--ember-bright); border-color: rgba(232,72,28,0.35); }
+  .badge.b-active i{ width:5px;height:5px;border-radius:50%; background:var(--ember-bright); animation:pulse 1s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+  .badge.b-done{ color:var(--amber); border-color: rgba(244,169,64,0.35); background:var(--ok-bg); }
+  .badge.b-fail{ color:#ff8a7a; border-color: rgba(255,138,122,0.35); }
+
+  .row-actions{ display:flex; gap:6px; flex:none; }
+  .icon-btn{
+    width:28px; height:28px; border-radius:7px; border:1px solid var(--panel-line);
+    background:transparent; color:var(--ash); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .15s ease, color .15s ease;
+  }
+  .icon-btn:hover{ background: rgba(246,239,228,0.06); color:var(--bone); }
+  .icon-btn svg{ width:13px; height:13px; }
+
+  footer{
+    margin-top: 46px; padding-top:18px; border-top:1px solid var(--panel-line);
+    font-size:12px; color: rgba(201,190,178,0.6); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .glow, .badge.b-active i, .row{ animation:none !important; }
+  }
+  @media (max-width: 620px){
+    .stats{ grid-template-columns:1fr; }
+    .stat{ border-right:none; border-bottom:1px solid var(--panel-line); }
+    .stat:last-child{ border-bottom:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="grain"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="brand-mark">N</div>
+      <div class="brand-text">
+        <b>NEU RAG</b>
+        <span>Document admin</span>
+      </div>
+    </div>
+    <div class="status-pill"><i></i> mock-documents · us-east-1</div>
+  </header>
+
+  <h1>Feed the index.</h1>
+  <p class="lede">Documents dropped here are chunked, embedded with <code>cohere.embed-multilingual-v3</code>, and written into the <code>mock-documents</code> vector index for retrieval.</p>
+
+  <div class="dropzone" id="dz">
+    <input type="file" id="fileInput" multiple>
+    <div class="dz-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f6efe4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+    </div>
+    <h3>Drop documents to index</h3>
+    <p>PDF, DOCX, or TXT — or click to browse</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="statDocs">0</b><span>Documents indexed</span></div>
+    <div class="stat"><b id="statChunks">0</b><span>Chunks embedded</span></div>
+    <div class="stat"><b id="statSize">0 KB</b><span>Estimated storage</span></div>
+  </div>
+
+  <div class="queue-head">
+    <h2>Queue</h2>
+    <span id="queueCount">Nothing uploaded yet</span>
+  </div>
+
+  <div id="queueList">
+    <div class="empty" id="emptyState">No documents yet. Drop something above to see it move through chunking and embedding.</div>
+  </div>
+
+  <footer>
+    <span>Prototype UI — not yet wired to the ingestion Lambda</span>
+    <span>Dimension 1024 · Cosine</span>
+  </footer>
+
+</div>
+
+<script>
+const dz = document.getElementById('dz');
+const fileInput = document.getElementById('fileInput');
+const queueList = document.getElementById('queueList');
+const emptyState = document.getElementById('emptyState');
+const queueCount = document.getElementById('queueCount');
+const statDocs = document.getElementById('statDocs');
+const statChunks = document.getElementById('statChunks');
+const statSize = document.getElementById('statSize');
+
+let docsIndexed = 0, chunksEmbedded = 0, bytesTotal = 0, queued = 0;
+
+function animateNumber(el, from, to, suffix){
+  const dur = 500, start = performance.now();
+  function step(now){
+    const p = Math.min(1, (now-start)/dur);
+    const eased = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.round(from + (to-from)*eased) + (suffix||'');
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function formatSize(bytes){
+  if(bytes < 1024) return bytes + ' B';
+  if(bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/(1024*1024)).toFixed(2) + ' MB';
+}
+
+function refreshStats(newDocs, newChunks, newBytes){
+  const oldDocs = docsIndexed, oldChunks = chunksEmbedded, oldBytes = bytesTotal;
+  docsIndexed += newDocs; chunksEmbedded += newChunks; bytesTotal += newBytes;
+  animateNumber(statDocs, oldDocs, docsIndexed, '');
+  animateNumber(statChunks, oldChunks, chunksEmbedded, '');
+  statSize.textContent = formatSize(bytesTotal);
+}
+
+['dragenter','dragover'].forEach(evt => dz.addEventListener(evt, e=>{
+  e.preventDefault(); dz.classList.add('drag');
+}));
+['dragleave','drop'].forEach(evt => dz.addEventListener(evt, e=>{
+  e.preventDefault(); if(evt==='drop') handleFiles(e.dataTransfer.files);
+  dz.classList.remove('drag');
+}));
+dz.addEventListener('click', ()=> fileInput.click());
+fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+function handleFiles(files){
+  [...files].forEach(f => addRow(f));
+}
+
+// demo mode: if someone opens this without dragging a real file, let a click on the
+// dropzone label work with a synthetic sample when no files are selected — otherwise
+// rely on the native picker.
+function addRow(file){
+  if(emptyState) { emptyState.remove(); }
+  queued++;
+  queueCount.textContent = queued + (queued===1 ? ' document' : ' documents');
+
+  const id = 'r' + Math.random().toString(36).slice(2,9);
+  const ext = (file.name.split('.').pop() || 'doc').slice(0,4);
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.id = id;
+  row.innerHTML = `
+    <div class="file-ico">${ext}</div>
+    <div class="row-main">
+      <div class="name">${file.name}</div>
+      <div class="meta"><span class="stage">Uploading</span> · <span>${formatSize(file.size)}</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+    <div class="badge b-active" id="${id}-badge"><i></i><span>Uploading</span></div>
+    <div class="row-actions">
+      <button class="icon-btn" title="Remove" onclick="document.getElementById('${id}').remove()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  `;
+  queueList.appendChild(row);
+  runPipeline(id, file);
+}
+
+function setStage(id, label, pct){
+  const row = document.getElementById(id);
+  if(!row) return;
+  row.querySelector('.stage').textContent = label;
+  row.querySelector('.fill').style.width = pct + '%';
+  const badge = document.getElementById(id+'-badge');
+  badge.querySelector('span').textContent = label;
+}
+
+function runPipeline(id, file){
+  const stages = [
+    {label:'Uploading', pct:25, delay: 500 + Math.random()*400},
+    {label:'Chunking', pct:55, delay: 700 + Math.random()*500},
+    {label:'Embedding', pct:85, delay: 900 + Math.random()*600},
+    {label:'Indexed', pct:100, delay: 500 + Math.random()*300},
+  ];
+  let t = 0;
+  stages.forEach((s, i) => {
+    t += s.delay;
+    setTimeout(() => {
+      if(!document.getElementById(id)) return;
+      setStage(id, s.label, s.pct);
+      if(s.label === 'Indexed'){
+        const badge = document.getElementById(id+'-badge');
+        badge.className = 'badge b-done';
+        badge.innerHTML = `<span>Indexed</span>`;
+        const chunkCount = Math.max(1, Math.round(file.size / 1800));
+        refreshStats(1, chunkCount, file.size);
+      }
+    }, t);
+  });
+}
+</script>
+
+</body>
+</html>
