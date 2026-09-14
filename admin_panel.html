@@ -250,25 +250,35 @@
 
   <div class="queue-head">
     <h2>Queue</h2>
-    <span id="queueCount">Nothing uploaded yet</span>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button class="icon-btn" id="refreshBtn" title="Refresh" style="width:auto; padding:0 10px; gap:6px; display:flex; align-items:center; font-size:12.5px; color:var(--ash);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        Refresh
+      </button>
+      <span id="queueCount">Loading…</span>
+    </div>
   </div>
 
   <div id="queueList">
-    <div class="empty" id="emptyState">No documents yet. Drop something above to see it move through chunking and embedding.</div>
+    <div class="empty" id="emptyState">Loading your documents…</div>
   </div>
 
   <footer>
-    <span>Prototype UI — not yet wired to the ingestion Lambda</span>
+    <span>Deleting a document also removes its vectors from the index</span>
     <span>Dimension 1024 · Cosine</span>
   </footer>
 
 </div>
 
 <script>
+// Replace with your own API Gateway invoke URL (no trailing slash).
+// Same API as the presigned-URL route -- we're adding /documents as a
+// second route on this same API Gateway instance, not a separate API.
+const API_BASE = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com';
+
 const dz = document.getElementById('dz');
 const fileInput = document.getElementById('fileInput');
 const queueList = document.getElementById('queueList');
-const emptyState = document.getElementById('emptyState');
 const queueCount = document.getElementById('queueCount');
 const statDocs = document.getElementById('statDocs');
 const statChunks = document.getElementById('statChunks');
@@ -293,12 +303,80 @@ function formatSize(bytes){
   return (bytes/(1024*1024)).toFixed(2) + ' MB';
 }
 
-function refreshStats(newDocs, newChunks, newBytes){
+function recomputeStatsFromDocs(docs){
   const oldDocs = docsIndexed, oldChunks = chunksEmbedded, oldBytes = bytesTotal;
-  docsIndexed += newDocs; chunksEmbedded += newChunks; bytesTotal += newBytes;
+  docsIndexed = docs.length;
+  chunksEmbedded = docs.reduce((sum, d) => sum + (d.chunkCount || 0), 0);
+  bytesTotal = docs.reduce((sum, d) => sum + (d.size || 0), 0);
   animateNumber(statDocs, oldDocs, docsIndexed, '');
   animateNumber(statChunks, oldChunks, chunksEmbedded, '');
   statSize.textContent = formatSize(bytesTotal);
+}
+
+async function loadDocuments(){
+  queueCount.textContent = 'Loading…';
+  try {
+    const res = await fetch(`${API_BASE}/documents`);
+    if(!res.ok) throw new Error(`Request failed (${res.status})`);
+    const { documents } = await res.json();
+
+    queueList.innerHTML = '';
+    if(documents.length === 0){
+      queueList.innerHTML = '<div class="empty" id="emptyState">No documents yet. Drop something above to get started.</div>';
+    } else {
+      documents.forEach(renderPersistedRow);
+    }
+    queueCount.textContent = documents.length + (documents.length === 1 ? ' document' : ' documents');
+    recomputeStatsFromDocs(documents);
+  } catch (err) {
+    queueCount.textContent = 'Could not load documents';
+    queueList.innerHTML = `<div class="empty">Couldn't reach the documents API: ${err.message}. Check API_BASE is set correctly.</div>`;
+  }
+}
+
+function renderPersistedRow(doc){
+  const rowId = 'doc-' + Math.random().toString(36).slice(2,9);
+  const ext = (doc.filename.split('.').pop() || 'doc').slice(0,4);
+  const indexed = doc.chunkCount > 0;
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.id = rowId;
+  row.innerHTML = `
+    <div class="file-ico">${ext}</div>
+    <div class="row-main">
+      <div class="name">${doc.filename}</div>
+      <div class="meta">
+        <span class="stage">${indexed ? doc.chunkCount + ' chunks' : 'Not indexed yet'}</span>
+        · <span>${formatSize(doc.size)}</span>
+      </div>
+    </div>
+    <div class="badge ${indexed ? 'b-done' : 'b-active'}">
+      ${indexed ? '' : '<i></i>'}<span>${indexed ? 'Indexed' : 'Processing'}</span>
+    </div>
+    <div class="row-actions">
+      <button class="icon-btn" title="Delete" data-key="${encodeURIComponent(doc.key)}" onclick="deleteDocument(this, '${rowId}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+      </button>
+    </div>
+  `;
+  queueList.appendChild(row);
+}
+
+async function deleteDocument(button, rowId){
+  const key = decodeURIComponent(button.dataset.key);
+  if(!confirm(`Delete "${key.length > 37 && key[36]==='-' ? key.slice(37) : key}"? This removes the file and its vectors from the index.`)) return;
+
+  button.disabled = true;
+  try {
+    const res = await fetch(`${API_BASE}/documents?key=${encodeURIComponent(key)}`, { method: 'DELETE' });
+    if(!res.ok) throw new Error(`Delete failed (${res.status})`);
+    document.getElementById(rowId)?.remove();
+    // Re-sync stats/count against the server rather than guessing locally.
+    loadDocuments();
+  } catch (err) {
+    alert('Could not delete: ' + err.message);
+    button.disabled = false;
+  }
 }
 
 ['dragenter','dragover'].forEach(evt => dz.addEventListener(evt, e=>{
@@ -312,14 +390,12 @@ dz.addEventListener('click', ()=> fileInput.click());
 fileInput.addEventListener('change', e => handleFiles(e.target.files));
 
 function handleFiles(files){
+  const currentEmpty = document.getElementById('emptyState');
+  if(currentEmpty) currentEmpty.remove();
   [...files].forEach(f => addRow(f));
 }
 
-// demo mode: if someone opens this without dragging a real file, let a click on the
-// dropzone label work with a synthetic sample when no files are selected — otherwise
-// rely on the native picker.
 function addRow(file){
-  if(emptyState) { emptyState.remove(); }
   queued++;
   queueCount.textContent = queued + (queued===1 ? ' document' : ' documents');
 
@@ -355,29 +431,78 @@ function setStage(id, label, pct){
   badge.querySelector('span').textContent = label;
 }
 
-function runPipeline(id, file){
-  const stages = [
-    {label:'Uploading', pct:25, delay: 500 + Math.random()*400},
-    {label:'Chunking', pct:55, delay: 700 + Math.random()*500},
-    {label:'Embedding', pct:85, delay: 900 + Math.random()*600},
-    {label:'Indexed', pct:100, delay: 500 + Math.random()*300},
-  ];
-  let t = 0;
-  stages.forEach((s, i) => {
-    t += s.delay;
-    setTimeout(() => {
-      if(!document.getElementById(id)) return;
-      setStage(id, s.label, s.pct);
-      if(s.label === 'Indexed'){
-        const badge = document.getElementById(id+'-badge');
-        badge.className = 'badge b-done';
-        badge.innerHTML = `<span>Indexed</span>`;
-        const chunkCount = Math.max(1, Math.round(file.size / 1800));
-        refreshStats(1, chunkCount, file.size);
-      }
-    }, t);
-  });
+function setFailed(id, message){
+  const row = document.getElementById(id);
+  if(!row) return;
+  row.querySelector('.stage').textContent = 'Failed';
+  const badge = document.getElementById(id+'-badge');
+  badge.className = 'badge b-fail';
+  badge.innerHTML = `<span>Failed</span>`;
+  const meta = row.querySelector('.meta');
+  meta.innerHTML = `<span class="stage">Failed</span> · <span title="${message.replace(/"/g,'&quot;')}">${message}</span>`;
 }
+
+async function runPipeline(id, file){
+  const contentType = file.type || 'application/octet-stream';
+
+  // Step 1: ask our backend for a presigned S3 upload URL.
+  let uploadUrl, key;
+  try {
+    setStage(id, 'Requesting upload URL', 10);
+    const res = await fetch(
+      `${API_BASE}/upload-url?filename=${encodeURIComponent(file.name)}&contentType=${encodeURIComponent(contentType)}`
+    );
+    if(!res.ok){
+      const body = await res.json().catch(()=>({}));
+      throw new Error(body.error || `Request failed (${res.status})`);
+    }
+    ({ uploadUrl, key } = await res.json());
+  } catch (err) {
+    setFailed(id, 'Could not get upload URL: ' + err.message);
+    return;
+  }
+
+  // Step 2: PUT the actual file straight to S3 using that URL. Using
+  // XMLHttpRequest here (instead of fetch) because it's the only way to
+  // get real upload progress events for the progress bar.
+  try {
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('PUT', uploadUrl);
+      // Must match exactly what was signed server-side, or S3 rejects the upload.
+      xhr.setRequestHeader('Content-Type', contentType);
+      xhr.upload.addEventListener('progress', (e) => {
+        if(e.lengthComputable){
+          const pct = 10 + Math.round((e.loaded / e.total) * 70); // 10-80% during upload
+          setStage(id, 'Uploading', pct);
+        }
+      });
+      xhr.onload = () => {
+        if(xhr.status >= 200 && xhr.status < 300) resolve();
+        else reject(new Error(`S3 upload failed (${xhr.status})`));
+      };
+      xhr.onerror = () => reject(new Error('Network error during upload'));
+      xhr.send(file);
+    });
+  } catch (err) {
+    setFailed(id, err.message);
+    return;
+  }
+
+  // Step 3: upload confirmed. Chunking/embedding/indexing now happens
+  // asynchronously on the backend (triggered by the S3 event) -- there's
+  // no live status endpoint yet, so we report success and stop here
+  // rather than fake further stages.
+  setStage(id, 'Uploaded · processing in background', 100);
+  const badge = document.getElementById(id+'-badge');
+  badge.className = 'badge b-done';
+  badge.innerHTML = `<span>Uploaded</span>`;
+  // Real chunk count/stats aren't known yet -- they'll show correctly
+  // next time the list is refreshed, once the ingestion Lambda finishes.
+}
+
+document.getElementById('refreshBtn').addEventListener('click', loadDocuments);
+loadDocuments();
 </script>
 
 </body>
