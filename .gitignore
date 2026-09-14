@@ -12,6 +12,13 @@ build/
 .next/
 out/
 
+# Lambda build artifacts
+*.zip
+package/
+documents-package/
+__pycache__/
+*.pyc
+
 # Logs
 *.log
 npm-debug.log*
