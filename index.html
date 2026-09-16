@@ -3,120 +3,480 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ask Neu Avatar Component</title>
+  <title>Ask Neu</title>
   <style>
     :root {
       --bg-color: #0b0e17;
       --circle-bg: #0e172a;
       --circle-border: #1a305d;
       --circle-glow: rgba(59, 130, 246, 0.25);
+      --panel-bg: #0e1526;
       --bubble-bg: #152243;
       --bubble-border: #243b73;
+      --user-bubble: #2757e0;
+      --input-bg: #101a30;
+      --border-soft: #1c2c4d;
       --robot-body: #dbeafe;
       --robot-face: #0b1222;
       --accent-blue: #60a5fa;
+      --online-dot: #34d399;
       --text-color: #ffffff;
+      --text-dim: #93a3c4;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       background-color: var(--bg-color);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       margin: 0;
+      min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    .avatar-wrapper {
-      position: relative;
-      width: 280px;
-      height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .speech-bubble {
-      position: absolute;
-      top: 0;
-      background: var(--bubble-bg);
-      border: 1.5px solid var(--bubble-border);
-      border-radius: 28px;
-      padding: 12px 28px;
       color: var(--text-color);
-      font-size: 1.6rem;
-      font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .speech-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 10px 10px 0;
-      border-style: solid;
-      border-color: var(--bubble-bg) transparent;
-      display: block;
-      width: 0;
-    }
+    /* ---------- launcher (collapsed state) ---------- */
 
-/* Background Container */
-    .avatar-circle {
-      width: 220px;
-      height: 220px;
+    .launcher {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: radial-gradient(circle at center, #13203e 0%, var(--circle-bg) 70%);
       border: 2px solid var(--circle-border);
-      box-shadow: 0 0 30px var(--circle-glow), inset 0 0 15px rgba(0,0,0,0.6);
+      box-shadow: 0 0 24px var(--circle-glow), inset 0 0 12px rgba(0,0,0,0.6);
+      cursor: pointer;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
+      z-index: 40;
+      animation: breathe 4s ease-in-out infinite;
+      transition: transform 0.15s ease;
     }
-    
-/* Logo */
-    .brand-n {
-      position: absolute;
-      bottom: 12px;
-      color: var(--accent-blue);
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: 1px;
+    .launcher:hover { transform: scale(1.05); }
+    .launcher svg { width: 44px; height: 44px; }
+    @keyframes breathe {
+      0%, 100% { box-shadow: 0 0 24px var(--circle-glow), inset 0 0 12px rgba(0,0,0,0.6); }
+      50% { box-shadow: 0 0 34px var(--circle-glow), inset 0 0 12px rgba(0,0,0,0.6); }
+    }
+
+    .hint-bubble {
+      position: fixed;
+      right: 24px;
+      bottom: 108px;
+      background: var(--bubble-bg);
+      border: 1.5px solid var(--bubble-border);
+      border-radius: 22px;
+      padding: 9px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      z-index: 40;
+      pointer-events: none;
+      animation: hintFloat 3.5s ease-in-out infinite;
+    }
+    @keyframes hintFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    #hintText {
+      transition: opacity 0.4s ease;
+    }
+
+    .launcher.open ~ .hint-bubble { display: none; }
+
+    /* ---------- chat panel (expanded state) ---------- */
+
+    .panel {
+      position: fixed;
+      right: 28px;
+      bottom: 112px;
+      width: 380px;
+      height: 560px;
+      max-height: calc(100vh - 150px);
+      background: var(--panel-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 50;
+      transform-origin: bottom right;
+      transform: scale(0.92);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+    .panel.open {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-soft);
+      flex: none;
+    }
+    .header-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: radial-gradient(circle at center, #13203e 0%, var(--circle-bg) 70%);
+      border: 1.5px solid var(--circle-border);
+      display: flex; align-items: center; justify-content: center; flex: none;
+    }
+    .header-avatar svg { width: 24px; height: 24px; }
+    .header-text { flex: 1; min-width: 0; line-height: 1.25; }
+    .header-text b { display: block; font-size: 0.95rem; }
+    .header-status { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--text-dim); }
+    .header-status i { width: 6px; height: 6px; border-radius: 50%; background: var(--online-dot); box-shadow: 0 0 6px var(--online-dot); }
+    .close-btn {
+      background: none; border: none; color: var(--text-dim); cursor: pointer;
+      width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.06); color: var(--text-color); }
+    .close-btn svg { width: 16px; height: 16px; }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg { max-width: 84%; display: flex; flex-direction: column; gap: 6px; }
+    .msg.bot { align-self: flex-start; }
+    .msg.user { align-self: flex-end; }
+
+    .bubble {
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+    .msg.bot .bubble {
+      background: var(--bubble-bg);
+      border: 1px solid var(--bubble-border);
+      border-bottom-left-radius: 5px;
+    }
+    .msg.user .bubble {
+      background: var(--user-bubble);
+      border-bottom-right-radius: 5px;
+    }
+    .bubble p { margin: 0 0 8px; }
+    .bubble p:last-child { margin-bottom: 0; }
+    .bubble ul { margin: 4px 0; padding-left: 18px; }
+    .bubble li { margin-bottom: 3px; }
+
+    .sources {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding-left: 2px;
+    }
+    .source-chip {
+      font-size: 0.7rem; color: var(--text-dim);
+      border: 1px solid var(--border-soft);
+      border-radius: 100px; padding: 3px 9px;
+    }
+
+    .typing { align-self: flex-start; display: flex; gap: 4px; padding: 12px 16px; }
+    .typing span {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim);
+      animation: typingBounce 1.1s infinite ease-in-out;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.15s; }
+    .typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .error-msg .bubble { border-color: #7f3a3a; color: #ffb4b4; }
+
+    .input-row {
+      display: flex; align-items: flex-end; gap: 8px;
+      padding: 12px; border-top: 1px solid var(--border-soft); flex: none;
+    }
+    .input-row textarea {
+      flex: 1; resize: none; max-height: 90px;
+      background: var(--input-bg); border: 1px solid var(--border-soft); border-radius: 14px;
+      color: var(--text-color); font-family: inherit; font-size: 0.9rem;
+      padding: 10px 12px; line-height: 1.4; outline: none;
+    }
+    .input-row textarea:focus { border-color: var(--accent-blue); }
+    .input-row textarea::placeholder { color: var(--text-dim); }
+
+    .send-btn {
+      width: 38px; height: 38px; border-radius: 12px; border: none; flex: none;
+      background: var(--accent-blue); color: #0b1222; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.15s ease, transform 0.1s ease;
+    }
+    .send-btn:hover { transform: translateY(-1px); }
+    .send-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+    .send-btn svg { width: 17px; height: 17px; }
+
+    @media (max-width: 480px) {
+      .panel {
+        right: 12px; left: 12px; bottom: 96px;
+        width: auto; height: calc(100vh - 130px);
+      }
+      .launcher { right: 20px; bottom: 20px; }
+      .hint-bubble { right: 16px; bottom: 100px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .launcher, .hint-bubble, .panel, .typing span { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <div class="avatar-wrapper">
-    <div class="speech-bubble">
-      Ask Neu!
+  <div class="hint-bubble" id="hintBubble"><span id="hintText">Ask Neu!</span></div>
+
+  <button class="launcher" id="launcher" aria-label="Open chat with Neu">
+    <svg viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="70" cy="12" r="6" fill="var(--robot-body)" />
+      <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--robot-body)" />
+      <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--robot-body)" />
+      <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
+      <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
+      <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--robot-face)" />
+      <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
+      <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
+      <path d="M 63 74 Q 70 78 77 74" stroke="var(--robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
+    </svg>
+  </button>
+
+  <div class="panel" id="panel">
+    <div class="panel-header">
+      <div class="header-avatar">
+        <svg viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="12" r="6" fill="var(--robot-body)" />
+          <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--robot-body)" />
+          <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--robot-body)" />
+          <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
+          <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
+          <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--robot-face)" />
+          <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
+          <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
+          <path d="M 63 74 Q 70 78 77 74" stroke="var(--robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
+        </svg>
+      </div>
+      <div class="header-text">
+        <b>Ask Neu</b>
+        <div class="header-status"><i></i> New Era University assistant</div>
+      </div>
+      <button class="close-btn" id="closeBtn" aria-label="Close chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </div>
 
-    <div class="avatar-circle">
-      <svg width="190" height="160" viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="12" r="6" fill="var(--robot-body)" />
-        <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--robot-body)" />
-        <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--robot-body)" />
-        <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
-        <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--robot-body)" />
-        <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--robot-face)" />
-        <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
-        <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--robot-body)" />
-        <path d="M 63 74 Q 70 78 77 74" stroke="var(--robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
-      </svg>
+    <div class="messages" id="messages"></div>
 
-      <div class="brand-n">N</div>
+    <div class="input-row">
+      <textarea id="input" placeholder="Message Neu..." rows="1"></textarea>
+      <button class="send-btn" id="sendBtn" aria-label="Send message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      </button>
     </div>
   </div>
+
+<script>
+// Same API Gateway instance as the admin panel -- /query is the third
+// route on it, alongside /upload-url and /documents.
+const API_BASE = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com';
+
+const launcher = document.getElementById('launcher');
+const panel = document.getElementById('panel');
+const closeBtn = document.getElementById('closeBtn');
+const messagesEl = document.getElementById('messages');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('sendBtn');
+const hintText = document.getElementById('hintText');
+
+// Rotates every 10s so the launcher doesn't just sit there with the same
+// static "Ask Neu!" line forever -- keeps it feeling alive before anyone's
+// actually opened the chat.
+const HINT_MESSAGES = [
+  "Ask Neu!",
+  "Hi, I'm Neubie. How can I help you?",
+  "Curious about NEU? Feel free to ask me!",
+  "Got a question about enrollment or programs? I've got you!",
+];
+let hintIndex = 0;
+setInterval(() => {
+  hintText.style.opacity = 0;
+  setTimeout(() => {
+    hintIndex = (hintIndex + 1) % HINT_MESSAGES.length;
+    hintText.textContent = HINT_MESSAGES[hintIndex];
+    hintText.style.opacity = 1;
+  }, 400);
+}, 10000);
+
+let opened = false;
+let sending = false;
+
+function openPanel(){
+  opened = true;
+  panel.classList.add('open');
+  launcher.classList.add('open');
+  input.focus();
+  if(messagesEl.children.length === 0) greet();
+}
+function closePanel(){
+  opened = false;
+  panel.classList.remove('open');
+  launcher.classList.remove('open');
+}
+launcher.addEventListener('click', () => opened ? closePanel() : openPanel());
+closeBtn.addEventListener('click', closePanel);
+
+function greet(){
+  addBotMessage("Hi! I'm Neu, New Era University's AI assistant. Ask me about programs, enrollment, or anything else about NEU.");
+}
+
+// Minimal, safe markdown-lite: escapes HTML first, then re-introduces
+// just **bold** and "- " bullet lists, since that's all the model's
+// system prompt asks it to use. Anything else stays as plain text.
+function renderMarkdown(text){
+  const escaped = text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const withBold = escaped.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+
+  const lines = withBold.split('\n');
+  let html = '';
+  let inList = false;
+  let paragraph = [];
+
+  function flushParagraph(){
+    if(paragraph.length){
+      html += `<p>${paragraph.join('<br>')}</p>`;
+      paragraph = [];
+    }
+  }
+
+  for(const line of lines){
+    const trimmed = line.trim();
+    if(trimmed.startsWith('- ')){
+      flushParagraph();
+      if(!inList){ html += '<ul>'; inList = true; }
+      html += `<li>${trimmed.slice(2)}</li>`;
+    } else {
+      if(inList){ html += '</ul>'; inList = false; }
+      if(trimmed === ''){ flushParagraph(); }
+      else { paragraph.push(trimmed); }
+    }
+  }
+  if(inList) html += '</ul>';
+  flushParagraph();
+  return html || '<p></p>';
+}
+
+function addUserMessage(text){
+  const el = document.createElement('div');
+  el.className = 'msg user';
+  el.innerHTML = `<div class="bubble"></div>`;
+  el.querySelector('.bubble').textContent = text;
+  messagesEl.appendChild(el);
+  scrollToBottom();
+}
+
+function addBotMessage(text, sources){
+  const el = document.createElement('div');
+  el.className = 'msg bot';
+  const uniqueSources = sources
+    ? [...new Set(sources.map(s => s.filename).filter(Boolean))]
+    : [];
+  el.innerHTML = `
+    <div class="bubble">${renderMarkdown(text)}</div>
+    ${uniqueSources.length ? `<div class="sources">${uniqueSources.map(f => `<span class="source-chip">${f}</span>`).join('')}</div>` : ''}
+  `;
+  messagesEl.appendChild(el);
+  scrollToBottom();
+}
+
+function addErrorMessage(text){
+  const el = document.createElement('div');
+  el.className = 'msg bot error-msg';
+  el.innerHTML = `<div class="bubble"></div>`;
+  el.querySelector('.bubble').textContent = text;
+  messagesEl.appendChild(el);
+  scrollToBottom();
+}
+
+function showTyping(){
+  const el = document.createElement('div');
+  el.className = 'typing';
+  el.id = 'typingIndicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  messagesEl.appendChild(el);
+  scrollToBottom();
+}
+function hideTyping(){
+  document.getElementById('typingIndicator')?.remove();
+}
+
+function scrollToBottom(){
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+async function sendMessage(){
+  const text = input.value.trim();
+  if(!text || sending) return;
+
+  addUserMessage(text);
+  input.value = '';
+  autoGrow();
+  sending = true;
+  sendBtn.disabled = true;
+  showTyping();
+
+  try {
+    const res = await fetch(`${API_BASE}/query`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: text }),
+    });
+    const data = await res.json();
+    hideTyping();
+    if(!res.ok){
+      addErrorMessage(data.error || `Something went wrong (${res.status}). Try again in a moment.`);
+    } else {
+      addBotMessage(data.answer, data.sources);
+    }
+  } catch (err) {
+    hideTyping();
+    addErrorMessage("Couldn't reach Neu right now. Check your connection and try again.");
+  } finally {
+    sending = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+}
+
+function autoGrow(){
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 90) + 'px';
+}
+
+sendBtn.addEventListener('click', sendMessage);
+input.addEventListener('input', autoGrow);
+input.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    sendMessage();
+  }
+});
+</script>
 
 </body>
 </html>
