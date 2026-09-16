@@ -81,7 +81,7 @@ Chat widget
 
 ### In Progress
 
-- [ ] Implement a cache check for repeated/similar queries
+- [ ] Implement cache check for repeated/similar queries
 
 ### Planned
 
