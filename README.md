@@ -10,13 +10,13 @@ Instead of relying solely on the language model's pre-trained knowledge, the sys
 
 **AI infrastructure:** Amazon Bedrock, using:
 - **Cohere Embed Multilingual V3** for generating vector embeddings (1024 dimensions)
-- **Claude Sonnet 4.6** as the response-generation model
+- **Claude Sonnet 4.6** as the response-generation model, invoked via its cross-region inference profile (`us.anthropic.claude-sonnet-4-6`) rather than a plain foundation-model ID
 
-**Vector storage:** Amazon S3 Vectors — a native S3 vector index, avoiding the need for a separate vector database.
+**Vector storage:** Amazon S3 Vectors, a native S3 vector index that avoids a separate vector database.
 
 ## Architecture
 
-The system is split into two independent flows:
+The system is split into two independent flows, both implemented end-to-end, with a quality and feedback loop being added on top.
 
 **Admin document ingestion**
 ```text
@@ -27,54 +27,87 @@ Presigned-URL Lambda + API Gateway
 S3 (raw document bucket)
   ↓ S3 event trigger
 Ingestion Lambda
-  ↓ chunk (500 chars) → embed (Cohere) → store
+  ↓ extract text (PDF/DOCX/TXT) → chunk (500 chars, 50 overlap) → embed (Cohere) → store
 Amazon S3 Vectors (vector index)
 ```
 
-**User query** *(API implemented; live deployment verification pending)*
+**User query**
 ```text
 User (chat widget)
   ↓ query
-API Gateway POST /chat
-  ↓
 Query Lambda
-  ↓ embed query (Cohere) → similarity search
+  ↓ embed query (Cohere, input_type=search_query) → similarity search
 Amazon S3 Vectors
-  ↓ retrieved chunks
-Prompt augmentation + bounded conversation history
+  ↓ retrieved chunks (source_text + source_document metadata)
+Prompt augmentation (persona + guardrails + N-shot examples + chunks + query)
   ↓
-Claude Sonnet 4.6 (Amazon Bedrock)
-  ↓ generated response
+Claude Sonnet 4.6 (Amazon Bedrock, inference profile)
+  ↓ generated response + source attribution
 Chat widget
+  ↓ 👍/👎 feedback
+Log store (query, retrieved chunks, answer, latency, feedback)
+```
+
+**Quality and human-in-the-loop** *(planned)*
+```text
+Log store
+  ↓ flagged / low-rated answers
+Admin review (human checking)
+  ↓ fix documents, prompt, or examples
+Re-run test log → compare results
 ```
 
 ### AWS resources in use
 
 | Component | Service |
 |---|---|
-| Embeddings | Bedrock — Cohere Embed Multilingual V3 |
-| Response generation | Bedrock — Claude Sonnet 4.6 |
+| Embeddings | Bedrock: Cohere Embed Multilingual V3 |
+| Response generation | Bedrock: Claude Sonnet 4.6 (cross-region inference profile) |
 | Vector storage | Amazon S3 Vectors |
 | Raw document storage | Amazon S3 |
 | Backend compute | AWS Lambda (Python) |
 | API layer | Amazon API Gateway (HTTP API) |
+| Logging *(planned)* | CloudWatch Logs and/or DynamoDB |
+
+## Neubie defense demo API
+
+The defense website in `front-end/main/index.htm` now uses a separate deployable
+`POST /chat` API. Its AWS deployment is pending; the existing root widget and query
+Lambda remain available for the current workflow.
+
+- `backend/query_lambda.py`: new validated chat API with bounded conversation history
+- `backend/requirements.txt`: packaged AWS SDK dependency
+- `template.yaml`: AWS SAM chat API, Lambda, IAM, CORS, and throttling
+- `front-end/main/assets/scripts/chatbot-config.js`: set the deployed API endpoint here
+- `front-end/main/assets/scripts/chatbot-widget.js`: defense demo widget API client
+- `tests/test_chat_api.py`: mocked AWS API tests
+
+See [Neubie API deployment and connection instructions](docs/neubie-api.md).
 
 ### Repository structure
 
-- `front-end/` — mock university website for the defense demonstration, with the Neubie chat widget on `main/index.htm`
-- `front-end/main/assets/scripts/chatbot-config.js` — the AWS chat endpoint setting
-- `front-end/main/assets/scripts/chatbot-widget.js` — demo chat UI and API client
-- `backend/query_lambda.py` — independently deployable `POST /chat` API using Bedrock and S3 Vectors
-- `backend/requirements.txt` — SDK dependency packaged with the API
-- `template.yaml` — AWS SAM deployment for the chat Lambda, HTTP API, CORS, throttling, and IAM role
-- `docs/neubie-api.md` — API contract, AWS deployment steps, and frontend connection instructions
-- `tests/test_chat_api.py` — API tests with mocked AWS services
-- `query_lambda.py` — compatibility entry point for the backend handler
-- `index.html` — original standalone widget icon design
-- `admin_panel.html` — admin document-upload interface
-- `lambda.py` — presigned-URL upload Lambda
+- `index.html`: the embeddable chatbot widget, a launcher avatar ("Neubie") that expands into a full chat window wired to the query backend
+- `admin_panel.html`: admin interface for uploading, listing, and deleting indexed documents
+- `lambda.py`: presigned-URL upload Lambda
+- `lambdas/ingestion/`: ingestion Lambda source and `requirements.txt`
+- `lambdas/documents/`: documents API Lambda (list and delete, including vector cleanup)
 
-Start with [Neubie API deployment and connection instructions](docs/neubie-api.md).
+## Quality Assurance and Evaluation
+
+Answer quality is tracked with a documented test log. Each test case records:
+
+| # | Prompt | Expected Output | Chatbot Answer | Pass/Fail |
+|---|---|---|---|---|
+| 1 | *(example question)* | *(expected answer from the source document)* | *(actual chatbot response)* | *(Pass/Fail)* |
+
+The same test set is re-run after every change to the prompt, examples, chunking, or documents, so quality can be compared over time. Results feed Chapter 4.
+
+Planned quality measures:
+- **Persona:** a defined role and tone for the assistant in the system prompt
+- **Guardrails:** answer only from retrieved NEU context, stay on topic, and decline or say "I don't know" when the context has no answer
+- **N-shot prompting:** include N example question/answer pairs in the prompt and compare N = 0, 1, 3, 5 against the test log
+- **Logging:** record every query, the retrieved chunks, the answer, latency, and user feedback
+- **Human-in-the-loop:** 👍/👎 feedback in the chat widget, with an admin reviewing flagged answers
 
 ## Current Progress
 
@@ -85,26 +118,29 @@ Start with [Neubie API deployment and connection instructions](docs/neubie-api.m
 - [x] Enabled Amazon Bedrock model access (Cohere Embed Multilingual V3, Claude Sonnet 4.6)
 - [x] Created and configured the Amazon S3 Vectors bucket and index
 - [x] Built the presigned-URL upload Lambda + API Gateway route, enabling direct browser-to-S3 uploads
-- [x] Built the document ingestion Lambda: text extraction (PDF/DOCX/TXT), chunking, embedding via Cohere, and storage in S3 Vectors — verified working end-to-end
+- [x] Built the document ingestion Lambda: PDF/DOCX/TXT extraction, chunking, embedding via Cohere, and storage in S3 Vectors, verified working end-to-end
+- [x] Fixed PDF ingestion: `pypdf` packaged for Lambda, S3 event keys decoded with `unquote_plus`, file format detected from file contents, and one bad file no longer blocks the rest
 - [x] Built the admin panel UI: drag-and-drop upload, live document list with real chunk counts, and delete (removes both the source file and its associated vectors)
 - [x] Scoped least-privilege IAM roles per Lambda function
+- [x] Built the query Lambda: embed user query, run similarity search against S3 Vectors, verified working end-to-end
+- [x] Implemented prompt augmentation (system prompt + retrieved chunks + user query) and wired Claude Sonnet 4.6 response generation
+- [x] Built the actual chat interface (expandable widget replacing the static icon) and connected it to the query backend
 
 ### In Progress
 
-- [x] Build the query Lambda: embed user query, run similarity search against S3 Vectors
-- [x] Implement prompt augmentation (system prompt + retrieved chunks + user query)
-- [ ] Implement a cache check for repeated/similar queries
-- [x] Wire Claude Sonnet 4.6 response generation in the API
-- [x] Build the chat interface on the defense demo website
-- [x] Connect the chat widget to a configurable API endpoint
-- [ ] Deploy the API to AWS and paste its endpoint into the widget config
-- [ ] Verify live Bedrock, S3 Vectors, and browser CORS end-to-end
+- [ ] Cache check for repeated/similar queries
 
 ### Planned
 
-- [x] Bounded conversation history in the widget and query API
-- [x] Error handling and fallback responses
-- [x] AWS deployment template and connection guide
-- [ ] Live AWS deployment
+- [ ] Persona in the system prompt
+- [ ] Guardrails
+- [ ] N-shot prompting, compared across N values
+- [ ] Query/answer logging, included in the architecture
+- [ ] Test log documentation (Prompt > Expected Output > Chatbot Answer > Pass/Fail)
+- [ ] Human-in-the-loop feedback (chat widget ratings + admin review)
+- [ ] Conversation history
+- [ ] Error handling and fallback responses
+- [ ] Extraction for scanned PDFs and other formats (Amazon Textract)
+- [ ] Deployment
 - [ ] Performance and response accuracy evaluation
 - [ ] Point the pipeline at real New Era University documents (currently using mock/test data throughout)

@@ -88,7 +88,7 @@ def lambda_handler(event, context):
         chunks = []
         for vector in results.get("vectors", []):
             metadata = vector.get("metadata", {})
-            for key in ("text", "chunkText", "chunk_text", "content"):
+            for key in ("source_text", "text", "chunkText", "chunk_text", "content"):
                 if isinstance(metadata.get(key), str) and metadata[key].strip():
                     chunks.append(metadata[key])
                     break

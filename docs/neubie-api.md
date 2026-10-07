@@ -71,8 +71,9 @@ The template includes `s3vectors:GetVectors` because returning metadata requires
 it in addition to `s3vectors:QueryVectors`.
 
 SAM packages the backend's boto3 dependency, so deployment does not depend on the
-SDK version bundled in Lambda. The root `query_lambda.py` is only a compatibility
-entry point for repository imports; the deployed handler comes from `backend/`.
+SDK version bundled in Lambda. The root `query_lambda.py` retains the existing
+query-based API used by the original root widget. This deployment packages only
+`backend/` and uses its message-based handler for the defense website.
 
 ## Connect the defense website
 
@@ -122,7 +123,8 @@ sam validate --lint
 
 Unit tests mock AWS; a deployed request is still required to verify actual IAM,
 model availability, vector metadata, and CORS. Retrieved text must be stored in
-metadata under `text`, `chunkText`, `chunk_text`, or `content`. Embedding dimensions
+metadata under `source_text` (the current ingestion Lambda's key), `text`,
+`chunkText`, `chunk_text`, or `content`. Embedding dimensions
 and model must match your ingestion pipeline. If your index uses customer-managed
 KMS encryption, add the corresponding KMS decrypt permission to the Lambda role.
 

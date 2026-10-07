@@ -79,6 +79,15 @@ class ChatApiTests(unittest.TestCase):
         self.vectors.query_vectors.return_value = {"vectors": [{"metadata": {"chunk_text": "NEU fact"}}]}
         self.assertEqual(self.request({"message": "hello"})["statusCode"], 200)
 
+    def test_current_ingestion_source_text_metadata(self):
+        self.vectors.query_vectors.return_value = {"vectors": [{"metadata": {
+            "source_text": "Current ingestion document", "source_document": "admissions.pdf"}}]}
+        self.assertEqual(self.request({"message": "hello"})["statusCode"], 200)
+        self.assertEqual(self.bedrock.invoke_model.call_count, 2)
+        generated = json.loads(self.bedrock.invoke_model.call_args.kwargs["body"])
+        prompt = json.loads(generated["messages"][0]["content"])
+        self.assertEqual(prompt["documents"], ["Current ingestion document"])
+
     def test_upstream_errors_are_not_exposed(self):
         self.vectors.query_vectors.side_effect = RuntimeError("private bucket details")
         with self.assertLogs(api.logger, level="ERROR"):
