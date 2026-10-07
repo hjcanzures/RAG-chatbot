@@ -852,41 +852,8 @@ Christian Values, with selfless service to Humanity and bringing honor and Glory
   </div>
 </div>
 
-<script>
-  function neubieToggle(force) {
-    var win = document.getElementById('neubie-window');
-    var shouldOpen = (force !== undefined) ? force : !win.classList.contains('neubie-open');
-    win.classList.toggle('neubie-open', shouldOpen);
-  }
-
-  function neubieSend() {
-    var input = document.getElementById('neubie-input');
-    var body = document.getElementById('neubie-body');
-    var text = input.value.trim();
-    if (!text) return;
-
-    var userMsg = document.createElement('div');
-    userMsg.className = 'neubie-msg neubie-msg-user';
-    userMsg.textContent = text;
-    body.appendChild(userMsg);
-    input.value = '';
-    body.scrollTop = body.scrollHeight;
-
-    // Placeholder reply — replace this block with a fetch() call
-    // to your real chatbot backend/API.
-    setTimeout(function () {
-      var reply = document.createElement('div');
-      reply.className = 'neubie-msg neubie-msg-bot';
-      reply.textContent = "Thanks for your message! I'm just a placeholder right now — connect me to your chatbot backend to give real answers.";
-      body.appendChild(reply);
-      body.scrollTop = body.scrollHeight;
-    }, 500);
-  }
-
-  document.getElementById('neubie-input').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') neubieSend();
-  });
-</script>
+<script src="assets/scripts/chatbot-config.js"></script>
+<script src="assets/scripts/chatbot-widget.js"></script>
     
     <script>
             document.querySelectorAll('.carousel-slide').forEach(slide => {

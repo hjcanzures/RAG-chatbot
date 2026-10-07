@@ -31,15 +31,17 @@ Ingestion Lambda
 Amazon S3 Vectors (vector index)
 ```
 
-**User query** *(in progress — see below)*
+**User query** *(API implemented; live deployment verification pending)*
 ```text
 User (chat widget)
   ↓ query
+API Gateway POST /chat
+  ↓
 Query Lambda
   ↓ embed query (Cohere) → similarity search
 Amazon S3 Vectors
   ↓ retrieved chunks
-Prompt augmentation + cache check
+Prompt augmentation + bounded conversation history
   ↓
 Claude Sonnet 4.6 (Amazon Bedrock)
   ↓ generated response
@@ -59,9 +61,20 @@ Chat widget
 
 ### Repository structure
 
-- `index.html` — the embeddable chatbot widget icon (chat interface not yet implemented)
-- `admin-panel.html` — admin interface for uploading, listing, and deleting indexed documents
-- Backend Lambda functions are developed and deployed separately (not yet committed to this repo as source)
+- `front-end/` — mock university website for the defense demonstration, with the Neubie chat widget on `main/index.htm`
+- `front-end/main/assets/scripts/chatbot-config.js` — the AWS chat endpoint setting
+- `front-end/main/assets/scripts/chatbot-widget.js` — demo chat UI and API client
+- `backend/query_lambda.py` — independently deployable `POST /chat` API using Bedrock and S3 Vectors
+- `backend/requirements.txt` — SDK dependency packaged with the API
+- `template.yaml` — AWS SAM deployment for the chat Lambda, HTTP API, CORS, throttling, and IAM role
+- `docs/neubie-api.md` — API contract, AWS deployment steps, and frontend connection instructions
+- `tests/test_chat_api.py` — API tests with mocked AWS services
+- `query_lambda.py` — compatibility entry point for the backend handler
+- `index.html` — original standalone widget icon design
+- `admin_panel.html` — admin document-upload interface
+- `lambda.py` — presigned-URL upload Lambda
+
+Start with [Neubie API deployment and connection instructions](docs/neubie-api.md).
 
 ## Current Progress
 
@@ -78,17 +91,20 @@ Chat widget
 
 ### In Progress
 
-- [ ] Build the query Lambda: embed user query, run similarity search against S3 Vectors
-- [ ] Implement prompt augmentation (system prompt + retrieved chunks + user query)
+- [x] Build the query Lambda: embed user query, run similarity search against S3 Vectors
+- [x] Implement prompt augmentation (system prompt + retrieved chunks + user query)
 - [ ] Implement a cache check for repeated/similar queries
-- [ ] Wire Claude Sonnet 4.6 response generation
-- [ ] Build the actual chat interface (currently only the widget icon exists)
-- [ ] Connect the chat widget to the query backend
+- [x] Wire Claude Sonnet 4.6 response generation in the API
+- [x] Build the chat interface on the defense demo website
+- [x] Connect the chat widget to a configurable API endpoint
+- [ ] Deploy the API to AWS and paste its endpoint into the widget config
+- [ ] Verify live Bedrock, S3 Vectors, and browser CORS end-to-end
 
 ### Planned
 
-- [ ] Conversation history
-- [ ] Error handling and fallback responses
-- [ ] Deployment
+- [x] Bounded conversation history in the widget and query API
+- [x] Error handling and fallback responses
+- [x] AWS deployment template and connection guide
+- [ ] Live AWS deployment
 - [ ] Performance and response accuracy evaluation
 - [ ] Point the pipeline at real New Era University documents (currently using mock/test data throughout)

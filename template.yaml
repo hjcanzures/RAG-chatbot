@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Neubie chat API for the NEU defense demo (uses existing Bedrock and S3 Vectors resources)
+Parameters:
+  VectorBucketName:
+    Type: String
+  VectorIndexName:
+    Type: String
+  AllowedOrigin:
+    Type: String
+    Default: http://localhost:8000
+    Description: Exact origin of the demo website (no trailing slash)
+  EmbedModelId:
+    Type: String
+    Default: cohere.embed-multilingual-v3
+  ChatModelId:
+    Type: String
+    Default: anthropic.claude-sonnet-4-6-v1:0
+    Description: Enabled Bedrock model ID or inference profile ID
+  ChatFoundationModelId:
+    Type: String
+    Default: anthropic.claude-sonnet-4-6-v1:0
+    Description: Underlying foundation model ID for IAM (without a us. or other profile prefix)
+  TopK:
+    Type: Number
+    Default: 5
+    MinValue: 1
+    MaxValue: 10
+Resources:
+  NeubieApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: $default
+      DefinitionBody:
+        openapi: 3.0.1
+        info:
+          title: Neubie API
+          version: '1.0'
+        paths: {}
+      CorsConfiguration:
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        AllowHeaders:
+          - Content-Type
+        AllowMethods:
+          - POST
+          - OPTIONS
+        MaxAge: 300
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 5
+        ThrottlingRateLimit: 2
+  NeubieChatFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: query_lambda.lambda_handler
+      Runtime: python3.12
+      MemorySize: 256
+      Timeout: 28
+      Environment:
+        Variables:
+          VECTOR_BUCKET_NAME: !Ref VectorBucketName
+          VECTOR_INDEX_NAME: !Ref VectorIndexName
+          EMBED_MODEL_ID: !Ref EmbedModelId
+          CHAT_MODEL_ID: !Ref ChatModelId
+          TOP_K: !Ref TopK
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - s3vectors:QueryVectors
+                - s3vectors:GetVectors
+              Resource: !Sub arn:${AWS::Partition}:s3vectors:${AWS::Region}:${AWS::AccountId}:bucket/${VectorBucketName}/index/${VectorIndexName}
+            - Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource:
+                - !Sub arn:${AWS::Partition}:bedrock:*::foundation-model/${EmbedModelId}
+                - !Sub arn:${AWS::Partition}:bedrock:*::foundation-model/${ChatFoundationModelId}
+                - !Sub arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${ChatModelId}
+      Events:
+        Chat:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref NeubieApi
+            Path: /chat
+            Method: POST
+            TimeoutInMillis: 29000
+Outputs:
+  ChatEndpoint:
+    Description: Paste this URL into the demo's chatbot-config.js
+    Value: !Sub https://${NeubieApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/chat
