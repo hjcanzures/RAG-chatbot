@@ -1,0 +1,430 @@
+/* ==========================================================================
+   Ask Neu — embeddable chat widget
+   Everything is prefixed with `neu-` and scoped under `.neu-widget`, so it
+   cannot restyle (or be restyled by) the host website.
+
+   Naming: BEM-lite
+     block      .neu-panel
+     element    .neu-panel__header
+     modifier   .neu-msg--bot
+   ========================================================================== */
+
+/* ---------- Root: design tokens + reset ---------- */
+
+.neu-widget {
+  --neu-circle-bg: #0e172a;
+  --neu-circle-border: #1a305d;
+  --neu-circle-glow: rgba(59, 130, 246, 0.25);
+  --neu-panel-bg: #0e1526;
+  --neu-bubble-bg: #152243;
+  --neu-bubble-border: #243b73;
+  --neu-user-bubble: #2757e0;
+  --neu-input-bg: #101a30;
+  --neu-border-soft: #1c2c4d;
+  --neu-robot-body: #dbeafe;
+  --neu-robot-face: #0b1222;
+  --neu-accent: #60a5fa;
+  --neu-online: #34d399;
+  --neu-error-border: #7f3a3a;
+  --neu-error-text: #ffb4b4;
+  --neu-text: #ffffff;
+  --neu-text-dim: #93a3c4;
+
+  /* Raise this if the host site has a header/modal that covers the widget. */
+  --neu-z-index: 9998;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  color: var(--neu-text);
+}
+
+.neu-widget,
+.neu-widget *,
+.neu-widget *::before,
+.neu-widget *::after {
+  box-sizing: border-box;
+}
+
+.neu-widget button,
+.neu-widget textarea {
+  font: inherit;
+  margin: 0;
+}
+
+/* ---------- Launcher (collapsed state) ---------- */
+
+.neu-launcher {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #13203e 0%, var(--neu-circle-bg) 70%);
+  border: 2px solid var(--neu-circle-border);
+  box-shadow: 0 0 24px var(--neu-circle-glow), inset 0 0 12px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--neu-z-index);
+  animation: neu-breathe 4s ease-in-out infinite;
+  transition: transform 0.15s ease;
+}
+
+.neu-launcher:hover {
+  transform: scale(1.05);
+}
+
+.neu-launcher:focus-visible,
+.neu-panel__close:focus-visible,
+.neu-send:focus-visible {
+  outline: 2px solid var(--neu-accent);
+  outline-offset: 2px;
+}
+
+.neu-launcher svg {
+  width: 44px;
+  height: 44px;
+}
+
+@keyframes neu-breathe {
+  0%, 100% { box-shadow: 0 0 24px var(--neu-circle-glow), inset 0 0 12px rgba(0, 0, 0, 0.6); }
+  50%      { box-shadow: 0 0 34px var(--neu-circle-glow), inset 0 0 12px rgba(0, 0, 0, 0.6); }
+}
+
+/* ---------- Hint bubble (above the launcher) ---------- */
+
+.neu-hint {
+  position: fixed;
+  right: 24px;
+  bottom: 108px;
+  max-width: calc(100vw - 48px);
+  background: var(--neu-bubble-bg);
+  border: 1.5px solid var(--neu-bubble-border);
+  border-radius: 22px;
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: var(--neu-z-index);
+  pointer-events: none;
+  animation: neu-hint-float 3.5s ease-in-out infinite;
+}
+
+.neu-hint__text {
+  transition: opacity 0.4s ease;
+}
+
+.neu-widget--open .neu-hint {
+  display: none;
+}
+
+@keyframes neu-hint-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* ---------- Panel (expanded state) ---------- */
+
+.neu-panel {
+  position: fixed;
+  right: 28px;
+  bottom: 112px;
+  width: 380px;
+  height: 560px;
+  max-height: calc(100vh - 150px);
+  background: var(--neu-panel-bg);
+  border: 1px solid var(--neu-border-soft);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: calc(var(--neu-z-index) + 1);
+  transform-origin: bottom right;
+  transform: scale(0.92);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.18s ease, opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.neu-widget--open .neu-panel {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.18s ease, opacity 0.18s ease, visibility 0s;
+}
+
+/* ---------- Panel header ---------- */
+
+.neu-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--neu-border-soft);
+  flex: none;
+}
+
+.neu-panel__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #13203e 0%, var(--neu-circle-bg) 70%);
+  border: 1.5px solid var(--neu-circle-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.neu-panel__avatar svg {
+  width: 24px;
+  height: 24px;
+}
+
+.neu-panel__title {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.neu-panel__name {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.neu-panel__status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--neu-text-dim);
+}
+
+.neu-panel__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neu-online);
+  box-shadow: 0 0 6px var(--neu-online);
+}
+
+.neu-panel__close {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: var(--neu-text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.neu-panel__close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--neu-text);
+}
+
+.neu-panel__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Message list ---------- */
+
+.neu-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.neu-msg {
+  max-width: 84%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.neu-msg--bot  { align-self: flex-start; }
+.neu-msg--user { align-self: flex-end; }
+
+.neu-bubble {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.neu-msg--bot .neu-bubble {
+  background: var(--neu-bubble-bg);
+  border: 1px solid var(--neu-bubble-border);
+  border-bottom-left-radius: 5px;
+}
+
+.neu-msg--user .neu-bubble {
+  background: var(--neu-user-bubble);
+  border-bottom-right-radius: 5px;
+}
+
+.neu-msg--error .neu-bubble {
+  border-color: var(--neu-error-border);
+  color: var(--neu-error-text);
+}
+
+.neu-bubble p  { margin: 0 0 8px; }
+.neu-bubble p:last-child { margin-bottom: 0; }
+.neu-bubble ul { margin: 4px 0; padding-left: 18px; }
+.neu-bubble li { margin-bottom: 3px; }
+
+/* ---------- Source chips ---------- */
+
+.neu-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-left: 2px;
+}
+
+.neu-source {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--neu-text-dim);
+  border: 1px solid var(--neu-border-soft);
+  border-radius: 100px;
+  padding: 3px 9px;
+}
+
+/* ---------- Typing indicator ---------- */
+
+.neu-typing {
+  align-self: flex-start;
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+}
+
+.neu-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neu-text-dim);
+  animation: neu-typing-bounce 1.1s infinite ease-in-out;
+}
+
+.neu-typing span:nth-child(2) { animation-delay: 0.15s; }
+.neu-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes neu-typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ---------- Input row ---------- */
+
+.neu-input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--neu-border-soft);
+  flex: none;
+}
+
+.neu-input {
+  flex: 1;
+  resize: none;
+  max-height: 90px;
+  background: var(--neu-input-bg);
+  border: 1px solid var(--neu-border-soft);
+  border-radius: 14px;
+  color: var(--neu-text);
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.neu-input:focus {
+  border-color: var(--neu-accent);
+}
+
+.neu-input::placeholder {
+  color: var(--neu-text-dim);
+}
+
+.neu-send {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  flex: none;
+  background: var(--neu-accent);
+  color: #0b1222;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.neu-send:hover {
+  transform: translateY(-1px);
+}
+
+.neu-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+  transform: none;
+}
+
+.neu-send svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 480px) {
+  .neu-launcher { right: 20px; bottom: 20px; }
+  .neu-hint     { right: 16px; bottom: 100px; }
+
+  .neu-panel {
+    right: 12px;
+    left: 12px;
+    bottom: 96px;
+    width: auto;
+    height: calc(100vh - 130px);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .neu-launcher,
+  .neu-hint,
+  .neu-panel,
+  .neu-hint__text,
+  .neu-typing span {
+    animation: none !important;
+    transition: none !important;
+  }
+}
