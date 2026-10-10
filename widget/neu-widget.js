@@ -29,12 +29,11 @@
    * ------------------------------------------------------------------ */
 
   const DEFAULT_CONFIG = {
-    // API Gateway invoke URL, no trailing slash. The widget POSTs to `${apiBase}/query`.
     apiBase: 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com',
     botName: 'Neu',
     subtitle: 'New Era University assistant',
     greeting:
-      "Hi! I'm Neu, New Era University's AI assistant. Ask me about programs, enrollment, or anything else about NEU.",
+      "Hi! I'm Neubie, but most call me Neu! Ask me about programs, enrollment, or anything else about NEU.",
     placeholder: 'Message Neubie...',
     hintRotateMs: 10000,
     hintMessages: [
@@ -55,12 +54,15 @@
   const config = Object.freeze(Object.assign({}, DEFAULT_CONFIG, window.NeuWidgetConfig || {}));
 
   const PANEL_ID = 'neu-panel';
-  const INPUT_MAX_HEIGHT_PX = 90;
+  const INPUT_MAX_HEIGHT_PX = 100;
   const MAX_ANSWER_CHARS = 4000;
-  const MAX_SOURCES = 10;
-  const MAX_SOURCE_NAME_CHARS = 80;
   const MAX_SERVER_ERROR_CHARS = 200;
   const MINUTE_MS = 60 * 1000;
+
+  // Conversation history sent with each query. Keep these within the
+  // server-side MAX_HISTORY_MESSAGES / MAX_HISTORY_CHARS in the query Lambda.
+  const MAX_HISTORY_MESSAGES = 6;
+  const MAX_HISTORY_CHARS = 1000;
 
   // Control characters except tab (\x09) and newline (\x0A).
   const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
@@ -224,21 +226,6 @@
     return String(text).replace(CONTROL_CHARS, '').trim();
   }
 
-  /** Unique, trimmed, length-capped filenames from an untrusted `sources` value. */
-  function extractSourceNames(sources) {
-    if (!Array.isArray(sources)) return [];
-    const names = [];
-    for (const source of sources) {
-      const name =
-        source && typeof source.filename === 'string'
-          ? source.filename.replace(CONTROL_CHARS, '').trim().slice(0, MAX_SOURCE_NAME_CHARS)
-          : '';
-      if (name && !names.includes(name)) names.push(name);
-      if (names.length >= MAX_SOURCES) break;
-    }
-    return names;
-  }
-
   /** Picks a user-facing message for a failed HTTP response. */
   function describeHttpError(status, data) {
     if (status === 429) {
@@ -275,6 +262,7 @@
       isSending: false,
       hintIndex: 0,
       sendTimestamps: [], // ms timestamps of recent sends, for the client-side limiter
+      history: [], // completed turns sent to the server: [{ role, content }, ...]
     };
 
     /* ---------- Hint rotation ---------- */
@@ -340,26 +328,11 @@
       scrollToBottom();
     }
 
-    function addBotMessage(text, sources) {
+    function addBotMessage(text) {
       const message = createMessage('bot');
       const bubble = createBubble();
       bubble.innerHTML = renderMarkdown(text); // renderMarkdown escapes everything first
       message.appendChild(bubble);
-
-      const names = extractSourceNames(sources);
-      if (names.length) {
-        const sourcesEl = document.createElement('div');
-        sourcesEl.className = 'neu-sources';
-        for (const name of names) {
-          const chip = document.createElement('span');
-          chip.className = 'neu-source';
-          chip.textContent = name;
-          chip.title = name;
-          sourcesEl.appendChild(chip);
-        }
-        message.appendChild(sourcesEl);
-      }
-
       messagesEl.appendChild(message);
       scrollToBottom();
     }
@@ -453,7 +426,7 @@
         const response = await fetch(`${apiBase}/query`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: text }),
+          body: JSON.stringify({ query: text, history: state.history }),
           signal: controller.signal,
           mode: 'cors',
           credentials: 'omit', // never send the host site's cookies to the API
@@ -468,7 +441,19 @@
         } else if (!data || typeof data.answer !== 'string' || data.answer.trim() === '') {
           addErrorMessage('Neu sent back something unexpected. Please try again.');
         } else {
-          addBotMessage(data.answer.slice(0, MAX_ANSWER_CHARS), data.sources);
+          const answer = data.answer.slice(0, MAX_ANSWER_CHARS);
+          addBotMessage(answer);
+
+          // Save the turn as a user/assistant pair so history always starts
+          // with a user turn and alternates. Blocked turns are left out so
+          // they can't skew retrieval for the next question.
+          if (!data.blocked) {
+            state.history.push(
+              { role: 'user', content: text },
+              { role: 'assistant', content: answer.slice(0, MAX_HISTORY_CHARS) }
+            );
+            state.history = state.history.slice(-MAX_HISTORY_MESSAGES);
+          }
         }
       } catch (error) {
         hideTyping();
