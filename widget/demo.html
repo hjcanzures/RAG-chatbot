@@ -64,6 +64,7 @@
         <button type="button" class="mock-only" data-q="trigger an error">Server error</button>
         <button type="button" class="mock-only" data-q="trigger the limit">Rate limited</button>
         <button type="button" class="mock-only" data-q="xss test">Markup escaping</button>
+        <button type="button" class="mock-only" data-q="unknown question">Unanswered question</button>
       </div>
       <p class="note">Live mode calls your real API. Add <code>?mock=1</code> to the URL to test the interface with no backend, or <code>?api=https://...</code> to point at a different API.</p>
     </section>
@@ -84,6 +85,18 @@
       document.getElementById('info-mode').textContent = mock ? 'MOCK: no AWS calls are made' : 'LIVE: calls your API';
       if (mock) document.body.classList.add('mock');
 
+      // HITL demo summary; the widget emits neu:feedback for host integrations.
+      const feedbackNote = document.createElement('p');
+      feedbackNote.className = 'note';
+      feedbackNote.textContent = 'Feedback is session-only in this demo; no ratings are submitted to AWS.';
+      document.getElementById('test-console').appendChild(feedbackNote);
+      const feedback = new Map();
+      window.addEventListener('neu:feedback', (event) => {
+        feedback.set(event.detail.responseId, event.detail);
+        const positive = [...feedback.values()].filter((entry) => entry.rating === 'up').length;
+        feedbackNote.textContent = `Demo feedback: ${positive} helpful, ${feedback.size - positive} unhelpful. Session only; not submitted to AWS.`;
+      });
+
       if (mock) {
         const realFetch = window.fetch.bind(window);
         const reply = (status, body) => new Promise((resolve) => setTimeout(() => resolve(
@@ -95,6 +108,10 @@
           const q = JSON.parse(options.body).query.toLowerCase();
           if (q.includes('error')) return reply(500, { error: 'INTERNAL DETAIL THAT MUST NOT APPEAR', requestId: 'demo' });
           if (q.includes('limit')) return reply(429, { error: 'ignored' });
+          if (q.includes('unknown')) return reply(200, {
+            answer: "I don't have that information in the NEU documents yet. Please contact the relevant NEU office.",
+            sources: [], needsSupport: true,
+          });
           if (q.includes('xss')) return reply(200, {
             answer: '<img src=x onerror="alert(1)"> and **bold** survive as plain text.',
             sources: [{ filename: '<b>evil</b>.pdf' }],
