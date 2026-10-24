@@ -298,6 +298,12 @@
   @media(max-width:760px){.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.tool-grid{grid-template-columns:1fr;}}
   @media(max-width:480px){.overview-grid{gap:8px;}.overview-card{padding:14px;}.overview-card strong{font-size:25px;}}
 
+
+  /* admin token bar + sources column (feedback view) */
+  .token-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 24px;}
+  .token-bar .tool-input{flex:1;min-width:220px;width:auto;}
+  .feedback-reason{max-width:200px;overflow-wrap:anywhere;font-size:12px;line-height:1.5;}
+
 </style>
 </head>
 <body>
@@ -337,7 +343,7 @@
     <div class="overview-grid" aria-live="polite">
       <div class="overview-card"><span>Documents</span><strong id="overviewDocs">—</strong><small>Files returned by GET /documents</small></div>
       <div class="overview-card"><span>Embedded chunks</span><strong id="overviewChunks">—</strong><small>Reported by the ingestion API</small></div>
-      <div class="overview-card"><span>Feedback votes</span><strong id="overviewVotes">—</strong><small>Stored votes returned by GET /feedback</small></div>
+      <div class="overview-card"><span>Feedback votes</span><strong id="overviewVotes">—</strong><small>Stored votes returned by GET /feedback (needs the admin token)</small></div>
       <div class="overview-card"><span>Helpful responses</span><strong id="overviewHelpful">—</strong><small>Share of valid thumbs-up/down votes</small></div>
     </div>
     <div class="tool-grid">
@@ -402,6 +408,11 @@
       </div>
     </div>
 
+    <form class="token-bar" id="adminTokenForm" autocomplete="off">
+      <input class="tool-input" id="adminTokenInput" type="password" placeholder="Admin token" aria-label="Admin token" autocomplete="off">
+      <button class="action-btn" id="unlockFeedbackBtn" type="submit">Unlock feedback</button>
+    </form>
+
     <div class="feedback-stats" aria-live="polite">
       <div class="feedback-stat"><span class="stat-label">Total votes</span><strong id="feedbackTotal">—</strong><span class="stat-note">All feedback received</span></div>
       <div class="feedback-stat"><span class="stat-label">Helpful responses</span><strong id="feedbackHelpful">—</strong><span class="stat-note">Thumbs-up share of votes</span></div>
@@ -414,7 +425,7 @@
       <span id="feedbackCount">Not loaded</span>
     </div>
     <div class="feedback-toolbar">
-      <input class="feedback-search" id="feedbackSearch" type="search" placeholder="Search questions, answers, or comments…" aria-label="Search feedback">
+      <input class="feedback-search" id="feedbackSearch" type="search" placeholder="Search questions, answers, or sources…" aria-label="Search feedback">
       <select class="feedback-filter" id="feedbackFilter" aria-label="Filter by vote">
         <option value="all">All votes</option>
         <option value="up">Thumbs up</option>
@@ -424,12 +435,12 @@
     <div id="feedbackStatus" class="empty feedback-status" role="status">Feedback has not been loaded yet.</div>
     <div class="feedback-table-wrap" id="feedbackTableWrap" hidden>
       <table class="feedback-table">
-        <thead><tr><th>Vote</th><th>Student question</th><th>Chatbot response</th><th>Reason / comment</th><th>Submitted</th></tr></thead>
+        <thead><tr><th>Vote</th><th>Student question</th><th>Chatbot response</th><th>Sources</th><th>Last rated</th></tr></thead>
         <tbody id="feedbackTableBody"></tbody>
       </table>
     </div>
     <div id="feedbackEmpty" class="feedback-empty" hidden>No feedback matches your filters.</div>
-    <p class="feedback-footnote">Feedback is shown here only when the backend provides it. The report expects a protected <code>GET /feedback</code> API route that returns stored records from DynamoDB. Restrict this route to authorized administrators before using it with real student data.</p>
+    <p class="feedback-footnote">Ratings are written by the chat widget to <code>POST /feedback</code> and read here through <code>GET /feedback</code>, which requires the admin token (sent as the <code>X-Admin-Token</code> header). The token is kept in memory only, so you will need to enter it again after reloading this page. Student questions may contain personal details, so share this report and its CSV exports only with authorized administrators.</p>
 
     <footer>
       <span>Use negative feedback to review prompts and knowledge-base content</span>
@@ -452,8 +463,8 @@
   <section class="view" id="systemView" role="tabpanel" aria-labelledby="systemTab" hidden>
     <div class="view-heading"><div><h1>System &amp; logs.</h1><p class="lede">Optional operational reports for failed ingestion, unanswered questions, and recent administrative events.</p></div><div class="feedback-actions"><button class="action-btn" id="refreshSystemBtn" type="button">Refresh reports</button></div></div>
     <div class="tool-grid">
-      <div class="tool-panel"><h2>Service configuration</h2><div class="status-list"><div class="status-row"><span>Ingestion API base</span><strong id="apiBaseDisplay"></strong></div><div class="status-row"><span>Documents endpoint</span><strong>GET /documents</strong></div><div class="status-row"><span>Feedback endpoint</span><strong>GET /feedback</strong></div><div class="status-row"><span>Chat test endpoint</span><strong id="chatEndpointDisplay">Not configured</strong></div></div><p class="tool-note">The endpoint labels describe the expected integration. They do not confirm that the backend routes already exist.</p></div>
-      <div class="tool-panel"><h2>Security checklist</h2><div class="status-list"><div class="status-row"><span>Admin authentication</span><strong>Enforce on backend</strong></div><div class="status-row"><span>Feedback access</span><strong>Admin-authorized only</strong></div><div class="status-row"><span>Destructive actions</span><strong>Confirm and audit</strong></div><div class="status-row"><span>Secrets</span><strong>Never place credentials in this HTML</strong></div></div></div>
+      <div class="tool-panel"><h2>Service configuration</h2><div class="status-list"><div class="status-row"><span>Ingestion API base</span><strong id="apiBaseDisplay"></strong></div><div class="status-row"><span>Documents endpoint</span><strong>GET /documents</strong></div><div class="status-row"><span>Feedback endpoint</span><strong>GET /feedback (admin) · POST /feedback (chat widget)</strong></div><div class="status-row"><span>Chat test endpoint</span><strong id="chatEndpointDisplay">Not configured</strong></div></div><p class="tool-note">The endpoint labels describe the expected integration. They do not confirm that the backend routes already exist.</p></div>
+      <div class="tool-panel"><h2>Security checklist</h2><div class="status-list"><div class="status-row"><span>Admin authentication</span><strong>Enforce on backend</strong></div><div class="status-row"><span>Feedback access</span><strong>Admin token required (GET /feedback)</strong></div><div class="status-row"><span>Destructive actions</span><strong>Confirm and audit</strong></div><div class="status-row"><span>Secrets</span><strong>Never place credentials in this HTML</strong></div></div></div>
     </div>
     <div class="tool-panel"><div class="feedback-section-head"><h2>Operational reports</h2><span id="systemReportCount">Not loaded</span></div><p>These reports require backend routes. Configure them in the constants at the top of the script when the corresponding Lambda handlers are ready.</p><div id="systemReportStatus" class="empty" role="status">No system reports loaded.</div><div class="admin-table-wrap" id="systemReportsWrap" hidden><table class="admin-table"><thead><tr><th>Report</th><th>Status</th><th>Details</th></tr></thead><tbody id="systemReportsBody"></tbody></table></div></div>
     <p class="tool-note">Suggested backend additions: failed-ingestion records, unanswered/fallback query counts, usage metrics, and audit events. Do not expose raw logs or student identifiers to unauthorized users.</p>
@@ -469,6 +480,8 @@ const API_BASE = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com';
 
 // Feedback and optional admin-report routes. Keep API_BASE as the existing
 // ingestion API Gateway URL; add backend routes before expecting live reports.
+// POST /feedback is written by the chat widget; GET /feedback (below) is the
+// admin read route and needs the X-Admin-Token header.
 const FEEDBACK_ENDPOINT = `${API_BASE}/feedback`;
 const FAILED_INGESTIONS_ENDPOINT = `${API_BASE}/admin/failed-ingestions`;
 const UNANSWERED_QUESTIONS_ENDPOINT = `${API_BASE}/admin/unanswered-questions`;
@@ -479,6 +492,9 @@ const AUDIT_LOGS_ENDPOINT = `${API_BASE}/admin/audit-logs`;
 const CHAT_TEST_ENDPOINT = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com/query';
 let feedbackRecords = [];
 let documentsCache = [];
+// Admin token for GET /feedback. Held in memory only (never written to
+// localStorage/sessionStorage or the page), so it is gone after a reload.
+let adminToken = '';
 
 const adminTabs = {
   overview: document.getElementById('overviewTab'),
@@ -521,6 +537,10 @@ function getVote(record){
   return '';
 }
 
+function sourcesOf(record){
+  return Array.isArray(record.sources) ? record.sources.filter(item => typeof item === 'string') : [];
+}
+
 function formatFeedbackDate(value){
   if(!value) return '—';
   const date = new Date(value);
@@ -553,7 +573,7 @@ function renderFeedbackTable(){
   const voteFilter = document.getElementById('feedbackFilter').value;
   const filtered = feedbackRecords.filter(record => {
     const vote = getVote(record);
-    const searchable = [record.question, record.query, record.answer, record.response, record.comment, record.reason, record.answerId, record.answer_id].join(' ').toLowerCase();
+    const searchable = [record.question, record.query, record.answer, record.response, sourcesOf(record).join(' '), record.responseId].join(' ').toLowerCase();
     return (voteFilter === 'all' || vote === voteFilter) && searchable.includes(searchTerm);
   });
   const tbody = document.getElementById('feedbackTableBody');
@@ -576,16 +596,16 @@ function renderFeedbackTable(){
     const icon = vote === 'up' ? '👍' : vote === 'down' ? '👎' : '—';
     const question = record.question ?? record.query ?? 'Question not provided';
     const answer = record.answer ?? record.response ?? '';
-    const reason = record.reason ?? '';
-    const comment = record.comment ?? record.feedbackComment ?? '';
-    const detail = [reason, comment].filter(Boolean).join(' · ') || '—';
-    const date = record.timestamp ?? record.createdAt ?? record.created_at ?? record.submittedAt;
+    const responseId = record.responseId ?? record.answerId ?? record.answer_id;
+    const sources = sourcesOf(record);
+    const sourcesHtml = sources.length ? sources.map(escapeHTML).join('<br>') : '—';
+    const date = record.updatedAt ?? record.timestamp ?? record.createdAt ?? record.created_at ?? record.submittedAt;
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span class="vote-pill ${vote === 'up' ? 'vote-up' : vote === 'down' ? 'vote-down' : ''}">${icon} ${label}</span></td>
-      <td class="question-cell">${escapeHTML(question)}${record.answerId || record.answer_id ? `<div class="response-detail">Answer ID: ${escapeHTML(record.answerId ?? record.answer_id)}</div>` : ''}</td>
+      <td class="question-cell">${escapeHTML(question)}${responseId ? `<div class="response-detail">Response ID: ${escapeHTML(responseId)}</div>` : ''}</td>
       <td class="answer-cell">${answer ? `${escapeHTML(String(answer).slice(0,220))}${String(answer).length > 220 ? '…' : ''}${String(answer).length > 220 ? `<details class="response-detail"><summary>View full response</summary><p>${escapeHTML(answer)}</p></details>` : ''}` : 'Response not provided'}</td>
-      <td class="feedback-reason">${escapeHTML(detail)}</td>
+      <td class="feedback-reason">${sourcesHtml}</td>
       <td class="feedback-date">${formatFeedbackDate(date)}</td>`;
     tbody.appendChild(tr);
   });
@@ -593,10 +613,25 @@ function renderFeedbackTable(){
 
 async function loadFeedback(options={}){
   const refreshButton = document.getElementById('refreshFeedbackBtn');
+
+  // No token yet: don't call the API, just prompt for it.
+  if(!adminToken){
+    setFeedbackStatus('Enter the admin token above to load feedback.');
+    document.getElementById('feedbackTableWrap').hidden = true;
+    document.getElementById('feedbackEmpty').hidden = true;
+    document.getElementById('feedbackCount').textContent = 'Locked';
+    if(options.quiet) throw new Error('locked');
+    return;
+  }
+
   if(refreshButton) refreshButton.disabled = true;
   if(!options.quiet) setFeedbackStatus('Loading feedback…');
   try{
-    const response = await fetch(FEEDBACK_ENDPOINT, {headers:{'Accept':'application/json'}});
+    const response = await fetch(FEEDBACK_ENDPOINT, {headers:{'Accept':'application/json','X-Admin-Token':adminToken}});
+    if(response.status === 401 || response.status === 403){
+      adminToken = '';
+      throw new Error('Admin token missing or incorrect');
+    }
     if(!response.ok) throw new Error(`Request failed (${response.status})`);
     const payload = await response.json();
     const records = Array.isArray(payload) ? payload : payload.feedback;
@@ -604,18 +639,33 @@ async function loadFeedback(options={}){
     feedbackRecords = records;
     renderFeedbackStats(feedbackRecords);
     renderFeedbackTable();
-    setFeedbackStatus(records.length ? '' : 'No feedback has been submitted yet.', records.length ? '' : 'success');
+    if(payload.truncated){
+      setFeedbackStatus('Showing a partial list: there is more feedback than this report loads at once.', 'error');
+    }else{
+      setFeedbackStatus(records.length ? '' : 'No feedback has been submitted yet.', records.length ? '' : 'success');
+    }
   }catch(error){
-    setFeedbackStatus(`Could not load feedback: ${error.message}. Confirm that GET /feedback exists, returns JSON, and allows this admin page through CORS.`, 'error');
+    const authFailed = error.message.startsWith('Admin token');
+    setFeedbackStatus(authFailed
+      ? `${error.message}. Enter it again above.`
+      : `Could not load feedback: ${error.message}. Confirm that GET /feedback exists, returns JSON, and that CORS allows the X-Admin-Token header.`, 'error');
     document.getElementById('feedbackTableWrap').hidden = true;
     document.getElementById('feedbackEmpty').hidden = true;
-    document.getElementById('feedbackCount').textContent = 'Unavailable';
+    document.getElementById('feedbackCount').textContent = authFailed ? 'Locked' : 'Unavailable';
     if(options.quiet) throw error;
   }finally{
     if(refreshButton) refreshButton.disabled = false;
   }
 }
 
+document.getElementById('adminTokenForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const input = document.getElementById('adminTokenInput');
+  adminToken = input.value.trim();
+  input.value = ''; // don't leave the secret sitting in the page
+  if(!adminToken){ setFeedbackStatus('Enter the admin token above to load feedback.'); return; }
+  await loadFeedback();
+});
 document.getElementById('refreshFeedbackBtn').addEventListener('click', loadFeedback);
 document.getElementById('feedbackSearch').addEventListener('input', renderFeedbackTable);
 document.getElementById('feedbackFilter').addEventListener('change', renderFeedbackTable);
@@ -623,12 +673,19 @@ document.getElementById('feedbackFilter').addEventListener('change', renderFeedb
 document.getElementById('exportFeedbackBtn').addEventListener('click', exportFeedbackCSV);
 function exportFeedbackCSV(){
   if(!feedbackRecords.length){ setFeedbackStatus('There are no feedback records to export.', 'error'); return; }
-  const columns = ['feedbackId','vote','question','answer','reason','comment','timestamp','answerId'];
-  const csvCell = value => '"' + String(value ?? '').replace(/"/g, '""').replace(/\r?\n/g, ' ') + '"';
+  const columns = ['sessionId','responseId','vote','question','answer','sources','createdAt','updatedAt'];
+  // Student text is untrusted: neutralise leading = + - @ so spreadsheets don't run it as a formula.
+  const csvCell = value => {
+    let text = String(value ?? '').replace(/\r?\n/g, ' ');
+    if(/^[=+\-@\t\r]/.test(text)) text = "'" + text;
+    return '"' + text.replace(/"/g, '""') + '"';
+  };
   const lines = [columns.join(','), ...feedbackRecords.map(record => columns.map(key => {
     if(key === 'vote') return csvCell(getVote(record));
-    const aliases = {feedbackId: record.feedbackId ?? record.feedback_id ?? record.id, question: record.question ?? record.query, answer: record.answer ?? record.response, timestamp: record.timestamp ?? record.createdAt ?? record.created_at ?? record.submittedAt, answerId: record.answerId ?? record.answer_id};
-    return csvCell(Object.prototype.hasOwnProperty.call(aliases,key) ? aliases[key] : record[key]);
+    if(key === 'question') return csvCell(record.question ?? record.query);
+    if(key === 'answer') return csvCell(record.answer ?? record.response);
+    if(key === 'sources') return csvCell(sourcesOf(record).join('; '));
+    return csvCell(record[key]);
   }).join(','))];
   const blob = new Blob(['\uFEFF' + lines.join('\r\n')], {type:'text/csv;charset=utf-8;'});
   const url = URL.createObjectURL(blob); const link = document.createElement('a');
@@ -651,7 +708,12 @@ async function loadOverview(){
     document.getElementById('overviewChunks').textContent = 'Unavailable';
   }
   try{ await loadFeedback({quiet:true}); }
-  catch(_error){ document.getElementById('overviewVotes').textContent = 'Unavailable'; document.getElementById('overviewHelpful').textContent = 'Unavailable'; document.getElementById('overviewNegative').textContent = 'Unavailable'; }
+  catch(error){
+    const label = error.message === 'locked' ? 'Locked' : 'Unavailable';
+    document.getElementById('overviewVotes').textContent = label;
+    document.getElementById('overviewHelpful').textContent = label;
+    document.getElementById('overviewNegative').textContent = label;
+  }
 }
 
 function renderSystemConfiguration(){
@@ -816,13 +878,13 @@ async function loadDocuments(){
     recomputeStatsFromDocs(documents);
   } catch (err) {
     queueCount.textContent = 'Could not load documents';
-    queueList.innerHTML = `<div class="empty">Couldn't reach the documents API: ${err.message}. Check API_BASE is set correctly.</div>`;
+    queueList.innerHTML = `<div class="empty">Couldn't reach the documents API: ${escapeHTML(err.message)}. Check API_BASE is set correctly.</div>`;
   }
 }
 
 function renderPersistedRow(doc){
   const rowId = 'doc-' + Math.random().toString(36).slice(2,9);
-  const ext = (doc.filename.split('.').pop() || 'doc').slice(0,4);
+  const ext = escapeHTML((doc.filename.split('.').pop() || 'doc').slice(0,4));
   const indexed = doc.chunkCount > 0;
   const row = document.createElement('div');
   row.className = 'row';
@@ -830,7 +892,7 @@ function renderPersistedRow(doc){
   row.innerHTML = `
     <div class="file-ico">${ext}</div>
     <div class="row-main">
-      <div class="name">${doc.filename}</div>
+      <div class="name">${escapeHTML(doc.filename)}</div>
       <div class="meta">
         <span class="stage">${indexed ? doc.chunkCount + ' chunks' : 'Not indexed yet'}</span>
         · <span>${formatSize(doc.size)}</span>
@@ -886,14 +948,14 @@ function addRow(file){
   queueCount.textContent = queued + (queued===1 ? ' document' : ' documents');
 
   const id = 'r' + Math.random().toString(36).slice(2,9);
-  const ext = (file.name.split('.').pop() || 'doc').slice(0,4);
+  const ext = escapeHTML((file.name.split('.').pop() || 'doc').slice(0,4));
   const row = document.createElement('div');
   row.className = 'row';
   row.id = id;
   row.innerHTML = `
     <div class="file-ico">${ext}</div>
     <div class="row-main">
-      <div class="name">${file.name}</div>
+      <div class="name">${escapeHTML(file.name)}</div>
       <div class="meta"><span class="stage">Uploading</span> · <span>${formatSize(file.size)}</span></div>
       <div class="track"><div class="fill"></div></div>
     </div>
@@ -925,7 +987,8 @@ function setFailed(id, message){
   badge.className = 'badge b-fail';
   badge.innerHTML = `<span>Failed</span>`;
   const meta = row.querySelector('.meta');
-  meta.innerHTML = `<span class="stage">Failed</span> · <span title="${message.replace(/"/g,'&quot;')}">${message}</span>`;
+  const safeMessage = escapeHTML(message);
+  meta.innerHTML = `<span class="stage">Failed</span> · <span title="${safeMessage}">${safeMessage}</span>`;
 }
 
 async function runPipeline(id, file){
