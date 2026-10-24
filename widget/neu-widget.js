@@ -14,6 +14,8 @@
  * server-side — client checks are for UX, the server is the real gate):
  *   - Only https:// API endpoints are accepted (http:// only for localhost).
  *   - No cookies/credentials are sent, nothing is stored in the browser.
+ *   - Ratings (query, answer, source names, thumbs up/down) are sent to
+ *     POST {apiBase}/feedback and stored server-side.
  *   - All server text is rendered via textContent or escaped before markup.
  *   - Responses are shape-checked and size-capped before display.
  */
@@ -225,6 +227,17 @@
     return html || '<p></p>';
   }
 
+  /** Random per-page-load ID that groups one visitor's ratings. Kept in memory only. */
+  function createSessionId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
+  }
+
   function sanitizeUserInput(text) {
     return String(text).replace(CONTROL_CHARS, '').trim();
   }
@@ -283,7 +296,8 @@
       history: [], // completed turns sent to the server: [{ role, content }, ...]
       responseCount: 0,
       activeSpeech: null,
-      feedback: new Map(), // session only; an integration can capture neu:feedback
+      feedback: new Map(), // session only; also emitted as a neu:feedback event
+      sessionId: createSessionId(),
     };
 
     /* ---------- Hint rotation ---------- */
@@ -395,6 +409,36 @@
       state.activeSpeech = null;
     }
 
+    /** Sends one rating to the backend. Resolves true on success, false on any failure. */
+    async function submitFeedback(entry) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), config.requestTimeoutMs);
+      try {
+        const response = await fetch(`${apiBase}/feedback`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: state.sessionId,
+            responseId: entry.responseId,
+            rating: entry.rating,
+            query: entry.query,
+            answer: entry.answer,
+            sources: entry.sources,
+          }),
+          signal: controller.signal,
+          mode: 'cors',
+          credentials: 'omit',
+          cache: 'no-store',
+          referrerPolicy: 'strict-origin-when-cross-origin',
+        });
+        return response.ok;
+      } catch (error) {
+        return false;
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    }
+
     function addFeedback(message, query, answer, names, requiresSupport) {
       const responseId = `${Date.now()}-${++state.responseCount}`;
       const controls = document.createElement('div');
@@ -465,21 +509,36 @@
         button.title = label;
         button.setAttribute('aria-label', label);
         button.setAttribute('aria-pressed', 'false');
-        button.addEventListener('click', () => {
+        button.addEventListener('click', async () => {
           if (state.feedback.get(responseId)?.rating === rating) return;
+          const previous = state.feedback.get(responseId);
           const entry = { responseId, query, answer, sources: names.slice(), rating,
             createdAt: new Date().toISOString() };
           state.feedback.set(responseId, entry);
           if (state.feedback.size > 100) state.feedback.delete(state.feedback.keys().next().value);
           buttons.forEach((item) => item.button.setAttribute('aria-pressed', String(item.rating === rating)));
-          status.textContent = rating === 'up' ? 'Marked helpful' : 'Marked unhelpful';
           if (rating === 'down') addSupportLink(message);
           else if (!requiresSupport) message.querySelector('.neu-support')?.remove();
-          // Ratings are not sent to AWS by this widget; the host may wire this event
-          // to a review endpoint. Never claim a server submission happened here.
+          // Still emitted so a host page can listen if it wants to.
           root.dispatchEvent(new CustomEvent('neu:feedback', {
             bubbles: true, detail: { ...entry, sources: entry.sources.slice() },
           }));
+
+          // Lock both buttons while saving so rapid up/down clicks can't arrive out of order.
+          buttons.forEach((item) => { item.button.disabled = true; });
+          status.textContent = 'Saving…';
+          const saved = await submitFeedback(entry);
+          buttons.forEach((item) => { item.button.disabled = false; });
+
+          if (saved) {
+            status.textContent = rating === 'up' ? 'Thanks! Marked helpful' : 'Thanks! Marked unhelpful';
+          } else {
+            // Roll back so the user can tap again instead of silently losing the rating.
+            if (previous) state.feedback.set(responseId, previous);
+            else state.feedback.delete(responseId);
+            buttons.forEach((item) => item.button.setAttribute('aria-pressed', String(previous?.rating === item.rating)));
+            status.textContent = "Couldn't save your feedback. Please try again.";
+          }
           scrollToBottom();
         });
         buttons.push({ button, rating });
