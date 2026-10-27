@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEU RAG — Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#050b18;
+    --panel:#0b1730;
+    --panel-line: rgba(191,215,255,0.13);
+    --ember-deep:#102b5c;
+    --ember:#2563eb;
+    --ember-bright:#60a5fa;
+    --amber:#93c5fd;
+    --ash:#b7c5dc;
+    --bone:#edf4ff;
+    --ok-bg: rgba(96,165,250,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--void);
+    color: var(--bone);
+    font-family: 'Inter', sans-serif;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* ambient navy-blue glow, single orchestrated background moment */
+  .glow{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% 100%, rgba(37,99,235,0.36), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 20%, rgba(30,64,175,0.36), transparent 55%);
+    animation: breathe 9s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:0.75; }
+    50%{ opacity:1; }
+  }
+  .grain{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{ position:relative; z-index:1; max-width:960px; margin:0 auto; padding: 28px 24px 80px; }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 8px 4px 40px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background: linear-gradient(145deg, var(--ember-bright), var(--ember-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:600; font-size:16px; color:var(--bone);
+    box-shadow: 0 0 0 1px rgba(191,215,255,0.14), 0 4px 18px rgba(37,99,235,0.36);
+  }
+  .brand-text{ line-height:1.15; }
+  .brand-text b{ font-family:'Fraunces', serif; font-weight:500; font-size:16.5px; letter-spacing:0.2px; display:block;}
+  .brand-text span{ font-size:12.5px; color:var(--ash); }
+
+  .status-pill{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--panel-line);
+    background: rgba(191,215,255,0.035);
+    padding:7px 13px; border-radius:100px;
+    font-size:12.5px; color:var(--ash);
+  }
+  .status-pill i{ width:6px; height:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 8px var(--amber); }
+
+  h1{
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size: clamp(30px, 4.6vw, 44px);
+    line-height:1.08; letter-spacing:-0.3px;
+    margin: 0 0 12px;
+    max-width: 640px;
+  }
+  .lede{ color:var(--ash); font-size:15.5px; max-width:520px; line-height:1.55; margin: 0 0 36px;}
+  .lede code{ font-family:'Inter'; background:rgba(191,215,255,0.07); padding:1px 6px; border-radius:5px; font-size:13.5px; color:var(--bone); }
+
+  /* dropzone */
+  .dropzone{
+    border: 1.5px dashed rgba(246,239,228,0.22);
+    border-radius: 18px;
+    padding: 56px 24px;
+    text-align:center;
+    cursor:pointer;
+    background: rgba(191,215,255,0.018);
+    transition: border-color .25s ease, background .25s ease, transform .25s ease;
+    position:relative;
+  }
+  .dropzone:hover{ border-color: rgba(246,239,228,0.4); }
+  .dropzone.drag{
+    border-color: var(--ember-bright);
+    background: rgba(37,99,235,0.10);
+    transform: scale(1.006);
+  }
+  .dz-icon{
+    width:46px; height:46px; margin:0 auto 18px;
+    border-radius:50%;
+    background: linear-gradient(160deg, rgba(37,99,235,0.26), rgba(30,64,175,0.22));
+    border:1px solid rgba(191,215,255,0.14);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .dz-icon svg{ width:19px; height:19px; }
+  .dropzone h3{ font-family:'Inter'; font-weight:600; font-size:16px; margin:0 0 6px; }
+  .dropzone p{ color:var(--ash); font-size:13.5px; margin:0; }
+  .dropzone input{ display:none; }
+
+  /* stats strip */
+  .stats{
+    display:grid; grid-template-columns: repeat(3,1fr);
+    margin-top: 34px;
+    border-top:1px solid var(--panel-line);
+    border-bottom:1px solid var(--panel-line);
+  }
+  .stat{ padding: 20px 18px; border-right:1px solid var(--panel-line); }
+  .stat:last-child{ border-right:none; }
+  .stat b{
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size: 26px; display:block; color:var(--bone);
+  }
+  .stat span{ font-size:12.5px; color:var(--ash); }
+
+  /* queue */
+  .queue-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin: 44px 0 14px;
+  }
+  .queue-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:19px; margin:0; }
+  .queue-head span{ font-size:12.5px; color:var(--ash); }
+
+  .empty{
+    border:1px solid var(--panel-line); border-radius:14px;
+    padding: 34px 20px; text-align:center; color:var(--ash); font-size:13.5px;
+  }
+
+  .row{
+    display:flex; align-items:center; gap:14px;
+    padding: 15px 4px;
+    border-bottom:1px solid var(--panel-line);
+    animation: rowIn .35s ease both;
+  }
+  @keyframes rowIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+  .row:last-child{ border-bottom:none; }
+
+  .file-ico{
+    width:34px; height:34px; border-radius:8px; flex:none;
+    background: rgba(191,215,255,0.06); border:1px solid var(--panel-line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter'; font-weight:600; font-size:10px; color:var(--ash);
+    text-transform:uppercase;
+  }
+  .row-main{ flex:1; min-width:0; }
+  .row-main .name{ font-size:14px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .row-main .meta{ font-size:12px; color:var(--ash); margin-top:2px; display:flex; gap:8px; align-items:center;}
+
+  .track{
+    width:100%; height:3px; border-radius:3px;
+    background: rgba(191,215,255,0.09);
+    margin-top:8px; overflow:hidden;
+  }
+  .fill{
+    height:100%; border-radius:3px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    width:0%; transition: width .5s ease;
+  }
+
+  .badge{
+    font-size:11.5px; padding:4px 10px; border-radius:100px; flex:none;
+    border:1px solid var(--panel-line); color:var(--ash);
+    display:flex; align-items:center; gap:6px;
+  }
+  .badge.b-queued{ }
+  .badge.b-active{ color:var(--ember-bright); border-color: rgba(37,99,235,0.36); }
+  .badge.b-active i{ width:5px;height:5px;border-radius:50%; background:var(--ember-bright); animation:pulse 1s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+  .badge.b-done{ color:var(--amber); border-color: rgba(96,165,250,0.36); background:var(--ok-bg); }
+  .badge.b-fail{ color:#ff8a7a; border-color: rgba(255,138,122,0.35); }
+
+  .row-actions{ display:flex; gap:6px; flex:none; }
+  .icon-btn{
+    width:28px; height:28px; border-radius:7px; border:1px solid var(--panel-line);
+    background:transparent; color:var(--ash); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .15s ease, color .15s ease;
+  }
+  .icon-btn:hover{ background: rgba(191,215,255,0.07); color:var(--bone); }
+  .icon-btn svg{ width:13px; height:13px; }
+
+  footer{
+    margin-top: 46px; padding-top:18px; border-top:1px solid var(--panel-line);
+    font-size:12px; color: rgba(201,190,178,0.6); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .glow, .badge.b-active i, .row{ animation:none !important; }
+  }
+  @media (max-width: 620px){
+    .stats{ grid-template-columns:1fr; }
+    .stat{ border-right:none; border-bottom:1px solid var(--panel-line); }
+    .stat:last-child{ border-bottom:none; }
+  }
+
+
+  /* admin navigation and feedback report */
+  .admin-nav{display:flex;gap:8px;flex-wrap:wrap;margin:-18px 4px 34px;padding-bottom:18px;border-bottom:1px solid var(--panel-line);}
+  .nav-tab{display:inline-flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid var(--panel-line);border-radius:10px;background:rgba(191,215,255,0.03);color:var(--ash);font:500 13px 'Inter',sans-serif;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease;}
+  .nav-tab:hover{background:rgba(191,215,255,0.07);color:var(--bone);}
+  .nav-tab[aria-selected="true"]{color:var(--bone);background:rgba(37,99,235,0.15);border-color:rgba(96,165,250,0.42);}
+  .nav-tab svg{width:15px;height:15px;}
+  .view[hidden]{display:none!important;}
+  .view-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:26px;}
+  .view-heading h1{margin-bottom:10px;}
+  .view-heading .lede{margin-bottom:0;}
+  .feedback-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .action-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--panel-line);border-radius:9px;background:rgba(191,215,255,0.05);color:var(--bone);padding:10px 13px;font:500 12.5px 'Inter',sans-serif;cursor:pointer;}
+  .action-btn:hover{background:rgba(191,215,255,0.09);}
+  .action-btn:disabled{opacity:.5;cursor:wait;}
+  .feedback-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:28px 0 34px;}
+  .feedback-stat{border:1px solid var(--panel-line);border-radius:13px;background:rgba(191,215,255,0.03);padding:18px;min-width:0;}
+  .feedback-stat .stat-label{display:block;color:var(--ash);font-size:12px;margin-bottom:12px;}
+  .feedback-stat strong{font-family:'Fraunces',serif;font-weight:500;font-size:30px;line-height:1.1;display:block;overflow-wrap:anywhere;}
+  .feedback-stat .stat-note{display:block;color:rgba(201,190,178,0.68);font-size:11.5px;margin-top:8px;}
+  .feedback-section-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 14px;}
+  .feedback-section-head h2{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0;}
+  .feedback-section-head span{font-size:12px;color:var(--ash);}
+  .feedback-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .feedback-search,.feedback-filter{border:1px solid var(--panel-line);border-radius:9px;background:rgba(246,239,228,0.035);color:var(--bone);padding:10px 12px;font:12.5px 'Inter',sans-serif;outline:none;}
+  .feedback-search{flex:1;min-width:190px;}
+  .feedback-filter{min-width:145px;}
+  .feedback-search:focus,.feedback-filter:focus{border-color:rgba(96,165,250,0.62);}
+  .feedback-filter option{background:var(--panel);color:var(--bone);}
+  .feedback-table-wrap{overflow-x:auto;border:1px solid var(--panel-line);border-radius:13px;}
+  .feedback-table{width:100%;border-collapse:collapse;min-width:760px;text-align:left;}
+  .feedback-table th{padding:13px 14px;color:var(--ash);font-size:11px;font-weight:500;letter-spacing:.3px;text-transform:uppercase;background:rgba(191,215,255,0.03);border-bottom:1px solid var(--panel-line);}
+  .feedback-table td{padding:14px;color:var(--bone);font-size:12.5px;vertical-align:top;border-bottom:1px solid var(--panel-line);}
+  .feedback-table tbody tr:last-child td{border-bottom:none;}
+  .feedback-table .question-cell{max-width:240px;min-width:180px;overflow-wrap:anywhere;}
+  .feedback-table .answer-cell{max-width:290px;min-width:200px;color:var(--ash);overflow-wrap:anywhere;}
+  .vote-pill{display:inline-flex;align-items:center;gap:6px;border-radius:100px;padding:5px 9px;font-size:11.5px;white-space:nowrap;border:1px solid var(--panel-line);}
+  .vote-up{color:#f4c98b;background:rgba(244,169,64,.08);border-color:rgba(244,169,64,.24);}
+  .vote-down{color:#ff9b8c;background:rgba(37,99,235,.10);border-color:rgba(37,99,235,.28);}
+  .feedback-reason{color:var(--ash);}
+  .feedback-date{white-space:nowrap;color:var(--ash);font-size:11.5px;}
+  .feedback-status{margin-bottom:14px;}
+  .feedback-status.error{color:#ff9b8c;border-color:rgba(232,72,28,.3);}
+  .feedback-status.success{color:var(--amber);}
+  .feedback-empty{border:1px solid var(--panel-line);border-radius:13px;padding:32px 20px;text-align:center;color:var(--ash);font-size:13px;}
+  .response-detail{margin-top:8px;color:var(--ash);font-size:11.5px;}
+  .response-detail summary{cursor:pointer;color:var(--ember-bright);}
+  .response-detail p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;}
+  .feedback-footnote{margin-top:12px;color:rgba(201,190,178,0.65);font-size:11.5px;line-height:1.5;}
+  @media(max-width:760px){.feedback-stats{grid-template-columns:repeat(2,minmax(0,1fr));}.view-heading{align-items:flex-start;}}
+  @media(max-width:480px){.feedback-stats{gap:8px;}.feedback-stat{padding:14px;}.feedback-stat strong{font-size:25px;}.nav-tab{flex:1;justify-content:center;}}
+
+
+  /* overview, testing, and system tools - follows the existing NEU RAG theme */
+  .overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 34px;}
+  .overview-card,.tool-panel{border:1px solid var(--panel-line);border-radius:13px;background:rgba(246,239,228,.025);padding:18px;min-width:0;}
+  .overview-card span{display:block;color:var(--ash);font-size:12px;margin-bottom:12px;}
+  .overview-card strong{display:block;font-family:'Fraunces',serif;font-size:29px;font-weight:500;overflow-wrap:anywhere;}
+  .overview-card small{display:block;color:rgba(201,190,178,.68);font-size:11.5px;margin-top:8px;line-height:1.45;}
+  .tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0;}
+  .tool-panel h2,.tool-panel h3{font-family:'Fraunces',serif;font-weight:500;margin:0 0 10px;font-size:19px;}
+  .tool-panel p{font-size:13px;color:var(--ash);line-height:1.55;margin:0 0 14px;}
+  .tool-form{display:flex;flex-direction:column;gap:10px;}
+  .tool-input,.tool-textarea,.tool-select{width:100%;border:1px solid var(--panel-line);border-radius:9px;background:rgba(246,239,228,.035);color:var(--bone);padding:11px 12px;font:13px 'Inter',sans-serif;outline:none;}
+  .tool-input:focus,.tool-textarea:focus,.tool-select:focus{border-color:rgba(96,165,250,.62);}
+  .tool-textarea{min-height:125px;resize:vertical;line-height:1.5;}
+  .tool-select option{background:var(--panel);color:var(--bone);}
+  .action-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 13px;border:1px solid rgba(37,99,235,.38);border-radius:9px;background:rgba(37,99,235,.15);color:var(--bone);font:500 12.5px 'Inter',sans-serif;cursor:pointer;transition:background .2s ease,border-color .2s ease;}
+  .action-btn:hover{background:rgba(37,99,235,.24);border-color:rgba(96,165,250,.62);}
+  .action-btn:disabled{opacity:.5;cursor:not-allowed;}
+  .tool-output{border:1px solid var(--panel-line);border-radius:10px;background:rgba(0,0,0,.18);padding:13px;min-height:48px;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ash);font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;}
+  .tool-note{font-size:11.5px;color:rgba(201,190,178,.7);line-height:1.5;margin-top:12px;}
+  .status-list{display:flex;flex-direction:column;gap:9px;}
+  .status-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--panel-line);padding:10px 0;font-size:12.5px;}
+  .status-row:last-child{border-bottom:none;}
+  .status-row span{color:var(--ash);}
+  .status-row strong{font-weight:500;text-align:right;overflow-wrap:anywhere;}
+  .admin-table{width:100%;border-collapse:collapse;text-align:left;min-width:540px;}
+  .admin-table th,.admin-table td{padding:12px;border-bottom:1px solid var(--panel-line);font-size:12px;vertical-align:top;}
+  .admin-table th{color:var(--ash);font-weight:500;text-transform:uppercase;letter-spacing:.3px;font-size:10.5px;}
+  .admin-table td{color:var(--bone);}
+  .admin-table-wrap{overflow-x:auto;border:1px solid var(--panel-line);border-radius:12px;}
+  .inline-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .muted-copy{color:var(--ash);font-size:12.5px;line-height:1.55;}
+  @media(max-width:760px){.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.tool-grid{grid-template-columns:1fr;}}
+  @media(max-width:480px){.overview-grid{gap:8px;}.overview-card{padding:14px;}.overview-card strong{font-size:25px;}}
+
+
+  /* admin token bar + sources column (feedback view) */
+  .token-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 24px;}
+  .token-bar .tool-input{flex:1;min-width:220px;width:auto;}
+  .feedback-reason{max-width:200px;overflow-wrap:anywhere;font-size:12px;line-height:1.5;}
+
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="grain"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="brand-mark">N</div>
+      <div class="brand-text">
+        <b>NEU RAG</b>
+        <span>Admin console</span>
+      </div>
+    </div>
+    <div class="status-pill"><i></i> mock-documents · us-east-1</div>
+  </header>
+
+  <nav class="admin-nav" aria-label="Admin sections" role="tablist">
+    <button class="nav-tab" id="overviewTab" type="button" role="tab" aria-controls="overviewView" aria-selected="true">Overview</button>
+    <button class="nav-tab" id="ingestionTab" type="button" role="tab" aria-controls="ingestionView" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+      Knowledge Base
+    </button>
+    <button class="nav-tab" id="feedbackTab" type="button" role="tab" aria-controls="feedbackView" aria-selected="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg>
+      Feedback
+    </button>
+    <button class="nav-tab" id="testingTab" type="button" role="tab" aria-controls="testingView" aria-selected="false">Chatbot Testing</button>
+    <button class="nav-tab" id="systemTab" type="button" role="tab" aria-controls="systemView" aria-selected="false">System &amp; Logs</button>
+  </nav>
+
+  <section class="view" id="overviewView" role="tabpanel" aria-labelledby="overviewTab">
+    <div class="view-heading"><div><h1>Admin overview.</h1><p class="lede">A quick view of the AskNEU knowledge base and student feedback. Values update from the existing documents endpoint and the feedback endpoint when available.</p></div><div class="feedback-actions"><button class="action-btn" id="refreshOverviewBtn" type="button">Refresh overview</button></div></div>
+    <div class="overview-grid" aria-live="polite">
+      <div class="overview-card"><span>Documents</span><strong id="overviewDocs">—</strong><small>Files returned by GET /documents</small></div>
+      <div class="overview-card"><span>Embedded chunks</span><strong id="overviewChunks">—</strong><small>Reported by the ingestion API</small></div>
+      <div class="overview-card"><span>Feedback votes</span><strong id="overviewVotes">—</strong><small>Stored votes returned by GET /feedback (needs the admin token)</small></div>
+      <div class="overview-card"><span>Helpful responses</span><strong id="overviewHelpful">—</strong><small>Share of valid thumbs-up/down votes</small></div>
+    </div>
+    <div class="tool-grid">
+      <div class="tool-panel"><h2>Admin workflow</h2><p>Use these sections to maintain the university knowledge base and review chatbot quality.</p><div class="status-list"><div class="status-row"><span>Knowledge Base</span><strong>Upload, review, and remove source documents</strong></div><div class="status-row"><span>Feedback</span><strong>Find responses students marked unhelpful</strong></div><div class="status-row"><span>Chatbot Testing</span><strong>Run controlled test questions</strong></div><div class="status-row"><span>System &amp; Logs</span><strong>Inspect optional monitoring endpoints</strong></div></div></div>
+      <div class="tool-panel"><h2>Recommended review queue</h2><p>Use negative votes as signals for manual review. A thumbs-down does not automatically mean an answer is factually incorrect.</p><div class="overview-card" style="margin-bottom:12px"><span>Negative feedback</span><strong id="overviewNegative">—</strong><small>Responses to inspect in the Feedback section</small></div><button class="action-btn" type="button" id="openFeedbackFromOverview">Review feedback</button></div>
+    </div>
+    <p class="tool-note">The overview does not invent metrics when an endpoint is unavailable. Authentication and authorization must be enforced by API Gateway/Lambda, not just by hiding admin sections in this page.</p>
+  </section>
+
+  <section class="view" id="ingestionView" role="tabpanel" aria-labelledby="ingestionTab" hidden>
+  <h1>Feed the index.</h1>
+  <p class="lede">Documents dropped here are chunked, embedded with <code>cohere.embed-multilingual-v3</code>, and written into the <code>mock-documents</code> vector index for retrieval.</p>
+
+  <div class="dropzone" id="dz">
+    <input type="file" id="fileInput" multiple>
+    <div class="dz-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f6efe4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+    </div>
+    <h3>Drop documents to index</h3>
+    <p>PDF, DOCX, or TXT — or click to browse</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="statDocs">0</b><span>Documents indexed</span></div>
+    <div class="stat"><b id="statChunks">0</b><span>Chunks embedded</span></div>
+    <div class="stat"><b id="statSize">0 KB</b><span>Estimated storage</span></div>
+  </div>
+
+  <div class="queue-head">
+    <h2>Queue</h2>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button class="icon-btn" id="refreshBtn" title="Refresh" style="width:auto; padding:0 10px; gap:6px; display:flex; align-items:center; font-size:12.5px; color:var(--ash);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        Refresh
+      </button>
+      <span id="queueCount">Loading…</span>
+    </div>
+  </div>
+
+  <div id="queueList">
+    <div class="empty" id="emptyState">Loading your documents…</div>
+  </div>
+
+  <footer>
+    <span>Deleting a document also removes its vectors from the index</span>
+    <span>Dimension 1024 · Cosine</span>
+  </footer>
+  </section>
+
+  <section class="view" id="feedbackView" role="tabpanel" aria-labelledby="feedbackTab" hidden>
+    <div class="view-heading">
+      <div>
+        <h1>Listen to students.</h1>
+        <p class="lede">Review thumbs-up and thumbs-down votes to find where Neubie is helping students and where its answers need improvement.</p>
+      </div>
+      <div class="feedback-actions">
+        <button class="action-btn" id="exportFeedbackBtn" type="button">Export CSV</button>
+        <button class="action-btn" id="refreshFeedbackBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          Refresh feedback
+        </button>
+      </div>
+    </div>
+
+    <form class="token-bar" id="adminTokenForm" autocomplete="off">
+      <input class="tool-input" id="adminTokenInput" type="password" placeholder="Admin token" aria-label="Admin token" autocomplete="off">
+      <button class="action-btn" id="unlockFeedbackBtn" type="submit">Unlock feedback</button>
+    </form>
+
+    <div class="feedback-stats" aria-live="polite">
+      <div class="feedback-stat"><span class="stat-label">Total votes</span><strong id="feedbackTotal">—</strong><span class="stat-note">All feedback received</span></div>
+      <div class="feedback-stat"><span class="stat-label">Helpful responses</span><strong id="feedbackHelpful">—</strong><span class="stat-note">Thumbs-up share of votes</span></div>
+      <div class="feedback-stat"><span class="stat-label">Thumbs up</span><strong id="feedbackUp">—</strong><span class="stat-note">Positive votes</span></div>
+      <div class="feedback-stat"><span class="stat-label">Thumbs down</span><strong id="feedbackDown">—</strong><span class="stat-note">Responses to review</span></div>
+    </div>
+
+    <div class="feedback-section-head">
+      <h2>Student responses</h2>
+      <span id="feedbackCount">Not loaded</span>
+    </div>
+    <div class="feedback-toolbar">
+      <input class="feedback-search" id="feedbackSearch" type="search" placeholder="Search questions, answers, or sources…" aria-label="Search feedback">
+      <select class="feedback-filter" id="feedbackFilter" aria-label="Filter by vote">
+        <option value="all">All votes</option>
+        <option value="up">Thumbs up</option>
+        <option value="down">Thumbs down</option>
+      </select>
+    </div>
+    <div id="feedbackStatus" class="empty feedback-status" role="status">Feedback has not been loaded yet.</div>
+    <div class="feedback-table-wrap" id="feedbackTableWrap" hidden>
+      <table class="feedback-table">
+        <thead><tr><th>Vote</th><th>Student question</th><th>Chatbot response</th><th>Sources</th><th>Last rated</th></tr></thead>
+        <tbody id="feedbackTableBody"></tbody>
+      </table>
+    </div>
+    <div id="feedbackEmpty" class="feedback-empty" hidden>No feedback matches your filters.</div>
+    <p class="feedback-footnote">Ratings are written by the chat widget to <code>POST /feedback</code> and read here through <code>GET /feedback</code>, which requires the admin token (sent as the <code>X-Admin-Token</code> header). The token is kept in memory only, so you will need to enter it again after reloading this page. Student questions may contain personal details, so share this report and its CSV exports only with authorized administrators.</p>
+
+    <footer>
+      <span>Use negative feedback to review prompts and knowledge-base content</span>
+      <span>Student feedback · Admin only</span>
+    </footer>
+  </section>
+
+  <section class="view" id="testingView" role="tabpanel" aria-labelledby="testingTab" hidden>
+    <div class="view-heading"><div><h1>Test Neubie.</h1><p class="lede">Run repeatable questions while evaluating response quality, follow-up handling, and knowledge retrieval.</p></div></div>
+    <div class="tool-grid">
+      <div class="tool-panel"><h2>Chatbot playground</h2><p>Configure the existing chatbot query endpoint in the JavaScript constant <code>CHAT_TEST_ENDPOINT</code> before using this tool. The ingestion API endpoint is preserved separately as <code>API_BASE</code>.</p>
+        <form class="tool-form" id="chatTestForm"><label for="chatTestQuestion" class="muted-copy">Test question</label><textarea class="tool-textarea" id="chatTestQuestion" required placeholder="Example: where is the registrar's office"></textarea><button class="action-btn" id="runChatTestBtn" type="submit">Run test</button></form>
+        <p class="tool-note">This tool sends a POST request only after you configure CHAT_TEST_ENDPOINT. The endpoint must allow this admin page through CORS and should be protected for admin use.</p>
+      </div>
+      <div class="tool-panel"><h2>Test result</h2><p>Response output from the configured chatbot endpoint.</p><div class="tool-output" id="chatTestOutput" role="status">No test has been run.</div></div>
+    </div>
+    <div class="tool-panel"><h2>Suggested test cases</h2><p>Keep a repeatable set of questions for zero-shot/few-shot prompt comparisons and regression checks.</p><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Test category</th><th>Example</th><th>What to check</th></tr></thead><tbody><tr><td>Direct factual query</td><td>What courses does NEU offer?</td><td>Grounded answer and relevant source retrieval</td></tr><tr><td>Follow-up context</td><td>Where is that office?</td><td>Resolves the prior office reference without inventing details</td></tr><tr><td>Informal wording</td><td>registrar location pls</td><td>Understands fragments and missing punctuation</td></tr><tr><td>Out-of-scope query</td><td>Ask an unrelated general question</td><td>Polite, consistent scope handling</td></tr><tr><td>Unknown information</td><td>What is my exact tuition next semester?</td><td>Does not fabricate fees or certainty</td></tr></tbody></table></div></div>
+  </section>
+
+  <section class="view" id="systemView" role="tabpanel" aria-labelledby="systemTab" hidden>
+    <div class="view-heading"><div><h1>System &amp; logs.</h1><p class="lede">Optional operational reports for failed ingestion, unanswered questions, and recent administrative events.</p></div><div class="feedback-actions"><button class="action-btn" id="refreshSystemBtn" type="button">Refresh reports</button></div></div>
+    <div class="tool-grid">
+      <div class="tool-panel"><h2>Service configuration</h2><div class="status-list"><div class="status-row"><span>Ingestion API base</span><strong id="apiBaseDisplay"></strong></div><div class="status-row"><span>Documents endpoint</span><strong>GET /documents</strong></div><div class="status-row"><span>Feedback endpoint</span><strong>GET /feedback (admin) · POST /feedback (chat widget)</strong></div><div class="status-row"><span>Chat test endpoint</span><strong id="chatEndpointDisplay">Not configured</strong></div></div><p class="tool-note">The endpoint labels describe the expected integration. They do not confirm that the backend routes already exist.</p></div>
+      <div class="tool-panel"><h2>Security checklist</h2><div class="status-list"><div class="status-row"><span>Admin authentication</span><strong>Enforce on backend</strong></div><div class="status-row"><span>Feedback access</span><strong>Admin token required (GET /feedback)</strong></div><div class="status-row"><span>Destructive actions</span><strong>Confirm and audit</strong></div><div class="status-row"><span>Secrets</span><strong>Never place credentials in this HTML</strong></div></div></div>
+    </div>
+    <div class="tool-panel"><div class="feedback-section-head"><h2>Operational reports</h2><span id="systemReportCount">Not loaded</span></div><p>These reports require backend routes. Configure them in the constants at the top of the script when the corresponding Lambda handlers are ready.</p><div id="systemReportStatus" class="empty" role="status">No system reports loaded.</div><div class="admin-table-wrap" id="systemReportsWrap" hidden><table class="admin-table"><thead><tr><th>Report</th><th>Status</th><th>Details</th></tr></thead><tbody id="systemReportsBody"></tbody></table></div></div>
+    <p class="tool-note">Suggested backend additions: failed-ingestion records, unanswered/fallback query counts, usage metrics, and audit events. Do not expose raw logs or student identifiers to unauthorized users.</p>
+  </section>
+
+</div>
+
+<script>
+// Replace with your own API Gateway invoke URL (no trailing slash).
+// Same API as the presigned-URL route -- we're adding /documents as a
+// second route on this same API Gateway instance, not a separate API.
+const API_BASE = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com';
+
+// Feedback and optional admin-report routes. Keep API_BASE as the existing
+// ingestion API Gateway URL; add backend routes before expecting live reports.
+// POST /feedback is written by the chat widget; GET /feedback (below) is the
+// admin read route and needs the X-Admin-Token header.
+const FEEDBACK_ENDPOINT = `${API_BASE}/feedback`;
+const FAILED_INGESTIONS_ENDPOINT = `${API_BASE}/admin/failed-ingestions`;
+const UNANSWERED_QUESTIONS_ENDPOINT = `${API_BASE}/admin/unanswered-questions`;
+const AUDIT_LOGS_ENDPOINT = `${API_BASE}/admin/audit-logs`;
+
+// Set this to the actual chatbot query endpoint (it may be a different API Gateway).
+// Example only: do not assume `${API_BASE}/query` exists.
+const CHAT_TEST_ENDPOINT = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com/query';
+let feedbackRecords = [];
+let documentsCache = [];
+// Admin token for GET /feedback. Held in memory only (never written to
+// localStorage/sessionStorage or the page), so it is gone after a reload.
+let adminToken = '';
+
+const adminTabs = {
+  overview: document.getElementById('overviewTab'),
+  ingestion: document.getElementById('ingestionTab'),
+  feedback: document.getElementById('feedbackTab'),
+  testing: document.getElementById('testingTab'),
+  system: document.getElementById('systemTab')
+};
+const adminViews = {
+  overview: document.getElementById('overviewView'),
+  ingestion: document.getElementById('ingestionView'),
+  feedback: document.getElementById('feedbackView'),
+  testing: document.getElementById('testingView'),
+  system: document.getElementById('systemView')
+};
+
+function setAdminView(viewName){
+  Object.entries(adminViews).forEach(([name, view]) => {
+    const active = name === viewName;
+    view.hidden = !active;
+    adminTabs[name].setAttribute('aria-selected', String(active));
+  });
+  if(viewName === 'overview') loadOverview();
+  if(viewName === 'feedback' && feedbackRecords.length === 0) loadFeedback();
+  if(viewName === 'system') renderSystemConfiguration();
+}
+Object.entries(adminTabs).forEach(([name, tab]) => tab.addEventListener('click', () => setAdminView(name)));
+document.getElementById('openFeedbackFromOverview').addEventListener('click', () => setAdminView('feedback'));
+document.getElementById('refreshOverviewBtn').addEventListener('click', loadOverview);
+document.getElementById('refreshSystemBtn').addEventListener('click', loadSystemReports);
+
+function escapeHTML(value){
+  return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+function getVote(record){
+  const raw = String(record.vote ?? record.rating ?? record.feedback ?? '').toLowerCase().trim();
+  if(['up','thumbs_up','thumbsup','positive','helpful','yes','true','1'].includes(raw)) return 'up';
+  if(['down','thumbs_down','thumbsdown','negative','unhelpful','no','false','-1'].includes(raw)) return 'down';
+  return '';
+}
+
+function sourcesOf(record){
+  return Array.isArray(record.sources) ? record.sources.filter(item => typeof item === 'string') : [];
+}
+
+function formatFeedbackDate(value){
+  if(!value) return '—';
+  const date = new Date(value);
+  if(Number.isNaN(date.getTime())) return escapeHTML(value);
+  return date.toLocaleString(undefined, {year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+
+function setFeedbackStatus(message, kind=''){ 
+  const status = document.getElementById('feedbackStatus');
+  status.textContent = message;
+  status.className = 'empty feedback-status' + (kind ? ' ' + kind : '');
+  status.hidden = !message;
+}
+
+function renderFeedbackStats(records){
+  const up = records.filter(record => getVote(record) === 'up').length;
+  const down = records.filter(record => getVote(record) === 'down').length;
+  const total = up + down;
+  document.getElementById('feedbackTotal').textContent = records.length.toLocaleString();
+  document.getElementById('feedbackUp').textContent = up.toLocaleString();
+  document.getElementById('feedbackDown').textContent = down.toLocaleString();
+  document.getElementById('feedbackHelpful').textContent = total ? Math.round((up / total) * 100) + '%' : '—';
+  document.getElementById('overviewVotes').textContent = records.length.toLocaleString();
+  document.getElementById('overviewHelpful').textContent = total ? Math.round((up / total) * 100) + '%' : '—';
+  document.getElementById('overviewNegative').textContent = down.toLocaleString();
+}
+
+function renderFeedbackTable(){
+  const searchTerm = document.getElementById('feedbackSearch').value.trim().toLowerCase();
+  const voteFilter = document.getElementById('feedbackFilter').value;
+  const filtered = feedbackRecords.filter(record => {
+    const vote = getVote(record);
+    const searchable = [record.question, record.query, record.answer, record.response, sourcesOf(record).join(' '), record.responseId].join(' ').toLowerCase();
+    return (voteFilter === 'all' || vote === voteFilter) && searchable.includes(searchTerm);
+  });
+  const tbody = document.getElementById('feedbackTableBody');
+  const tableWrap = document.getElementById('feedbackTableWrap');
+  const empty = document.getElementById('feedbackEmpty');
+  tbody.innerHTML = '';
+  document.getElementById('feedbackCount').textContent = `${filtered.length} of ${feedbackRecords.length} ${feedbackRecords.length === 1 ? 'vote' : 'votes'}`;
+
+  if(filtered.length === 0){
+    tableWrap.hidden = true;
+    empty.hidden = false;
+    empty.textContent = feedbackRecords.length ? 'No feedback matches your filters.' : 'No feedback has been submitted yet.';
+    return;
+  }
+  empty.hidden = true;
+  tableWrap.hidden = false;
+  filtered.forEach(record => {
+    const vote = getVote(record);
+    const label = vote === 'up' ? 'Thumbs up' : vote === 'down' ? 'Thumbs down' : 'Unknown';
+    const icon = vote === 'up' ? '👍' : vote === 'down' ? '👎' : '—';
+    const question = record.question ?? record.query ?? 'Question not provided';
+    const answer = record.answer ?? record.response ?? '';
+    const responseId = record.responseId ?? record.answerId ?? record.answer_id;
+    const sources = sourcesOf(record);
+    const sourcesHtml = sources.length ? sources.map(escapeHTML).join('<br>') : '—';
+    const date = record.updatedAt ?? record.timestamp ?? record.createdAt ?? record.created_at ?? record.submittedAt;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vote-pill ${vote === 'up' ? 'vote-up' : vote === 'down' ? 'vote-down' : ''}">${icon} ${label}</span></td>
+      <td class="question-cell">${escapeHTML(question)}${responseId ? `<div class="response-detail">Response ID: ${escapeHTML(responseId)}</div>` : ''}</td>
+      <td class="answer-cell">${answer ? `${escapeHTML(String(answer).slice(0,220))}${String(answer).length > 220 ? '…' : ''}${String(answer).length > 220 ? `<details class="response-detail"><summary>View full response</summary><p>${escapeHTML(answer)}</p></details>` : ''}` : 'Response not provided'}</td>
+      <td class="feedback-reason">${sourcesHtml}</td>
+      <td class="feedback-date">${formatFeedbackDate(date)}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+async function loadFeedback(options={}){
+  const refreshButton = document.getElementById('refreshFeedbackBtn');
+
+  // No token yet: don't call the API, just prompt for it.
+  if(!adminToken){
+    setFeedbackStatus('Enter the admin token above to load feedback.');
+    document.getElementById('feedbackTableWrap').hidden = true;
+    document.getElementById('feedbackEmpty').hidden = true;
+    document.getElementById('feedbackCount').textContent = 'Locked';
+    if(options.quiet) throw new Error('locked');
+    return;
+  }
+
+  if(refreshButton) refreshButton.disabled = true;
+  if(!options.quiet) setFeedbackStatus('Loading feedback…');
+  try{
+    const response = await fetch(FEEDBACK_ENDPOINT, {headers:{'Accept':'application/json','X-Admin-Token':adminToken}});
+    if(response.status === 401 || response.status === 403){
+      adminToken = '';
+      throw new Error('Admin token missing or incorrect');
+    }
+    if(!response.ok) throw new Error(`Request failed (${response.status})`);
+    const payload = await response.json();
+    const records = Array.isArray(payload) ? payload : payload.feedback;
+    if(!Array.isArray(records)) throw new Error('The feedback API response must be an array or contain a "feedback" array.');
+    feedbackRecords = records;
+    renderFeedbackStats(feedbackRecords);
+    renderFeedbackTable();
+    if(payload.truncated){
+      setFeedbackStatus('Showing a partial list: there is more feedback than this report loads at once.', 'error');
+    }else{
+      setFeedbackStatus(records.length ? '' : 'No feedback has been submitted yet.', records.length ? '' : 'success');
+    }
+  }catch(error){
+    const authFailed = error.message.startsWith('Admin token');
+    setFeedbackStatus(authFailed
+      ? `${error.message}. Enter it again above.`
+      : `Could not load feedback: ${error.message}. Confirm that GET /feedback exists, returns JSON, and that CORS allows the X-Admin-Token header.`, 'error');
+    document.getElementById('feedbackTableWrap').hidden = true;
+    document.getElementById('feedbackEmpty').hidden = true;
+    document.getElementById('feedbackCount').textContent = authFailed ? 'Locked' : 'Unavailable';
+    if(options.quiet) throw error;
+  }finally{
+    if(refreshButton) refreshButton.disabled = false;
+  }
+}
+
+document.getElementById('adminTokenForm').addEventListener('submit', async event => {
+  event.preventDefault();
+  const input = document.getElementById('adminTokenInput');
+  adminToken = input.value.trim();
+  input.value = ''; // don't leave the secret sitting in the page
+  if(!adminToken){ setFeedbackStatus('Enter the admin token above to load feedback.'); return; }
+  await loadFeedback();
+});
+document.getElementById('refreshFeedbackBtn').addEventListener('click', loadFeedback);
+document.getElementById('feedbackSearch').addEventListener('input', renderFeedbackTable);
+document.getElementById('feedbackFilter').addEventListener('change', renderFeedbackTable);
+
+document.getElementById('exportFeedbackBtn').addEventListener('click', exportFeedbackCSV);
+function exportFeedbackCSV(){
+  if(!feedbackRecords.length){ setFeedbackStatus('There are no feedback records to export.', 'error'); return; }
+  const columns = ['sessionId','responseId','vote','question','answer','sources','createdAt','updatedAt'];
+  // Student text is untrusted: neutralise leading = + - @ so spreadsheets don't run it as a formula.
+  const csvCell = value => {
+    let text = String(value ?? '').replace(/\r?\n/g, ' ');
+    if(/^[=+\-@\t\r]/.test(text)) text = "'" + text;
+    return '"' + text.replace(/"/g, '""') + '"';
+  };
+  const lines = [columns.join(','), ...feedbackRecords.map(record => columns.map(key => {
+    if(key === 'vote') return csvCell(getVote(record));
+    if(key === 'question') return csvCell(record.question ?? record.query);
+    if(key === 'answer') return csvCell(record.answer ?? record.response);
+    if(key === 'sources') return csvCell(sourcesOf(record).join('; '));
+    return csvCell(record[key]);
+  }).join(','))];
+  const blob = new Blob(['\uFEFF' + lines.join('\r\n')], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob); const link = document.createElement('a');
+  link.href = url; link.download = `askneu-feedback-${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+}
+
+async function loadOverview(){
+  // Load from the existing APIs; no placeholder counts are presented as real values.
+  try{
+    const response = await fetch(`${API_BASE}/documents`, {headers:{'Accept':'application/json'}});
+    if(!response.ok) throw new Error(`Documents request failed (${response.status})`);
+    const payload = await response.json();
+    documentsCache = Array.isArray(payload.documents) ? payload.documents : [];
+    const chunks = documentsCache.reduce((sum, doc) => sum + (Number(doc.chunkCount) || 0), 0);
+    document.getElementById('overviewDocs').textContent = documentsCache.length.toLocaleString();
+    document.getElementById('overviewChunks').textContent = chunks.toLocaleString();
+  }catch(error){
+    document.getElementById('overviewDocs').textContent = 'Unavailable';
+    document.getElementById('overviewChunks').textContent = 'Unavailable';
+  }
+  try{ await loadFeedback({quiet:true}); }
+  catch(error){
+    const label = error.message === 'locked' ? 'Locked' : 'Unavailable';
+    document.getElementById('overviewVotes').textContent = label;
+    document.getElementById('overviewHelpful').textContent = label;
+    document.getElementById('overviewNegative').textContent = label;
+  }
+}
+
+function renderSystemConfiguration(){
+  document.getElementById('apiBaseDisplay').textContent = API_BASE;
+  document.getElementById('chatEndpointDisplay').textContent = CHAT_TEST_ENDPOINT || 'Not configured';
+}
+
+async function loadSystemReports(){
+  const status = document.getElementById('systemReportStatus');
+  const wrap = document.getElementById('systemReportsWrap');
+  const tbody = document.getElementById('systemReportsBody');
+  const count = document.getElementById('systemReportCount');
+  status.hidden = false; status.textContent = 'Checking optional report endpoints…';
+  wrap.hidden = true; tbody.innerHTML = '';
+  const endpoints = [
+    {label:'Failed ingestion records', url:FAILED_INGESTIONS_ENDPOINT},
+    {label:'Unanswered / fallback questions', url:UNANSWERED_QUESTIONS_ENDPOINT},
+    {label:'Administrative audit logs', url:AUDIT_LOGS_ENDPOINT}
+  ];
+  const results = await Promise.all(endpoints.map(async item => {
+    try{
+      const response = await fetch(item.url, {headers:{'Accept':'application/json'}});
+      if(!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      return {...item, ok:true, detail:JSON.stringify(data).slice(0,700)};
+    }catch(error){ return {...item, ok:false, detail:`Not available (${error.message}). Add and secure this route if needed.`}; }
+  }));
+  results.forEach(item => {
+    const row = document.createElement('tr');
+    row.innerHTML = `<td>${escapeHTML(item.label)}</td><td>${item.ok ? 'Connected' : 'Not configured'}</td><td>${escapeHTML(item.detail)}</td>`;
+    tbody.appendChild(row);
+  });
+  status.hidden = true; wrap.hidden = false;
+  count.textContent = `${results.filter(item => item.ok).length} of ${results.length} endpoints available`;
+}
+
+const chatTestForm = document.getElementById('chatTestForm');
+
+chatTestForm.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  const question = document.getElementById('chatTestQuestion').value.trim();
+  const output = document.getElementById('chatTestOutput');
+  const button = document.getElementById('runChatTestBtn');
+
+  if (!question) return;
+
+  if (!CHAT_TEST_ENDPOINT) {
+    output.textContent =
+      'Chatbot testing is not connected yet. Set CHAT_TEST_ENDPOINT to your actual chatbot query endpoint.';
+    return;
+  }
+
+  button.disabled = true;
+  output.textContent = 'Running test...';
+  output.style.whiteSpace = 'pre-wrap';
+
+  try {
+    const response = await fetch(CHAT_TEST_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        query: question,
+        history: []
+      })
+    });
+
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        payload.error || `Request failed (${response.status})`
+      );
+    }
+
+    // Display the answer instead of the entire JSON response.
+    let answer =
+      payload.answer ??
+      payload.response ??
+      payload.message ??
+      null;
+
+    if (answer === null) {
+      output.textContent = JSON.stringify(payload, null, 2);
+      return;
+    }
+
+    // Handle answers containing escaped newline characters.
+    answer = String(answer)
+      .replace(/\\n/g, '\n')
+      .replace(/\\t/g, '  ');
+
+    output.textContent = answer;
+
+  } catch (error) {
+    output.textContent =
+      `Test failed: ${error.message}. Check the endpoint, request format, CORS, and authorization.`;
+  } finally {
+    button.disabled = false;
+  }
+});
+
+
+const dz = document.getElementById('dz');
+const fileInput = document.getElementById('fileInput');
+const queueList = document.getElementById('queueList');
+const queueCount = document.getElementById('queueCount');
+const statDocs = document.getElementById('statDocs');
+const statChunks = document.getElementById('statChunks');
+const statSize = document.getElementById('statSize');
+
+let docsIndexed = 0, chunksEmbedded = 0, bytesTotal = 0, queued = 0;
+
+function animateNumber(el, from, to, suffix){
+  const dur = 500, start = performance.now();
+  function step(now){
+    const p = Math.min(1, (now-start)/dur);
+    const eased = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.round(from + (to-from)*eased) + (suffix||'');
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function formatSize(bytes){
+  if(bytes < 1024) return bytes + ' B';
+  if(bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/(1024*1024)).toFixed(2) + ' MB';
+}
+
+function recomputeStatsFromDocs(docs){
+  const oldDocs = docsIndexed, oldChunks = chunksEmbedded, oldBytes = bytesTotal;
+  docsIndexed = docs.length;
+  chunksEmbedded = docs.reduce((sum, d) => sum + (d.chunkCount || 0), 0);
+  bytesTotal = docs.reduce((sum, d) => sum + (d.size || 0), 0);
+  animateNumber(statDocs, oldDocs, docsIndexed, '');
+  animateNumber(statChunks, oldChunks, chunksEmbedded, '');
+  statSize.textContent = formatSize(bytesTotal);
+  const overviewDocs = document.getElementById('overviewDocs');
+  const overviewChunks = document.getElementById('overviewChunks');
+  if(overviewDocs) overviewDocs.textContent = docsIndexed.toLocaleString();
+  if(overviewChunks) overviewChunks.textContent = chunksEmbedded.toLocaleString();
+}
+
+async function loadDocuments(){
+  queueCount.textContent = 'Loading…';
+  try {
+    const res = await fetch(`${API_BASE}/documents`);
+    if(!res.ok) throw new Error(`Request failed (${res.status})`);
+    const { documents } = await res.json();
+
+    queueList.innerHTML = '';
+    if(documents.length === 0){
+      queueList.innerHTML = '<div class="empty" id="emptyState">No documents yet. Drop something above to get started.</div>';
+    } else {
+      documents.forEach(renderPersistedRow);
+    }
+    queueCount.textContent = documents.length + (documents.length === 1 ? ' document' : ' documents');
+    recomputeStatsFromDocs(documents);
+  } catch (err) {
+    queueCount.textContent = 'Could not load documents';
+    queueList.innerHTML = `<div class="empty">Couldn't reach the documents API: ${escapeHTML(err.message)}. Check API_BASE is set correctly.</div>`;
+  }
+}
+
+function renderPersistedRow(doc){
+  const rowId = 'doc-' + Math.random().toString(36).slice(2,9);
+  const ext = escapeHTML((doc.filename.split('.').pop() || 'doc').slice(0,4));
+  const indexed = doc.chunkCount > 0;
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.id = rowId;
+  row.innerHTML = `
+    <div class="file-ico">${ext}</div>
+    <div class="row-main">
+      <div class="name">${escapeHTML(doc.filename)}</div>
+      <div class="meta">
+        <span class="stage">${indexed ? doc.chunkCount + ' chunks' : 'Not indexed yet'}</span>
+        · <span>${formatSize(doc.size)}</span>
+      </div>
+    </div>
+    <div class="badge ${indexed ? 'b-done' : 'b-active'}">
+      ${indexed ? '' : '<i></i>'}<span>${indexed ? 'Indexed' : 'Processing'}</span>
+    </div>
+    <div class="row-actions">
+      <button class="icon-btn" title="Delete" data-key="${encodeURIComponent(doc.key)}" onclick="deleteDocument(this, '${rowId}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+      </button>
+    </div>
+  `;
+  queueList.appendChild(row);
+}
+
+async function deleteDocument(button, rowId){
+  const key = decodeURIComponent(button.dataset.key);
+  if(!confirm(`Delete "${key.length > 37 && key[36]==='-' ? key.slice(37) : key}"? This removes the file and its vectors from the index.`)) return;
+
+  button.disabled = true;
+  try {
+    const res = await fetch(`${API_BASE}/documents?key=${encodeURIComponent(key)}`, { method: 'DELETE' });
+    if(!res.ok) throw new Error(`Delete failed (${res.status})`);
+    document.getElementById(rowId)?.remove();
+    // Re-sync stats/count against the server rather than guessing locally.
+    loadDocuments();
+  } catch (err) {
+    alert('Could not delete: ' + err.message);
+    button.disabled = false;
+  }
+}
+
+['dragenter','dragover'].forEach(evt => dz.addEventListener(evt, e=>{
+  e.preventDefault(); dz.classList.add('drag');
+}));
+['dragleave','drop'].forEach(evt => dz.addEventListener(evt, e=>{
+  e.preventDefault(); if(evt==='drop') handleFiles(e.dataTransfer.files);
+  dz.classList.remove('drag');
+}));
+dz.addEventListener('click', ()=> fileInput.click());
+fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+function handleFiles(files){
+  const currentEmpty = document.getElementById('emptyState');
+  if(currentEmpty) currentEmpty.remove();
+  [...files].forEach(f => addRow(f));
+}
+
+function addRow(file){
+  queued++;
+  queueCount.textContent = queued + (queued===1 ? ' document' : ' documents');
+
+  const id = 'r' + Math.random().toString(36).slice(2,9);
+  const ext = escapeHTML((file.name.split('.').pop() || 'doc').slice(0,4));
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.id = id;
+  row.innerHTML = `
+    <div class="file-ico">${ext}</div>
+    <div class="row-main">
+      <div class="name">${escapeHTML(file.name)}</div>
+      <div class="meta"><span class="stage">Uploading</span> · <span>${formatSize(file.size)}</span></div>
+      <div class="track"><div class="fill"></div></div>
+    </div>
+    <div class="badge b-active" id="${id}-badge"><i></i><span>Uploading</span></div>
+    <div class="row-actions">
+      <button class="icon-btn" title="Remove" onclick="document.getElementById('${id}').remove()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  `;
+  queueList.appendChild(row);
+  runPipeline(id, file);
+}
+
+function setStage(id, label, pct){
+  const row = document.getElementById(id);
+  if(!row) return;
+  row.querySelector('.stage').textContent = label;
+  row.querySelector('.fill').style.width = pct + '%';
+  const badge = document.getElementById(id+'-badge');
+  badge.querySelector('span').textContent = label;
+}
+
+function setFailed(id, message){
+  const row = document.getElementById(id);
+  if(!row) return;
+  row.querySelector('.stage').textContent = 'Failed';
+  const badge = document.getElementById(id+'-badge');
+  badge.className = 'badge b-fail';
+  badge.innerHTML = `<span>Failed</span>`;
+  const meta = row.querySelector('.meta');
+  const safeMessage = escapeHTML(message);
+  meta.innerHTML = `<span class="stage">Failed</span> · <span title="${safeMessage}">${safeMessage}</span>`;
+}
+
+async function runPipeline(id, file){
+  const contentType = file.type || 'application/octet-stream';
+
+  // Step 1: ask our backend for a presigned S3 upload URL.
+  let uploadUrl, key;
+  try {
+    setStage(id, 'Requesting upload URL', 10);
+    const res = await fetch(
+      `${API_BASE}/upload-url?filename=${encodeURIComponent(file.name)}&contentType=${encodeURIComponent(contentType)}`
+    );
+    if(!res.ok){
+      const body = await res.json().catch(()=>({}));
+      throw new Error(body.error || `Request failed (${res.status})`);
+    }
+    ({ uploadUrl, key } = await res.json());
+  } catch (err) {
+    setFailed(id, 'Could not get upload URL: ' + err.message);
+    return;
+  }
+
+  // Step 2: PUT the actual file straight to S3 using that URL. Using
+  // XMLHttpRequest here (instead of fetch) because it's the only way to
+  // get real upload progress events for the progress bar.
+  try {
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('PUT', uploadUrl);
+      // Must match exactly what was signed server-side, or S3 rejects the upload.
+      xhr.setRequestHeader('Content-Type', contentType);
+      xhr.upload.addEventListener('progress', (e) => {
+        if(e.lengthComputable){
+          const pct = 10 + Math.round((e.loaded / e.total) * 70); // 10-80% during upload
+          setStage(id, 'Uploading', pct);
+        }
+      });
+      xhr.onload = () => {
+        if(xhr.status >= 200 && xhr.status < 300) resolve();
+        else reject(new Error(`S3 upload failed (${xhr.status})`));
+      };
+      xhr.onerror = () => reject(new Error('Network error during upload'));
+      xhr.send(file);
+    });
+  } catch (err) {
+    setFailed(id, err.message);
+    return;
+  }
+
+  // Step 3: upload confirmed. Chunking/embedding/indexing now happens
+  // asynchronously on the backend (triggered by the S3 event) -- there's
+  // no live status endpoint yet, so we report success and stop here
+  // rather than fake further stages.
+  setStage(id, 'Uploaded · processing in background', 100);
+  const badge = document.getElementById(id+'-badge');
+  badge.className = 'badge b-done';
+  badge.innerHTML = `<span>Uploaded</span>`;
+  // Real chunk count/stats aren't known yet -- they'll show correctly
+  // next time the list is refreshed, once the ingestion Lambda finishes.
+}
+
+document.getElementById('refreshBtn').addEventListener('click', loadDocuments);
+renderSystemConfiguration();
+loadDocuments();
+loadOverview();
+</script>
+
+</body>
+</html>
