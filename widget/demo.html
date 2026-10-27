@@ -88,13 +88,13 @@
       // HITL demo summary; the widget emits neu:feedback for host integrations.
       const feedbackNote = document.createElement('p');
       feedbackNote.className = 'note';
-      feedbackNote.textContent = 'Feedback is session-only in this demo; no ratings are submitted to AWS.';
+      feedbackNote.textContent = mock ? 'Mock feedback stays in this demo.' : 'Live ratings are submitted to the feedback API.';
       document.getElementById('test-console').appendChild(feedbackNote);
       const feedback = new Map();
       window.addEventListener('neu:feedback', (event) => {
         feedback.set(event.detail.responseId, event.detail);
         const positive = [...feedback.values()].filter((entry) => entry.rating === 'up').length;
-        feedbackNote.textContent = `Demo feedback: ${positive} helpful, ${feedback.size - positive} unhelpful. Session only; not submitted to AWS.`;
+        feedbackNote.textContent = `Rating selections: ${positive} helpful, ${feedback.size - positive} unhelpful. ${mock ? "Mock mode; no AWS calls." : "See each answer for save status."}`;
       });
 
       if (mock) {
@@ -104,6 +104,7 @@
         ), 900));
 
         window.fetch = (url, options) => {
+          if (String(url).endsWith('/feedback')) return reply(200, { saved: true, mock: true });
           if (!String(url).endsWith('/query')) return realFetch(url, options);
           const q = JSON.parse(options.body).query.toLowerCase();
           if (q.includes('error')) return reply(500, { error: 'INTERNAL DETAIL THAT MUST NOT APPEAR', requestId: 'demo' });

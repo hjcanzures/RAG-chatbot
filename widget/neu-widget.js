@@ -14,6 +14,8 @@
  * server-side — client checks are for UX, the server is the real gate):
  *   - Only https:// API endpoints are accepted (http:// only for localhost).
  *   - No cookies/credentials are sent, nothing is stored in the browser.
+ *   - Ratings (query, answer, source names, thumbs up/down) are sent to
+ *     POST {apiBase}/feedback and stored server-side.
  *   - All server text is rendered via textContent or escaped before markup.
  *   - Responses are shape-checked and size-capped before display.
  */
@@ -97,17 +99,72 @@
    * Markup
    * ------------------------------------------------------------------ */
 
+  // Resolve assets beside this script so the widget works on other host pages.
+  const mascotHeadUrl = new URL('assets/neubie-logo-head.png', document.currentScript?.src || document.baseURI).href;
   const ROBOT_SVG = `
-    <svg viewBox="0 0 137 117" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="70" cy="12" r="6" fill="var(--neu-robot-body)" />
-      <rect x="68" y="16" width="4" height="10" rx="2" fill="var(--neu-robot-body)" />
-      <rect x="20" y="24" width="100" height="72" rx="36" fill="var(--neu-robot-body)" />
-      <rect x="12" y="44" width="9" height="26" rx="4" fill="var(--neu-robot-body)" />
-      <rect x="118" y="44" width="9" height="26" rx="4" fill="var(--neu-robot-body)" />
-      <rect x="25" y="29" width="90" height="63" rx="28" fill="var(--neu-robot-face)" />
-      <ellipse cx="45" cy="58" rx="8" ry="11" fill="var(--neu-robot-body)" />
-      <ellipse cx="95" cy="58" rx="8" ry="11" fill="var(--neu-robot-body)" />
-      <path d="M 63 74 Q 70 78 77 74" stroke="var(--neu-robot-body)" stroke-width="2" stroke-linecap="round" fill="none" />
+    <svg class="neu-mascot" viewBox="0 0 140 184" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="neu-mascot-metal" x1="40" y1="100" x2="100" y2="160" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#f4f8ff"/><stop offset="0.5" stop-color="#c5d4ec"/><stop offset="1" stop-color="#8da4c8"/>
+        </linearGradient>
+        <radialGradient id="neu-mascot-screen" cx="40%" cy="15%" r="90%">
+          <stop stop-color="#243a66"/><stop offset="0.6" stop-color="#101f42"/><stop offset="1" stop-color="#09142d"/>
+        </radialGradient>
+      </defs>
+      <g class="neu-mascot__leg neu-mascot__leg--left">
+        <rect x="47" y="145" width="17" height="26" rx="8" fill="#162b50" stroke="#b8cbe7" stroke-width="3"/>
+        <path d="M44 166h23v11H39v-4q0-7 5-7Z" fill="#e3edfc" stroke="#89a7d4" stroke-width="2"/>
+      </g>
+      <g class="neu-mascot__leg neu-mascot__leg--right">
+        <rect x="76" y="145" width="17" height="26" rx="8" fill="#162b50" stroke="#b8cbe7" stroke-width="3"/>
+        <path d="M73 166h23q5 0 5 7v4H73v-11Z" fill="#e3edfc" stroke="#89a7d4" stroke-width="2"/>
+      </g>
+      <g class="neu-mascot__arm neu-mascot__arm--left">
+        <path d="M38 109 24 130" stroke="#90a9cf" stroke-width="14" stroke-linecap="round"/>
+        <path d="M38 109 24 130" stroke="#e3edfc" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="21" cy="137" r="10" fill="#e3edfc" stroke="#8da7ce" stroke-width="2"/>
+        <path d="M17 136v4m5-4v5" stroke="#9bb4da" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g class="neu-mascot__arm neu-mascot__arm--right">
+        <path d="m102 109 14 21" stroke="#90a9cf" stroke-width="14" stroke-linecap="round"/>
+        <path d="m102 109 14 21" stroke="#e3edfc" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="119" cy="137" r="10" fill="#e3edfc" stroke="#8da7ce" stroke-width="2"/>
+        <path d="M115 136v4m5-4v5" stroke="#9bb4da" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <rect x="58" y="86" width="24" height="19" rx="7" fill="#172d51" stroke="#92afd7" stroke-width="2"/>
+      <rect x="36" y="99" width="68" height="56" rx="22" fill="url(#neu-mascot-metal)" stroke="#dce9fc" stroke-width="2"/>
+      <rect x="45" y="108" width="50" height="34" rx="13" fill="#142746" stroke="#7197cd" stroke-width="1.5"/>
+      <path d="M62 132v-15l16 15v-15" stroke="#80b8ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="neu-mascot__light" cx="70" cy="148" r="3" fill="#70d4ff"/>
+      <g class="neu-mascot__head">
+        <image href="${escapeHtml(mascotHeadUrl)}" x="9" y="0" width="122" height="101" preserveAspectRatio="xMidYMid meet"/>
+        <g class="neu-mascot__emotions">
+          <path d="M70 35C42 35 33 43 33 61C33 82 37 88 70 88C101 88 107 82 107 61C107 43 98 35 70 35Z" fill="url(#neu-mascot-screen)"/>
+          <g class="neu-mascot__expression neu-mascot__expression--neutral">
+            <g class="neu-mascot__eyes"><rect x="43" y="51" width="10" height="18" rx="5" fill="#d5f8ff"/><rect x="85" y="51" width="10" height="18" rx="5" fill="#d5f8ff"/></g>
+            <path d="M62 74q8 8 16 0"/>
+          </g>
+          <g class="neu-mascot__expression neu-mascot__expression--frown">
+            <path d="m43 52 11-4m30 0 11 4" stroke-width="2.5"/>
+            <rect x="45" y="57" width="8" height="12" rx="4" fill="#d5f8ff" stroke="none"/><rect x="85" y="57" width="8" height="12" rx="4" fill="#d5f8ff" stroke="none"/>
+            <path d="M62 79q8-8 16 0"/>
+          </g>
+          <g class="neu-mascot__expression neu-mascot__expression--wink">
+            <rect x="43" y="51" width="10" height="18" rx="5" fill="#d5f8ff"/>
+            <path d="m84 61 5-4 6 4M62 73q8 9 17-1"/>
+          </g>
+          <g class="neu-mascot__expression neu-mascot__expression--excited">
+            <path d="M43 59q5-12 11 0M84 59q5-12 11 0"/>
+            <path d="M60 70h20q-1 14-10 14T60 70Z" fill="#d5f8ff" stroke-width="2"/>
+            <path d="M40 68h5m50 0h5" stroke="#779dff" stroke-width="3"/>
+          </g>
+          <g class="neu-mascot__expression neu-mascot__expression--laughing">
+            <path d="m43 55 10 5-10 5m51-10-10 5 10 5"/>
+            <path d="M59 70h22q0 15-11 15T59 70Z" fill="#d5f8ff" stroke-width="2"/>
+            <path d="M65 81q5-5 10 0" stroke="#779dff" stroke-width="3"/>
+          </g>
+        </g>
+      </g>
     </svg>`;
 
   const CLOSE_ICON_SVG = `
@@ -125,7 +182,7 @@
     return `
       <button class="neu-launcher" type="button"
               aria-label="Open chat with ${escapeHtml(config.botName)}"
-              aria-expanded="false" aria-controls="${PANEL_ID}">
+              aria-expanded="false" aria-controls="${PANEL_ID}" title="Click to chat">
         ${ROBOT_SVG}
       </button>
 
@@ -136,7 +193,7 @@
       <section class="neu-panel" id="${PANEL_ID}" role="dialog"
                aria-label="Chat with ${escapeHtml(config.botName)}">
         <header class="neu-panel__header">
-          <div class="neu-panel__avatar">${ROBOT_SVG}</div>
+          <div class="neu-panel__avatar"><img src="${escapeHtml(mascotHeadUrl)}" alt="" width="32" height="32"></div>
           <div class="neu-panel__title">
             <b class="neu-panel__name">Ask ${escapeHtml(config.botName)}</b>
             <div class="neu-panel__status"><i></i> ${escapeHtml(config.subtitle)}</div>
@@ -225,6 +282,17 @@
     return html || '<p></p>';
   }
 
+  /** Random per-page-load ID that groups one visitor's ratings. Kept in memory only. */
+  function createSessionId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
+  }
+
   function sanitizeUserInput(text) {
     return String(text).replace(CONTROL_CHARS, '').trim();
   }
@@ -275,6 +343,19 @@
     const inputEl = $('.neu-input');
     const sendButton = $('.neu-send');
 
+    // Follow the visible screen when a mobile keyboard resizes or pans it.
+    function syncViewport() {
+      const viewport = window.visualViewport;
+      const height = viewport ? viewport.height : window.innerHeight;
+      const bottom = viewport ? Math.max(0, window.innerHeight - height - viewport.offsetTop) : 0;
+      root.style.setProperty('--neu-visible-height', `${height}px`);
+      root.style.setProperty('--neu-keyboard-bottom', `${bottom}px`);
+    }
+    syncViewport();
+    window.addEventListener('resize', syncViewport);
+    window.visualViewport?.addEventListener('resize', syncViewport);
+    window.visualViewport?.addEventListener('scroll', syncViewport);
+
     const state = {
       isOpen: false,
       isSending: false,
@@ -283,7 +364,8 @@
       history: [], // completed turns sent to the server: [{ role, content }, ...]
       responseCount: 0,
       activeSpeech: null,
-      feedback: new Map(), // session only; an integration can capture neu:feedback
+      feedback: new Map(), // session only; also emitted as a neu:feedback event
+      sessionId: createSessionId(),
     };
 
     /* ---------- Hint rotation ---------- */
@@ -303,7 +385,16 @@
 
     /* ---------- Open / close ---------- */
 
+    let reactionTimer;
+    function react(kind, duration = 1600) {
+      clearTimeout(reactionTimer);
+      root.setAttribute('data-neu-reaction', kind);
+      if (duration) reactionTimer = setTimeout(() => root.setAttribute('data-neu-reaction', 'idle'), duration);
+    }
+    root.setAttribute('data-neu-reaction', 'idle');
+
     function setOpen(isOpen) {
+      react(isOpen ? 'hello' : 'goodbye');
       state.isOpen = isOpen;
       root.classList.toggle('neu-widget--open', isOpen);
       launcher.setAttribute('aria-expanded', String(isOpen));
@@ -317,6 +408,18 @@
       }
     }
 
+    function greet() {
+      if (!state.isOpen && root.getAttribute('data-neu-reaction') === 'idle' && !root.classList.contains('neu-widget--thinking')) react('greet', 1400);
+    }
+    launcher.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') greet(); });
+    launcher.addEventListener('focus', greet);
+    launcher.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'mouse') {
+        const bounds = launcher.getBoundingClientRect();
+        launcher.style.setProperty('--neu-gaze-x', `${Math.max(-3, Math.min(3, (event.clientX - bounds.left - bounds.width / 2) / 12))}deg`);
+      }
+    });
+    launcher.addEventListener('pointerleave', () => launcher.style.setProperty('--neu-gaze-x', '0deg'));
     launcher.addEventListener('click', () => setOpen(!state.isOpen));
     closeButton.addEventListener('click', () => setOpen(false));
     root.addEventListener('keydown', (event) => {
@@ -365,7 +468,7 @@
       link.href = url.href;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      link.textContent = 'Contact university support ↗';
+      link.textContent = 'Contact university support â†—';
       message.appendChild(link);
     }
 
@@ -393,6 +496,36 @@
       state.activeSpeech.button.setAttribute('aria-label', 'Read answer aloud');
       state.activeSpeech.button.title = 'Read answer aloud';
       state.activeSpeech = null;
+    }
+
+    /** Sends one rating to the backend. Resolves true on success, false on any failure. */
+    async function submitFeedback(entry) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), config.requestTimeoutMs);
+      try {
+        const response = await fetch(`${apiBase}/feedback`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: state.sessionId,
+            responseId: entry.responseId,
+            rating: entry.rating,
+            query: entry.query,
+            answer: entry.answer,
+            sources: entry.sources,
+          }),
+          signal: controller.signal,
+          mode: 'cors',
+          credentials: 'omit',
+          cache: 'no-store',
+          referrerPolicy: 'strict-origin-when-cross-origin',
+        });
+        return response.ok;
+      } catch (error) {
+        return false;
+      } finally {
+        clearTimeout(timeoutId);
+      }
     }
 
     function addFeedback(message, query, answer, names, requiresSupport) {
@@ -465,21 +598,39 @@
         button.title = label;
         button.setAttribute('aria-label', label);
         button.setAttribute('aria-pressed', 'false');
-        button.addEventListener('click', () => {
-          if (state.feedback.get(responseId)?.rating === rating) return;
+        button.addEventListener('click', async () => {
+          if (button.disabled || state.feedback.get(responseId)?.rating === rating) return;
+          const previous = state.feedback.get(responseId);
           const entry = { responseId, query, answer, sources: names.slice(), rating,
             createdAt: new Date().toISOString() };
           state.feedback.set(responseId, entry);
           if (state.feedback.size > 100) state.feedback.delete(state.feedback.keys().next().value);
           buttons.forEach((item) => item.button.setAttribute('aria-pressed', String(item.rating === rating)));
-          status.textContent = rating === 'up' ? 'Marked helpful' : 'Marked unhelpful';
+          react(rating === 'up' ? 'celebrate' : 'frown', rating === 'up' ? 1800 : 2800);
           if (rating === 'down') addSupportLink(message);
           else if (!requiresSupport) message.querySelector('.neu-support')?.remove();
-          // Ratings are not sent to AWS by this widget; the host may wire this event
-          // to a review endpoint. Never claim a server submission happened here.
+          // Still emitted so a host page can listen if it wants to.
           root.dispatchEvent(new CustomEvent('neu:feedback', {
             bubbles: true, detail: { ...entry, sources: entry.sources.slice() },
           }));
+
+          // Lock both buttons while saving so rapid up/down clicks can't arrive out of order.
+          buttons.forEach((item) => { item.button.disabled = true; });
+          status.textContent = 'Saving…';
+          const saved = await submitFeedback(entry);
+          buttons.forEach((item) => { item.button.disabled = false; });
+
+          if (saved) {
+            status.textContent = rating === 'up' ? 'Thanks! Marked helpful' : 'Thanks! Marked unhelpful';
+          } else {
+            // Roll back so the user can tap again instead of silently losing the rating.
+            if (previous) state.feedback.set(responseId, previous);
+            else state.feedback.delete(responseId);
+            buttons.forEach((item) => item.button.setAttribute('aria-pressed', String(previous?.rating === item.rating)));
+            if (previous?.rating === 'down' || requiresSupport) addSupportLink(message);
+            else message.querySelector('.neu-support')?.remove();
+            status.textContent = "Couldn't save your feedback. Please try again.";
+          }
           scrollToBottom();
         });
         buttons.push({ button, rating });
@@ -604,6 +755,8 @@
       inputEl.value = '';
       autoGrowInput();
       state.isSending = true;
+      react('idle', 0);
+      root.classList.add('neu-widget--thinking');
       sendButton.disabled = true;
       showTyping();
 
@@ -631,6 +784,7 @@
         } else {
           const answer = data.answer.slice(0, MAX_ANSWER_CHARS);
           addBotMessage(answer, data.sources, { query: text, data });
+          if (!data.blocked) react('answer');
 
           // Save the turn as a user/assistant pair so history always starts
           // with a user turn and alternates. Blocked turns are left out so
@@ -654,6 +808,7 @@
       } finally {
         clearTimeout(timeoutId);
         state.isSending = false;
+        root.classList.toggle('neu-widget--thinking', false);
         sendButton.disabled = false;
         inputEl.focus();
       }
