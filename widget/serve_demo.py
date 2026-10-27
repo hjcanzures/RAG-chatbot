@@ -2,11 +2,13 @@
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+import argparse
 
 ROOT = Path(__file__).resolve().parent
 FRONTEND = ROOT.parent / "front-end"
 ASSETS = {"/": "/demo.html", "/demo.html": "/demo.html",
-          "/neu-widget.js": "/neu-widget.js", "/neu-widget.css": "/neu-widget.css"}
+          "/neu-widget.js": "/neu-widget.js", "/neu-widget.css": "/neu-widget.css",
+          "/assets/neubie-logo-head.png": "/assets/neubie-logo-head.png"}
 
 
 class DemoHandler(SimpleHTTPRequestHandler):
@@ -18,7 +20,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
         if route in ASSETS:
             self.directory = str(ROOT)
             self.path = ASSETS[route]
-        elif route in ("/widget/neu-widget.js", "/widget/neu-widget.css"):
+        elif route in ("/widget/neu-widget.js", "/widget/neu-widget.css", "/widget/assets/neubie-logo-head.png"):
             self.directory = str(ROOT)
             self.path = route.removeprefix("/widget")
         elif route.startswith("/front-end/"):
@@ -44,5 +46,17 @@ class DemoHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print("Neubie demo: http://127.0.0.1:8000/demo.html?mock=1", flush=True)
-    ThreadingHTTPServer(("127.0.0.1", 8000), DemoHandler).serve_forever()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--port", type=int, default=8000, help="Local server port (default: 8000)")
+    parser.add_argument("--host", default="127.0.0.1", help="Bind address; use 0.0.0.0 for phone testing on your private Wi-Fi")
+    args = parser.parse_args()
+    with ThreadingHTTPServer((args.host, args.port), DemoHandler) as server:
+        port = server.server_address[1]
+        print(f"Neubie website (live API): http://127.0.0.1:{port}/front-end/main/index.htm", flush=True)
+        print(f"Widget demo (mock): http://127.0.0.1:{port}/demo.html?mock=1", flush=True)
+        if args.host == "0.0.0.0":
+            print(f"Phone: use http://YOUR-PC-IP:{port}/front-end/main/index.htm (same private Wi-Fi).", flush=True)
+        try:
+            server.serve_forever()
+        except KeyboardInterrupt:
+            print("\nNeubie demo stopped.", flush=True)

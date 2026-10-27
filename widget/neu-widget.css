@@ -81,27 +81,114 @@
 
 .neu-launcher {
   position: fixed;
-  right: 28px;
-  bottom: 28px;
-  width: 68px;
-  height: 68px;
+  right: 24px;
+  bottom: 20px;
+  width: 96px;
+  height: 127px;
   padding: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, #1b2a4a 0%, var(--neu-circle-bg) 75%);
-  border: 1.5px solid var(--neu-circle-border);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px var(--neu-circle-glow);
+  border: 0;
+  border-radius: 24px;
+  background: transparent;
+  box-shadow: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: var(--neu-z-index);
-  animation: neu-breathe 4s ease-in-out infinite;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  z-index: calc(var(--neu-z-index) + 2);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.neu-launcher:hover {
-  transform: scale(1.06);
-  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.6), 0 0 28px rgba(59, 130, 246, 0.4);
+.neu-launcher::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  width: 41px;
+  height: 7px;
+  background: rgba(15, 23, 42, 0.18);
+  border-radius: 50%;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.neu-widget .neu-launcher svg {
+  width: 96px;
+  height: 127px;
+  overflow: visible;
+  filter: drop-shadow(0 5px 5px rgba(15, 23, 42, 0.2));
+  animation: neu-mascot-idle 4s ease-in-out infinite;
+  transition: filter 180ms ease;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+}
+
+.neu-launcher .neu-mascot__arm,
+.neu-launcher .neu-mascot__leg,
+.neu-launcher .neu-mascot__head {
+  transform-box: view-box;
+}
+/* Expressions follow interactions, rather than cycling continuously. */
+.neu-mascot__emotions { display: inline; pointer-events: none; }
+.neu-mascot__expression { opacity: 0; stroke: #d5f8ff; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 2px #438dff); }
+.neu-mascot__expression--neutral { opacity: 1; }
+.neu-mascot__eyes { transform-box: fill-box; transform-origin: center; animation: neu-natural-blink 6s infinite; }
+.neu-widget:is([data-neu-reaction="greet"], [data-neu-reaction="hello"], [data-neu-reaction="answer"], [data-neu-reaction="celebrate"], [data-neu-reaction="frown"]) .neu-mascot__expression--neutral { opacity: 0; }
+.neu-widget[data-neu-reaction="greet"] .neu-mascot__expression--wink,
+.neu-widget:is([data-neu-reaction="hello"], [data-neu-reaction="answer"]) .neu-mascot__expression--excited,
+.neu-widget[data-neu-reaction="celebrate"] .neu-mascot__expression--laughing,
+.neu-widget[data-neu-reaction="frown"] .neu-mascot__expression--frown { opacity: 1; }
+.neu-widget:is([data-neu-reaction="greet"], [data-neu-reaction="celebrate"]) .neu-launcher svg { animation: neu-mascot-jump 900ms ease-in-out 1; }
+.neu-widget:is([data-neu-reaction="greet"], [data-neu-reaction="celebrate"]) .neu-launcher::after { animation: neu-mascot-shadow 900ms ease-in-out 1; }
+.neu-widget:is([data-neu-reaction="greet"], [data-neu-reaction="goodbye"]) .neu-mascot__arm--right { animation: neu-mascot-wave 1200ms ease-in-out 1; }
+.neu-widget:is([data-neu-reaction="hello"], [data-neu-reaction="answer"]) .neu-mascot__head { animation: neu-mascot-nod 700ms ease-in-out 1; }
+.neu-widget--thinking .neu-launcher .neu-mascot__head { transform: rotate(-6deg); }
+@keyframes neu-natural-blink { 0%, 44%, 48%, 100% { transform: scaleY(1); } 46% { transform: scaleY(0.08); } }
+@keyframes neu-mascot-nod { 0%, 100% { transform: translateY(0) rotate(0); } 45% { transform: translateY(3px) rotate(4deg); } }
+.neu-mascot__arm--left { transform-origin: 38px 109px; }
+.neu-mascot__arm--right { transform-origin: 102px 109px; }
+.neu-mascot__leg--left { transform-origin: 55px 148px; }
+.neu-mascot__leg--right { transform-origin: 84px 148px; }
+.neu-launcher .neu-mascot__head {
+  transform-origin: 70px 92px;
+  transform: rotate(var(--neu-gaze-x, 0deg));
+  transition: transform 180ms ease;
+}
+.neu-widget--thinking .neu-mascot__light { animation: neu-mascot-pulse 800ms ease-in-out infinite; }
+.neu-panel__avatar img { width: 32px; height: 32px; object-fit: contain; }
+@keyframes neu-mascot-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25%, 75% { transform: rotate(-125deg); }
+  50% { transform: rotate(-100deg); }
+}
+@keyframes neu-mascot-step {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg) translateY(-2px); }
+}
+@keyframes neu-mascot-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes neu-mascot-idle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.01); }
+}
+@keyframes neu-mascot-jump {
+  0%, 100% { transform: translateY(0) scale(1); }
+  15% { transform: translateY(0) scale(1.04, 0.94); }
+  42% { transform: translateY(-13px) scale(0.98, 1.03) rotate(-3deg); }
+  60% { transform: translateY(-11px) scale(1) rotate(2deg); }
+  82% { transform: translateY(0) scale(1.05, 0.93); }
+  92% { transform: translateY(-2px) scale(1); }
+}
+@keyframes neu-mascot-shadow {
+  0%, 15%, 82%, 100% { opacity: 1; scale: 1; }
+  42%, 60% { opacity: 0.45; scale: 0.7; }
+}
+@keyframes neu-mascot-blink {
+  0%, 43%, 47%, 100% { transform: translateX(var(--neu-gaze-x, 0px)) scaleY(1); }
+  45% { transform: translateX(var(--neu-gaze-x, 0px)) scaleY(0.12); }
 }
 
 .neu-launcher:focus-visible,
@@ -111,24 +198,13 @@
   outline-offset: 2px;
 }
 
-.neu-launcher svg {
-  width: 38px;
-  height: 38px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes neu-breathe {
-  0%, 100% { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px var(--neu-circle-glow); }
-  50%      { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.4); }
-}
-
 /* ---------- Hint bubble (above the launcher) ---------- */
 
 .neu-hint {
   position: fixed;
-  right: 28px;
-  bottom: 106px;
-  max-width: 300px;
+  right: 24px;
+  bottom: min(163px, calc(100vh - 100px));
+  max-width: min(260px, calc(100vw - 24px));
   background: var(--neu-bubble-bg);
   border: 1px solid var(--neu-bubble-border);
   border-radius: 16px;
@@ -159,10 +235,10 @@
 .neu-panel {
   position: fixed;
   right: 28px;
-  bottom: 108px;
+  bottom: 180px;
   width: 380px;
   height: 580px;
-  max-height: calc(100vh - 140px);
+  max-height: calc(100dvh - 204px);
   background: var(--neu-panel-bg);
   border: 1px solid var(--neu-border-soft);
   border-radius: 24px;
@@ -536,14 +612,15 @@
 
 @media (max-width: 480px) {
   .neu-launcher { right: 16px; bottom: 16px; }
-  .neu-hint     { right: 16px; bottom: 94px; max-width: calc(100vw - 32px); }
+  .neu-hint { right: 16px; bottom: 159px; max-width: min(260px, calc(100vw - 24px)); }
 
   .neu-panel {
     right: 8px;
     left: 8px;
-    bottom: 84px;
+    bottom: 180px;
     width: auto;
-    height: calc(100vh - 110px);
+    height: calc(100dvh - 204px);
+    max-height: calc(100dvh - 204px);
     border-radius: 20px;
   }
 }
@@ -563,6 +640,39 @@
 /* Expanded reading space stays inside small-screen boundaries. */
 .neu-widget--expanded .neu-panel {
   width: min(720px, calc(100vw - 32px));
-  height: calc(100dvh - 120px);
-  max-height: calc(100dvh - 120px);
+  height: calc(100dvh - 204px);
+  max-height: calc(100dvh - 204px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neu-widget .neu-launcher::after,
+  .neu-widget .neu-launcher svg,
+  .neu-widget .neu-mascot * { animation: none !important; transition: none !important; }
+}
+
+/* Keep the composer inside the visible viewport, including above keyboards.
+   These rules also override expanded mode on phones and small tablets. */
+@media (max-width: 768px), (pointer: coarse) and (max-height: 500px) {
+  .neu-panel,
+  .neu-widget--expanded .neu-panel {
+    left: max(8px, env(safe-area-inset-left, 0px));
+    right: max(8px, env(safe-area-inset-right, 0px));
+    bottom: calc(var(--neu-keyboard-bottom, 0px) + 8px + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    height: min(640px, calc(var(--neu-visible-height, 100dvh) - 16px - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px)));
+    max-height: calc(var(--neu-visible-height, 100dvh) - 16px - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+    border-radius: 18px;
+  }
+  .neu-widget--open .neu-launcher { visibility: hidden; pointer-events: none; }
+  .neu-panel__header, .neu-input-row { flex-shrink: 0; }
+  .neu-panel__header { padding: 12px 16px; }
+  .neu-messages { min-height: 0; overscroll-behavior: contain; }
+  .neu-widget .neu-input { font-size: 16px; min-width: 0; }
+  .neu-widget .neu-feedback { gap: 6px; }
+  .neu-widget .neu-feedback__button,
+  .neu-widget .neu-feedback__copy,
+  .neu-widget .neu-feedback__read,
+  .neu-widget .neu-feedback__expand,
+  .neu-panel__close,
+  .neu-send { width: 44px; min-width: 44px; height: 44px; min-height: 44px; touch-action: manipulation; }
 }
