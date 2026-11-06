@@ -15,6 +15,7 @@
         ), 900));
 
         window.fetch = (url, options) => {
+          if (String(url).endsWith('/feedback')) return reply(200, { saved: true, mock: true });
           if (!String(url).endsWith('/query')) return realFetch(url, options);
           const q = JSON.parse(options.body).query.toLowerCase();
           if (q.includes('error')) return reply(500, { error: 'INTERNAL DETAIL THAT MUST NOT APPEAR', requestId: 'demo' });

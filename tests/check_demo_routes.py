@@ -17,6 +17,8 @@ routes = {
     "/front-end/main/index.htm?mock=1": 200,
     "/widget/neu-widget.js": 200,
     "/widget/neu-widget.css": 200,
+    "/widget/assets/neubie-logo-head.png": 200,
+    "/assets/neubie-logo-head.png": 200,
     "/front-end/main/assets/scripts/neu-widget-config.js": 200,
     "/front-end/main/assets/styles/styles.css": 200,
     "/front-end/css2": 200,
@@ -29,6 +31,7 @@ try:
         try:
             with urllib.request.urlopen(f"http://127.0.0.1:{server.server_port}{route}") as response:
                 status = response.status
+                response.read()
         except urllib.error.HTTPError as error:
             status = error.code
         assert status == expected, (route, status, expected)
