@@ -13,19 +13,28 @@
 
 .neu-widget {
   --neu-circle-bg: #0e172a;
+  --neu-circle-highlight: #1b2a4a;
   --neu-circle-border: #1a305d;
   --neu-circle-glow: rgba(59, 130, 246, 0.25);
   --neu-panel-bg: #0b1120;
+  --neu-header-bg: rgba(15, 23, 42, 0.6);
+  --neu-messages-bg: linear-gradient(to bottom, rgba(11, 17, 32, 0.4), rgba(8, 13, 23, 0.8));
   --neu-bubble-bg: #131d35;
   --neu-bubble-border: #1f335f;
   --neu-user-bubble: #2563eb;
   --neu-input-bg: #080e1b;
+  --neu-composer-bg: rgba(11, 17, 32, 0.9);
   --neu-border-soft: #182644;
+  --neu-control-bg: rgba(255, 255, 255, 0.03);
+  --neu-control-border: rgba(255, 255, 255, 0.05);
+  --neu-control-hover-bg: rgba(255, 255, 255, 0.08);
+  --neu-control-hover-border: rgba(255, 255, 255, 0.1);
   --neu-robot-body: #dbeafe;
   --neu-robot-face: #070d18;
   --neu-accent: #3b82f6;
   --neu-online: #34d399;
   --neu-error-border: #7f3a3a;
+  --neu-error-bg: rgba(127, 58, 58, 0.15);
   --neu-error-text: #ffb4b4;
   --neu-text: #ffffff;
   --neu-text-dim: #94a3b8;
@@ -37,6 +46,34 @@
   font-size: 16px;
   line-height: normal;
   color: var(--neu-text);
+}
+
+.neu-widget[data-theme="light"] {
+  --neu-circle-bg: #f8fafc;
+  --neu-circle-highlight: #eff6ff;
+  --neu-circle-border: #cbd5e1;
+  --neu-circle-glow: rgba(37, 99, 235, 0.16);
+  --neu-panel-bg: #f8fafc;
+  --neu-header-bg: rgba(255, 255, 255, 0.92);
+  --neu-messages-bg: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+  --neu-bubble-bg: #ffffff;
+  --neu-bubble-border: #dbe3ee;
+  --neu-input-bg: #ffffff;
+  --neu-composer-bg: rgba(255, 255, 255, 0.96);
+  --neu-border-soft: #dbe3ee;
+  --neu-control-bg: #f1f5f9;
+  --neu-control-border: #e2e8f0;
+  --neu-control-hover-bg: #e2e8f0;
+  --neu-control-hover-border: #cbd5e1;
+  --neu-robot-body: #1e3a8a;
+  --neu-robot-face: #ffffff;
+  --neu-accent: #2563eb;
+  --neu-online: #059669;
+  --neu-error-border: #fecaca;
+  --neu-error-bg: #fef2f2;
+  --neu-error-text: #b91c1c;
+  --neu-text: #172033;
+  --neu-text-dim: #64748b;
 }
 
 .neu-widget,
@@ -87,7 +124,7 @@
   height: 68px;
   padding: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at center, #1b2a4a 0%, var(--neu-circle-bg) 75%);
+  background: radial-gradient(circle at center, var(--neu-circle-highlight) 0%, var(--neu-circle-bg) 75%);
   border: 1.5px solid var(--neu-circle-border);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px var(--neu-circle-glow);
   cursor: pointer;
@@ -106,6 +143,8 @@
 
 .neu-launcher:focus-visible,
 .neu-panel__close:focus-visible,
+.neu-theme-toggle:focus-visible,
+.neu-faq__button:focus-visible,
 .neu-send:focus-visible {
   outline: 2px solid var(--neu-accent);
   outline-offset: 2px;
@@ -138,20 +177,10 @@
   box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.5);
   z-index: var(--neu-z-index);
   pointer-events: none;
-  animation: neu-hint-float 3.5s ease-in-out infinite;
-}
-
-.neu-hint__text {
-  transition: opacity 0.4s ease;
 }
 
 .neu-widget--open .neu-hint {
   display: none;
-}
-
-@keyframes neu-hint-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-4px); }
 }
 
 /* ---------- Panel (expanded state) ---------- */
@@ -194,7 +223,7 @@
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  background: rgba(15, 23, 42, 0.6);
+  background: var(--neu-header-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--neu-border-soft);
   flex: none;
@@ -204,7 +233,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: radial-gradient(circle at center, #1b2a4a 0%, var(--neu-circle-bg) 75%);
+  background: radial-gradient(circle at center, var(--neu-circle-highlight) 0%, var(--neu-circle-bg) 75%);
   border: 1px solid var(--neu-circle-border);
   display: flex;
   align-items: center;
@@ -251,8 +280,8 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--neu-control-bg);
+  border: 1px solid var(--neu-control-border);
   border-radius: 10px;
   color: var(--neu-text-dim);
   cursor: pointer;
@@ -263,9 +292,51 @@
 }
 
 .neu-panel__close:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--neu-control-hover-bg);
+  border-color: var(--neu-control-hover-border);
   color: var(--neu-text);
+}
+
+.neu-theme-toggle {
+  width: 42px;
+  height: 28px;
+  padding: 2px;
+  border: 1px solid var(--neu-control-border);
+  border-radius: 999px;
+  background: var(--neu-control-bg);
+  cursor: pointer;
+  flex: none;
+}
+
+.neu-theme-toggle__track {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--neu-border-soft);
+  transition: background 0.2s ease;
+}
+
+.neu-theme-toggle__track > span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--neu-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.neu-widget[data-theme="light"] .neu-theme-toggle__track {
+  background: var(--neu-accent);
+}
+
+.neu-widget[data-theme="light"] .neu-theme-toggle__track > span {
+  transform: translateX(14px);
+  background: #ffffff;
 }
 
 .neu-panel__close svg {
@@ -282,7 +353,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background: linear-gradient(to bottom, rgba(11, 17, 32, 0.4), rgba(8, 13, 23, 0.8));
+  background: var(--neu-messages-bg);
 }
 
 .neu-msg {
@@ -294,6 +365,32 @@
 
 .neu-msg--bot  { align-self: flex-start; }
 .neu-msg--user { align-self: flex-end; }
+
+.neu-welcome {
+  align-self: stretch;
+  width: 100%;
+  margin-block: auto;
+  padding: 24px 12px;
+  text-align: center;
+}
+
+.neu-welcome__title {
+  margin: 0;
+  color: var(--neu-text);
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.neu-welcome__message {
+  margin: 10px 0 0;
+  color: var(--neu-text-dim);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
 
 .neu-bubble {
   padding: 12px 16px;
@@ -312,13 +409,14 @@
 
 .neu-msg--user .neu-bubble {
   background: var(--neu-user-bubble);
+  color: #ffffff;
   border-bottom-right-radius: 6px;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .neu-msg--error .neu-bubble {
   border-color: var(--neu-error-border);
-  background: rgba(127, 58, 58, 0.15);
+  background: var(--neu-error-bg);
   color: var(--neu-error-text);
 }
 
@@ -326,6 +424,55 @@
 .neu-bubble p:last-child { margin-bottom: 0; }
 .neu-bubble ul { margin: 6px 0; padding-left: 18px; }
 .neu-bubble li { margin-bottom: 4px; }
+
+/* ---------- Quick prompts ---------- */
+
+.neu-faqs {
+  flex: none;
+  padding: 0 20px 14px;
+  background: var(--neu-messages-bg);
+}
+
+.neu-faqs__label {
+  margin: 0 0 8px;
+  color: var(--neu-text-dim);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.neu-faqs__list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(96, 165, 250, 0.35) transparent;
+}
+
+.neu-widget .neu-faq__button {
+  flex: none;
+  padding: 7px 10px;
+  border: 1px solid var(--neu-bubble-border);
+  border-radius: 999px;
+  background: var(--neu-bubble-bg);
+  color: var(--neu-text);
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: normal;
+  text-align: left;
+  text-transform: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.neu-widget .neu-faq__button:hover {
+  border-color: var(--neu-accent);
+  background: var(--neu-control-bg);
+  transform: translateY(-1px);
+}
 
 
 /* ---------- Typing indicator ---------- */
@@ -365,7 +512,7 @@
   align-items: flex-end;
   gap: 10px;
   padding: 14px 16px;
-  background: rgba(11, 17, 32, 0.9);
+  background: var(--neu-composer-bg);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--neu-border-soft);
   flex: none;
@@ -464,7 +611,8 @@
   .neu-launcher,
   .neu-hint,
   .neu-panel,
-  .neu-hint__text,
+  .neu-theme-toggle__track,
+  .neu-theme-toggle__track > span,
   .neu-typing span {
     animation: none !important;
     transition: none !important;

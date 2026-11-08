@@ -87,6 +87,8 @@ See [Neubie API deployment and connection instructions](docs/neubie-api.md).
 ### Repository structure
 
 - `index.html`: the embeddable chatbot widget, a launcher avatar ("Neubie") that expands into a full chat window wired to the query backend
+- `widget/neu-widget.js` and `widget/neu-widget.css`: standalone widget UI, including its theme switch, quick-question prompts, and time-of-day greeting
+- `widget/demo.html`: local demo page for previewing and testing the standalone widget
 - `admin_panel.html`: admin interface for uploading, listing, and deleting indexed documents
 - `lambda.py`: presigned-URL upload Lambda
 - `lambdas/ingestion/`: ingestion Lambda source and `requirements.txt`

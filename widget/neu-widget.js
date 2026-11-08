@@ -32,15 +32,12 @@
     apiBase: 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com',
     botName: 'Neu',
     subtitle: 'New Era University assistant',
-    greeting:
-      "Hi! I'm Neubie, but most call me Neu! Ask me about programs, enrollment, or anything else about NEU.",
     placeholder: 'Message Neubie...',
-    hintRotateMs: 10000,
-    hintMessages: [
-      'Ask Neu!',
-      "Hi, I'm Neubie. How can I help you?",
-      'Curious about NEU? Feel free to ask me!',
-      "Got a question about enrollment or programs? I've got you!",
+    faqs: [
+      'What programs does NEU offer?',
+      'How do I apply for admission?',
+      'What are the enrollment requirements?',
+      'Where can I find tuition and fees?',
     ],
     networkErrorMessage: "Couldn't reach Neu right now. Check your connection and try again.",
 
@@ -118,7 +115,44 @@
       <path d="M22 2 11 13" />
     </svg>`;
 
+  function getTimeGreeting(date = new Date()) {
+    const hour = date.getHours();
+    if (hour >= 5 && hour < 12) {
+      return {
+        period: 'morning',
+        title: 'Good morning!',
+        message: 'The day is full of possibilities—what can I help you discover at NEU?',
+      };
+    }
+    if (hour >= 12 && hour < 17) {
+      return {
+        period: 'afternoon',
+        title: 'Good afternoon!',
+        message: 'Taking a quick pause? I’m ready to help with your NEU questions.',
+      };
+    }
+    if (hour >= 17 && hour < 21) {
+      return {
+        period: 'evening',
+        title: 'Good evening!',
+        message: 'Whether you’re planning ahead or wrapping up, what would you like to know?',
+      };
+    }
+    return {
+      period: 'night',
+      title: 'Good night, night owl!',
+      message: 'I’m here to help you find your next NEU answer.',
+    };
+  }
+
   function buildWidgetHtml() {
+    const greeting = getTimeGreeting();
+    const faqButtons = (Array.isArray(config.faqs) ? config.faqs : [])
+      .filter((question) => typeof question === 'string' && question.trim() && question.length <= config.maxQueryChars)
+      .slice(0, 4)
+      .map((question) => `<button class="neu-faq__button" type="button">${escapeHtml(question)}</button>`)
+      .join('');
+
     return `
       <button class="neu-launcher" type="button"
               aria-label="Open chat with ${escapeHtml(config.botName)}"
@@ -127,7 +161,7 @@
       </button>
 
       <div class="neu-hint" aria-hidden="true">
-        <span class="neu-hint__text"></span>
+        <span class="neu-hint__text">${escapeHtml(`${greeting.title} ${greeting.message}`)}</span>
       </div>
 
       <section class="neu-panel" id="${PANEL_ID}" role="dialog"
@@ -138,12 +172,21 @@
             <b class="neu-panel__name">Ask ${escapeHtml(config.botName)}</b>
             <div class="neu-panel__status"><i></i> ${escapeHtml(config.subtitle)}</div>
           </div>
+          <button class="neu-theme-toggle" type="button" role="switch" aria-checked="true"
+                  aria-label="Dark theme" title="Switch to light theme">
+            <span class="neu-theme-toggle__track" aria-hidden="true"><span></span></span>
+          </button>
           <button class="neu-panel__close" type="button" aria-label="Close chat">
             ${CLOSE_ICON_SVG}
           </button>
         </header>
 
         <div class="neu-messages" role="log" aria-live="polite"></div>
+        ${faqButtons ? `
+          <section class="neu-faqs" aria-label="Frequently asked questions">
+            <p class="neu-faqs__label">Quick questions</p>
+            <div class="neu-faqs__list">${faqButtons}</div>
+          </section>` : ''}
 
         <div class="neu-input-row">
           <textarea class="neu-input" rows="1"
@@ -251,34 +294,23 @@
     const $ = (selector) => root.querySelector(selector);
 
     const launcher = $('.neu-launcher');
-    const hintText = $('.neu-hint__text');
     const closeButton = $('.neu-panel__close');
+    const themeToggle = $('.neu-theme-toggle');
     const messagesEl = $('.neu-messages');
+    const faqSection = $('.neu-faqs');
     const inputEl = $('.neu-input');
     const sendButton = $('.neu-send');
 
     const state = {
       isOpen: false,
       isSending: false,
-      hintIndex: 0,
+      theme: 'dark',
+      greetingPeriod: null,
+      greetingMessage: null,
       sendTimestamps: [], // ms timestamps of recent sends, for the client-side limiter
       history: [], // completed turns sent to the server: [{ role, content }, ...]
     };
-
-    /* ---------- Hint rotation ---------- */
-
-    hintText.textContent = config.hintMessages[0] || '';
-
-    if (config.hintMessages.length > 1) {
-      setInterval(() => {
-        hintText.style.opacity = 0;
-        setTimeout(() => {
-          state.hintIndex = (state.hintIndex + 1) % config.hintMessages.length;
-          hintText.textContent = config.hintMessages[state.hintIndex];
-          hintText.style.opacity = 1;
-        }, 400);
-      }, config.hintRotateMs);
-    }
+    const hintText = $('.neu-hint__text');
 
     /* ---------- Open / close ---------- */
 
@@ -288,8 +320,18 @@
       launcher.setAttribute('aria-expanded', String(isOpen));
 
       if (isOpen) {
+        const greeting = getTimeGreeting();
+        hintText.textContent = `${greeting.title} ${greeting.message}`;
+        if (state.greetingPeriod !== greeting.period) {
+          if (state.greetingMessage) {
+            state.greetingMessage.querySelector('.neu-welcome__title').textContent = greeting.title;
+            state.greetingMessage.querySelector('.neu-welcome__message').textContent = greeting.message;
+          } else {
+            state.greetingMessage = addWelcomeMessage(greeting.title, greeting.message);
+          }
+          state.greetingPeriod = greeting.period;
+        }
         inputEl.focus();
-        if (messagesEl.children.length === 0) addBotMessage(config.greeting);
       } else {
         launcher.focus();
       }
@@ -297,6 +339,14 @@
 
     launcher.addEventListener('click', () => setOpen(!state.isOpen));
     closeButton.addEventListener('click', () => setOpen(false));
+    themeToggle.addEventListener('click', () => {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = state.theme;
+      const isDark = state.theme === 'dark';
+      themeToggle.setAttribute('aria-checked', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Dark theme' : 'Light theme');
+      themeToggle.title = `Switch to ${isDark ? 'light' : 'dark'} theme`;
+    });
     root.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && state.isOpen) setOpen(false);
     });
@@ -335,6 +385,21 @@
       message.appendChild(bubble);
       messagesEl.appendChild(message);
       scrollToBottom();
+      return message;
+    }
+
+    function addWelcomeMessage(title, message) {
+      const welcome = document.createElement('div');
+      welcome.className = 'neu-welcome';
+      const heading = document.createElement('h2');
+      heading.className = 'neu-welcome__title';
+      heading.textContent = title;
+      const description = document.createElement('p');
+      description.className = 'neu-welcome__message';
+      description.textContent = message;
+      welcome.append(heading, description);
+      messagesEl.appendChild(welcome);
+      return welcome;
     }
 
     function addErrorMessage(text) {
@@ -394,10 +459,10 @@
       }
     }
 
-    async function sendMessage() {
+    async function sendMessage(prompt) {
       if (state.isSending) return;
 
-      const text = sanitizeUserInput(inputEl.value);
+      const text = sanitizeUserInput(typeof prompt === 'string' ? prompt : inputEl.value);
       if (!text) return;
 
       if (text.length > config.maxQueryChars) {
@@ -414,6 +479,7 @@
 
       addUserMessage(text);
       inputEl.value = '';
+      if (faqSection) faqSection.remove();
       autoGrowInput();
       state.isSending = true;
       sendButton.disabled = true;
@@ -471,6 +537,11 @@
     }
 
     sendButton.addEventListener('click', sendMessage);
+    if (faqSection) {
+      faqSection.querySelectorAll('.neu-faq__button').forEach((button) => {
+        button.addEventListener('click', () => sendMessage(button.textContent));
+      });
+    }
     inputEl.addEventListener('input', autoGrowInput);
     inputEl.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' && !event.shiftKey) {
