@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>NEU RAG — Admin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -299,10 +300,21 @@
   @media(max-width:480px){.overview-grid{gap:8px;}.overview-card{padding:14px;}.overview-card strong{font-size:25px;}}
 
 
-  /* admin token bar + sources column (feedback view) */
-  .token-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 24px;}
-  .token-bar .tool-input{flex:1;min-width:220px;width:auto;}
+  /* sources column (feedback view) */
   .feedback-reason{max-width:200px;overflow-wrap:anywhere;font-size:12px;line-height:1.5;}
+
+
+  /* sign-in gate + header actions */
+  #loginGate[hidden], #app[hidden]{display:none!important;}
+  .login-wrap{max-width:460px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-bottom:12vh;}
+  .login-wrap header{padding-bottom:34px;}
+  .login-wrap h1{font-size:clamp(28px,6vw,38px);}
+  .login-wrap .lede{margin-bottom:26px;}
+  .login-wrap .action-btn{width:100%;padding:12px 13px;}
+  .login-error{min-height:1.4em;margin:0;font-size:12.5px;line-height:1.5;color:#ff9b8c;}
+  .login-error.info{color:var(--ash);}
+  .header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+  .tool-input:focus-visible,.action-btn:focus-visible,.nav-tab:focus-visible,.icon-btn:focus-visible{outline:2px solid var(--ember-bright);outline-offset:2px;}
 
 </style>
 </head>
@@ -311,7 +323,28 @@
 <div class="glow"></div>
 <div class="grain"></div>
 
-<div class="wrap">
+<!-- Sign-in gate: the only thing visible until the API accepts the admin token. -->
+<div class="wrap login-wrap" id="loginGate">
+  <header>
+    <div class="brand">
+      <div class="brand-mark">N</div>
+      <div class="brand-text">
+        <b>NEU RAG</b>
+        <span>Admin console</span>
+      </div>
+    </div>
+  </header>
+  <h1>Admin sign-in.</h1>
+  <p class="lede">Enter the admin token to manage the knowledge base and review student feedback.</p>
+  <form class="tool-form" id="loginForm">
+    <label for="loginToken" class="muted-copy">Admin token</label>
+    <input class="tool-input" id="loginToken" type="password" autocomplete="current-password" required>
+    <button class="action-btn" id="loginBtn" type="submit">Sign in</button>
+    <p class="login-error" id="loginError" role="alert"></p>
+  </form>
+</div>
+
+<div class="wrap" id="app" hidden>
 
   <header>
     <div class="brand">
@@ -321,7 +354,10 @@
         <span>Admin console</span>
       </div>
     </div>
-    <div class="status-pill"><i></i> mock-documents · us-east-1</div>
+    <div class="header-actions">
+      <div class="status-pill"><i></i> mock-documents · us-east-1</div>
+      <button class="action-btn" id="signOutBtn" type="button">Sign out</button>
+    </div>
   </header>
 
   <nav class="admin-nav" aria-label="Admin sections" role="tablist">
@@ -343,14 +379,14 @@
     <div class="overview-grid" aria-live="polite">
       <div class="overview-card"><span>Documents</span><strong id="overviewDocs">—</strong><small>Files returned by GET /documents</small></div>
       <div class="overview-card"><span>Embedded chunks</span><strong id="overviewChunks">—</strong><small>Reported by the ingestion API</small></div>
-      <div class="overview-card"><span>Feedback votes</span><strong id="overviewVotes">—</strong><small>Stored votes returned by GET /feedback (needs the admin token)</small></div>
+      <div class="overview-card"><span>Feedback votes</span><strong id="overviewVotes">—</strong><small>Stored votes returned by GET /feedback (admin only)</small></div>
       <div class="overview-card"><span>Helpful responses</span><strong id="overviewHelpful">—</strong><small>Share of valid thumbs-up/down votes</small></div>
     </div>
     <div class="tool-grid">
       <div class="tool-panel"><h2>Admin workflow</h2><p>Use these sections to maintain the university knowledge base and review chatbot quality.</p><div class="status-list"><div class="status-row"><span>Knowledge Base</span><strong>Upload, review, and remove source documents</strong></div><div class="status-row"><span>Feedback</span><strong>Find responses students marked unhelpful</strong></div><div class="status-row"><span>Chatbot Testing</span><strong>Run controlled test questions</strong></div><div class="status-row"><span>System &amp; Logs</span><strong>Inspect optional monitoring endpoints</strong></div></div></div>
       <div class="tool-panel"><h2>Recommended review queue</h2><p>Use negative votes as signals for manual review. A thumbs-down does not automatically mean an answer is factually incorrect.</p><div class="overview-card" style="margin-bottom:12px"><span>Negative feedback</span><strong id="overviewNegative">—</strong><small>Responses to inspect in the Feedback section</small></div><button class="action-btn" type="button" id="openFeedbackFromOverview">Review feedback</button></div>
     </div>
-    <p class="tool-note">The overview does not invent metrics when an endpoint is unavailable. Authentication and authorization must be enforced by API Gateway/Lambda, not just by hiding admin sections in this page.</p>
+    <p class="tool-note">The overview does not invent metrics when an endpoint is unavailable. Authentication and authorization are enforced by the API Gateway authorizer, not by hiding sections in this page.</p>
   </section>
 
   <section class="view" id="ingestionView" role="tabpanel" aria-labelledby="ingestionTab" hidden>
@@ -408,11 +444,6 @@
       </div>
     </div>
 
-    <form class="token-bar" id="adminTokenForm" autocomplete="off">
-      <input class="tool-input" id="adminTokenInput" type="password" placeholder="Admin token" aria-label="Admin token" autocomplete="off">
-      <button class="action-btn" id="unlockFeedbackBtn" type="submit">Unlock feedback</button>
-    </form>
-
     <div class="feedback-stats" aria-live="polite">
       <div class="feedback-stat"><span class="stat-label">Total votes</span><strong id="feedbackTotal">—</strong><span class="stat-note">All feedback received</span></div>
       <div class="feedback-stat"><span class="stat-label">Helpful responses</span><strong id="feedbackHelpful">—</strong><span class="stat-note">Thumbs-up share of votes</span></div>
@@ -440,7 +471,7 @@
       </table>
     </div>
     <div id="feedbackEmpty" class="feedback-empty" hidden>No feedback matches your filters.</div>
-    <p class="feedback-footnote">Ratings are written by the chat widget to <code>POST /feedback</code> and read here through <code>GET /feedback</code>, which requires the admin token (sent as the <code>X-Admin-Token</code> header). The token is kept in memory only, so you will need to enter it again after reloading this page. Student questions may contain personal details, so share this report and its CSV exports only with authorized administrators.</p>
+    <p class="feedback-footnote">Ratings are written by the chat widget to <code>POST /feedback</code> and read here through <code>GET /feedback</code>, which only accepts requests that carry the admin token (sent as the <code>X-Admin-Token</code> header after you sign in). The token is kept in memory only, so you will need to sign in again after reloading this page. Student questions may contain personal details, so share this report and its CSV exports only with authorized administrators.</p>
 
     <footer>
       <span>Use negative feedback to review prompts and knowledge-base content</span>
@@ -464,7 +495,7 @@
     <div class="view-heading"><div><h1>System &amp; logs.</h1><p class="lede">Optional operational reports for failed ingestion, unanswered questions, and recent administrative events.</p></div><div class="feedback-actions"><button class="action-btn" id="refreshSystemBtn" type="button">Refresh reports</button></div></div>
     <div class="tool-grid">
       <div class="tool-panel"><h2>Service configuration</h2><div class="status-list"><div class="status-row"><span>Ingestion API base</span><strong id="apiBaseDisplay"></strong></div><div class="status-row"><span>Documents endpoint</span><strong>GET /documents</strong></div><div class="status-row"><span>Feedback endpoint</span><strong>GET /feedback (admin) · POST /feedback (chat widget)</strong></div><div class="status-row"><span>Chat test endpoint</span><strong id="chatEndpointDisplay">Not configured</strong></div></div><p class="tool-note">The endpoint labels describe the expected integration. They do not confirm that the backend routes already exist.</p></div>
-      <div class="tool-panel"><h2>Security checklist</h2><div class="status-list"><div class="status-row"><span>Admin authentication</span><strong>Enforce on backend</strong></div><div class="status-row"><span>Feedback access</span><strong>Admin token required (GET /feedback)</strong></div><div class="status-row"><span>Destructive actions</span><strong>Confirm and audit</strong></div><div class="status-row"><span>Secrets</span><strong>Never place credentials in this HTML</strong></div></div></div>
+      <div class="tool-panel"><h2>Security checklist</h2><div class="status-list"><div class="status-row"><span>Admin authentication</span><strong>API Gateway Lambda authorizer (X-Admin-Token)</strong></div><div class="status-row"><span>Protected routes</span><strong>/upload-url · /documents · GET /feedback</strong></div><div class="status-row"><span>Destructive actions</span><strong>Confirm and audit</strong></div><div class="status-row"><span>Secrets</span><strong>Token lives in SSM Parameter Store, never in this HTML</strong></div></div></div>
     </div>
     <div class="tool-panel"><div class="feedback-section-head"><h2>Operational reports</h2><span id="systemReportCount">Not loaded</span></div><p>These reports require backend routes. Configure them in the constants at the top of the script when the corresponding Lambda handlers are ready.</p><div id="systemReportStatus" class="empty" role="status">No system reports loaded.</div><div class="admin-table-wrap" id="systemReportsWrap" hidden><table class="admin-table"><thead><tr><th>Report</th><th>Status</th><th>Details</th></tr></thead><tbody id="systemReportsBody"></tbody></table></div></div>
     <p class="tool-note">Suggested backend additions: failed-ingestion records, unanswered/fallback query counts, usage metrics, and audit events. Do not expose raw logs or student identifiers to unauthorized users.</p>
@@ -481,21 +512,121 @@ const API_BASE = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com';
 // Feedback and optional admin-report routes. Keep API_BASE as the existing
 // ingestion API Gateway URL; add backend routes before expecting live reports.
 // POST /feedback is written by the chat widget; GET /feedback (below) is the
-// admin read route and needs the X-Admin-Token header.
+// admin read route and is protected by the API Gateway authorizer.
 const FEEDBACK_ENDPOINT = `${API_BASE}/feedback`;
 const FAILED_INGESTIONS_ENDPOINT = `${API_BASE}/admin/failed-ingestions`;
 const UNANSWERED_QUESTIONS_ENDPOINT = `${API_BASE}/admin/unanswered-questions`;
 const AUDIT_LOGS_ENDPOINT = `${API_BASE}/admin/audit-logs`;
 
 // Set this to the actual chatbot query endpoint (it may be a different API Gateway).
-// Example only: do not assume `${API_BASE}/query` exists.
+// POST /query is public (the student widget uses it), so no admin token is sent.
 const CHAT_TEST_ENDPOINT = 'https://amccp1clpb.execute-api.us-east-1.amazonaws.com/query';
 let feedbackRecords = [];
 let documentsCache = [];
-// Admin token for GET /feedback. Held in memory only (never written to
-// localStorage/sessionStorage or the page), so it is gone after a reload.
+
+// ---------------------------------------------------------------------------
+// Authentication
+// The admin token is held in memory only (never written to localStorage,
+// sessionStorage, cookies, or the page), so it is gone after a reload.
+// The page only *shows* the sign-in screen; the real lock is the Lambda
+// authorizer on API Gateway, which rejects any admin request without a valid
+// X-Admin-Token header before the backend Lambdas ever run.
+// ---------------------------------------------------------------------------
 let adminToken = '';
 
+class AuthError extends Error {
+  constructor(message = 'Unauthorized'){ super(message); this.name = 'AuthError'; }
+}
+
+const loginGate = document.getElementById('loginGate');
+const appShell = document.getElementById('app');
+const loginForm = document.getElementById('loginForm');
+const loginInput = document.getElementById('loginToken');
+const loginBtn = document.getElementById('loginBtn');
+const loginError = document.getElementById('loginError');
+
+function setLoginMessage(message, kind = ''){
+  loginError.textContent = message;
+  loginError.className = 'login-error' + (kind ? ' ' + kind : '');
+}
+
+// Back to the sign-in screen. Also wipes anything sensitive from memory and
+// from the page so student questions don't stay in the DOM after sign-out.
+function lockPanel(message = ''){
+  adminToken = '';
+  feedbackRecords = [];
+  documentsCache = [];
+  document.getElementById('feedbackTableBody').innerHTML = '';
+  document.getElementById('feedbackTableWrap').hidden = true;
+  document.getElementById('queueList').innerHTML = '';
+  showView('overview');
+  appShell.hidden = true;
+  loginGate.hidden = false;
+  setLoginMessage(message);
+  loginInput.value = '';
+  loginInput.focus();
+}
+
+function unlockPanel(){
+  loginGate.hidden = true;
+  appShell.hidden = false;
+  setLoginMessage('');
+  showView('overview');
+  loadOverview();
+  loadDocuments();
+}
+
+// Every admin API call goes through here so the token is attached in one place
+// and an expired/rejected token always sends the user back to sign-in.
+// API Gateway answers 401 when the header is missing and 403 when the token is wrong.
+async function authFetch(url, options = {}){
+  if(!adminToken){
+    lockPanel('Please sign in.');
+    throw new AuthError();
+  }
+  const response = await fetch(url, {
+    ...options,
+    headers: { 'Accept': 'application/json', ...(options.headers || {}), 'X-Admin-Token': adminToken }
+  });
+  if(response.status === 401 || response.status === 403){
+    lockPanel('Your session was rejected. Please sign in again.');
+    throw new AuthError();
+  }
+  return response;
+}
+
+loginForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const candidate = loginInput.value.trim();
+  if(!candidate){ setLoginMessage('Enter the admin token.'); return; }
+
+  loginBtn.disabled = true;
+  setLoginMessage('Checking…', 'info');
+  adminToken = candidate;
+  loginInput.value = ''; // don't leave the secret sitting in the page
+
+  try{
+    // Cheap protected call: if the authorizer accepts the token, we're in.
+    const response = await authFetch(`${API_BASE}/documents`);
+    if(!response.ok) throw new Error(`Request failed (${response.status})`);
+    unlockPanel();
+  }catch(error){
+    if(error instanceof AuthError){
+      setLoginMessage('That token was not accepted. Check it and try again.');
+    }else{
+      adminToken = '';
+      setLoginMessage(`Could not reach the API (${error.message}). Check your connection and that the API's CORS settings allow this page and the X-Admin-Token header.`);
+    }
+  }finally{
+    loginBtn.disabled = false;
+  }
+});
+
+document.getElementById('signOutBtn').addEventListener('click', () => lockPanel('You have been signed out.'));
+
+// ---------------------------------------------------------------------------
+// Navigation
+// ---------------------------------------------------------------------------
 const adminTabs = {
   overview: document.getElementById('overviewTab'),
   ingestion: document.getElementById('ingestionTab'),
@@ -511,12 +642,17 @@ const adminViews = {
   system: document.getElementById('systemView')
 };
 
-function setAdminView(viewName){
+// Only switches which section is visible; loading data is setAdminView's job.
+function showView(viewName){
   Object.entries(adminViews).forEach(([name, view]) => {
     const active = name === viewName;
     view.hidden = !active;
     adminTabs[name].setAttribute('aria-selected', String(active));
   });
+}
+
+function setAdminView(viewName){
+  showView(viewName);
   if(viewName === 'overview') loadOverview();
   if(viewName === 'feedback' && feedbackRecords.length === 0) loadFeedback();
   if(viewName === 'system') renderSystemConfiguration();
@@ -614,24 +750,10 @@ function renderFeedbackTable(){
 async function loadFeedback(options={}){
   const refreshButton = document.getElementById('refreshFeedbackBtn');
 
-  // No token yet: don't call the API, just prompt for it.
-  if(!adminToken){
-    setFeedbackStatus('Enter the admin token above to load feedback.');
-    document.getElementById('feedbackTableWrap').hidden = true;
-    document.getElementById('feedbackEmpty').hidden = true;
-    document.getElementById('feedbackCount').textContent = 'Locked';
-    if(options.quiet) throw new Error('locked');
-    return;
-  }
-
   if(refreshButton) refreshButton.disabled = true;
   if(!options.quiet) setFeedbackStatus('Loading feedback…');
   try{
-    const response = await fetch(FEEDBACK_ENDPOINT, {headers:{'Accept':'application/json','X-Admin-Token':adminToken}});
-    if(response.status === 401 || response.status === 403){
-      adminToken = '';
-      throw new Error('Admin token missing or incorrect');
-    }
+    const response = await authFetch(FEEDBACK_ENDPOINT);
     if(!response.ok) throw new Error(`Request failed (${response.status})`);
     const payload = await response.json();
     const records = Array.isArray(payload) ? payload : payload.feedback;
@@ -645,28 +767,22 @@ async function loadFeedback(options={}){
       setFeedbackStatus(records.length ? '' : 'No feedback has been submitted yet.', records.length ? '' : 'success');
     }
   }catch(error){
-    const authFailed = error.message.startsWith('Admin token');
-    setFeedbackStatus(authFailed
-      ? `${error.message}. Enter it again above.`
-      : `Could not load feedback: ${error.message}. Confirm that GET /feedback exists, returns JSON, and that CORS allows the X-Admin-Token header.`, 'error');
+    // authFetch has already sent the user back to the sign-in screen.
+    if(error instanceof AuthError){
+      if(options.quiet) throw error;
+      return;
+    }
+    setFeedbackStatus(`Could not load feedback: ${error.message}. Confirm that GET /feedback exists, returns JSON, and that CORS allows the X-Admin-Token header.`, 'error');
     document.getElementById('feedbackTableWrap').hidden = true;
     document.getElementById('feedbackEmpty').hidden = true;
-    document.getElementById('feedbackCount').textContent = authFailed ? 'Locked' : 'Unavailable';
+    document.getElementById('feedbackCount').textContent = 'Unavailable';
     if(options.quiet) throw error;
   }finally{
     if(refreshButton) refreshButton.disabled = false;
   }
 }
 
-document.getElementById('adminTokenForm').addEventListener('submit', async event => {
-  event.preventDefault();
-  const input = document.getElementById('adminTokenInput');
-  adminToken = input.value.trim();
-  input.value = ''; // don't leave the secret sitting in the page
-  if(!adminToken){ setFeedbackStatus('Enter the admin token above to load feedback.'); return; }
-  await loadFeedback();
-});
-document.getElementById('refreshFeedbackBtn').addEventListener('click', loadFeedback);
+document.getElementById('refreshFeedbackBtn').addEventListener('click', () => loadFeedback());
 document.getElementById('feedbackSearch').addEventListener('input', renderFeedbackTable);
 document.getElementById('feedbackFilter').addEventListener('change', renderFeedbackTable);
 
@@ -696,7 +812,7 @@ function exportFeedbackCSV(){
 async function loadOverview(){
   // Load from the existing APIs; no placeholder counts are presented as real values.
   try{
-    const response = await fetch(`${API_BASE}/documents`, {headers:{'Accept':'application/json'}});
+    const response = await authFetch(`${API_BASE}/documents`);
     if(!response.ok) throw new Error(`Documents request failed (${response.status})`);
     const payload = await response.json();
     documentsCache = Array.isArray(payload.documents) ? payload.documents : [];
@@ -704,15 +820,16 @@ async function loadOverview(){
     document.getElementById('overviewDocs').textContent = documentsCache.length.toLocaleString();
     document.getElementById('overviewChunks').textContent = chunks.toLocaleString();
   }catch(error){
+    if(error instanceof AuthError) return;
     document.getElementById('overviewDocs').textContent = 'Unavailable';
     document.getElementById('overviewChunks').textContent = 'Unavailable';
   }
   try{ await loadFeedback({quiet:true}); }
   catch(error){
-    const label = error.message === 'locked' ? 'Locked' : 'Unavailable';
-    document.getElementById('overviewVotes').textContent = label;
-    document.getElementById('overviewHelpful').textContent = label;
-    document.getElementById('overviewNegative').textContent = label;
+    if(error instanceof AuthError) return;
+    document.getElementById('overviewVotes').textContent = 'Unavailable';
+    document.getElementById('overviewHelpful').textContent = 'Unavailable';
+    document.getElementById('overviewNegative').textContent = 'Unavailable';
   }
 }
 
@@ -735,7 +852,7 @@ async function loadSystemReports(){
   ];
   const results = await Promise.all(endpoints.map(async item => {
     try{
-      const response = await fetch(item.url, {headers:{'Accept':'application/json'}});
+      const response = await authFetch(item.url);
       if(!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       return {...item, ok:true, detail:JSON.stringify(data).slice(0,700)};
@@ -772,6 +889,7 @@ chatTestForm.addEventListener('submit', async event => {
   output.style.whiteSpace = 'pre-wrap';
 
   try {
+    // Public route (same one the student widget calls), so plain fetch, no admin token.
     const response = await fetch(CHAT_TEST_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -864,7 +982,7 @@ function recomputeStatsFromDocs(docs){
 async function loadDocuments(){
   queueCount.textContent = 'Loading…';
   try {
-    const res = await fetch(`${API_BASE}/documents`);
+    const res = await authFetch(`${API_BASE}/documents`);
     if(!res.ok) throw new Error(`Request failed (${res.status})`);
     const { documents } = await res.json();
 
@@ -877,6 +995,7 @@ async function loadDocuments(){
     queueCount.textContent = documents.length + (documents.length === 1 ? ' document' : ' documents');
     recomputeStatsFromDocs(documents);
   } catch (err) {
+    if(err instanceof AuthError) return; // already back at the sign-in screen
     queueCount.textContent = 'Could not load documents';
     queueList.innerHTML = `<div class="empty">Couldn't reach the documents API: ${escapeHTML(err.message)}. Check API_BASE is set correctly.</div>`;
   }
@@ -916,12 +1035,13 @@ async function deleteDocument(button, rowId){
 
   button.disabled = true;
   try {
-    const res = await fetch(`${API_BASE}/documents?key=${encodeURIComponent(key)}`, { method: 'DELETE' });
+    const res = await authFetch(`${API_BASE}/documents?key=${encodeURIComponent(key)}`, { method: 'DELETE' });
     if(!res.ok) throw new Error(`Delete failed (${res.status})`);
     document.getElementById(rowId)?.remove();
     // Re-sync stats/count against the server rather than guessing locally.
     loadDocuments();
   } catch (err) {
+    if(err instanceof AuthError) return; // already back at the sign-in screen
     alert('Could not delete: ' + err.message);
     button.disabled = false;
   }
@@ -995,10 +1115,11 @@ async function runPipeline(id, file){
   const contentType = file.type || 'application/octet-stream';
 
   // Step 1: ask our backend for a presigned S3 upload URL.
+  // This call is admin-only, so it carries the admin token via authFetch.
   let uploadUrl, key;
   try {
     setStage(id, 'Requesting upload URL', 10);
-    const res = await fetch(
+    const res = await authFetch(
       `${API_BASE}/upload-url?filename=${encodeURIComponent(file.name)}&contentType=${encodeURIComponent(contentType)}`
     );
     if(!res.ok){
@@ -1007,12 +1128,14 @@ async function runPipeline(id, file){
     }
     ({ uploadUrl, key } = await res.json());
   } catch (err) {
+    if(err instanceof AuthError){ setFailed(id, 'Session expired. Sign in again and retry the upload.'); return; }
     setFailed(id, 'Could not get upload URL: ' + err.message);
     return;
   }
 
-  // Step 2: PUT the actual file straight to S3 using that URL. Using
-  // XMLHttpRequest here (instead of fetch) because it's the only way to
+  // Step 2: PUT the actual file straight to S3 using that URL. The presigned
+  // URL is itself the authorization for S3, so no admin token is sent here.
+  // Using XMLHttpRequest (instead of fetch) because it's the only way to
   // get real upload progress events for the progress bar.
   try {
     await new Promise((resolve, reject) => {
@@ -1052,8 +1175,8 @@ async function runPipeline(id, file){
 
 document.getElementById('refreshBtn').addEventListener('click', loadDocuments);
 renderSystemConfiguration();
-loadDocuments();
-loadOverview();
+// Nothing is loaded here on purpose: data is requested only after a successful
+// sign-in (see unlockPanel), because every admin call needs the token.
 </script>
 
 </body>
