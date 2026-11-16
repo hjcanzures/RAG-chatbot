@@ -379,7 +379,7 @@
       link.href = url.href;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      link.textContent = 'Contact university support ↗';
+      link.textContent = 'Contact university support';
       message.appendChild(link);
     }
 
