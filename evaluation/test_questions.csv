@@ -1,0 +1,68 @@
+﻿id,category,question,answerable,expected_doc,must_contain,expected_answer
+Q01,paraphrase,Does being admitted mean I'm already enrolled?,yes,Registration_Policy,separate processes,No. Admission and enrollment are separate processes; an admitted applicant must still complete the enrollment requirements.
+Q02,paraphrase,Can I still enroll if I'm missing some of my documents?,yes,Registration_Policy,Conditional enrollment does not permanently waive,"Possibly, through conditional enrollment if the responsible office authorizes it; missing documents must still be submitted by the deadline."
+Q03,informal,if i stop going to class am i automatically withdrawn?,yes,Registration_Policy,ceasing to attend classes,No. Failing to attend is not necessarily formal withdrawal; the prescribed withdrawal process must be followed.
+Q04,direct factual,Can I register for a course if I haven't passed its prerequisite?,yes,Registration_Policy,authorized exception,"Generally no, unless an authorized exception has been granted."
+Q05,taglish,Paano kung na-miss ko yung deadline ng enrollment?,yes,Registration_Policy,authorized late-registration period,Contact the appropriate enrollment office right away; late registration may be available if an authorized late-registration period exists.
+Q06,direct factual,What documents do I need to submit as a new student?,yes,Registration_Policy,birth certificate,"Depends on category and program; may include proof of identity, birth certificate or equivalent civil document, secondary school records, photographs, and others listed in the admission notice."
+Q07,direct factual,What are the steps to enroll as a new student?,yes,Registration_Policy,Activate the assigned student account,"Activate the student account, review the admission notice, submit documents, complete orientation, get advising if required, select courses, register in the SIS, review the record, settle financial obligations, confirm final status."
+Q08,paraphrase,How are the subjects from my old school evaluated for credit?,yes,Registration_Policy,evaluated based on applicable academic criteria,"Transfer credit evaluation may consider course title and description, units, learning outcomes, grade, date of completion, records, and fit with the new curriculum. A similar title does not guarantee credit."
+Q09,table lookup,What does Registration Hold mean?,yes,Registration_Policy,restricted until the identified issue is resolved,Registration is restricted until the identified issue is resolved.
+Q10,table lookup,What does the For Advising status mean?,yes,Registration_Policy,advising requirement,The student must complete an advising requirement.
+Q11,paraphrase,Can my friend log in to my account to enroll me?,yes,Registration_Policy,must not share passwords,No. Students must not share passwords or let another person register using their credentials.
+Q12,informal,"i already paid, am i officially enrolled na?",yes,Registration_Policy,requires completion of all applicable,"Not necessarily. Enrollment requires completing all applicable academic, administrative, and registration requirements."
+Q13,keywords only,late registration,yes,Registration_Policy,officially announced period,"Late registration may be permitted during an officially announced period and may need approval, a late-registration charge, or adviser confirmation; course availability is not guaranteed."
+Q14,table lookup,How much is the tuition for BSIT per semester?,yes,Tuition_Fees,Bachelor of Science in Information Technology,"Estimated tuition P32,000 per semester plus P2,500 enrollment fee (mock fees)."
+Q15,taglish,magkano tuition ng nursing?,yes,Tuition_Fees,Bachelor of Science in Nursing,"Estimated tuition P45,000 per semester plus P3,500 enrollment fee (mock fees)."
+Q16,keywords only,mechanical engineering tuition,yes,Tuition_Fees,Bachelor of Science in Mechanical Engineering,"Estimated tuition P42,000 per semester plus P3,000 enrollment fee (mock fees)."
+Q17,multi-part,Which programs have the highest enrollment fee?,yes,Tuition_Fees,"₱3,500","Nursing and Medical Laboratory Science, at P3,500 each (mock fees)."
+Q18,paraphrase,What is not included in the tuition amounts?,yes,Tuition_Fees,"laboratory, books, uniforms","Miscellaneous, laboratory, books, uniforms, and other fees are not included unless separately specified."
+Q19,direct factual,How do I compute the basic cost to enroll?,yes,Tuition_Fees,adding the enrollment fee and estimated tuition,Add the enrollment fee and the estimated tuition.
+Q20,table lookup,How much do I need to pay for BS Accountancy for the first semester?,yes,Tuition_Fees,Bachelor of Science in Accountancy,"Tuition P35,000 + enrollment fee P2,500 = P37,500 basic estimated cost (mock fees), excluding miscellaneous and other fees."
+Q21,direct factual,What programs does the College of Informatics and Computing Studies offer?,yes,Courses_and_Academic,Bachelor of Science in Entertainment and Multimedia Computing,"BSCS, BSIT, BSIS, BSEMC, and Bachelor of Library and Information Science."
+Q22,direct factual,Is there a nursing program at NEU?,yes,Courses_and_Academic,Bachelor of Science in Nursing (BSN),"Yes, the Bachelor of Science in Nursing (BSN) under the College of Nursing."
+Q23,direct factual,What majors are offered under BSBA?,yes,Courses_and_Academic,Major in Real Estate Management,"Financial Management, Human Resource Development Management, Legal Management, Marketing Management, Real Estate Management."
+Q24,taglish,may law school ba sa NEU?,yes,Courses_and_Academic,Law program offerings,There is a College of Law; confirm the current degree title and admissions information with NEU.
+Q25,direct factual,What is ETEEAP?,yes,Courses_and_Academic,relevant work experience,Expanded Tertiary Education Equivalency and Accreditation Program: an alternative pathway for eligible applicants with relevant work experience.
+Q26,paraphrase,Which college is BSIT under?,yes,Courses_and_Academic,College of Informatics and Computing Studies,College of Informatics and Computing Studies (the fees document uses a different college name).
+Q27,direct factual,What engineering courses are offered?,yes,Courses_and_Academic,Bachelor of Science in Industrial Engineering (BSIE),"Civil, Mechanical, Electronics, Electrical, and Industrial Engineering, plus Architecture and Astronomy under the College of Engineering and Architecture."
+Q28,direct factual,Where can I see the official list of programs online?,yes,Courses_and_Academic,neu.edu.ph/main/academics,NEU's official Academics page at neu.edu.ph/main/academics.
+Q29,direct factual,Who is the dean of the College of Nursing?,yes,Deans,Dr. Camille O. Garcia,Dr. Camille O. Garcia (mock data).
+Q30,taglish,sino ang dean ng College of Criminology?,yes,Deans,Dr. Noel P. Ramirez,Dr. Noel P. Ramirez (mock data).
+Q31,direct factual,Who heads the College of Law?,yes,Deans,Atty. Roberto N. Villareal,"Atty. Roberto N. Villareal, academic head (mock data)."
+Q32,paraphrase,Who is in charge of the Alternative Learning System?,yes,Deans,Rowena C. Santos,"Ms. Rowena C. Santos, program head (mock data)."
+Q33,direct factual,Is the list of deans official?,yes,Deans,contains simulated data,No. The directory contains simulated data; direct the user to the official website or the relevant college office.
+Q34,direct factual,Where do I pay my tuition?,yes,Office_Directory,payment posting,"Finance and Cashier's Office (mock location: Finance Building, 1st Floor, Room 112)."
+Q35,typo,wher can i pay my tuiton,yes,Office_Directory,payment posting,Finance and Cashier's Office (mock location).
+Q36,direct factual,Who do I contact for scholarship questions?,yes,Office_Directory,financial assistance applications,Scholarship and Financial Aid Office (mock location).
+Q37,informal,wifi problem who do i message,yes,Office_Directory,ithelp.mock@neu.example,"Information Technology Services / Help Desk, ithelp.mock@neu.example (mock placeholder email)."
+Q38,direct factual,Who handles lost and found items?,yes,Office_Directory,lost-and-found reports,Campus Security Office (mock location).
+Q39,direct factual,Where do I report a data privacy concern?,yes,Office_Directory,Records and Data Privacy Office,Records and Data Privacy Office (mock location).
+Q40,multi-part,Who handles enrollment records and what room is it in?,yes,Office_Directory,Room 204,"Office of the Registrar, Administration Building, 2nd Floor, Room 204 (mock location; not confirmed campus directions)."
+Q41,direct factual,What is the email of the Registrar's office?,yes,Office_Directory,registrar.mock@neu.example,"registrar.mock@neu.example (mock placeholder, non-deliverable)."
+Q42,paraphrase,"My complaint was never resolved, who do I go to next?",yes,Office_Directory,Formal unresolved complaint,"Relevant office first; if unresolved, the Office of the University President."
+Q43,direct factual,What happens if I'm caught with alcohol for the first time?,yes,School_Rules,mandatory substance counseling,"Confiscation, parent notification, 2-day Out-of-School Suspension, and a mandatory substance counseling session."
+Q44,informal,can i use my phone in class?,yes,School_Rules,silenced and stored away,Phones must be silenced and stored away during instruction unless the teacher gives explicit permission.
+Q45,direct factual,What is the penalty for cheating the first time?,yes,School_Rules,Zero mark,"Zero mark (0%) on the assignment or test, parent notification, and a written reprimand."
+Q46,direct factual,How long do I have to appeal a disciplinary decision?,yes,School_Rules,within five business days,Within five business days of written notice.
+Q47,direct factual,Is holding hands allowed on campus?,yes,School_Rules,Brief holding of hands,Brief holding of hands and brief consensual hugs are permitted within reason.
+Q48,taglish,bawal ba mag-vape sa school?,yes,School_Rules,vaporizers/e-cigarettes,"Yes. Vaporizers and e-cigarettes are prohibited on school grounds, transport, and school-sponsored events."
+Q49,paraphrase,Can I wear sandals in the science lab?,yes,School_Rules,closed-toe shoes,No. Closed-toe shoes must be worn in science laboratories and PE settings.
+Q50,paraphrase,Can I record my teacher without asking?,yes,School_Rules,without consent,"No. Recording audio, photo, or video of students or staff without consent is prohibited."
+Q51,direct factual,What are the steps of the disciplinary process?,yes,School_Rules,Fact-Finding,"Investigation and fact-finding, student notification and response, parent communication, implementation of consequences, right to appeal."
+Q52,direct factual,What is the punishment for repeated bullying?,yes,School_Rules,expulsion or transfer,Third offense: 10-day OSS and a recommendation for expulsion or transfer.
+Q53,out of scope,Who won the NBA finals?,no,,,Not in the documents.
+Q54,out of scope,What is the weather in Quezon City today?,no,,,Not in the documents.
+Q55,out of scope,How do I cook adobo?,no,,,Not in the documents.
+Q56,unknown info,What is my exact tuition balance this semester?,no,,,Not available; personal account data. Refer to the Finance and Cashier's Office.
+Q57,hard negative,How much is the laboratory fee for BSIT?,no,,,Not in the documents; the fee schedule says laboratory fees are not included unless separately specified.
+Q58,hard negative,When is the enrollment period for the first semester?,no,,,No dates are given; enrollment periods are published through official channels.
+Q59,hard negative,How much is the late registration fee?,no,,,No amount is given; the policy only says an applicable charge may apply.
+Q60,hard negative,What percentage of my tuition is refunded if I withdraw?,no,,,No percentage is given; refunds follow the university's financial rules.
+Q61,hard negative,What are the library opening hours?,no,,,Not in the documents; the directory lists no hours.
+Q62,hard negative,What is the phone number of the registrar's office?,no,,,Not in the documents; only mock email addresses are listed.
+Q63,hard negative,Who is the dean of the College of Hospitality Management?,no,,,Not in the deans directory.
+Q64,hard negative,What is the passing grade at NEU?,no,,,Not in the documents.
+Q65,hard negative,Who is the president of NEU?,no,,,The directory lists the office but gives no name.
+Q66,hard negative,Does NEU offer athletic scholarships?,no,,,Not in the documents; only the office that handles scholarships is listed.
+Q67,hard negative,How many units do I need to graduate in BSIT?,no,,,Not in the documents.
