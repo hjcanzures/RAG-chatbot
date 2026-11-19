@@ -46,3 +46,8 @@ Thumbs.db
 # Editor settings
 .vscode/
 .idea/
+# local inspection output and scratch files
+chunk_dumps/
+*_backup.py
+.venv/
+venv/
