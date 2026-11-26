@@ -1,0 +1,68 @@
+﻿id,category,question,answerable,rank_of_first_hit,top1_distance,top1_doc,top1_section
+Q01,paraphrase,Does being admitted mean I'm already enrolled?,yes,1,0.2638,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q1. Does being admitted automatically mean that I am enrolled?
+Q02,paraphrase,Can I still enroll if I'm missing some of my documents?,yes,2,0.3168,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q2. Can I register without completing all my documents?
+Q03,informal,if i stop going to class am i automatically withdrawn?,yes,2,0.1792,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,"Q6. If I stop attending classes, am I automatically withdrawn?"
+Q04,direct factual,Can I register for a course if I haven't passed its prerequisite?,yes,1,0.1769,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q3. Can I register for a course if I have not completed its prerequisite?
+Q05,taglish,Paano kung na-miss ko yung deadline ng enrollment?,yes,1,0.3454,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q5. What happens if I miss the enrollment deadline?
+Q06,direct factual,What documents do I need to submit as a new student?,yes,1,0.2327,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,7.3 Documentary Requirements
+Q07,direct factual,What are the steps to enroll as a new student?,yes,1,0.3231,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,7.2 Initial Enrollment Steps
+Q08,paraphrase,How are the subjects from my old school evaluated for credit?,yes,1,0.3842,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,9.2 Transfer Credit Evaluation
+Q09,table lookup,What does Registration Hold mean?,yes,1,0.3798,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,24. APPENDIX B — SAMPLE REGISTRATION STATUSES
+Q10,table lookup,What does the For Advising status mean?,yes,1,0.4426,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,24. APPENDIX B — SAMPLE REGISTRATION STATUSES
+Q11,paraphrase,Can my friend log in to my account to enroll me?,yes,1,0.4051,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,5.2 Student Account
+Q12,informal,"i already paid, am i officially enrolled na?",yes,1,0.4023,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q12. Does paying the applicable amount automatically mean my registration is complete?
+Q13,keywords only,late registration,yes,1,0.3193,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,15. LATE REGISTRATION
+Q14,table lookup,How much is the tuition for BSIT per semester?,yes,1,0.3592,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q15,taglish,magkano tuition ng nursing?,yes,1,0.2367,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q16,keywords only,mechanical engineering tuition,yes,1,0.2526,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q17,multi-part,Which programs have the highest enrollment fee?,yes,1,0.4449,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q18,paraphrase,What is not included in the tuition amounts?,yes,1,0.4558,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q19,direct factual,How do I compute the basic cost to enroll?,yes,1,0.3254,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q20,table lookup,How much do I need to pay for BS Accountancy for the first semester?,yes,1,0.2913,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q21,direct factual,What programs does the College of Informatics and Computing Studies offer?,yes,1,0.2654,NEU_Courses_and_Academic_Programs.docx,College of Informatics and Computing Studies
+Q22,direct factual,Is there a nursing program at NEU?,yes,1,0.3254,NEU_Courses_and_Academic_Programs.docx,College of Nursing
+Q23,direct factual,What majors are offered under BSBA?,yes,1,0.3624,NEU_Courses_and_Academic_Programs.docx,College of Business Administration
+Q24,taglish,may law school ba sa NEU?,yes,1,0.3939,NEU_Courses_and_Academic_Programs.docx,2. Other Academic Pathways
+Q25,direct factual,What is ETEEAP?,yes,2,0.5024,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q26,paraphrase,Which college is BSIT under?,yes,1,0.5049,NEU_Courses_and_Academic_Programs.docx,College of Informatics and Computing Studies
+Q27,direct factual,What engineering courses are offered?,yes,1,0.3800,NEU_Courses_and_Academic_Programs.docx,College of Engineering and Architecture
+Q28,direct factual,Where can I see the official list of programs online?,yes,1,0.5164,NEU_Courses_and_Academic_Programs.docx,3. Official References
+Q29,direct factual,Who is the dean of the College of Nursing?,yes,1,0.3081,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q30,taglish,sino ang dean ng College of Criminology?,yes,1,0.2765,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q31,direct factual,Who heads the College of Law?,yes,1,0.3564,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q32,paraphrase,Who is in charge of the Alternative Learning System?,yes,1,0.4183,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q33,direct factual,Is the list of deans official?,yes,15,0.4819,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q34,direct factual,Where do I pay my tuition?,yes,,0.4627,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q35,typo,wher can i pay my tuiton,yes,,0.4938,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q36,direct factual,Who do I contact for scholarship questions?,yes,1,0.4447,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q37,informal,wifi problem who do i message,yes,2,0.5912,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q14. Where should I report a problem with my academic registration?
+Q38,direct factual,Who handles lost and found items?,yes,2,0.6838,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q39,direct factual,Where do I report a data privacy concern?,yes,2,0.4183,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q14. Where should I report a problem with my academic registration?
+Q40,multi-part,Who handles enrollment records and what room is it in?,yes,3,0.4010,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,19. DATA PRIVACY AND RECORDS MANAGEMENT
+Q41,direct factual,What is the email of the Registrar's office?,yes,1,0.3828,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q42,paraphrase,"My complaint was never resolved, who do I go to next?",yes,2,0.5317,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,Q14. Where should I report a problem with my academic registration?
+Q43,direct factual,What happens if I'm caught with alcohol for the first time?,yes,1,0.4957,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q44,informal,can i use my phone in class?,yes,2,0.4079,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q45,direct factual,What is the penalty for cheating the first time?,yes,1,0.4275,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q46,direct factual,How long do I have to appeal a disciplinary decision?,yes,1,0.4446,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q47,direct factual,Is holding hands allowed on campus?,yes,1,0.3645,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q48,taglish,bawal ba mag-vape sa school?,yes,2,0.4379,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q49,paraphrase,Can I wear sandals in the science lab?,yes,2,0.5332,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q50,paraphrase,Can I record my teacher without asking?,yes,1,0.5229,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q51,direct factual,What are the steps of the disciplinary process?,yes,1,0.3564,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q52,direct factual,What is the punishment for repeated bullying?,yes,1,0.4091,Mock_School_Rules_Policies_and_Violations_Document(cleaned).pdf,
+Q53,out of scope,Who won the NBA finals?,no,1,0.7895,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q54,out of scope,What is the weather in Quezon City today?,no,1,0.7914,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q55,out of scope,How do I cook adobo?,no,1,0.7603,NEU_Mock_Deans_and_Academic_Heads.docx,1. Colleges and Academic Units
+Q56,unknown info,What is my exact tuition balance this semester?,no,1,0.4180,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q57,hard negative,How much is the laboratory fee for BSIT?,no,1,0.4177,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q58,hard negative,When is the enrollment period for the first semester?,no,1,0.4227,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,5.1 Enrollment Period
+Q59,hard negative,How much is the late registration fee?,no,1,0.4028,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,15. LATE REGISTRATION
+Q60,hard negative,What percentage of my tuition is refunded if I withdraw?,no,1,0.4007,MOCK_NEU_Student_Enrollment_and_Registration_Policy.docx,16.4 Financial Consequences
+Q61,hard negative,What are the library opening hours?,no,1,0.6166,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q62,hard negative,What is the phone number of the registrar's office?,no,1,0.4403,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q63,hard negative,Who is the dean of the College of Hospitality Management?,no,1,0.4231,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,
+Q64,hard negative,What is the passing grade at NEU?,no,1,0.4401,NEU_Courses_and_Academic_Programs.docx,College of Education
+Q65,hard negative,Who is the president of NEU?,no,1,0.4768,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q66,hard negative,Does NEU offer athletic scholarships?,no,1,0.4437,NEU_Office_Directory_Mock_Reference(cleaned).pdf,
+Q67,hard negative,How many units do I need to graduate in BSIT?,no,1,0.5146,Mock_Proposed_Enrollment_and_Tuition_Fees.docx,

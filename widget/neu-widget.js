@@ -789,7 +789,7 @@
           // Save the turn as a user/assistant pair so history always starts
           // with a user turn and alternates. Blocked turns are left out so
           // they can't skew retrieval for the next question.
-          if (!data.blocked) {
+          if (!data.blocked && !data.fallback) { 
             state.history.push(
               { role: 'user', content: text },
               { role: 'assistant', content: answer.slice(0, MAX_HISTORY_CHARS) }
