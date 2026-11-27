@@ -1,0 +1,43 @@
+﻿id,should_hit,distance,same_chunks_top1,same_chunks_top2,same_chunks_top3,same_chunks_top5,served_at_0.15,question_a,question_b,note
+H16,yes,0.0475,no,yes,no,no,yes,What are the steps to enroll as a new student?,How do I enroll as a new student?,paraphrase
+H09,yes,0.0696,yes,yes,yes,yes,yes,Who is the dean of the College of Nursing?,sino ang dean ng College of Nursing?,taglish
+N20,no,0.0813,yes,yes,yes,yes,yes,What is the penalty for cheating the first time?,What is the penalty for cheating the second time?,DANGEROUS same section different offense count
+H06,yes,0.0925,no,no,no,no,no,Where do I pay my tuition?,wher can i pay my tuiton,typo
+H02,yes,0.0993,yes,yes,yes,yes,yes,magkano tuition ng nursing?,How much is the tuition for nursing per semester?,taglish vs english
+H15,yes,0.1047,yes,yes,yes,yes,yes,can i use my phone in class?,Is using cellphones allowed during class?,paraphrase
+H11,yes,0.1075,yes,yes,no,no,yes,How long do I have to appeal a disciplinary decision?,What is the deadline to appeal a discipline decision?,paraphrase
+N19,no,0.1101,yes,yes,yes,yes,yes,How much is the tuition for BSIT per semester?,How much is the enrollment fee for BSIT?,DANGEROUS same row different fee
+H03,yes,0.1255,no,yes,yes,yes,yes,How much is the tuition for BSIT per semester?,bsit tuition per sem,keywords
+N22,no,0.1344,yes,no,no,no,no,What is the punishment for bullying the first time?,What is the punishment for repeated bullying?,DANGEROUS same section different offense count
+N23,no,0.1368,no,no,no,no,no,Which programs have the highest enrollment fee?,Which programs have the highest tuition?,DANGEROUS same table different column
+H01,yes,0.1451,yes,yes,yes,yes,yes,if i stop going to class am i automatically withdrawn?,Do I get dropped automatically if I stop attending classes?,paraphrase
+H13,yes,0.1510,yes,yes,no,no,no,Can I wear sandals in the science lab?,Are slippers allowed in the science laboratory?,paraphrase
+H08,yes,0.1542,yes,yes,yes,no,no,Can I record my teacher without asking?,Is it okay to record my professor without their consent?,paraphrase
+N15,no,0.1794,no,no,no,no,no,How many units do I need to graduate in BSIT?,How many units do I need to graduate in BSN?,different program
+N10,no,0.1826,no,no,no,no,no,How much do I need to pay for BS Accountancy for the first semester?,How much do I need to pay for BS Nursing for the first semester?,different program
+N06,no,0.1826,yes,no,no,no,no,What happens if I'm caught with alcohol for the first time?,What happens if I'm caught with alcohol for the third time?,different offense count
+H10,yes,0.1834,yes,yes,yes,no,no,What is the email of the Registrar's office?,registrar email address,keywords
+H05,yes,0.1864,no,yes,no,no,no,Can my friend log in to my account to enroll me?,Can someone else use my account to enroll for me?,paraphrase
+N25,no,0.1932,yes,no,no,no,no,What happens if I'm caught with alcohol for the first time?,What happens if I'm caught vaping for the first time?,DANGEROUS same offense tier different violation
+N08,no,0.2029,yes,no,yes,no,no,What is the email of the Registrar's office?,What is the phone number of the registrar's office?,email vs phone
+H12,yes,0.2066,yes,yes,no,no,no,What documents do I need to submit as a new student?,requirements for new students,keywords
+N02,no,0.2101,no,no,no,no,no,How much is the tuition for BSIT per semester?,How much is the laboratory fee for BSIT?,same program different fee
+H07,yes,0.2238,yes,yes,yes,no,no,bawal ba mag-vape sa school?,Is vaping allowed on campus?,taglish vs english
+H04,yes,0.2373,yes,yes,yes,no,no,Does being admitted mean I'm already enrolled?,admitted na ako pero enrolled na ba ako,taglish
+N21,no,0.2530,yes,yes,no,no,no,What is the email of the Registrar's office?,What room is the Registrar's office in?,DANGEROUS same directory entry different attribute
+N03,no,0.2947,no,no,no,no,no,Who is the dean of the College of Nursing?,Who is the dean of the College of Law?,different college
+N04,no,0.3272,no,no,no,no,no,Who is the dean of the College of Nursing?,sino ang dean ng College of Criminology?,different college
+N07,no,0.3374,no,no,no,no,no,What is the penalty for cheating the first time?,What is the punishment for repeated bullying?,different violation
+N01,no,0.3449,no,no,no,no,no,How much is the tuition for BSIT per semester?,How much is the tuition for Nursing per semester?,different program
+N14,no,0.3501,no,no,no,no,no,Can I register for a course if I haven't passed its prerequisite?,Can I still enroll if I'm missing some of my documents?,different policy
+H14,yes,0.3553,yes,no,yes,yes,no,What happens if I'm caught with alcohol for the first time?,penalty for first offense of drinking alcohol on campus,paraphrase
+N05,no,0.3583,no,no,no,no,no,How much is the late registration fee?,Can I still enroll if I miss the deadline?,related topic different answer
+N24,no,0.3642,yes,no,no,no,no,How long do I have to appeal a disciplinary decision?,What are the steps of the disciplinary process?,DANGEROUS same section different topic
+N13,no,0.3873,no,no,no,no,no,Is holding hands allowed on campus?,Is vaping allowed on campus?,different rule
+N26,no,0.3886,no,no,no,no,no,Is the list of deans official?,Who is the dean of the College of Law?,DANGEROUS same deans doc different question
+N16,no,0.3945,no,no,no,no,no,What is my exact tuition balance this semester?,How much is the tuition for BSIT per semester?,personal vs general
+N18,no,0.4084,no,no,no,no,no,Where is the registrar's office?,Where is the cashier's office?,different office
+N09,no,0.4659,no,no,no,no,no,Where do I pay my tuition?,How much is the tuition for BSIT per semester?,where vs how much
+N17,no,0.4758,no,no,no,no,no,Who is the dean of the College of Nursing?,Who is the president of NEU?,different person
+N11,no,0.5012,yes,no,no,no,no,Who do I contact for scholarship questions?,Does NEU offer athletic scholarships?,related topic different answer
+N12,no,0.6295,no,no,no,no,no,What does Registration Hold mean?,What does the For Advising status mean?,different status

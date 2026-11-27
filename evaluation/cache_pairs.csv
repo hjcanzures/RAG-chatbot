@@ -1,0 +1,43 @@
+﻿id,should_hit,question_a,question_b,note
+H01,yes,if i stop going to class am i automatically withdrawn?,Do I get dropped automatically if I stop attending classes?,paraphrase
+H02,yes,magkano tuition ng nursing?,How much is the tuition for nursing per semester?,taglish vs english
+H03,yes,How much is the tuition for BSIT per semester?,bsit tuition per sem,keywords
+H04,yes,Does being admitted mean I'm already enrolled?,admitted na ako pero enrolled na ba ako,taglish
+H05,yes,Can my friend log in to my account to enroll me?,Can someone else use my account to enroll for me?,paraphrase
+H06,yes,Where do I pay my tuition?,wher can i pay my tuiton,typo
+H07,yes,bawal ba mag-vape sa school?,Is vaping allowed on campus?,taglish vs english
+H08,yes,Can I record my teacher without asking?,Is it okay to record my professor without their consent?,paraphrase
+H09,yes,Who is the dean of the College of Nursing?,sino ang dean ng College of Nursing?,taglish
+H10,yes,What is the email of the Registrar's office?,registrar email address,keywords
+H11,yes,How long do I have to appeal a disciplinary decision?,What is the deadline to appeal a discipline decision?,paraphrase
+H12,yes,What documents do I need to submit as a new student?,requirements for new students,keywords
+H13,yes,Can I wear sandals in the science lab?,Are slippers allowed in the science laboratory?,paraphrase
+H14,yes,What happens if I'm caught with alcohol for the first time?,penalty for first offense of drinking alcohol on campus,paraphrase
+H15,yes,can i use my phone in class?,Is using cellphones allowed during class?,paraphrase
+H16,yes,What are the steps to enroll as a new student?,How do I enroll as a new student?,paraphrase
+N01,no,How much is the tuition for BSIT per semester?,How much is the tuition for Nursing per semester?,different program
+N02,no,How much is the tuition for BSIT per semester?,How much is the laboratory fee for BSIT?,same program different fee
+N03,no,Who is the dean of the College of Nursing?,Who is the dean of the College of Law?,different college
+N04,no,Who is the dean of the College of Nursing?,sino ang dean ng College of Criminology?,different college
+N05,no,How much is the late registration fee?,Can I still enroll if I miss the deadline?,related topic different answer
+N06,no,What happens if I'm caught with alcohol for the first time?,What happens if I'm caught with alcohol for the third time?,different offense count
+N07,no,What is the penalty for cheating the first time?,What is the punishment for repeated bullying?,different violation
+N08,no,What is the email of the Registrar's office?,What is the phone number of the registrar's office?,email vs phone
+N09,no,Where do I pay my tuition?,How much is the tuition for BSIT per semester?,where vs how much
+N10,no,How much do I need to pay for BS Accountancy for the first semester?,How much do I need to pay for BS Nursing for the first semester?,different program
+N11,no,Who do I contact for scholarship questions?,Does NEU offer athletic scholarships?,related topic different answer
+N12,no,What does Registration Hold mean?,What does the For Advising status mean?,different status
+N13,no,Is holding hands allowed on campus?,Is vaping allowed on campus?,different rule
+N14,no,Can I register for a course if I haven't passed its prerequisite?,Can I still enroll if I'm missing some of my documents?,different policy
+N15,no,How many units do I need to graduate in BSIT?,How many units do I need to graduate in BSN?,different program
+N16,no,What is my exact tuition balance this semester?,How much is the tuition for BSIT per semester?,personal vs general
+N17,no,Who is the dean of the College of Nursing?,Who is the president of NEU?,different person
+N18,no,Where is the registrar's office?,Where is the cashier's office?,different office
+N19,no,How much is the tuition for BSIT per semester?,How much is the enrollment fee for BSIT?,DANGEROUS same row different fee
+N20,no,What is the penalty for cheating the first time?,What is the penalty for cheating the second time?,DANGEROUS same section different offense count
+N21,no,What is the email of the Registrar's office?,What room is the Registrar's office in?,DANGEROUS same directory entry different attribute
+N22,no,What is the punishment for bullying the first time?,What is the punishment for repeated bullying?,DANGEROUS same section different offense count
+N23,no,Which programs have the highest enrollment fee?,Which programs have the highest tuition?,DANGEROUS same table different column
+N24,no,How long do I have to appeal a disciplinary decision?,What are the steps of the disciplinary process?,DANGEROUS same section different topic
+N25,no,What happens if I'm caught with alcohol for the first time?,What happens if I'm caught vaping for the first time?,DANGEROUS same offense tier different violation
+N26,no,Is the list of deans official?,Who is the dean of the College of Law?,DANGEROUS same deans doc different question
