@@ -51,3 +51,6 @@ chunk_dumps/
 *_backup.py
 .venv/
 venv/
+
+# NEU crawler output (regenerable). Delete this line if you want to commit the knowledge base.
+neu_crawler/data/
